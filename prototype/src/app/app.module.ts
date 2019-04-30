@@ -5,11 +5,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarHomeComponent } from './shared/navbar-home/navbar-home.component';
+import { CompanyCardComponent } from './shared/company-card/company-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarHomeComponent
+    NavbarHomeComponent,
+    CompanyCardComponent
   ],
   imports: [
     BrowserModule,
