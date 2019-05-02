@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarHomeComponent } from './shared/navbar-home/navbar-home.component';
 import { CompanyCardComponent } from './shared/company-card/company-card.component';
+import { HomeComponent } from './core/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarHomeComponent,
-    CompanyCardComponent
+    CompanyCardComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
