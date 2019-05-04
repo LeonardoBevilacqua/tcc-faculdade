@@ -28,11 +28,7 @@
             <div class="jumbotron text-center py-2" style="background: none">
                 <h3>Empresas melhores avaliadas</h3>
                 <div class="d-flex">
-                    <app-company-card class="my-0 mx-auto"></app-company-card>
-                    <app-company-card class="my-0 mx-auto"></app-company-card>
-                    <app-company-card class="my-0 mx-auto"></app-company-card>
-                    <app-company-card class="my-0 mx-auto"></app-company-card>
-                    <app-company-card class="my-0 mx-auto"></app-company-card>
+                    <app-company-card *ngFor="let img of imgs" class="my-0 mx-auto" [img]="img"></app-company-card>
                 </div>
             </div>
         </div>
