@@ -26,7 +26,7 @@
 
 	<div class="row wrapper">
 
-		<nav class="bg-dark text-light col-2 p-0" id="sidebar" [ngClass]="active ? 'active' : ''">
+		<nav class="bg-dark text-light col-2 p-0" id="sidebar" [ngClass]="!active ? 'active' : ''">
 			<div class="sidebar-header p-1 bg-primary d-flex justify-content-between">
 				<h3>Sidebar</h3>
 				<button type="button" class="btn btn-primary" (click)="active=!active">
@@ -78,14 +78,20 @@
 		</nav>
 
 		<div id="content" class="col-10">
-			<div class="container-fluid m-2">
-				<button type="button" id="sidebarCollapse" class="btn btn-info" [ngClass]="!active ? 'active' : ''" (click)="active=!active">
+			<div class="container-fluid m-2 w-25 d-flex align-items-center justify-content-between">
+				<button type="button" id="sidebarCollapse" class="btn btn-info" [ngClass]="active ? 'active' : ''"
+					(click)="active=!active">
 					<i class="fa fa-align-left"></i>
 				</button>
-
+				<span class="btn btn-link font-weight-bold text-decoration-underline">Vagas</span>
+				<span class="btn btn-link">Usuários</span>
 
 
 			</div>
+			<div class="container-fluid m-2 w-100">
+				<div class="jumbotron">teste</div>
+			</div>
+
 		</div>
 	</div>
 </div>

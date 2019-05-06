@@ -79,5 +79,9 @@ ul ul a {
 }
 
 #sidebarCollapse.active {
-  display: none;
+  visibility: hidden;
+}
+
+.text-decoration-underline{
+  text-decoration: underline;
 }
