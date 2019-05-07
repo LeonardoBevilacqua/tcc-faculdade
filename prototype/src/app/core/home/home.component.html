@@ -1,6 +1,6 @@
 <app-navbar-home></app-navbar-home>
 
-<div class="container-fluid p-0">
+<div class="container-fluid p-0" style="overflow: hidden;">
 
     <div class="jumbotron" style="height: 400px; background-image: url('../../assets/brainstorming.jpg'); background-size: cover">
 
@@ -16,21 +16,25 @@
         </div>
 
         <div class="row justify-content-center align-items-center h-25">
-            <div class="col-4">
+            <div class="col-5">
                 <button class="btn btn-warning btn-lg">Novo por aqui? Clique aqui e cadastre-se</button>
             </div>
         </div>
 
     </div>
 
-    <div class="row mx-0" style="margin: 120px 0">
-        <div class="offset-1 col-10">
-            <div class="jumbotron text-center py-2" style="background: none">
-                <h3>Empresas melhores avaliadas</h3>
-                <div class="d-flex">
-                    <app-company-card *ngFor="let img of imgs" class="my-0 mx-auto" [img]="img"></app-company-card>
-                </div>
-            </div>
+    <div class="row text-center" style="justify-content: center; flex-direction: column;">
+        <h2>Empresas melhores avaliadas</h2>
+        <p>Aqui Estão listadas algumas das melhores empresas que fazem parte do nosso case de sucesso!</p>
+    </div>
+    <div class="container-fluid d-flex" style="min-height: auto;align-items: center; justify-content: center;margin-bottom: 1rem;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: center;max-width: 920px;">
+        
+            <app-company-card style="width: calc(960px / 7);display: inline-flex; justify-content: center; margin: 15px 0;"
+            *ngFor="let img of imgs"
+            [img]="img"
+            ></app-company-card>
+
         </div>
     </div>
 
