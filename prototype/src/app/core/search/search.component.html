@@ -23,75 +23,87 @@
 	</div>
 </nav>
 <div class="container-fluid">
+	<div class="row">
+		<div class="offset-2 col-10 my-2">
+			<span class="btn btn-link font-weight-bold text-decoration-underline">Vagas</span>
+			<span class="btn btn-link">Usuários</span>
+		</div>
+	</div>
 
 	<div class="row wrapper">
 
-		<nav class="bg-dark text-light col-2 p-0" id="sidebar" [ngClass]="!active ? 'active' : ''">
-			<div class="sidebar-header p-1 bg-primary d-flex justify-content-between">
-				<h3>Sidebar</h3>
-				<button type="button" class="btn btn-primary" (click)="active=!active">
-					<i class="fa fa-times"></i>
-				</button>
-			</div>
+		<nav class="col-2 py-5 bg-dark text-light" id="sidebar">
 
-			<ul class="list-unstyled components">
-				<p class="text-light p-1">Dummy Heading</p>
-				<li class="active">
-					<a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-					<ul class="collapse list-unstyled" id="homeSubmenu">
-						<li>
-							<a href="#">Home 1</a>
-						</li>
-						<li>
-							<a href="#">Home 2</a>
-						</li>
-						<li>
-							<a href="#">Home 3</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="#">About</a>
-				</li>
-				<li>
-					<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
-						class="dropdown-toggle">Pages</a>
-					<ul class="collapse list-unstyled" id="pageSubmenu">
-						<li>
-							<a href="#">Page 1</a>
-						</li>
-						<li>
-							<a href="#">Page 2</a>
-						</li>
-						<li>
-							<a href="#">Page 3</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="#">Portfolio</a>
-				</li>
-				<li>
-					<a href="#">Contact</a>
-				</li>
-			</ul>
+			<form action="">
+				<div class="mb-5">
+					<label for="">Cidades</label>
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input"> <label class="form-check-label">teste</label>
+					</div>
+					<div class="form-check">
+						<input type="checkbox" name="" id="" class="form-check-input"><label
+							class="form-check-label">teste</label>
+					</div>
+					<div class="form-check">
+						<input type="checkbox" name="" id="" class="form-check-input"><label
+							class="form-check-label">teste</label>
+					</div>
+					<div class="form-check">
+						<input type="checkbox" name="" id="" class="form-check-input"><label
+							class="form-check-label">teste</label>
+					</div>
+					<div class="form-check">
+						<input type="checkbox" name="" id="" class="form-check-input"><label
+							class="form-check-label">teste</label>
+					</div>
+				</div>
+
+				<div class="mb-5">
+					<label for="">Nivel</label>
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input"> <label class="form-check-label">teste</label>
+					</div>
+					<div class="form-check">
+						<input type="checkbox" name="" id="" class="form-check-input"><label
+							class="form-check-label">teste</label>
+					</div>
+					<div class="form-check">
+						<input type="checkbox" name="" id="" class="form-check-input"><label
+							class="form-check-label">teste</label>
+					</div>
+					<div class="form-check">
+						<input type="checkbox" name="" id="" class="form-check-input"><label
+							class="form-check-label">teste</label>
+					</div>
+					<div class="form-check">
+						<input type="checkbox" name="" id="" class="form-check-input"><label
+							class="form-check-label">teste</label>
+					</div>
+				</div>
+			</form>
+
 		</nav>
 
-		<div id="content" class="col-10">
-			<div class="container-fluid m-2 w-25 d-flex align-items-center justify-content-between">
-				<button type="button" id="sidebarCollapse" class="btn btn-info" [ngClass]="active ? 'active' : ''"
-					(click)="active=!active">
-					<i class="fa fa-align-left"></i>
-				</button>
-				<span class="btn btn-link font-weight-bold text-decoration-underline">Vagas</span>
-				<span class="btn btn-link">Usuários</span>
-
-
+		<div class="col-8">
+			<div class="w-100">
+				<div class="jumbotron pt-5 pb-2" *ngFor="let i of [1,2,3,4,5]"> <!--class="jumbotron pt-5 pb-2"-->
+					<h2>Programador Java</h2>					
+					<span class="w-100 d-block">Unimetrocamp</span>
+					<span class="w-100 d-block">Junior</span>
+					<p class="py-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum velit alias fuga quasi odit temporibus, ipsa, consequuntur officia nam provident blanditiis suscipit rerum non. Atque optio ut maxime enim officiis?</p>
+					<div class="d-flex justify-content-between">
+						<span>Campinas</span>
+						<span>15/03/2019</span>
+					</div>
+				</div>
 			</div>
-			<div class="container-fluid m-2 w-100">
-				<div class="jumbotron">teste</div>
-			</div>
+		</div>
 
+		<div class="col-2">
+			<div class="jumbotron h-75">
+				[PLACEHOLDER]
+			</div>
 		</div>
 	</div>
+
 </div>
