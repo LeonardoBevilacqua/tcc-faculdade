@@ -1,64 +1,43 @@
 <app-navbar-home [isLogged]="true"></app-navbar-home>
-<div class="container p-0" style="overflow: hidden;">
-  <div class="jumbotron jumbotron-fluid p-3 d-flex flex-column flex-sm-row" style="position: relative;">
-    <a class="pr-5" style="position: absolute; right: 10px; top:0px" href="./">Editar</a>
-    <div class="mr-4 d-flex justify-content-center">
+
+<div class="container-fluid p-0">
+  <div class="jumbotron jumbotron-fluid p-3 d-flex">
+    <div class="mx-4">
       <img src="https://cdn.pixabay.com/photo/2012/04/26/19/43/profile-42914_960_720.png" alt="..."
         class="imageProfile">
     </div>
-    <div>
-      <h2>Nome do Usuário</h2>
-      <p class="py-1 m-0">(99) 9 9999-9999</p>
-      <p class="py-1 m-0">Estado, Cidade</p>
-      <p class="py-1 m-0">
-        Objetivo: No meu xinélo da humildade eu gostaria muito de ver o Neymar e o Ganso. Por que eu acho que.... 11
-        entre 10 brasileiros gostariam. Você veja, eu já vi, parei de ver. Voltei a ver, e acho que o Neymar e o Ganso
-        têm essa capacidade de fazer a gente olhar.
-      </p>
 
+    <div>
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>Nome do Usuário</h2>
+        <a class="btn btn-link" href="./">Editar</a>
+      </div>
+
+      <span class="d-inline-block w-100">(99) 9 9999-9999</span>
+      <span class="d-inline-block w-100">Estado, Cidade</span>
+      <p>
+        Objetivo: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem iste neque dignissimos dolore dicta
+        voluptas libero qui laboriosam! Asperiores voluptates tempora iusto veniam vero quos iste, architecto temporibus
+        corrupti magni.
+      </p>
     </div>
   </div>
-  <div class="container p-5" style="background: #e9ecef">
-    <div class="row">
-      <div class="d-flex justify-content-between w-100">
-        <h3>Formação Acadêmica</h3>
-        <a class="pr-2" href="./">Editar</a>
-      </div>
-      <hr class="m-1" style="width: 100%;background: black;">
-      <p>
-        Primeiro eu queria cumprimentar os internautas. -Oi Internautas! Depois dizer que o meio ambiente é sem dúvida
-        nenhuma uma ameaça ao desenvolvimento sustentável. E isso significa que é uma ameaça pro futuro do nosso planeta
-        e dos nossos países. O desemprego beira 20%, ou seja, 1 em cada 4 portugueses.
-      </p>
-    </div>
-    <div class="row">
-      <div class="d-flex justify-content-between w-100">
-        <h3>Habilidades</h3>
-        <a class="pr-2" href="./">Editar</a>
-      </div>
-      <hr class="m-1" style="width: 100%;background: black;">
-      <p>
-        Ai você fala o seguinte: "- Mas vocês acabaram isso?" Vou te falar: -"Não, está em andamento!" Tem obras que
-        "vai" durar pra depois de 2010. Agora, por isso, nós já não desenhamos, não começamos a fazer projeto do que nós
-        "podêmo fazê"? 11, 12, 13, 14... Por que é que não?
 
-        A única área que eu acho, que vai exigir muita atenção nossa, e aí eu já aventei a hipótese de até criar um
-        ministério. É na área de... Na área... Eu diria assim, como uma espécie de analogia com o que acontece na área
-        agrícola.
-      </p>
-    </div>
-    <div class="row">
-      <div class="d-flex justify-content-between w-100">
-        <h3>Experiência Profissional</h3>
-        <a class="pr-2" href="./">Editar</a>
+  <div class="jumbotron w-75 m-auto">
+    <div *ngFor="let title of ['Formação Acadêmica', 'Habilidades', 'Experiência Profissional']">
+      <div class="d-flex justify-content-between align-items-center">
+        <h3>{{title}}</h3>
+        <a class="btn btn-link" href="./">Editar</a>
       </div>
-      <hr class="m-1" style="width: 100%;background: black;">
+      <hr class="mt-0 bg-dark" />
       <p>
-        Ai você fala o seguinte: "- Mas vocês acabaram isso?" Vou te falar: -"Não, está em andamento!" Tem obras que
-        "vai" durar pra depois de 2010. Agora, por isso, nós já não desenhamos, não começamos a fazer projeto do que nós
-        "podêmo fazê"? 11, 12, 13, 14... Por que é que não?
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore ipsum repudiandae illum dignissimos,
+        suscipit blanditiis in? Ipsam similique aperiam voluptates sint est minima, provident ea. Repellat nam officia
+        non incidunt.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. In non commodi minima impedit perspiciatis a
+        perferendis molestiae, aperiam nam laboriosam blanditiis iste nulla, vel cumque earum esse ut accusantium
+        doloribus.
       </p>
     </div>
-
   </div>
 </div>
