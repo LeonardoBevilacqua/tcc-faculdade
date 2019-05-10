@@ -7,6 +7,7 @@ import { NavbarHomeComponent } from './shared/navbar-home/navbar-home.component'
 import { CompanyCardComponent } from './shared/company-card/company-card.component';
 import { HomeComponent } from './core/home/home.component';
 import { SearchComponent } from './core/search/search.component';
+import { ProfileComponent } from './core/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { SearchComponent } from './core/search/search.component';
     NavbarHomeComponent,
     CompanyCardComponent,
     HomeComponent,
-    SearchComponent
+    SearchComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
