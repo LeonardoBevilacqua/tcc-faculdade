@@ -8,6 +8,8 @@ import { CompanyCardComponent } from './shared/company-card/company-card.compone
 import { HomeComponent } from './core/home/home.component';
 import { SearchComponent } from './core/search/search.component';
 import { ProfileComponent } from './core/profile/profile.component';
+import { JobDetailsComponent } from './core/job-details/job-details.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { ProfileComponent } from './core/profile/profile.component';
     CompanyCardComponent,
     HomeComponent,
     SearchComponent,
-    ProfileComponent
+    ProfileComponent,
+    JobDetailsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
