@@ -1,0 +1,57 @@
+<app-navbar-home [isLogged]="true"></app-navbar-home>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="offset-2 col-10 my-2">
+			<span class="btn btn-link font-weight-bold text-decoration-underline">Vagas</span>
+			<span class="btn btn-link">Usuários</span>
+		</div>
+	</div>
+
+	<div class="row wrapper">
+
+		<nav class="col-2 py-5 bg-dark text-light" id="sidebar">
+
+			<form action="">
+				<div class="mb-5">
+					<label for="">Cidades</label>
+					<div class="form-check" *ngFor="let i of [1,2,3,4,5]">
+						<input type="checkbox" class="form-check-input"> <label class="form-check-label">Cidade {{i}}</label>
+					</div>					
+				</div>
+
+				<div class="mb-5">
+					<label for="">Nivel</label>
+					<div class="form-check" *ngFor="let i of [1,2,3,4,5]">
+						<input type="checkbox" class="form-check-input"> <label class="form-check-label">Nivel {{i}}</label>
+					</div>					
+				</div>
+			</form>
+
+		</nav>
+
+		<div class="col-8">
+			<div class="w-100">
+				<div class="jumbotron pt-5 pb-2" *ngFor="let i of [1,2,3,4,5]"> <!--class="jumbotron pt-5 pb-2"-->
+					<h2>Programador Java</h2>					
+					<span class="w-100 d-block">Unimetrocamp</span>
+					<span class="w-100 d-block">Junior</span>
+					<p class="py-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum velit alias fuga quasi odit temporibus, ipsa, consequuntur officia nam provident blanditiis suscipit rerum non. Atque optio ut maxime enim officiis?</p>
+					<div class="d-flex justify-content-between">
+						<span>Campinas</span>
+						<span>15/03/2019</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-2">
+			<div class="jumbotron h-75">
+				[PLACEHOLDER]
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<app-footer [isLogged]="true"></app-footer>

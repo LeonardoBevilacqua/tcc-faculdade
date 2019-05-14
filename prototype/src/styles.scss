@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/scss/bootstrap.scss";
+
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome.scss";
+
+
+.image:hover{
+    transform: scale(1.2); 
+ 
+}
+
+
+.imageProfile {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
