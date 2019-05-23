@@ -1,36 +1,44 @@
 <app-navbar-home [isLogged]="true"></app-navbar-home>
 
 <div class="container-fluid">
-	<div class="row">
-		<div class="offset-2 col-10 my-2">
-			<span class="btn btn-link font-weight-bold text-decoration-underline">Vagas</span>
-			<span class="btn btn-link">Usuários</span>
-		</div>
-	</div>
-
 	<div class="row wrapper">
 
-		<nav class="col-2 py-5 bg-dark text-light" id="sidebar">
+		<nav class="col-md-2 py-5 bg-dark text-light navbar-dark navbar-expand-md" id="sidebar">
+			<div class="d-flex align-items-center">
+				<button class="navbar-toggler mr-3 my-1 text-light" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<h2 class="m-0">Filtro</h2>
+			</div>
 
-			<form action="">
-				<div class="mb-5">
-					<label for="">Cidades</label>
-					<div class="form-check" *ngFor="let i of [1,2,3,4,5]">
-						<input type="checkbox" class="form-check-input"> <label class="form-check-label">Cidade {{i}}</label>
-					</div>					
-				</div>
-
-				<div class="mb-5">
-					<label for="">Nivel</label>
-					<div class="form-check" *ngFor="let i of [1,2,3,4,5]">
-						<input type="checkbox" class="form-check-input"> <label class="form-check-label">Nivel {{i}}</label>
-					</div>					
-				</div>
-			</form>
+			<div class="collapse navbar-collapse p-0 m-0" id="navbarTogglerDemo02">
+				<form action="">
+					<div class="mb-5">
+						<label for="">Cidades</label>
+						<div class="form-check" *ngFor="let i of [1,2,3,4,5]">
+							<input type="checkbox" class="form-check-input"> <label class="form-check-label">Cidade {{i}}</label>
+						</div>					
+					</div>
+	
+					<div class="mb-5">
+						<label for="">Nivel</label>
+						<div class="form-check" *ngFor="let i of [1,2,3,4,5]">
+							<input type="checkbox" class="form-check-input"> <label class="form-check-label">Nivel {{i}}</label>
+						</div>					
+					</div>
+				</form>
+			</div>
 
 		</nav>
+		
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-10 my-2">
+					<span class="btn btn-link font-weight-bold text-decoration-underline">Vagas</span>
+					<span class="btn btn-link">Usuários</span>
+				</div>
+			</div>
 
-		<div class="col-8">
 			<div class="w-100">
 				<div class="jumbotron pt-5 pb-2" *ngFor="let i of [1,2,3,4,5]"> <!--class="jumbotron pt-5 pb-2"-->
 					<h2>Programador Java</h2>					
@@ -45,9 +53,9 @@
 			</div>
 		</div>
 
-		<div class="col-2 text-break">
+		<div class="col-md-2 text-break align-self-center">
 			<div class="jumbotron h-75">
-				[PLACEHOLDER]
+				<div style="height: 500px;">[PLACEHOLDER]</div>
 			</div>
 		</div>
 	</div>
