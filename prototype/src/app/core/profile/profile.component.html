@@ -1,7 +1,7 @@
 <app-navbar-home [isLogged]="true"></app-navbar-home>
 
-<div class="container-fluid p-0 mb-5">
-  <div class="jumbotron jumbotron-fluid p-3 d-md-flex">
+<div class="container-fluid px-0 pb-5 bg-light">
+  <div class="jumbotron jumbotron-fluid p-3 d-md-flex bg-primary border-bottom border-warning rounded-0 text-light mb-5">
     <div class="mx-4">
       <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="..."
         class="imageProfile mx-auto d-block">
@@ -10,7 +10,7 @@
     <div>
       <div class="d-flex justify-content-between align-items-center">
         <h2>Nome do Usuário</h2>
-        <a class="btn btn-link" href="./">Editar</a>
+        <a class="btn btn-link text-light" href="./">Editar</a>
       </div>
 
       <span class="d-inline-block w-100">(99) 9 9999-9999</span>
@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <div class="jumbotron w-75 m-auto">
+  <div class="jumbotron w-75 m-auto bg-white border rounded-0">
     <div *ngFor="let title of ['Formação Acadêmica', 'Habilidades', 'Experiência Profissional']">
       <div class="d-md-flex justify-content-between align-items-center">
         <h3>{{title}}</h3>
