@@ -1,15 +1,19 @@
 <app-navbar-home [isLogged]="false"></app-navbar-home>
 
-<div class="container-fluid p-0 overflow-hidden" style="background-image: url('./assets/trianglify.png'); background-size: cover;">
+<div class="container-fluid p-0 overflow-hidden"
+    style="background-image: url('./assets/trianglify.png'); background-size: cover;">
 
-    <div class="jumbotron" style="height: 400px; background-image: url('../../assets/brainstorming.jpg'); background-size: cover">
+    <div class="jumbotron"
+        style="height: 400px; background-image: url('../../assets/brainstorming.jpg'); background-size: cover">
 
         <div class="row align-items-center h-75">
             <div class="col-12 offset-md-2 col-md-8">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control form-control-lg border-right-0 border-white bg-light rounded-0">
+                    <input type="text"
+                        class="form-control form-control-lg border-right-0 border-white bg-light rounded-0">
                     <div class="input-group-append">
-                        <span class="input-group-text border-white bg-warning rounded-0"><i class="fa fa-search text-light"></i></span>
+                        <span class="input-group-text border-white bg-warning rounded-0"><i
+                                class="fa fa-search text-light"></i></span>
                     </div>
                 </div>
             </div>
@@ -23,24 +27,17 @@
 
     </div>
 
-    <div class="text-center d-flex justify-content-center flex-column" >
+    <div class="d-md-flex text-center flex-column jumbotron bg-white rounded-0 border w-75 mx-auto">
         <h2>Empresas melhores avaliadas</h2>
-        <p>Aqui Estão listadas algumas das melhores empresas que fazem parte do nosso case de sucesso!</p>
-    </div>
-
-    <div class="container-fluid d-flex" style="min-height: auto;align-items: center; justify-content: center;margin-bottom: 1rem;">
-        <div style="display: flex; flex-wrap: wrap; justify-content: center;max-width: 920px;">
-        
-            <app-company-card style="width: calc(960px / 7);display: inline-flex; justify-content: center; margin: 15px 0;"
-            *ngFor="let img of imgs"
-            [img]="img"
-            ></app-company-card>
-
+        <p>Aqui estão listadas algumas das melhores empresas que fazem parte do nosso case de sucesso!</p>
+        <div class="container-fluid d-md-flex">
+            <div >
+                <app-company-card *ngFor="let img of imgs" [img]="img"></app-company-card>
+            </div>
         </div>
     </div>
 
-
-    <div class="d-flex justify-content-center align-items-center mx-auto" style="background-color: gray; width: 60%; margin-bottom: 120px; font-size: 4em;">
+    <div class="d-md-flex justify-content-center align-items-center mx-auto jumbotron w-50" style="font-size: 4em;">
         <span class="text-break">[PLACEHOLDER]</span>
     </div>
 
