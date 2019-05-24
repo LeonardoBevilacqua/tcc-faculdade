@@ -1,11 +1,11 @@
 <app-navbar-home [isLogged]="true"></app-navbar-home>
 
-<div class="container-fluid">
-	<div class="row wrapper">
+<div class="container-fluid bg-light" style="background-image: url('./assets/trianglify.png'); background-size: cover;">
+	<div class="row">
 
 		<nav class="col-md-2 py-5 bg-dark text-light navbar-dark navbar-expand-md" id="sidebar">
 			<div class="d-flex align-items-center">
-				<button class="navbar-toggler mr-3 my-1 text-light" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+				<button class="navbar-toggler mr-3 my-1 text-light rounded-0" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<h2 class="m-0">Filtro</h2>
@@ -32,15 +32,13 @@
 		</nav>
 		
 		<div class="col-md-8">
-			<div class="row">
-				<div class="col-md-10 my-2">
-					<span class="btn btn-link font-weight-bold text-decoration-underline">Vagas</span>
-					<span class="btn btn-link">Usuários</span>
-				</div>
+			<div class="my-2">
+				<span class="btn btn-primary mr-2 font-weight-bold">Vagas</span>
+				<span class="btn btn-primary mr-2">Usuários</span>
 			</div>
 
 			<div class="w-100">
-				<div class="jumbotron pt-5 pb-2" *ngFor="let i of [1,2,3,4,5]"> <!--class="jumbotron pt-5 pb-2"-->
+				<div class="jumbotron pt-5 pb-2 bg-white rounded-0 border" *ngFor="let i of [1,2,3,4,5]"> <!--class="jumbotron pt-5 pb-2"-->
 					<h2>Programador Java</h2>					
 					<span class="w-100 d-block">Unimetrocamp</span>
 					<span class="w-100 d-block">Junior</span>
