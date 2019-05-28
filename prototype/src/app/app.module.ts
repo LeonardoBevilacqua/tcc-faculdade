@@ -10,6 +10,7 @@ import { SearchComponent } from './core/search/search.component';
 import { ProfileComponent } from './core/profile/profile.component';
 import { JobDetailsComponent } from './core/job-details/job-details.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { CreateAccountComponent } from './core/create-account/create-account.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FooterComponent } from './shared/footer/footer.component';
     SearchComponent,
     ProfileComponent,
     JobDetailsComponent,
-    FooterComponent
+    FooterComponent,
+    CreateAccountComponent
   ],
   imports: [
     BrowserModule,
