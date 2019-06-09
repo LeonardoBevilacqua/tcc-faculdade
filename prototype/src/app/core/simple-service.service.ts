@@ -7,7 +7,7 @@ const httpOptions = {
 }
 
 @Injectable()
-export class SimpleServiceService {
+export class SimpleService {
   private path: string;
 
   constructor(path: string, private http: HttpClient) { 
