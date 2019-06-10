@@ -1,5 +1,6 @@
-export class Vaga {
-    id: number;
+import { Resource } from '../resource';
+
+export class Vaga extends Resource {
     nome: string;
     descricao: string;
     beneficios: string;

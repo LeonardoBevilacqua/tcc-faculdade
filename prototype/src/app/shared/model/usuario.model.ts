@@ -1,10 +1,11 @@
-import { Roles } from '../enum/roles.enum';
+import { Roles } from './enum/roles.enum';
+import { Resource } from '../resource';
 
-export class Usuario {
-    id: number;
-    nome: string;
-    sobreNome: string;
-    cidade: string;
+export class Usuario extends Resource {
+    name: string;
+    lastname: string;
+    city: string;
+    email: string;
     password: string;
     roles: Roles;
 }
