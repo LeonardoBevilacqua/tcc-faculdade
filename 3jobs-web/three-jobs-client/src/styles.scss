@@ -1,2 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-@import 'bootstrap/scss/bootstrap.scss'
+/*-- Bootstrap 4 --*/
+@import 'bootstrap/scss/bootstrap.scss';
+
+/*-- font awesome --*/
+$fa-font-path: "font-awesome/fonts";
+@import 'font-awesome/scss/font-awesome.scss';
+
+/*-- app custom global styles --*/
+@import 'assets/global-styles.scss'
