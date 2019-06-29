@@ -1,100 +1,81 @@
 <div>
-	<!-- home section -->
-	<div id="home">
-		<!-- Application navigation bar -->
-		<nav class="navbar navbar-dark navbar-expand-md bg-light-black fixed-top">
-			<!-- Application brand logo -->
-			<a href="#" class="navbar-brand">3 JOBS</a>
+	<!-- Application navigation bar -->
+	<nav class="navbar navbar-dark navbar-expand-md fixed-top px-5">
+		<!-- Application brand logo -->
+		<a href="#" class="navbar-brand">3 JOBS</a>
 
-			<!-- collapse button, for mobile devices -->
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-options"
-				aria-controls="navbar-options" aria-expanded="false">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+		<!-- collapse button, for mobile devices -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-options"
+			aria-controls="navbar-options" aria-expanded="false">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-			<!-- navbar options -->
-			<div class="collapse navbar-collapse" id="navbar-options">
-				<ul class="navbar-nav ml-auto text-uppercase">
-					<li class="navbar-item"><a href="#home" class="nav-link">Inicio</a></li>
-					<li class="navbar-item"><a href="#about" class="nav-link">Sobre nós</a></li>
-					<li class="navbar-item"><a href="#testimonials" class="nav-link">Depoimentos</a></li>
-					<li class="navbar-item"><a href="#rank" class="nav-link">Rank</a></li>
-				</ul>
-			</div>
-		</nav>
-		<!-- Landing background -->
-		<div class="landing">
-			<div class="home-wrap">
-				<div class="home-inner"></div>
-			</div>
+		<!-- navbar options -->
+		<div class="collapse navbar-collapse" id="navbar-options">
+			<ul class="navbar-nav ml-auto text-uppercase font-weight-bold">
+				<li class="navbar-item">
+					<a href="#home" class="nav-link" (click)="currentSection = 'home'" [ngClass]="{'active': currentSection === 'home'}">Inicio</a>
+				</li>
+				<li class="navbar-item">
+					<a href="#about" class="nav-link" (click)="currentSection = 'about'" [ngClass]="{'active': currentSection === 'about'}">Sobre nós</a>
+				</li>
+				<li class="navbar-item">
+					<a href="#testimonials" class="nav-link" (click)="currentSection = 'testimonials'" [ngClass]="{'active': currentSection === 'testimonials'}">Depoimentos</a>
+				</li>
+				<li class="navbar-item">
+					<a href="#rank" class="nav-link" (click)="currentSection = 'rank'" [ngClass]="{'active': currentSection === 'rank'}">Rank</a>
+				</li>
+			</ul>
 		</div>
-		<!-- Landing caption -->
-		<div class="caption center-block text-center text-white">			
-			<!-- search bar -->
-			<div class="input-group w-50 m-auto">
-				<input type="text" class="form-control form-control-lg border-right-0">
-				<div class="input-group-append">
-					<span class="input-group-text bg-warning rounded-0">
-						<i class="fa fa-search text-light"></i></span>
-				</div>
-			</div>
+	</nav>
 
-			<!-- login and create account button -->
-			<a href="#" class="btn btn-warning w-25 mt-5">Acessar</a>
-		</div>
-	</div>
+	<!-- Landing background -->
+	<div class="home-inner" [ngClass]="currentSection === 'home' ? 'home-section-bg' : 'sections-bg'">
+		<!-- home section -->
+		<app-home-section *ngIf="currentSection === 'home'"></app-home-section>
+		
+		<!-- about section -->
+		<app-about-section *ngIf="currentSection === 'about'"></app-about-section>
 
-	<!-- about section -->
-	<div id="about" class="jumbotron">
-		<h3 class="text-center">Sobre nós</h3>
-		<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos neque dolor culpa fugit recusandae, dicta velit
-			sed rerum, sapiente, sunt ullam eligendi fugiat. Recusandae suscipit itaque natus. Ex, quibusdam adipisci.</p>
-		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis provident commodi sit! Cum, molestias tenetur quo
-			praesentium harum laudantium laboriosam eveniet laborum nobis blanditiis quos exercitationem porro aliquid, hic
-			quis!</p>
-		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis tenetur aliquid sequi deleniti, aut, repudiandae
-			optio vero exercitationem enim culpa repellat eveniet molestias qui. Voluptatem necessitatibus deleniti obcaecati
-			saepe aspernatur? lo
-			<br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi totam quaerat excepturi odio veniam quo
-			doloribus impedit illum quibusdam veritatis dolores mollitia minus, ad necessitatibus quis voluptatum reiciendis,
-			culpa iste!
-		</p>
-	</div>
-
-	<!-- testimonials section -->
-	<div id="testimonials" class="container-fluid">
-		<h3 class="text-center">Depoimentos</h3>
+		<!-- testimonials section -->
+		<div id="testimonials" class="container-fluid" *ngIf="currentSection === 'testimonials'">
+			<h3 class="text-center">Depoimentos</h3>
 	
-		<div class="row justify-content-evenly">
-			<div class="col-12 col-md-6 col-lg-4">
-				<div class="card m-2">
-					<div class="card-body d-flex align-items-center">
-						<img src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Ficons.iconarchive.com%2Ficons%2Fpaomedia%2Fsmall-n-flat%2F512%2Fuser-male-icon.png&f=1"
-							alt="usuário" class="border rounded-circle m-3" style="height: 5rem;">
-						<p class="font-italic">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quae minima
-							eaque nam quod temporibus aliquid animi, distinctio voluptas aliquam modi porro placeat vel,
-							rerum est eveniet fuga maxime! Saepe!"</p>
+			<div class="row justify-content-evenly">
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="card m-2">
+						<div class="card-body d-flex align-items-center">
+							<img src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Ficons.iconarchive.com%2Ficons%2Fpaomedia%2Fsmall-n-flat%2F512%2Fuser-male-icon.png&f=1"
+								alt="usuário" class="border rounded-circle m-3" style="height: 5rem;">
+							<p class="font-italic">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quae
+								minima
+								eaque nam quod temporibus aliquid animi, distinctio voluptas aliquam modi porro placeat vel,
+								rerum est eveniet fuga maxime! Saepe!"</p>
+						</div>
 					</div>
 				</div>
-			</div>
 	
-			<div class="col-12 col-md-6 col-lg-4">
-				<div class="card m-2">
-					<div class="card-body d-flex align-items-center">
-						<img src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Ficons.iconarchive.com%2Ficons%2Fpaomedia%2Fsmall-n-flat%2F512%2Fuser-male-icon.png&f=1"
-							alt="usuário" class="border rounded-circle m-3" style="height: 5rem;">
-						<p class="font-italic">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quae minima
-							eaque nam quod temporibus aliquid animi, distinctio voluptas aliquam modi porro placeat vel,
-							rerum est eveniet fuga maxime! Saepe!"</p>
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="card m-2">
+						<div class="card-body d-flex align-items-center">
+							<img src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Ficons.iconarchive.com%2Ficons%2Fpaomedia%2Fsmall-n-flat%2F512%2Fuser-male-icon.png&f=1"
+								alt="usuário" class="border rounded-circle m-3" style="height: 5rem;">
+							<p class="font-italic">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quae
+								minima
+								eaque nam quod temporibus aliquid animi, distinctio voluptas aliquam modi porro placeat vel,
+								rerum est eveniet fuga maxime! Saepe!"</p>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	
+		<!-- rank section -->
+		<div id="rank" *ngIf="currentSection === 'rank'">
+			<h3 class="text-center">Rank</h3>
+		</div>
 	</div>
 
-	<!-- rank section -->
-	<div id="rank">
-		<h3 class="text-center">Rank</h3>
-	</div>
+
 
 </div>
