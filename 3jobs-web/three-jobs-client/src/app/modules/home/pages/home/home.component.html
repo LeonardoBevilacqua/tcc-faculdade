@@ -1,8 +1,8 @@
 <div>
 	<!-- Application navigation bar -->
-	<nav class="navbar navbar-dark navbar-expand-md fixed-top px-5">
+	<nav class="navbar navbar-light navbar-expand-md fixed-top px-5 navbar-bg">
 		<!-- Application brand logo -->
-		<a href="#" class="navbar-brand">3 JOBS</a>
+		<span class="navbar-brand">3 JOBS</span>
 
 		<!-- collapse button, for mobile devices -->
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-options"
@@ -13,67 +13,84 @@
 		<!-- navbar options -->
 		<div class="collapse navbar-collapse" id="navbar-options">
 			<ul class="navbar-nav ml-auto text-uppercase font-weight-bold">
-				<li class="navbar-item">
-					<a href="#home" class="nav-link" (click)="currentSection = 'home'" [ngClass]="{'active': currentSection === 'home'}">Inicio</a>
+				<li class="navbar-item" data-target="#homeCarousel" data-slide-to="0">
+					<a class="nav-link cursor-pointer" (click)="currentSection = 'home'" [ngClass]="{'active': currentSection === 'home'}">Inicio</a>
 				</li>
-				<li class="navbar-item">
-					<a href="#about" class="nav-link" (click)="currentSection = 'about'" [ngClass]="{'active': currentSection === 'about'}">Sobre nós</a>
+				<li class="navbar-item" data-target="#homeCarousel" data-slide-to="1">
+					<a class="nav-link cursor-pointer" (click)="currentSection = 'about'" [ngClass]="{'active': currentSection === 'about'}">Sobre nós</a>
 				</li>
-				<li class="navbar-item">
-					<a href="#testimonials" class="nav-link" (click)="currentSection = 'testimonials'" [ngClass]="{'active': currentSection === 'testimonials'}">Depoimentos</a>
+				<li class="navbar-item" data-target="#homeCarousel" data-slide-to="2">
+					<a class="nav-link cursor-pointer" (click)="currentSection = 'testimonials'" [ngClass]="{'active': currentSection === 'testimonials'}">Depoimentos</a>
 				</li>
-				<li class="navbar-item">
-					<a href="#rank" class="nav-link" (click)="currentSection = 'rank'" [ngClass]="{'active': currentSection === 'rank'}">Rank</a>
+				<li class="navbar-item" data-target="#homeCarousel" data-slide-to="3">
+					<a class="nav-link cursor-pointer" (click)="currentSection = 'rank'" [ngClass]="{'active': currentSection === 'rank'}">Rank</a>
 				</li>
 			</ul>
 		</div>
 	</nav>
 
 	<!-- Landing background -->
-	<div class="home-inner" [ngClass]="currentSection === 'home' ? 'home-section-bg' : 'sections-bg'">
-		<!-- home section -->
-		<app-home-section *ngIf="currentSection === 'home'"></app-home-section>
-		
-		<!-- about section -->
-		<app-about-section *ngIf="currentSection === 'about'"></app-about-section>
+	<div class="home-inner pt-5 pt-md-1" [ngClass]="currentSection === 'home' ? 'home-section-bg' : 'sections-bg'">
 
-		<!-- testimonials section -->
-		<div id="testimonials" class="container-fluid" *ngIf="currentSection === 'testimonials'">
-			<h3 class="text-center">Depoimentos</h3>
-	
-			<div class="row justify-content-evenly">
-				<div class="col-12 col-md-6 col-lg-4">
-					<div class="card m-2">
-						<div class="card-body d-flex align-items-center">
-							<img src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Ficons.iconarchive.com%2Ficons%2Fpaomedia%2Fsmall-n-flat%2F512%2Fuser-male-icon.png&f=1"
-								alt="usuário" class="border rounded-circle m-3" style="height: 5rem;">
-							<p class="font-italic">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quae
-								minima
-								eaque nam quod temporibus aliquid animi, distinctio voluptas aliquam modi porro placeat vel,
-								rerum est eveniet fuga maxime! Saepe!"</p>
+		<div id="homeCarousel" class="carousel slide h-100 m-3" data-interval="false">
+			<div class="carousel-inner h-100">
+				<div class="carousel-item h-100 active">
+					<!-- home section -->
+					<app-home-section></app-home-section>
+				</div>
+				<div class="carousel-item h-100">
+					<!-- about section -->
+					<app-about-section></app-about-section>		
+				</div>
+
+				<div class="carousel-item h-100">
+					<!-- testimonials section -->
+					<div id="testimonials" class="container-fluid" *ngIf="currentSection === 'testimonials'">
+						<h3 class="text-center">Depoimentos</h3>
+
+						<div class="row justify-content-evenly">
+							<div class="col-12 col-md-6 col-lg-4">
+								<div class="card m-2">
+									<div class="card-body d-flex align-items-center">
+										<img src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Ficons.iconarchive.com%2Ficons%2Fpaomedia%2Fsmall-n-flat%2F512%2Fuser-male-icon.png&f=1"
+											alt="usuário" class="border rounded-circle m-3" style="height: 5rem;">
+										<p class="font-italic">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quae
+											minima
+											eaque nam quod temporibus aliquid animi, distinctio voluptas aliquam modi porro placeat vel,
+											rerum est eveniet fuga maxime! Saepe!"</p>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-12 col-md-6 col-lg-4">
+								<div class="card m-2">
+									<div class="card-body d-flex align-items-center">
+										<img src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Ficons.iconarchive.com%2Ficons%2Fpaomedia%2Fsmall-n-flat%2F512%2Fuser-male-icon.png&f=1"
+											alt="usuário" class="border rounded-circle m-3" style="height: 5rem;">
+										<p class="font-italic">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quae
+											minima
+											eaque nam quod temporibus aliquid animi, distinctio voluptas aliquam modi porro placeat vel,
+											rerum est eveniet fuga maxime! Saepe!"</p>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-	
-				<div class="col-12 col-md-6 col-lg-4">
-					<div class="card m-2">
-						<div class="card-body d-flex align-items-center">
-							<img src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Ficons.iconarchive.com%2Ficons%2Fpaomedia%2Fsmall-n-flat%2F512%2Fuser-male-icon.png&f=1"
-								alt="usuário" class="border rounded-circle m-3" style="height: 5rem;">
-							<p class="font-italic">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quae
-								minima
-								eaque nam quod temporibus aliquid animi, distinctio voluptas aliquam modi porro placeat vel,
-								rerum est eveniet fuga maxime! Saepe!"</p>
-						</div>
+
+				<div class="carousel-item h-100">
+					<!-- rank section -->
+					<div id="rank" *ngIf="currentSection === 'rank'">
+						<h3 class="text-center">Rank</h3>
 					</div>
 				</div>
 			</div>
 		</div>
-	
-		<!-- rank section -->
-		<div id="rank" *ngIf="currentSection === 'rank'">
-			<h3 class="text-center">Rank</h3>
-		</div>
+
+
+
+
+		
 	</div>
 
 
