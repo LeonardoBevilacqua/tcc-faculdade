@@ -14,16 +14,16 @@
 		<div class="collapse navbar-collapse" id="navbar-options">
 			<ul class="navbar-nav ml-auto text-uppercase font-weight-bold">
 				<li class="navbar-item" data-target="#homeCarousel" data-slide-to="0">
-					<a class="nav-link cursor-pointer" (click)="currentSection = 'home'" [ngClass]="{'active': currentSection === 'home'}">Inicio</a>
+					<a class="nav-link cursor-pointer" (click)="currentSection = 'home'"
+						[ngClass]="{'active': currentSection === 'home'}">Inicio</a>
 				</li>
 				<li class="navbar-item" data-target="#homeCarousel" data-slide-to="1">
-					<a class="nav-link cursor-pointer" (click)="currentSection = 'about'" [ngClass]="{'active': currentSection === 'about'}">Sobre nós</a>
+					<a class="nav-link cursor-pointer" (click)="currentSection = 'about'"
+						[ngClass]="{'active': currentSection === 'about'}">O que é a 3 jobs?</a>
 				</li>
 				<li class="navbar-item" data-target="#homeCarousel" data-slide-to="2">
-					<a class="nav-link cursor-pointer" (click)="currentSection = 'testimonials'" [ngClass]="{'active': currentSection === 'testimonials'}">Depoimentos</a>
-				</li>
-				<li class="navbar-item" data-target="#homeCarousel" data-slide-to="3">
-					<a class="nav-link cursor-pointer" (click)="currentSection = 'rank'" [ngClass]="{'active': currentSection === 'rank'}">Rank</a>
+					<a class="nav-link cursor-pointer" (click)="currentSection = 'feedback'"
+						[ngClass]="{'active': currentSection === 'feedback'}">Deixe sua opnião</a>
 				</li>
 			</ul>
 		</div>
@@ -32,7 +32,7 @@
 	<!-- Landing background -->
 	<div class="home-inner pt-5 pt-md-1" [ngClass]="currentSection === 'home' ? 'home-section-bg' : 'sections-bg'">
 
-		<div id="homeCarousel" class="carousel slide h-100 m-3" data-interval="false">
+		<div id="homeCarousel" class="carousel slide h-100 m-3 m-md-0" data-interval="false">
 			<div class="carousel-inner h-100">
 				<div class="carousel-item h-100 active">
 					<!-- home section -->
@@ -40,39 +40,15 @@
 				</div>
 				<div class="carousel-item h-100">
 					<!-- about section -->
-					<app-about-section></app-about-section>		
+					<app-about-section></app-about-section>
 				</div>
 
 				<div class="carousel-item h-100">
-					<!-- testimonials section -->
-					<div id="testimonials" class="container-fluid" *ngIf="currentSection === 'testimonials'">
-						<h3 class="text-center">Depoimentos</h3>
-
-						<div class="row justify-content-evenly">
-							<div class="col-12 col-md-6 col-lg-4">
-								<div class="card m-2">
-									<div class="card-body d-flex align-items-center">
-										<img src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Ficons.iconarchive.com%2Ficons%2Fpaomedia%2Fsmall-n-flat%2F512%2Fuser-male-icon.png&f=1"
-											alt="usuário" class="border rounded-circle m-3" style="height: 5rem;">
-										<p class="font-italic">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quae
-											minima
-											eaque nam quod temporibus aliquid animi, distinctio voluptas aliquam modi porro placeat vel,
-											rerum est eveniet fuga maxime! Saepe!"</p>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-12 col-md-6 col-lg-4">
-								<div class="card m-2">
-									<div class="card-body d-flex align-items-center">
-										<img src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Ficons.iconarchive.com%2Ficons%2Fpaomedia%2Fsmall-n-flat%2F512%2Fuser-male-icon.png&f=1"
-											alt="usuário" class="border rounded-circle m-3" style="height: 5rem;">
-										<p class="font-italic">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quae
-											minima
-											eaque nam quod temporibus aliquid animi, distinctio voluptas aliquam modi porro placeat vel,
-											rerum est eveniet fuga maxime! Saepe!"</p>
-									</div>
-								</div>
+					<!-- feedback section -->
+					<div id="feedback" class="container-fluid h-100">
+						<div class="row h-100 align-items-center">
+							<div class="col-12 center-block text-center text-white">
+								feedback
 							</div>
 						</div>
 					</div>
@@ -90,7 +66,7 @@
 
 
 
-		
+
 	</div>
 
 
