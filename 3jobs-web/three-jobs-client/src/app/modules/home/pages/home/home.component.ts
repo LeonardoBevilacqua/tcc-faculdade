@@ -21,7 +21,20 @@ export class HomeComponent implements OnInit {
 		// collapse the navbar when a link is clicked
 		$('.nav-link').click(() => {
 			$('.navbar-collapse').collapse('hide');
-		});
+        });
+        
+            $(document).scroll(function() {
+                
+
+              if($(this).scrollTop() < 80)
+              {
+                $(".navbar-bg").removeClass("nav-color");
+              }
+              else{
+                $(".navbar-bg").addClass("nav-color");
+              }
+             
+            });
 	}
 
 }
