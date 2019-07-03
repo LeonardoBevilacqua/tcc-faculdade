@@ -19,7 +19,7 @@
 				</li>
 				<li class="navbar-item" data-target="#homeCarousel" data-slide-to="1">
 					<a class="nav-link cursor-pointer" (click)="currentSection = 'about'"
-						[ngClass]="{'active': currentSection === 'about'}">O que é a 3 jobs?</a>
+						[ngClass]="{'active': currentSection === 'about'}">Sobre nós</a>
 				</li>
 				<li class="navbar-item" data-target="#homeCarousel" data-slide-to="2">
 					<a class="nav-link cursor-pointer" (click)="currentSection = 'feedback'"
@@ -30,31 +30,23 @@
 	</nav>
 
 	<!-- Landing background -->
-	<div class="home-inner pt-5 pt-md-1" [ngClass]="currentSection === 'home' ? 'home-section-bg' : 'sections-bg'">
 
-		<div id="homeCarousel" class="carousel slide h-100 m-3 m-md-0" data-interval="false">
-			<div class="carousel-inner h-100">
-				<div class="carousel-item h-100 active">
+		<div id="homeCarousel" class="carousel slide m-md-0" data-interval="false">
+			<div class="carousel-inner">
+				<div class="carousel-item active">
 					<!-- home section -->
 					<app-home-section></app-home-section>
 				</div>
-				<div class="carousel-item h-100" style="overflow-y: auto;">
+				<div class="carousel-item">
 					<!-- about section -->
 					<app-about-section></app-about-section>
 				</div>
 
-				<div class="carousel-item h-100">
-					<!-- feedback section -->
-					<div id="feedback" class="container-fluid h-100">
-						<div class="row h-100 align-items-center">
-							<div class="col-12 center-block text-center text-white">
-								feedback
-							</div>
-						</div>
-					</div>
+				<div class="carousel-item">
+                    <!-- feedback section -->
+                    <app-feedback></app-feedback>
 				</div>
 			</div>
 		</div>
-	</div>
-	
+    <app-footer></app-footer>
 </div>

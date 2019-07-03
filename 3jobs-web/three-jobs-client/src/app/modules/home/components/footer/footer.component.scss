@@ -1,0 +1,24 @@
+footer {
+    background-color: #323334;
+    color: #a7a7a7;
+    
+    a {
+        color: #f0f4f6;
+        text-decoration: none;
+        background-color: transparent;
+
+        &:hover {
+            text-decoration: none;
+            color: #19deec;
+        }
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+
+        li {
+            list-style-type: none;
+        }
+    }
+}

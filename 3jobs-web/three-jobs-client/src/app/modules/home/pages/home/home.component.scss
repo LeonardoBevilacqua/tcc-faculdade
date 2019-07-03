@@ -1,21 +1,3 @@
-.home-section-bg {
-    width: 100%;
-    height: 100vh;   
-    background-size: cover;
-    background-position: center center;
-    background: rgb(159,184,173);
-    background: linear-gradient(180deg, rgba(159,184,173,1) 0%, rgba(31,200,219,1) 51%, rgba(44,181,232,1) 75%);
-}
-
-.sections-bg {
-    width: 100%;
-    height: 100vh;   
-    background-size: cover;
-    background-position: center center;
-    background: rgb(159,184,173);
-    background: linear-gradient(180deg, rgba(159,184,173,1) 0%, rgba(31,200,219,0.5998774509803921) 51%, rgba(44,181,232,0.3617822128851541) 75%);
-}
-
 @media(max-width: 767px) {
     .navbar-bg {
         background-color: rgb(228, 228, 228);
