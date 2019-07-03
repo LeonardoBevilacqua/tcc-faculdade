@@ -1,4 +1,4 @@
-#img-background-1{
+#img-background-1 {
     background-image: url(https://image.freepik.com/foto-gratis/vista-angulo-empresarios-apilando-mano-juntos-lugar-trabajo_23-2148187232.jpg);
     background-size: cover;
     background-position: center;
@@ -8,8 +8,9 @@
     text-align: center;
     position: absolute;
     z-index: -1;
-    &::after{   
-        background: rgba(0, 0, 0, 0) linear-gradient(to right, #1e5799 0%, #3ccdbb 0%, #16c9f6 100%) repeat scroll 0 0;
+
+    &::after {
+        background: linear-gradient(to right, #8E54E9, #4776E6);
         content: "";
         height: 100%;
         left: 0;
@@ -20,7 +21,6 @@
     }
 }
 
-li{
+li {
     list-style-type: none;
 }
-
