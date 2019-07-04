@@ -9,3 +9,12 @@
 .cursor-pointer {
     cursor: pointer;
 }
+
+/*-- Use the already built bootstrap form classes with angular --*/
+.ng-touched.ng-invalid {
+    @extend .is-invalid;
+}
+
+.invalid-feedback {
+    display: block;
+}
