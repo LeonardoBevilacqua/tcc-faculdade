@@ -1,5 +1,17 @@
-.nav-color {
-    background: linear-gradient(90deg, rgb(46, 0, 126) 40%, #5180ffcc);
+.nav-color-home {
+    background: linear-gradient(90deg, #1e5799 40%, #3ccdbb);
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
+}
+.nav-color-about {
+    background: linear-gradient(90deg, #DD2476 40%, #FF512F);
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
+}
+.nav-color-feedback {
+    background: linear-gradient(90deg, #8E54E9 40%, #4776E6);
     -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
     -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
     box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
