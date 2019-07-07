@@ -22,4 +22,11 @@
 
 li {
     list-style-type: none;
+
+    span {
+        font-size: 2em;
+        .fa {
+            width: 30px;
+        }
+    }
 }
