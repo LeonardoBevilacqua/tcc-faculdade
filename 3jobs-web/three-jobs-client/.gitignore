@@ -1,5 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
-/src/app/modules/home/pages/teste
+
+# hiding testing files
+*teste*
+
 # compiled output
 /dist
 /tmp

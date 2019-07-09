@@ -3,4 +3,5 @@
     <div *ngIf="inputControl.errors.required">Campo é obrigatório!</div>
     <div *ngIf="inputControl.errors.minlength">Campo deve conter no mínimo {{inputControl.errors.minlength.requiredLength}} caracteres!</div>
     <div *ngIf="inputControl.errors.maxlength">Campo deve conter no máximo {{inputControl.errors.maxlength.requiredLength}} caracteres!</div>
+    <div *ngIf="inputControl.errors.email">Campo deve ser um email válido!</div>
 </div>
