@@ -1,23 +1,18 @@
-.home-section-bg {
-    width: 100%;
-    height: 100vh;   
-    background-size: cover;
-    background-position: center center;
-    background: rgb(159,184,173);
-    background: linear-gradient(180deg, rgba(159,184,173,1) 0%, rgba(31,200,219,1) 51%, rgba(44,181,232,1) 75%);
+.nav-color-home {
+    background: linear-gradient(90deg, #1e5799 40%, #3ccdbb);
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
 }
-
-.sections-bg {
-    width: 100%;
-    height: 100vh;   
-    background-size: cover;
-    background-position: center center;
-    background: rgb(159,184,173);
-    background: linear-gradient(180deg, rgba(159,184,173,1) 0%, rgba(31,200,219,0.5998774509803921) 51%, rgba(44,181,232,0.3617822128851541) 75%);
+.nav-color-about {
+    background: linear-gradient(90deg, #DD2476 40%, #FF512F);
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
 }
-
-@media(max-width: 767px) {
-    .navbar-bg {
-        background-color: rgb(228, 228, 228);
-    }
+.nav-color-feedback {
+    background: linear-gradient(90deg, #8E54E9 40%, #4776E6);
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
 }
