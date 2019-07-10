@@ -1,17 +1,6 @@
 footer {
     background-color: #323334;
-    color: #a7a7a7;
-    
-    a {
-        color: #f0f4f6;
-        text-decoration: none;
-        background-color: transparent;
-
-        &:hover {
-            text-decoration: none;
-            color: #19deec;
-        }
-    }
+    color: #a7a7a7;    
 
     ul {
         margin: 0;
@@ -19,6 +8,18 @@ footer {
 
         li {
             list-style-type: none;
+        }
+    }
+
+    .footer-link {
+        color: #f0f4f6;
+        text-decoration: none;
+        background-color: transparent;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: none;
+            color: #19deec;
         }
     }
 }
