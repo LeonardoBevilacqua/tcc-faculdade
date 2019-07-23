@@ -7,4 +7,7 @@ $fa-font-path: "font-awesome/fonts";
 @import 'font-awesome/scss/font-awesome.scss';
 
 /*-- app custom global styles --*/
-@import 'assets/global-styles.scss'
+@import 'assets/global-styles.scss';
+
+/*-- ngx toastr bootstrap style --*/
+@import 'ngx-toastr/toastr-bs4-alert.scss';

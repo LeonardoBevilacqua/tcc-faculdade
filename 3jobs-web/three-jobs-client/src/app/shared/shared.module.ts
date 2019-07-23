@@ -1,13 +1,14 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from "@angular/forms";
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 import { ValidationMessageComponent } from './form/components/validation-message/validation-message.component';
+
 
 @NgModule({
     declarations: [ValidationMessageComponent],
     imports: [
         CommonModule,    
-            
     ],
     exports: [
         CommonModule,
