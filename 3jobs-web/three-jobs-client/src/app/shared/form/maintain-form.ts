@@ -3,6 +3,7 @@ import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EntityService } from 'src/app/core/services/entity.service';
 import { Entity } from 'src/app/shared/models/entity';
+import { ToastrService } from 'ngx-toastr';
 
 /**
  * Generic class, responsible to deal with forms management.
@@ -33,8 +34,10 @@ export class MaintainForm<E extends Entity> implements OnInit {
      * The Default constructor.
      * 
      * @param entityService The current service that will be used.
+     * @param router The router service.
+     * @param toastr The toastr service for notifications.
      */
-    constructor(private entityService: EntityService<E>, private router: Router) {
+    constructor(private entityService: EntityService<E>, private router: Router, private toastr: ToastrService) {
         // initialize the variables
         this.isSubmitted = false;
         this.isEdition = false;
@@ -104,6 +107,7 @@ export class MaintainForm<E extends Entity> implements OnInit {
      * @param error Response error object
      */
     private errorHandler(error: HttpErrorResponse) {
-        console.log(error.error, error);
+        this.toastr.error('Não foi possivel enviar o formulário. Tente novamente mais tarde.', 'Falha ao enviar!');
+        console.error(error);
     }
 }
