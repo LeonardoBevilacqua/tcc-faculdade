@@ -13,8 +13,7 @@
                 <a class="btn btn-link text-light" href="./">Editar</a>
             </div>
             <ul>
-                <li><strong>E-mail:</strong><a href="mailto:capp59marcelo@gmail.com"
-                        target="_top">capp59marcelo@gmail.com</a></li>
+                <li><strong>E-mail:</strong>capp59marcelo@gmail.com</li>
                 <li><strong>Telefone:</strong>19 4122-2611</li>
                 <li><strong>Celular:</strong>(19) 98991-7220</li>
             </ul>
@@ -28,30 +27,36 @@
         </div>
         <div class="collapse show" id="collapsePersonal" role="tabpanel" aria-labelledby="tabPersonal">
             <div class="card-body">
-                <ul class="p-0">
-                    <li><strong>Idade:</strong>24 anos</li>
-                    <li><strong>Estado Civil:</strong>Solteiro(a)</li>
-                    <li><strong>Nacionalidade:</strong>Brasileira</li>
-                </ul>
+                <div id="divPersonal">
+                    <ul class="p-0">
+                        <li><strong>Idade:</strong>24 anos</li>
+                        <li><strong>Estado Civil:</strong>Solteiro(a)</li>
+                        <li><strong>Nacionalidade:</strong>Brasileira</li>
+                    </ul>
+                    <button type="button" class="btn btn-outline-primary btn-sm">Editar</button>
+                </div>
+
+                <form id="formPersonal" class="d-none">
+                    <div class="form-group">
+                        <label for="inputBirth">Nascimento</label>
+                        <input type="text" class="form-control form-control-sm" id="inputBirth"
+                            placeholder="02/02/2019">
+                    </div>
+                    <div class="form-group">
+                        <label for="selectMaritalStatus">Estado Civil</label>
+                        <select class="form-control form-control-sm" id="selectMaritalStatus">
+                            <option>Solteiro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="selectNationality">Nascionalidade</label>
+                        <select class="form-control form-control-sm" id="selectNationality">
+                            <option>Brasil</option>
+                        </select>
+                    </div>
+                    <button>Salvar</button>
+                </form>
             </div>
-            <form>
-                <div class="form-group">
-                    <label for="inputBirth">Nascimento</label>
-                    <input type="text" class="form-control form-control-sm" id="inputBirth" placeholder="02/02/2019">
-                </div>
-                <div class="form-group">
-                    <label for="selectMaritalStatus">Estado Civil</label>
-                    <select class="form-control form-control-sm" id="selectMaritalStatus">
-                        <option>Solteiro</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="selectNationality">Nascionalidade</label>
-                    <select class="form-control form-control-sm" id="selectNationality">
-                        <option>Brasil</option>
-                    </select>
-                </div>
-            </form>
         </div>
         <div class="card-header bg-color-3jobs" role="tab" id="tabAddress" href="#collapseAddress"
             data-toggle="collapse" aria-expanded="false" aria-controls="collapseAddress">
@@ -67,39 +72,40 @@
                     <li><strong>Endereço: </strong>R. Érico Veríssimo</li>
                     <li><strong>País: </strong>Brasil</li>
                 </ul>
+                <button type="button" class="btn btn-outline-primary btn-sm">Editar</button>
+                <form id="formAddress" class="d-none">
+                    <div class="form-group">
+                        <label for="inputCep">CEP</label>
+                        <input type="text" class="form-control form-control-sm" id="inputCep">
+                    </div>
+                    <div class="form-group">
+                        <label for="selectState">Estado</label>
+                        <select class="form-control form-control-sm" id="selectState">
+                            <option>São Paulo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="selectCity">Cidade</label>
+                        <select class="form-control form-control-sm" id="selectCity">
+                            <option>Hortolândia</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputNeighborhood">Bairro</label>
+                        <input type="text" class="form-control form-control-sm" id="inputNeighborhood">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress">Endereço</label>
+                        <input type="text" class="form-control form-control-sm" id="inputAddress">
+                    </div>
+                    <div class="form-group">
+                        <label for="selectCountry">País</label>
+                        <select class="form-control form-control-sm" id="selectCountry">
+                            <option>Brasil</option>
+                        </select>
+                    </div>
+                </form>
             </div>
-            <form>
-                <div class="form-group">
-                    <label for="inputCep">CEP</label>
-                    <input type="text" class="form-control form-control-sm" id="inputCep">
-                </div>
-                <div class="form-group">
-                    <label for="selectState">Estado</label>
-                    <select class="form-control form-control-sm" id="selectState">
-                        <option>São Paulo</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="selectCity">Cidade</label>
-                    <select class="form-control form-control-sm" id="selectCity">
-                        <option>Hortolândia</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="inputNeighborhood">Bairro</label>
-                    <input type="text" class="form-control form-control-sm" id="inputNeighborhood">
-                </div>
-                <div class="form-group">
-                    <label for="inputAddress">Endereço</label>
-                    <input type="text" class="form-control form-control-sm" id="inputAddress">
-                </div>
-                <div class="form-group">
-                    <label for="selectCountry">País</label>
-                    <select class="form-control form-control-sm" id="selectCountry">
-                        <option>Brasil</option>
-                    </select>
-                </div>
-            </form>
         </div>
         <div class="card-header bg-color-3jobs" role="tab" id="tabAcademic" href="#collapseAcademic"
             data-toggle="collapse" aria-expanded="false" aria-controls="collapseAcademic">
@@ -113,48 +119,48 @@
                     <li>(Dezembro de 2019) - Cursando</li>
                     <li><button type="button" class="btn btn-outline-primary btn-sm">Editar</button></li>
                 </ul>
+
+
+                <form id="formAcademic" class="d-none">
+                    <div class="form-group">
+                        <label for="inputCourseName">Nome do Curso</label>
+                        <input type="text" class="form-control form-control-sm" id="inputCourseName">
+                    </div>
+                    <div class="form-group">
+                        <label for="selectCourseType">Tipo do Curso</label>
+                        <select class="form-control form-control-sm" id="selectCourseType">
+                            <option>Graduação</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputInstitution">Instituição</label>
+                        <input type="text" class="form-control form-control-sm" id="inputInstitution">
+                    </div>
+                    <div class="form-group">
+                        <label for="selectDurationCourse">Duração do Curso</label>
+                        <select class="form-control form-control-sm" id="selectDurationCourse">
+                            <option>Curta até 40 horas</option>
+                            <option>Média até 360 horas</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="selectCurrentSituation">Situação Atual</label>
+                        <select class="form-control form-control-sm" id="selectCurrentSituation">
+                            <option>Cursando</option>
+                            <option>Concluido</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDateCompletion">Data Conclusão</label>
+                        <input type="text" class="form-control form-control-sm" id="inputDateCompletion"
+                            placeholder="02/02/1995">
+                    </div>
+                </form>
             </div>
 
-            <form>
-                <div class="form-group">
-                    <label for="inputCourseName">Nome do Curso</label>
-                    <input type="text" class="form-control form-control-sm" id="inputCourseName">
-                </div>
-                <div class="form-group">
-                    <label for="selectCourseType">Tipo do Curso</label>
-                    <select class="form-control form-control-sm" id="selectCourseType">
-                        <option>Graduação</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="inputInstitution">Instituição</label>
-                    <input type="text" class="form-control form-control-sm" id="inputInstitution">
-                </div>
-                <div class="form-group">
-                    <label for="selectDurationCourse">Duração do Curso</label>
-                    <select class="form-control form-control-sm" id="selectDurationCourse">
-                        <option>Curta até 40 horas</option>
-                        <option>Média até 360 horas</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="selectCurrentSituation">Situação Atual</label>
-                    <select class="form-control form-control-sm" id="selectCurrentSituation">
-                        <option>Cursando</option>
-                        <option>Concluido</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="inputDateCompletion">Data Conclusão</label>
-                    <input type="text" class="form-control form-control-sm" id="inputDateCompletion"
-                        placeholder="02/02/1995">
-                </div>
-            </form>
-
-
         </div>
-        <div class="card-header bg-color-3jobs" role="tab" id="tabSkills" href="#collapseSkills"
-            data-toggle="collapse" aria-expanded="false" aria-controls="collapseSkills">
+        <div class="card-header bg-color-3jobs" role="tab" id="tabSkills" href="#collapseSkills" data-toggle="collapse"
+            aria-expanded="false" aria-controls="collapseSkills">
             <a class="card-title">Habilidades</a>
         </div>
         <div class="collapse show" id="collapseSkills" role="tabpanel" aria-labelledby="tabSkills">
@@ -181,16 +187,17 @@
                         Conhecimento em HTML e CSS
                     </li>
                 </ul>
-            </div>
-            <form>
-                <div>
-                    <div class="form-group">
-                        <label for="inputSkill">Habilidade</label>
-                        <input type="text" class="form-control form-control-sm" id="inputSkill">
+
+                <form id="formSkills">
+                    <div>
+                        <div class="form-group">
+                            <label for="inputSkill">Habilidade</label>
+                            <input type="text" class="form-control form-control-sm" id="inputSkill">
+                        </div>
+                        <button type="button" class="btn btn-outline-primary btn-sm">Adicionar</button>
                     </div>
-                    <button type="button" class="btn btn-outline-primary btn-sm">Adicionar</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
         <div class="card-header bg-color-3jobs" role="tab" id="tabExperience" href="#collapseExperience"
             data-toggle="collapse" aria-expanded="false" aria-controls="collapseExperience">
@@ -210,31 +217,32 @@
                     <li>Atuava no back-end do desenvolvimento</li>
                     <li><button type="button" class="btn btn-outline-primary btn-sm">Editar</button></li>
                 </ul>
+
+                <form  id="formExperience" class="d-none">
+                    <div class="form-group">
+                        <label for="inputCompany">Empresa</label>
+                        <input type="text" class="form-control form-control-sm" id="inputCompany">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputOffice">Cargo</label>
+                        <input type="text" class="form-control form-control-sm" id="inputOffice">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDateStart">Data Inicio</label>
+                        <input type="text" class="form-control form-control-sm" id="inputDateStart"
+                            placeholder="02/02/1995">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDateEnd">Data Término</label>
+                        <input type="text" class="form-control form-control-sm" id="inputDateEnd"
+                            placeholder="02/02/1995">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDescription">Descrição</label>
+                        <textarea type="text" class="form-control form-control-sm" id="inputDescription"></textarea>
+                    </div>
+                </form>
             </div>
-            <form>
-                <div class="form-group">
-                    <label for="inputCompany">Empresa</label>
-                    <input type="text" class="form-control form-control-sm" id="inputCompany">
-                </div>
-                <div class="form-group">
-                    <label for="inputOffice">Cargo</label>
-                    <input type="text" class="form-control form-control-sm" id="inputOffice">
-                </div>
-                <div class="form-group">
-                    <label for="inputDateStart">Data Inicio</label>
-                    <input type="text" class="form-control form-control-sm" id="inputDateStart"
-                        placeholder="02/02/1995">
-                </div>
-                <div class="form-group">
-                    <label for="inputDateEnd">Data Término</label>
-                    <input type="text" class="form-control form-control-sm" id="inputDateEnd"
-                        placeholder="02/02/1995">
-                </div>
-                <div class="form-group">
-                    <label for="inputDescription">Descrição</label>
-                    <textarea type="text" class="form-control form-control-sm" id="inputDescription" ></textarea>
-                </div>
-            </form>
         </div>
     </div>
 </div>
