@@ -5,10 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { CoreModule } from '../core/core.module';
 import { ValidationMessageComponent } from './form/components/validation-message/validation-message.component';
 import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
-    declarations: [ValidationMessageComponent, HeaderComponent],
+    declarations: [ValidationMessageComponent, HeaderComponent, FooterComponent],
     imports: [
         CommonModule,
         CoreModule
@@ -18,6 +19,7 @@ import { HeaderComponent } from './header/header.component';
         FormsModule,
         ValidationMessageComponent,
         HeaderComponent,
+        FooterComponent,
     ]
 })
 export class SharedModule { }
