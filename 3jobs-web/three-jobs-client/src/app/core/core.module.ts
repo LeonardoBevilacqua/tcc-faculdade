@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { TestesService } from './services/testes.service';
 
 
 @NgModule({
@@ -9,6 +10,6 @@ import { NgModule } from '@angular/core';
         CommonModule,
         HttpClientModule
     ],
-    providers: []
+    providers: [TestesService],
 })
 export class CoreModule { }

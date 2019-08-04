@@ -1,0 +1,21 @@
+.bg-header {
+    background: linear-gradient(90deg, #1e5799 40%, #3ccdbb);
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
+}
+
+.input-group {
+    .form-control {
+        border-right: none;
+    }
+    .btn-search {
+        border-left: none;
+    }
+}
+
+.btn-search {
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    color: #1e5799;
+}
