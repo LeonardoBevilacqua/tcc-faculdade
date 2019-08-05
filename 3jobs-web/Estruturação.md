@@ -1,4 +1,4 @@
-#Estruturação modular
+# Estruturação modular
 
 - A aplicação esta seguindo uma estruturação **modular**, separando cada _route_ do projeto em seu proprio _module_, permitindo assim que cada modulo apenas seja responsivel de uma pequena parte do sistema.
 
@@ -12,7 +12,7 @@
                 |- anotherModule
     ```
 
-##Estrutura do modulo
+## Estrutura do modulo
 
 - Dentro da pasta do modulo, esta presente dois arquivos _typescripts_, sendo referentes ao modulo em si e o arquivo _routing_.
     ``modulo-routing.module.ts``
@@ -35,7 +35,7 @@
     |- home.module.ts
     ```
 
-##Modulos padrões
+## Modulos padrões
 
 - Existe também dois modulos padrões sendo os modulos _core_ e _shared_.
     - Core Module:
@@ -47,7 +47,7 @@
 
 -----
 
-#Formularios
+# Formularios
 
 - Foi criado uma abstração dos formularios, com proposito de evitar retrabalho e repetição de código.
 
