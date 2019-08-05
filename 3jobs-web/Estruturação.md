@@ -52,7 +52,7 @@
 - Foi criado uma abstração dos formularios, com proposito de evitar retrabalho e repetição de código.
 
 - Padrão do _html_:
-    - ```
+    ```
         <!-- deve ser inserido o id do formulario e a ação que deve ser 
         tomada quando o formulario ser envidado.  -->
         <form 
