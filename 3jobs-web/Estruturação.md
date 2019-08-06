@@ -41,6 +41,7 @@
     - Core Module:
         - Assume papel do AppModule.
         - Deve conter services, authentication, guards, http, interceptors, mocks.
+        - Ao ser criado um novo _service_ deve ser adicionado a referencia dentro no modulo, no atributo _providers_.
     - Shared Module:
         - Responsável por guardar itens que seram utilizados por toda aplicação.
         - Geralmente contem components, pipes, filters, models.
@@ -52,14 +53,15 @@
 - Foi criado uma abstração dos formularios, com proposito de evitar retrabalho e repetição de código.
 
 - Padrão do _html_:
+    - Dentro da tag `form`, deve ser inserido um id e o atributo `(ngSubmit)` responsável por controlar o envio do formulario. Por padrão, deve ser verificado se é valido e ser chamado a função `onSubmit()`.
+    - Dentro da tag `input`, deve ser inserido o atributo `[(ngModel)]` referenciando uma propriedade da variavel `model`, e o id do campo como um `ngModel`.
+    - Para mensagem de validação, existe o componente `validation-message`, que recebe como parâmetro o id que foi dado para a tag.
+    - Exemplo abaixo:
     ```
-        <!-- deve ser inserido o id do formulario e a ação que deve ser 
-        tomada quando o formulario ser envidado.  -->
-        <form 
+       <form 
             #NOME_DO_FORMULARIO="ngForm" 
             (ngSubmit)="NOME_DO_FORMULARIO.form.valid && onSubmit()">
-            <!-- deve conter o atributo 'ngModel' 
-            referenciando o modelo do campo, e o id do campo -->
+            
             <input 
                 email 
                 required minlength="3" 
@@ -69,8 +71,7 @@
                 placeholder="name@example.com"
                 [(ngModel)]="model.exampleFormControlInput1" 
                 #exampleFormControlInput1="ngModel">
-            <!-- componente criado para exibição de
-            mensagem de validação, passando o id do campo -->
+
             <validation-message 
                 [inputControl]="exampleFormControlInput1">
             </validation-message>
