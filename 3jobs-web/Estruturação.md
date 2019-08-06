@@ -52,34 +52,54 @@
 
 - Foi criado uma abstração dos formularios, com proposito de evitar retrabalho e repetição de código.
 
-- Padrão do _html_:
-    - Dentro da tag `form`, deve ser inserido um id e o atributo `(ngSubmit)` responsável por controlar o envio do formulario. Por padrão, deve ser verificado se é valido e ser chamado a função `onSubmit()`.
-    - Dentro da tag `input`, deve ser inserido o atributo `[(ngModel)]` referenciando uma propriedade da variavel `model`, e o id do campo como um `ngModel`.
-    - Para mensagem de validação, existe o componente `validation-message`, que recebe como parâmetro o id que foi dado para a tag.
-    - Exemplo abaixo:
-    ```
-       <form 
-            #NOME_DO_FORMULARIO="ngForm" 
-            (ngSubmit)="NOME_DO_FORMULARIO.form.valid && onSubmit()">
-            
-            <input 
-                email 
-                required minlength="3" 
-                type="email" 
-                id="exampleFormControlInput1"
-                name="exampleFormControlInput1" 
-                placeholder="name@example.com"
-                [(ngModel)]="model.exampleFormControlInput1" 
-                #exampleFormControlInput1="ngModel">
+## Padrão do _html_
 
-            <validation-message 
-                [inputControl]="exampleFormControlInput1">
-            </validation-message>
+- Dentro da tag `form`, deve ser inserido um id e o atributo `(ngSubmit)` responsável por controlar o envio do formulario. Por padrão, deve ser verificado se é valido e ser chamado a função `onSubmit()`.
+- Dentro da tag `input`, deve ser inserido o atributo `[(ngModel)]` referenciando uma propriedade da variavel `model`, e o id do campo como um `ngModel`.
+- Para mensagem de validação, existe o componente `validation-message`, que recebe como parâmetro o id que foi dado para a tag.
+- Exemplo abaixo:
+```
+   <form 
+        #NOME_DO_FORMULARIO="ngForm" 
+        (ngSubmit)="NOME_DO_FORMULARIO.form.valid && onSubmit()">
 
-            <button 
-                type="submit"
-                [disabled]="!NOME_DO_FORMULARIO.form.valid">
-                submit
-            </button>
-        </form>
-    ```
+        <input 
+            email 
+            required minlength="3" 
+            type="email" 
+            id="exampleFormControlInput1"
+            name="exampleFormControlInput1" 
+            placeholder="name@example.com"
+            [(ngModel)]="model.exampleFormControlInput1" 
+            #exampleFormControlInput1="ngModel">
+
+        <validation-message 
+            [inputControl]="exampleFormControlInput1">
+        </validation-message>
+
+        <button 
+            type="submit"
+            [disabled]="!NOME_DO_FORMULARIO.form.valid">
+            submit
+        </button>
+    </form>
+```
+## Padrão do _typescript_
+
+- A classe do componente que for formulario, deve extender `MaintainForm` passando sua entidade como parâmetro.
+- O `constructor` deve receber instancias do _service_, _Router_, _ToastrService_ e _Ng4LoadingSpinnerService_.
+- Exemplo abaixo:
+```
+export class TestesComponent extends MaintainForm<Testes> implements OnInit {
+
+  constructor(testesService: TestesService, router: Router, toastr: ToastrService, spinnerService: Ng4LoadingSpinnerService) { 
+      super(testesService, router, toastr, spinnerService);
+  }
+
+  ngOnInit() {
+      super.ngOnInit();
+
+      this.model = new Testes();
+  }
+}
+```
