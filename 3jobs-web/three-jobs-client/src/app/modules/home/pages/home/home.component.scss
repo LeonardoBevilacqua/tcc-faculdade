@@ -1,18 +1,16 @@
-.nav-color-home {
-    background: linear-gradient(90deg, #1e5799 40%, #3ccdbb);
-    -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
-    -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
+.navbar-bg {
+	-webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
+	-moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
     box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
-}
-.nav-color-about {
-    background: linear-gradient(90deg, #DD2476 40%, #FF512F);
-    -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
-    -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
-    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
-}
-.nav-color-feedback {
-    background: linear-gradient(90deg, #8E54E9 40%, #4776E6);
-    -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
-    -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
-    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
+    
+    &.navbar-bg-home {
+        background: linear-gradient(90deg, #1e5799 40%, #3ccdbb);
+    }
+    &.navbar-bg-about {
+        background: linear-gradient(90deg, #dd2476 40%, #ff512f);
+    }
+    
+    &.navbar-bg-feedback {
+        background: linear-gradient(90deg, #8e54e9 40%, #4776e6);
+    }
 }

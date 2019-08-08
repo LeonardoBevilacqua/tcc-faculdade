@@ -1,4 +1,4 @@
-<app-header></app-header>
+<app-header [isLogged]="true"></app-header>
 <div class="content pt-4">
     <div class="jumbotron">
         <form #testeForm="ngForm" (ngSubmit)="testeForm.form.valid && onSubmit()">
