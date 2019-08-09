@@ -10,10 +10,27 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: 'git checkout frontend'
+  displayName: 'Checkout frontend'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'bevilacquaTeste'
+    command: 'login'
+  displayName: 'Login docker'
+
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      cd 3jobs-web
+      docker build -t leonardobevilacqua/bevilacqua_teste:angularapp .
+  displayName: 'Build docker'
+
+- task: CmdLine@2
+  inputs:
+    script: 'docker push leonardobevilacqua/bevilacqua_teste:angularapp'
+  displayName: 'Push docker'
