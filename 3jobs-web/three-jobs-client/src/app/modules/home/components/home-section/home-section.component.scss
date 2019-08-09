@@ -1,4 +1,4 @@
-#img-background-1 {
+#background-image {
     background-image: url(https://image.freepik.com/fotos-gratis/colegas-dando-uma-colisao-de-punho_53876-64857.jpg);
     background-size: cover;
     background-position: center;
@@ -30,25 +30,5 @@
 
     h3 {
         color: #298dc1;
-    }
-}
-
-#input-search {
-    padding-right: 36px;
-
-}
-
-#icon-search {
-    position: absolute;
-    right: 10px;
-    top: 15px;
-    color: #1e5799;
-    font-size: 20px;
-    cursor: pointer;
-    z-index: 3;
-
-    &:hover{
-        top: 12px;
-        font-size: 23px; 
     }
 }

@@ -1,35 +1,29 @@
 <div id="home">
-    <section style="height: 100vh; position: relative;">
-        <div id="img-background-1"></div>
+    <!-- First section with background -->
+    <section class="position-relative vh-100">
+        <!-- background image -->
+        <div id="background-image"></div>
+        <!-- Search input -->
         <div class="container-fluid h-100">
-            <div class="row h-100 align-items-center">
-                <div class="col-12 center-block text-center text-white">
-                    <!-- search bar -->
-                    <div class="row justify-content-center">
-                        <div class="col-12 col-sm-8 col-md-8 col-lg-6">
-                            <h3 class="pb-3">Encontre a vaga que sempre sonhou! </h3>
-                            <div class="input-group">
-                                <input id="input-search" type="text"
-                                    class="form-control form-control-lg border-0 rounded-pill"
-                                    placeholder="Digite um cargo, Ex: Desenvolvedor">
-                                <i id="icon-search" class="fa fa-search"></i>
+            <div class="h-100 row justify-content-center align-items-center text-white">
+                <div class="col-12 col-sm-8 col-md-8 col-lg-6">
+                    <h3 class="pb-3">Encontre a vaga que sempre sonhou! </h3>
+                    <form class="form-inline justify-content-md-center">
+                        <div class="input-group search-group w-100">
+                            <input id="input-search" type="search" class="form-control form-control-lg"
+                                placeholder="Digite um cargo, Ex: Desenvolvedor">
+                            <div class="input-group-append">
+                                <button class="btn btn-lg btn-search" type="submit">
+                                    <em class="fa fa-search"></em>
+                                </button>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- login and create account button -->
-                    <div class="row justify-content-center mt-2">
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <button type="button" class="btn btn-link" style="font-size: 1.5rem; color: #004c9e;"
-                                data-toggle="modal" data-target="#accountModal">Entre ou cadastre-se</button>
-                        </div>
-                    </div>
-
+                    </form>
                 </div>
             </div>
-            <app-account-modal></app-account-modal>
         </div>
     </section>
+    <!-- Second section with create account option -->
     <section class="container pt-5 pb-5">
         <div class="row justify-content-center">
             <div class="col-12 col-sm-9 col-md-5 text-center">
@@ -62,23 +56,25 @@
             <div class="col-md-4 container-persona">
                 <span><i class="fa fa-user"></i></span>
                 <h3>Candidato</h3>
-                <p>Procura pela oportunidade ideal que irá alavancar sua carreira? Nós temos a vaga que se encaixa no seu perfil!
+                <p>Procura pela oportunidade ideal que irá alavancar sua carreira? Nós temos a vaga que se encaixa no
+                    seu perfil!
                     <br>Além de cadastrar seu currículo gratuitamente, você poderá receber orientações de um HeadHunter
                     durante o processo.
-                </p> 
+                </p>
                 <a href="#" role="button" class="btn btn-outline-primary">Cadastrar</a>
 
             </div>
         </div>
 
     </section>
-
+    <!-- add section -->
     <div class="container mb-5">
         <div class="row justify-content-center">
-            <div class="col-12 mt-5 mb-5 d-flex justify-content-center align-items-center bg-secondary"
-                style="height: 100px;">
+            <div class="h-100 col-12 mt-5 mb-5 d-flex justify-content-center align-items-center bg-secondary">
                 <h3>Anuncie Aqui</h3>
             </div>
         </div>
     </div>
 </div>
+<!-- Modal -->
+<app-account-modal></app-account-modal>

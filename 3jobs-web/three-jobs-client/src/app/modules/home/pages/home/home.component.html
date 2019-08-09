@@ -1,33 +1,32 @@
-<div>
-	<!-- Application navigation bar -->
-	<nav class="navbar navbar-dark navbar-expand-md fixed-top px-5 navbar-bg">
-		<!-- Application brand logo -->
-		<span class="navbar-brand">3JOBS</span>
+<!-- Application navigation bar -->
+<nav class="navbar navbar-dark navbar-expand-md fixed-top px-5 navbar-bg" [ngClass]="'navbar-bg-'+currentSection">
+    <!-- Application brand logo -->
+    <span class="navbar-brand">3JOBS</span>
 
-		<!-- collapse button, for mobile devices -->
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-options"
-			aria-controls="navbar-options" aria-expanded="false">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+    <!-- collapse button, for mobile devices -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-options"
+        aria-controls="navbar-options" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-		<!-- navbar options -->
-		<div class="collapse navbar-collapse" id="navbar-options">
-			<ul class="navbar-nav ml-auto text-uppercase font-weight-bold">
-				<li class="navbar-item" data-target="#homeCarousel" data-slide-to="0">
-					<a class="nav-link cursor-pointer" (click)="currentSection = 'home'"
-						[ngClass]="{'active': currentSection === 'home'}">Início</a>
-				</li>
-				<li class="navbar-item" data-target="#homeCarousel" data-slide-to="1">
-					<a class="nav-link cursor-pointer" (click)="currentSection = 'about'"
-						[ngClass]="{'active': currentSection === 'about'}">Sobre nós</a>
-				</li>
-				<li class="navbar-item" data-target="#homeCarousel" data-slide-to="2">
-					<a class="nav-link cursor-pointer" (click)="currentSection = 'feedback'"
-						[ngClass]="{'active': currentSection === 'feedback'}">Deixe sua opinião</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
+    <!-- navbar options -->
+    <div class="collapse navbar-collapse mt-2 mt-md-0" id="navbar-options">
+        <ul class="navbar-nav ml-auto text-uppercase font-weight-bold">
+            <li class="navbar-item" data-target="#homeCarousel" data-slide-to="0">
+                <a class="nav-link cursor-pointer" (click)="setCurrentSection('home')"
+                    [ngClass]="{'active': currentSection === 'home'}">Início</a>
+            </li>
+            <li class="navbar-item" data-target="#homeCarousel" data-slide-to="1">
+                <a class="nav-link cursor-pointer" (click)="setCurrentSection('about')"
+                    [ngClass]="{'active': currentSection === 'about'}">Sobre nós</a>
+            </li>
+            <li class="navbar-item" data-target="#homeCarousel" data-slide-to="2">
+                <a class="nav-link cursor-pointer" (click)="setCurrentSection('feedback')"
+                    [ngClass]="{'active': currentSection === 'feedback'}">Deixe sua opinião</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
 	<!-- Landing background -->
 		<div id="homeCarousel" class="carousel slide m-md-0" data-interval="false" data-keyboard="false" data-touch="false">
@@ -41,11 +40,10 @@
 					<app-about-section></app-about-section>
 				</div>
 
-				<div class="carousel-item">
-                    <!-- feedback section -->
-                    <app-feedback-section></app-feedback-section>
-				</div>
-			</div>
-		</div>
-        <app-footer [isLogged]="false"></app-footer>
+        <div class="carousel-item">
+            <!-- feedback section -->
+            <app-feedback-section></app-feedback-section>
+        </div>
+    </div>
 </div>
+<app-footer [isLogged]="false"></app-footer>

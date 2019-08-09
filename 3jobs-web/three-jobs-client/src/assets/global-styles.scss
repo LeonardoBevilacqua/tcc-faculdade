@@ -1,6 +1,6 @@
 /*-- add a margin bellow the header for the content --*/
 .content {
-    margin-top: 60px;
+    margin-top: 50px;
 }
 
 .justify-content-evenly {
@@ -18,4 +18,20 @@
 
 .invalid-feedback {
     display: block;
+}
+
+/*-- The custom search input with a button style --*/
+.search-group {
+    .form-control {
+        border-right: none;
+    }
+    .btn-search {
+        border-left: none;
+    }
+}
+
+.btn-search {
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    color: #1e5799;
 }

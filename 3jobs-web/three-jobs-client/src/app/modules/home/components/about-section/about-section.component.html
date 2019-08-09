@@ -1,9 +1,12 @@
 <div id="about">
-    <section style="height: 100vh; position: relative;">
-        <div id="img-background-1"></div>
+    <!-- First section with background -->
+    <section class="position-relative vh-100">
+        <!-- background image -->
+        <div id="background-image"></div>
+        <!-- about the app -->
         <div class="container h-100">
-            <div class="h-100 row justify-content-md-center d-flex align-items-center text-white">
-                <div class="col-md-8 text-center ">
+            <div class="h-100 justify-content-md-center d-flex align-items-center text-white">
+                <div class="col-md-8 text-center">
                     <h2 class="text-center font-weight-bold">Somos a 3jobs</h2>
                     <p>
                         3jobs não é somente mais um site de vagas de emprego,nós nos propomos a entregar
@@ -14,17 +17,18 @@
             </div>
         </div>
     </section>
-    <section style="background: white; ">
+    <!-- Second section about the application -->
+    <section>
         <div class="container pt-5 pb-5">
-            <div class="row pb-5 justify-content-center">
-                <div class="col-12 col-sm-9 col-md-5 text-center">
+            <div class="w-100 pb-5 justify-content-center">
+                <div class="text-center">
                     <h2>Nossos Valores</h2>
                 </div>
             </div>
 
-            <ul class="row pl-0">
-                <li class="col-md-6 d-flex">
-                    <span><i class="fa fa-lightbulb-o"></i></span>
+            <div class="row">
+                <div class="col-12 col-md-6 d-flex align-items-baseline">
+                    <span class="title-icon"><i class="fa fa-lightbulb-o"></i></span>
                     <div class="pl-4">
                         <h3>Inovação</h3>
                         <p>
@@ -33,10 +37,10 @@
                             facilitar a vida das pessoas e tornar tudo mais simples!
                         </p>
                     </div>
-                </li>
+                </div>
 
-                <li class="col-md-6 d-flex">
-                    <span><i class="fa fa-user-o "></i></span>
+                <div class="col-12 col-md-6 d-flex align-items-baseline">
+                    <span class="title-icon"><i class="fa fa fa-user-o"></i></span>
                     <div class="pl-4">
                         <h3>Pessoas</h3>
                         <p>
@@ -44,20 +48,22 @@
                             constantemente.
                         </p>
                     </div>
-                </li>
+                </div>
+            </div>
 
-                <li class="col-md-6 d-flex">
-                    <span><i class="fa fa-balance-scale"></i></span>
+            <div class="row">
+                <div class="col-12 col-md-6 d-flex align-items-baseline">
+                    <span class="title-icon"><i class="fa fa-balance-scale"></i></span>
                     <div class="pl-4">
                         <h3>Ética</h3>
                         <p>
                             Seguimos a ética e profissionalismo, somos justos, transparentes e leais com todos.
                         </p>
                     </div>
-                </li>
+                </div>
 
-                <li class="col-md-6 d-flex">
-                    <span><i class="fa fa-thumbs-o-up"></i></span>
+                <div class="col-12 col-md-6 d-flex align-items-baseline">
+                    <span class="title-icon"><i class="fa fa-thumbs-o-up"></i></span>
                     <div class="pl-4">
                         <h3>Comprometimento</h3>
                         <p>
@@ -65,10 +71,12 @@
                             resultados.
                         </p>
                     </div>
-                </li>
+                </div>
+            </div>
 
-                <li class="col-md-6 d-flex">
-                    <span><i class="fa fa-search"></i></span>
+            <div class="row">
+                <div class="col-12 col-md-6 d-flex align-items-baseline">
+                    <span class="title-icon"><i class="fa fa-search"></i></span>
                     <div class="pl-4">
                         <h3>Transparência</h3>
                         <p>
@@ -76,11 +84,10 @@
                             nossos serviços.
                         </p>
                     </div>
+                </div>
 
-                </li>
-
-                <li class="col-md-6 d-flex">
-                    <span><i class="fa fa-globe"></i></span>
+                <div class="col-12 col-md-6 d-flex align-items-baseline">
+                    <span class="title-icon"><i class="fa fa-globe"></i></span>
                     <div class="pl-4">
                         <h3>Responsabilidade</h3>
                         <p>
@@ -88,31 +95,35 @@
                             exemplo para quem utiliza nossa ferramenta.
                         </p>
                     </div>
-                </li>
-            </ul>
-            <div class="row pb-5 justify-content-center">
-                <div class="col-12 col-sm-9 col-md-5 text-center">
-                    <h2>Missão</h2>
-                    <p>
-                        Proporcionar uma nova forma de se conectar pessoas com o mesmo objetivo em comum.
-                    </p>
                 </div>
             </div>
 
-            <div class="row pb-5 justify-content-center">
-                <div class="col-12 col-sm-9 col-md-5 text-center">
-                    <h2>Visão</h2>
-                    <p>
-                        Ser referencia no mercado de busca de emprego, facilitando a interação entre as pessoas
-                    </p>
+            <div class="row m-3">
+                <div class="col-12 col-md-6 mb-3 mb-md-0">
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <h2 class="card-title text-center">Missão</h2>
+                            <div class="card-text">Proporcionar uma nova forma de se conectar pessoas com o mesmo objetivo em comum.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <h2 class="card-title text-center">Visão</h2>
+                            <div class="card-text">Ser referencia no mercado de busca de emprego, facilitando a interação entre as pessoas.</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
     <section class="jumbotron jumbotron-fluid mb-0">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-sm-12 col-md-7 pr-md-5 pb-5 text-center text-md-left">
+                <div class="col-12 col-md-7 pr-md-5 pb-5 text-center text-md-left">
                     <h3>Nós ajudamos a conectar profissionais!</h3>
                     <p>
                         Na 3jobs, nós usamos a tecnologia para integrar pessoas e otimizar processos, garantindo que
@@ -122,14 +133,12 @@
                     </p>
                     <button type="button" class="btn btn-outline-primary">Criar Conta</button>
                 </div>
-                <div class="col-12 col-sm-12 col-md-5">
-
-                    <img style="width: 100%;max-width: 390px"
+                <div class="col-12 col-md-5">
+                    <img class="w-100"
                         src="https://www.sinaceg.com.br/wp-content/uploads/2017/05/sinaceg-mapa-brasil-ponto-encontro-sindicalizadosb.png"
                         alt="">
                 </div>
             </div>
-
         </div>
     </section>
 </div>
