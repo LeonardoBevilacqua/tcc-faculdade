@@ -1,28 +1,32 @@
 <app-header [isLogged]="true"></app-header>
 <div class="d-flex flex-column vh-100">
+    <!-- Profile section -->
     <section class="content py-4 container-fluid mb-auto">
-        <div class="jumbotron-fluid p-3 d-flex flex-column flex-md-row align-items-center bg-color-3jobs text-white" style="background-color: #3ccdbb">
-            <div style="width: 150px;">
-                <img style="width: 100%"
-                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+        <!-- User header -->
+        <div class="p-3 d-flex align-items-center bg-default text-white">
+            <!-- User picture -->
+            <div class="profile-picture">
+                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
                     alt="..." class="rounded-circle">
             </div>
-            <div>
-                <div class="d-flex justify-content-between align-items-center">
+            <!-- User details -->
+            <div class="pl-5">
+                <div class="d-inline-flex flex-column">
                     <h2>Marcelo Rodrigues Costa</h2>
-                    <a class="btn btn-link text-light" href="./">Editar</a>
+                    <span><strong>E-mail: </strong>capp59marcelo@gmail.com</span>
+                    <span><strong>Telefone: </strong>(19) 4122-2611</span>
+                    <span><strong>Celular: </strong>(19) 98991-7220</span>
                 </div>
-                <ul>
-                    <li><strong>E-mail:</strong>capp59marcelo@gmail.com</li>
-                    <li><strong>Telefone:</strong>19 4122-2611</li>
-                    <li><strong>Celular:</strong>(19) 98991-7220</li>
-                </ul>
+                <!-- edit button -->
+                <a *ngIf="isLoggedUserProfile" class="btn btn-link text-light" href="./">Editar</a>
             </div>
-
         </div>
+
+
         <div class="accordion indicator-plus-before round-indicator" aria-multiselectable="true">
-            <div class="card-header bg-color-3jobs text-white" role="tab" id="tabPersonal" href="#collapsePersonal" style="background-color: #3ccdbb"
-                data-toggle="collapse" aria-expanded="false" aria-controls="collapsePersonal">
+            <div class="card-header bg-default text-white" role="tab" id="tabPersonal" href="#collapsePersonal"
+                style="background-color: #3ccdbb" data-toggle="collapse" aria-expanded="false"
+                aria-controls="collapsePersonal">
                 <a class="card-title">Dados pessoais</a>
             </div>
             <div class="collapse show shadow" id="collapsePersonal" role="tabpanel" aria-labelledby="tabPersonal">
@@ -36,7 +40,7 @@
                         <button type="button" class="btn btn-outline-primary btn-sm">Editar</button>
                     </div>
 
-                    <form id="formPersonal" class="d-none">
+                    <form id="formPersonal" class="">
                         <div class="form-group">
                             <label for="inputBirth">Nascimento</label>
                             <input type="text" class="form-control form-control-sm" id="inputBirth"
@@ -58,8 +62,8 @@
                     </form>
                 </div>
             </div>
-            
-            <div class="card-header bg-color-3jobs" role="tab" id="tabAddress" href="#collapseAddress"
+
+            <div class="card-header bg-default" role="tab" id="tabAddress" href="#collapseAddress"
                 data-toggle="collapse" aria-expanded="false" aria-controls="collapseAddress">
                 <a class="card-title">Endereço</a>
             </div>
@@ -108,7 +112,7 @@
                     </form>
                 </div>
             </div>
-            <div class="card-header bg-color-3jobs" role="tab" id="tabAcademic" href="#collapseAcademic"
+            <div class="card-header bg-default" role="tab" id="tabAcademic" href="#collapseAcademic"
                 data-toggle="collapse" aria-expanded="false" aria-controls="collapseAcademic">
                 <a class="card-title">Formação Acadêmica</a>
             </div>
@@ -160,8 +164,8 @@
                 </div>
 
             </div>
-            <div class="card-header bg-color-3jobs" role="tab" id="tabSkills" href="#collapseSkills"
-                data-toggle="collapse" aria-expanded="false" aria-controls="collapseSkills">
+            <div class="card-header bg-default" role="tab" id="tabSkills" href="#collapseSkills" data-toggle="collapse"
+                aria-expanded="false" aria-controls="collapseSkills">
                 <a class="card-title">Habilidades</a>
             </div>
             <div class="collapse show" id="collapseSkills" role="tabpanel" aria-labelledby="tabSkills">
@@ -200,7 +204,7 @@
                     </form>
                 </div>
             </div>
-            <div class="card-header bg-color-3jobs" role="tab" id="tabExperience" href="#collapseExperience"
+            <div class="card-header bg-default" role="tab" id="tabExperience" href="#collapseExperience"
                 data-toggle="collapse" aria-expanded="false" aria-controls="collapseExperience">
                 <a class="card-title">Experiência Profissional</a>
             </div>

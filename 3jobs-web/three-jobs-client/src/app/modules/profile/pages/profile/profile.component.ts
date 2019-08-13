@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
-@Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
-})
+@Component({ selector: 'app-profile', templateUrl: './profile.component.html', styleUrls: ['./profile.component.scss'] })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+    /**
+     * Flag if is the profile of the logged user.
+     */
+    isLoggedUserProfile: boolean;
+    constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        this.isLoggedUserProfile = true;
+    }
 
 }
