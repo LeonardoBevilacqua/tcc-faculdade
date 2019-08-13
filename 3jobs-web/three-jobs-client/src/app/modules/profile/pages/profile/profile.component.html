@@ -1,248 +1,251 @@
-<header style="height: 50px; width: 100%; background: blue;position: fixed;top:0px;">Aqui vai o header remover depois
-</header>
-<div class="container p-0 mb-3 px-md-2" style="margin-top: 50px;">
-    <div class="jumbotron-fluid p-3 d-flex flex-column flex-md-row align-items-center bg-color-3jobs">
-        <div style="width: 150px;">
-            <img style="width: 100%"
-                src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="..."
-                class="rounded-circle">
-        </div>
-        <div>
-            <div class="d-flex justify-content-between align-items-center">
-                <h2>Marcelo Rodrigues Costa</h2>
-                <a class="btn btn-link text-light" href="./">Editar</a>
+<app-header [isLogged]="true"></app-header>
+<div class="d-flex flex-column vh-100">
+    <section class="content py-4 container-fluid mb-auto">
+        <div class="jumbotron-fluid p-3 d-flex flex-column flex-md-row align-items-center bg-color-3jobs text-white" style="background-color: #3ccdbb">
+            <div style="width: 150px;">
+                <img style="width: 100%"
+                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                    alt="..." class="rounded-circle">
             </div>
-            <ul>
-                <li><strong>E-mail:</strong>capp59marcelo@gmail.com</li>
-                <li><strong>Telefone:</strong>19 4122-2611</li>
-                <li><strong>Celular:</strong>(19) 98991-7220</li>
-            </ul>
-        </div>
+            <div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Marcelo Rodrigues Costa</h2>
+                    <a class="btn btn-link text-light" href="./">Editar</a>
+                </div>
+                <ul>
+                    <li><strong>E-mail:</strong>capp59marcelo@gmail.com</li>
+                    <li><strong>Telefone:</strong>19 4122-2611</li>
+                    <li><strong>Celular:</strong>(19) 98991-7220</li>
+                </ul>
+            </div>
 
-    </div>
-    <div class="accordion indicator-plus-before round-indicator" aria-multiselectable="true">
-        <div class="card-header bg-color-3jobs" role="tab" id="tabPersonal" href="#collapsePersonal"
-            data-toggle="collapse" aria-expanded="false" aria-controls="collapsePersonal">
-            <a class="card-title">Dados pessoais</a>
         </div>
-        <div class="collapse show" id="collapsePersonal" role="tabpanel" aria-labelledby="tabPersonal">
-            <div class="card-body">
-                <div id="divPersonal">
+        <div class="accordion indicator-plus-before round-indicator" aria-multiselectable="true">
+            <div class="card-header bg-color-3jobs text-white" role="tab" id="tabPersonal" href="#collapsePersonal" style="background-color: #3ccdbb"
+                data-toggle="collapse" aria-expanded="false" aria-controls="collapsePersonal">
+                <a class="card-title">Dados pessoais</a>
+            </div>
+            <div class="collapse show shadow" id="collapsePersonal" role="tabpanel" aria-labelledby="tabPersonal">
+                <div class="card-body bg-light">
+                    <div id="divPersonal">
+                        <ul class="p-0">
+                            <li><strong>Idade:</strong>24 anos</li>
+                            <li><strong>Estado Civil:</strong>Solteiro(a)</li>
+                            <li><strong>Nacionalidade:</strong>Brasileira</li>
+                        </ul>
+                        <button type="button" class="btn btn-outline-primary btn-sm">Editar</button>
+                    </div>
+
+                    <form id="formPersonal" class="d-none">
+                        <div class="form-group">
+                            <label for="inputBirth">Nascimento</label>
+                            <input type="text" class="form-control form-control-sm" id="inputBirth"
+                                placeholder="02/02/2019">
+                        </div>
+                        <div class="form-group">
+                            <label for="selectMaritalStatus">Estado Civil</label>
+                            <select class="form-control form-control-sm" id="selectMaritalStatus">
+                                <option>Solteiro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="selectNationality">Nascionalidade</label>
+                            <select class="form-control form-control-sm" id="selectNationality">
+                                <option>Brasil</option>
+                            </select>
+                        </div>
+                        <button>Salvar</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="card-header bg-color-3jobs" role="tab" id="tabAddress" href="#collapseAddress"
+                data-toggle="collapse" aria-expanded="false" aria-controls="collapseAddress">
+                <a class="card-title">Endereço</a>
+            </div>
+            <div class="collapse show" id="collapseAddress" role="tabpanel" aria-labelledby="tabAddress">
+                <div class="card-body bg-light">
                     <ul class="p-0">
-                        <li><strong>Idade:</strong>24 anos</li>
-                        <li><strong>Estado Civil:</strong>Solteiro(a)</li>
-                        <li><strong>Nacionalidade:</strong>Brasileira</li>
+                        <li><strong>CEP: </strong>13188-200</li>
+                        <li><strong>Estado: </strong>São Paulo</li>
+                        <li><strong>Cidade: </strong>Hortolândia</li>
+                        <li><strong>Bairro: </strong>Jardim Amanda II</li>
+                        <li><strong>Endereço: </strong>R. Érico Veríssimo</li>
+                        <li><strong>País: </strong>Brasil</li>
                     </ul>
                     <button type="button" class="btn btn-outline-primary btn-sm">Editar</button>
+                    <form id="formAddress" class="d-none">
+                        <div class="form-group">
+                            <label for="inputCep">CEP</label>
+                            <input type="text" class="form-control form-control-sm" id="inputCep">
+                        </div>
+                        <div class="form-group">
+                            <label for="selectState">Estado</label>
+                            <select class="form-control form-control-sm" id="selectState">
+                                <option>São Paulo</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="selectCity">Cidade</label>
+                            <select class="form-control form-control-sm" id="selectCity">
+                                <option>Hortolândia</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputNeighborhood">Bairro</label>
+                            <input type="text" class="form-control form-control-sm" id="inputNeighborhood">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Endereço</label>
+                            <input type="text" class="form-control form-control-sm" id="inputAddress">
+                        </div>
+                        <div class="form-group">
+                            <label for="selectCountry">País</label>
+                            <select class="form-control form-control-sm" id="selectCountry">
+                                <option>Brasil</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card-header bg-color-3jobs" role="tab" id="tabAcademic" href="#collapseAcademic"
+                data-toggle="collapse" aria-expanded="false" aria-controls="collapseAcademic">
+                <a class="card-title">Formação Acadêmica</a>
+            </div>
+            <div class="collapse show" id="collapseAcademic" role="tabpanel" aria-labelledby="tabAcademic">
+                <div class="card-body bg-light">
+                    <ul class="p-0">
+                        <li><strong>Graduação</strong></li>
+                        <li>Ciências da Computação, Faculdade DeVry Metrocamp</li>
+                        <li>(Dezembro de 2019) - Cursando</li>
+                        <li><button type="button" class="btn btn-outline-primary btn-sm">Editar</button></li>
+                    </ul>
+
+
+                    <form id="formAcademic" class="d-none">
+                        <div class="form-group">
+                            <label for="inputCourseName">Nome do Curso</label>
+                            <input type="text" class="form-control form-control-sm" id="inputCourseName">
+                        </div>
+                        <div class="form-group">
+                            <label for="selectCourseType">Tipo do Curso</label>
+                            <select class="form-control form-control-sm" id="selectCourseType">
+                                <option>Graduação</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputInstitution">Instituição</label>
+                            <input type="text" class="form-control form-control-sm" id="inputInstitution">
+                        </div>
+                        <div class="form-group">
+                            <label for="selectDurationCourse">Duração do Curso</label>
+                            <select class="form-control form-control-sm" id="selectDurationCourse">
+                                <option>Curta até 40 horas</option>
+                                <option>Média até 360 horas</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="selectCurrentSituation">Situação Atual</label>
+                            <select class="form-control form-control-sm" id="selectCurrentSituation">
+                                <option>Cursando</option>
+                                <option>Concluido</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputDateCompletion">Data Conclusão</label>
+                            <input type="text" class="form-control form-control-sm" id="inputDateCompletion"
+                                placeholder="02/02/1995">
+                        </div>
+                    </form>
                 </div>
 
-                <form id="formPersonal" class="d-none">
-                    <div class="form-group">
-                        <label for="inputBirth">Nascimento</label>
-                        <input type="text" class="form-control form-control-sm" id="inputBirth"
-                            placeholder="02/02/2019">
-                    </div>
-                    <div class="form-group">
-                        <label for="selectMaritalStatus">Estado Civil</label>
-                        <select class="form-control form-control-sm" id="selectMaritalStatus">
-                            <option>Solteiro</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="selectNationality">Nascionalidade</label>
-                        <select class="form-control form-control-sm" id="selectNationality">
-                            <option>Brasil</option>
-                        </select>
-                    </div>
-                    <button>Salvar</button>
-                </form>
             </div>
-        </div>
-        <div class="card-header bg-color-3jobs" role="tab" id="tabAddress" href="#collapseAddress"
-            data-toggle="collapse" aria-expanded="false" aria-controls="collapseAddress">
-            <a class="card-title">Endereço</a>
-        </div>
-        <div class="collapse show" id="collapseAddress" role="tabpanel" aria-labelledby="tabAddress">
-            <div class="card-body">
-                <ul class="p-0">
-                    <li><strong>CEP: </strong>13188-200</li>
-                    <li><strong>Estado: </strong>São Paulo</li>
-                    <li><strong>Cidade: </strong>Hortolândia</li>
-                    <li><strong>Bairro: </strong>Jardim Amanda II</li>
-                    <li><strong>Endereço: </strong>R. Érico Veríssimo</li>
-                    <li><strong>País: </strong>Brasil</li>
-                </ul>
-                <button type="button" class="btn btn-outline-primary btn-sm">Editar</button>
-                <form id="formAddress" class="d-none">
-                    <div class="form-group">
-                        <label for="inputCep">CEP</label>
-                        <input type="text" class="form-control form-control-sm" id="inputCep">
-                    </div>
-                    <div class="form-group">
-                        <label for="selectState">Estado</label>
-                        <select class="form-control form-control-sm" id="selectState">
-                            <option>São Paulo</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="selectCity">Cidade</label>
-                        <select class="form-control form-control-sm" id="selectCity">
-                            <option>Hortolândia</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputNeighborhood">Bairro</label>
-                        <input type="text" class="form-control form-control-sm" id="inputNeighborhood">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputAddress">Endereço</label>
-                        <input type="text" class="form-control form-control-sm" id="inputAddress">
-                    </div>
-                    <div class="form-group">
-                        <label for="selectCountry">País</label>
-                        <select class="form-control form-control-sm" id="selectCountry">
-                            <option>Brasil</option>
-                        </select>
-                    </div>
-                </form>
+            <div class="card-header bg-color-3jobs" role="tab" id="tabSkills" href="#collapseSkills"
+                data-toggle="collapse" aria-expanded="false" aria-controls="collapseSkills">
+                <a class="card-title">Habilidades</a>
             </div>
-        </div>
-        <div class="card-header bg-color-3jobs" role="tab" id="tabAcademic" href="#collapseAcademic"
-            data-toggle="collapse" aria-expanded="false" aria-controls="collapseAcademic">
-            <a class="card-title">Formação Acadêmica</a>
-        </div>
-        <div class="collapse show" id="collapseAcademic" role="tabpanel" aria-labelledby="tabAcademic">
-            <div class="card-body">
-                <ul class="p-0">
-                    <li><strong>Graduação</strong></li>
-                    <li>Ciências da Computação, Faculdade DeVry Metrocamp</li>
-                    <li>(Dezembro de 2019) - Cursando</li>
-                    <li><button type="button" class="btn btn-outline-primary btn-sm">Editar</button></li>
-                </ul>
+            <div class="collapse show" id="collapseSkills" role="tabpanel" aria-labelledby="tabSkills">
+                <div class="card-body bg-light">
+                    <ul class="p-0">
+                        <li>
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                            Banco de Dados (MySQL)
+                        </li>
+                        <li>
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                            java (OO)
+                        </li>
+                        <li>
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                            Javascript
+                        </li>
+                        <li>
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                            Git
+                        </li>
+                        <li>
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                            Conhecimento em HTML e CSS
+                        </li>
+                    </ul>
 
-
-                <form id="formAcademic" class="d-none">
-                    <div class="form-group">
-                        <label for="inputCourseName">Nome do Curso</label>
-                        <input type="text" class="form-control form-control-sm" id="inputCourseName">
-                    </div>
-                    <div class="form-group">
-                        <label for="selectCourseType">Tipo do Curso</label>
-                        <select class="form-control form-control-sm" id="selectCourseType">
-                            <option>Graduação</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputInstitution">Instituição</label>
-                        <input type="text" class="form-control form-control-sm" id="inputInstitution">
-                    </div>
-                    <div class="form-group">
-                        <label for="selectDurationCourse">Duração do Curso</label>
-                        <select class="form-control form-control-sm" id="selectDurationCourse">
-                            <option>Curta até 40 horas</option>
-                            <option>Média até 360 horas</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="selectCurrentSituation">Situação Atual</label>
-                        <select class="form-control form-control-sm" id="selectCurrentSituation">
-                            <option>Cursando</option>
-                            <option>Concluido</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputDateCompletion">Data Conclusão</label>
-                        <input type="text" class="form-control form-control-sm" id="inputDateCompletion"
-                            placeholder="02/02/1995">
-                    </div>
-                </form>
-            </div>
-
-        </div>
-        <div class="card-header bg-color-3jobs" role="tab" id="tabSkills" href="#collapseSkills" data-toggle="collapse"
-            aria-expanded="false" aria-controls="collapseSkills">
-            <a class="card-title">Habilidades</a>
-        </div>
-        <div class="collapse show" id="collapseSkills" role="tabpanel" aria-labelledby="tabSkills">
-            <div class="card-body">
-                <ul class="p-0">
-                    <li>
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                        Banco de Dados (MySQL)
-                    </li>
-                    <li>
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                        java (OO)
-                    </li>
-                    <li>
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                        Javascript
-                    </li>
-                    <li>
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                        Git
-                    </li>
-                    <li>
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                        Conhecimento em HTML e CSS
-                    </li>
-                </ul>
-
-                <form id="formSkills">
-                    <div>
-                        <div class="form-group">
-                            <label for="inputSkill">Habilidade</label>
-                            <input type="text" class="form-control form-control-sm" id="inputSkill">
+                    <form id="formSkills">
+                        <div>
+                            <div class="form-group">
+                                <label for="inputSkill">Habilidade</label>
+                                <input type="text" class="form-control form-control-sm" id="inputSkill">
+                            </div>
+                            <button type="button" class="btn btn-outline-primary btn-sm">Adicionar</button>
                         </div>
-                        <button type="button" class="btn btn-outline-primary btn-sm">Adicionar</button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
-        <div class="card-header bg-color-3jobs" role="tab" id="tabExperience" href="#collapseExperience"
-            data-toggle="collapse" aria-expanded="false" aria-controls="collapseExperience">
-            <a class="card-title">Experiência Profissional</a>
-        </div>
-        <div class="collapse show" id="collapseExperience" role="tabpanel" aria-labelledby="tabExperience">
-            <div class="card-body">
-                <ul class="p-0">
-                    <li><strong>INSTITUTO DE PESQUISA ELDORADO</strong></li>
-                    <li>Desenvolvedor - 02/2019 a 07/2019</li>
-                    <li>Atuava no back-end do desenvolvimento</li>
-                    <li><button type="button" class="btn btn-outline-primary btn-sm">Editar</button></li>
-                </ul>
-                <ul class="p-0">
-                    <li><strong>INSTITUTO DE PESQUISA ELDORADO</strong></li>
-                    <li>Desenvolvedor - 02/2019 a 07/2019</li>
-                    <li>Atuava no back-end do desenvolvimento</li>
-                    <li><button type="button" class="btn btn-outline-primary btn-sm">Editar</button></li>
-                </ul>
+            <div class="card-header bg-color-3jobs" role="tab" id="tabExperience" href="#collapseExperience"
+                data-toggle="collapse" aria-expanded="false" aria-controls="collapseExperience">
+                <a class="card-title">Experiência Profissional</a>
+            </div>
+            <div class="collapse show" id="collapseExperience" role="tabpanel" aria-labelledby="tabExperience">
+                <div class="card-body bg-light">
+                    <ul class="p-0">
+                        <li><strong>INSTITUTO DE PESQUISA ELDORADO</strong></li>
+                        <li>Desenvolvedor - 02/2019 a 07/2019</li>
+                        <li>Atuava no back-end do desenvolvimento</li>
+                        <li><button type="button" class="btn btn-outline-primary btn-sm">Editar</button></li>
+                    </ul>
+                    <ul class="p-0">
+                        <li><strong>INSTITUTO DE PESQUISA ELDORADO</strong></li>
+                        <li>Desenvolvedor - 02/2019 a 07/2019</li>
+                        <li>Atuava no back-end do desenvolvimento</li>
+                        <li><button type="button" class="btn btn-outline-primary btn-sm">Editar</button></li>
+                    </ul>
 
-                <form  id="formExperience" class="d-none">
-                    <div class="form-group">
-                        <label for="inputCompany">Empresa</label>
-                        <input type="text" class="form-control form-control-sm" id="inputCompany">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputOffice">Cargo</label>
-                        <input type="text" class="form-control form-control-sm" id="inputOffice">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputDateStart">Data Inicio</label>
-                        <input type="text" class="form-control form-control-sm" id="inputDateStart"
-                            placeholder="02/02/1995">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputDateEnd">Data Término</label>
-                        <input type="text" class="form-control form-control-sm" id="inputDateEnd"
-                            placeholder="02/02/1995">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputDescription">Descrição</label>
-                        <textarea type="text" class="form-control form-control-sm" id="inputDescription"></textarea>
-                    </div>
-                </form>
+                    <form id="formExperience" class="d-none">
+                        <div class="form-group">
+                            <label for="inputCompany">Empresa</label>
+                            <input type="text" class="form-control form-control-sm" id="inputCompany">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputOffice">Cargo</label>
+                            <input type="text" class="form-control form-control-sm" id="inputOffice">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputDateStart">Data Inicio</label>
+                            <input type="text" class="form-control form-control-sm" id="inputDateStart"
+                                placeholder="02/02/1995">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputDateEnd">Data Término</label>
+                            <input type="text" class="form-control form-control-sm" id="inputDateEnd"
+                                placeholder="02/02/1995">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputDescription">Descrição</label>
+                            <textarea type="text" class="form-control form-control-sm" id="inputDescription"></textarea>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+    <app-footer [isLogged]="true"></app-footer>
 </div>

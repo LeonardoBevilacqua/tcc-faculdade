@@ -1,0 +1,51 @@
+<app-header [isLogged]="true"></app-header>
+<div class="d-flex flex-column vh-100">
+    <section class="content pt-4 container-fluid mb-auto">
+        <div class="jumbotron">
+            <form #testeForm="ngForm" (ngSubmit)="testeForm.form.valid && onSubmit()">
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Email address</label>
+                    <input email required minlength="3" type="email" class="form-control" id="exampleFormControlInput1"
+                        name="exampleFormControlInput1" placeholder="name@example.com"
+                        [(ngModel)]="model.exampleFormControlInput1" #exampleFormControlInput1="ngModel">
+                    <validation-message [inputControl]="exampleFormControlInput1"></validation-message>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Example select</label>
+                    <select required class="form-control" id="exampleFormControlSelect1" name="exampleFormControlSelect1"
+                        [(ngModel)]="model.exampleFormControlSelect1" #exampleFormControlSelect1="ngModel">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <validation-message [inputControl]="exampleFormControlSelect1"></validation-message>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect2">Example multiple select</label>
+                    <select required class="form-control" id="exampleFormControlSelect2" name="exampleFormControlSelect2"
+                        [(ngModel)]="model.exampleFormControlSelect2" #exampleFormControlSelect2="ngModel">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <validation-message [inputControl]="exampleFormControlSelect2"></validation-message>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Example textarea</label>
+                    <textarea required class="form-control" rows="3" id="exampleFormControlTextarea1" name="exampleFormControlTextarea1" [(ngModel)]="model.exampleFormControlTextarea1" #exampleFormControlTextarea1="ngModel"></textarea>
+                    <validation-message [inputControl]="exampleFormControlTextarea1"></validation-message>
+                </div>
+        
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" [disabled]="!testeForm.form.valid">submit</button>
+                    <button type="reset" class="btn btn-danger">reset</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <app-footer [isLogged]="true"></app-footer>
+</div>

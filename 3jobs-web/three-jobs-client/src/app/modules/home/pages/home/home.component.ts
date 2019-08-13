@@ -9,19 +9,24 @@ export class HomeComponent implements OnInit {
 	/** 
 	 * holds the current section.
 	 */
-	currentSection: string;
+    currentSection: string;
 
-	constructor(private titleService: Title) { }
+    constructor(private titleService: Title) { }
 
-	ngOnInit() {
-		// set the page title
-		this.titleService.setTitle(`${this.titleService.getTitle()} | Home`);
-		// set the active action
-		this.currentSection = 'home';
-		// collapse the navbar when a link is clicked
-		$('.nav-link').click(() => {
-			$('.navbar-collapse').collapse('hide');
-		});
-	}
+    ngOnInit() {
+        // set the page title
+        this.titleService.setTitle(`${this.titleService.getTitle()} | Inicio`);
+        // set the active action
+        this.currentSection = 'home';        
+    }
 
+    /**
+     * Method responsible to set a new current section.
+     * @param section the new section
+     */
+    setCurrentSection(section: string) {
+        this.currentSection = section;         
+        // hide the navbar if opened on mobile device      
+        $('.navbar-collapse').collapse('hide');
+    }
 }

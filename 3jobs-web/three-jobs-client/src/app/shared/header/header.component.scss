@@ -3,6 +3,10 @@
 	-moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
     box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.48);
     
+    &.navbar-bg-default {
+        background: linear-gradient(90deg, #3ccdbb 40%, #1e5799);
+    }
+
     &.navbar-bg-home {
         background: linear-gradient(90deg, #1e5799 40%, #3ccdbb);
     }
