@@ -8,9 +8,9 @@ export class ProfileComponent implements OnInit {
      */
     isLoggedUserProfile: boolean;
     constructor() { }
-
+  
     ngOnInit() {
-        this.isLoggedUserProfile = true;
+        this.isLoggedUserProfile = true;        
     }
 
 }

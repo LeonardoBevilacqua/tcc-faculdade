@@ -24,44 +24,8 @@
 
 
         <div class="accordion indicator-plus-before round-indicator" aria-multiselectable="true">
-            <div class="card-header bg-default text-white" role="tab" id="tabPersonal" href="#collapsePersonal"
-                style="background-color: #3ccdbb" data-toggle="collapse" aria-expanded="false"
-                aria-controls="collapsePersonal">
-                <a class="card-title">Dados pessoais</a>
-            </div>
-            <div class="collapse show shadow" id="collapsePersonal" role="tabpanel" aria-labelledby="tabPersonal">
-                <div class="card-body bg-light">
-                    <div id="divPersonal">
-                        <ul class="p-0">
-                            <li><strong>Idade:</strong>24 anos</li>
-                            <li><strong>Estado Civil:</strong>Solteiro(a)</li>
-                            <li><strong>Nacionalidade:</strong>Brasileira</li>
-                        </ul>
-                        <button type="button" class="btn btn-outline-primary btn-sm">Editar</button>
-                    </div>
-
-                    <form id="formPersonal" class="">
-                        <div class="form-group">
-                            <label for="inputBirth">Nascimento</label>
-                            <input type="text" class="form-control form-control-sm" id="inputBirth"
-                                placeholder="02/02/2019">
-                        </div>
-                        <div class="form-group">
-                            <label for="selectMaritalStatus">Estado Civil</label>
-                            <select class="form-control form-control-sm" id="selectMaritalStatus">
-                                <option>Solteiro</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="selectNationality">Nascionalidade</label>
-                            <select class="form-control form-control-sm" id="selectNationality">
-                                <option>Brasil</option>
-                            </select>
-                        </div>
-                        <button>Salvar</button>
-                    </form>
-                </div>
-            </div>
+            <personal-data [isLoggedUserProfile]="isLoggedUserProfile"></personal-data>
+            
 
             <div class="card-header bg-default" role="tab" id="tabAddress" href="#collapseAddress"
                 data-toggle="collapse" aria-expanded="false" aria-controls="collapseAddress">

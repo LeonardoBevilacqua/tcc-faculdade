@@ -9,35 +9,3 @@
         width: 100%;
     }
 }
-
-ul {
-    list-style-type: none;
-}
-
-.card-header {
-    margin-top: 10px;
-    cursor: pointer;
-}
-
-
-
-/* accordion styles */
-.accordion {
-    .card-header {
-        position: relative;
-        &:before {
-            font-family: 'FontAwesome' ;
-            font-size: 14pt;
-            content: "\f077";
-            position: absolute;
-            right: 10px;
-        }
-
-        &.collapsed {
-            &:before {
-                content: "\f078";
-                color: #000;
-            }
-        }
-    }
-}

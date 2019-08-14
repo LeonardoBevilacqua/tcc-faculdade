@@ -1,0 +1,50 @@
+<!-- card header -->
+<div id="tabPersonal" class="card-header bg-default cursor-pointer mt-2" role="tab" href="#collapsePersonal"
+    data-toggle="collapse" aria-expanded="false" aria-controls="collapsePersonal">
+    <a class="card-title text-white">Dados pessoais</a>
+</div>
+<!-- collapse -->
+<div id="collapsePersonal" class="collapse show shadow" role="tabpanel" aria-labelledby="tabPersonal">
+    <!-- card body -->
+    <div class="card-body bg-light">
+        <!-- personal data -->
+        <div class="d-flex" *ngIf="!isEdition">
+            <div class="d-inline-flex flex-column">
+                <span><strong>Idade: </strong>24 anos</span>
+                <span><strong>Estado Civil: </strong>Solteiro(a)</span>
+                <span><strong>Nacionalidade: </strong>Brasileira</span>
+            </div>
+            <div class="ml-auto" *ngIf="isLoggedUserProfile">
+                <button type="button" class="btn btn-outline-primary btn-sm" (click)="isEdition = true">Editar</button>
+            </div>
+        </div>
+        <!-- edit personal data -->
+        <form *ngIf="isEdition">
+            <div class="form-row my-2">
+                <label class="col-12 col-md-2" for="inputBirth">Nascimento:</label>
+                <input type="text" class="form-control form-control-sm col-12 col-md-3" id="inputBirth" placeholder="02/02/2019">
+            </div>
+
+            <div class="form-row my-2">
+                <label class="col-12 col-md-2" for="selectMaritalStatus">Estado Civil:</label>
+                <select class="form-control form-control-sm col-12 col-md-3" id="selectMaritalStatus">
+                    <option>Solteiro(a)</option>
+                </select>
+            </div>
+
+            <div class="form-row my-2">
+                <label class="col-12 col-md-2" for="selectNationality">Nascionalidade:</label>
+                <select class="form-control form-control-sm col-12 col-md-3" id="selectNationality">
+                    <option>Brasil</option>
+                </select>
+            </div>
+
+            <div class="form-row my-2">
+                <div class="col-12 col-md-5 pr-0 text-right">
+                    <button class="btn btn-outline-danger mr-1" (click)="isEdition = false">Cancelar</button>
+                    <button class="btn btn-outline-primary ml-1" (click)="isEdition = false">Salvar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
