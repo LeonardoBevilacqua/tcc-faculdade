@@ -1,12 +1,5 @@
-<!-- card header -->
-<div id="tabPersonal" class="card-header bg-default cursor-pointer" role="tab" href="#collapsePersonal"
-    data-toggle="collapse" aria-expanded="false" aria-controls="collapsePersonal">
-    <a class="card-title text-white font-weight-bold">Dados pessoais</a>
-</div>
-<!-- collapse -->
-<div id="collapsePersonal" class="collapse show shadow" role="tabpanel" aria-labelledby="tabPersonal">
-    <!-- card body -->
-    <div class="card-body bg-light">
+<card-template title="Dados pessoais" [cardBodyContent]="personalData">
+    <ng-template #personalData>
         <!-- personal data -->
         <div class="d-flex" *ngIf="!isEdition">
             <div class="d-inline-flex flex-column">
@@ -22,7 +15,8 @@
         <form *ngIf="isEdition">
             <div class="form-row my-2">
                 <label class="col-12 col-md-2" for="inputBirth">Nascimento:</label>
-                <input type="text" class="form-control form-control-sm col-12 col-md-3" id="inputBirth" placeholder="02/02/2019">
+                <input type="text" class="form-control form-control-sm col-12 col-md-3" id="inputBirth"
+                    placeholder="02/02/2019">
             </div>
 
             <div class="form-row my-2">
@@ -46,5 +40,5 @@
                 </div>
             </div>
         </form>
-    </div>
-</div>
+    </ng-template>
+</card-template>

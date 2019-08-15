@@ -1,0 +1,12 @@
+<!-- card header -->
+<div id="tabPersonal" class="card-header bg-default cursor-pointer" role="tab" href="#collapsePersonal"
+    data-toggle="collapse" aria-expanded="false" aria-controls="collapsePersonal">
+    <a class="card-title text-white font-weight-bold">{{title}}</a>
+</div>
+<!-- collapse -->
+<div id="collapsePersonal" class="collapse show shadow" role="tabpanel" aria-labelledby="tabPersonal">
+    <!-- card body -->
+    <div class="card-body bg-light">
+        <ng-container *ngIf="cardBodyContent" [ngTemplateOutlet]="cardBodyContent"></ng-container>
+    </div>
+</div>

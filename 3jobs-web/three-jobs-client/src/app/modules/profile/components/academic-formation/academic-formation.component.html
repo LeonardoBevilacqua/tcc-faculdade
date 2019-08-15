@@ -1,0 +1,64 @@
+<card-template title="Formação academica" [cardBodyContent]="academicFormation">
+    <ng-template #academicFormation>
+        <!-- academic formation -->
+        <div class="d-flex" *ngIf="!isEdition">
+            <div class="d-inline-flex flex-column">
+                <span><strong>Graduação</strong></span>
+                <span>Ciências da Computação, Faculdade DeVry Metrocamp</span>
+                <span>(Dezembro de 2019) - Cursando</span>
+            </div>
+            <div class="ml-auto" *ngIf="isLoggedUserProfile">
+                <button type="button" class="btn btn-outline-primary btn-sm" (click)="isEdition = true">Editar</button>
+            </div>
+        </div>
+        <!-- edit academic formation -->
+        <form *ngIf="isEdition">
+            
+            <div class="form-row my-2">
+                <label class="col-12 col-md-2" for="inputCourseName">Nome do Curso:</label>
+                <input type="text" class="form-control form-control-sm col-12 col-md-3" id="inputCourseName">
+            </div>
+            
+            <div class="form-row my-2">
+                <label class="col-12 col-md-2" for="selectCourseType">Tipo do Curso:</label>
+                <select class="form-control form-control-sm col-12 col-md-3" id="selectCourseType">
+                    <option>Graduação</option>
+                </select>
+            </div>
+            
+            <div class="form-row my-2">
+                <label class="col-12 col-md-2" for="inputInstitution">Instituição:</label>
+                <input type="text" class="form-control form-control-sm col-12 col-md-3" id="inputInstitution">
+            </div>
+            
+            <div class="form-row my-2">
+                <label class="col-12 col-md-2" for="selectDurationCourse">Duração do Curso:</label>
+                <select class="form-control form-control-sm col-12 col-md-3" id="selectDurationCourse">
+                    <option>Curta até 40 horas</option>
+                    <option>Média até 360 horas</option>
+                </select>
+            </div>
+            
+            <div class="form-row my-2">
+                <label class="col-12 col-md-2" for="selectCurrentSituation">Situação Atual:</label>
+                <select class="form-control form-control-sm col-12 col-md-3" id="selectCurrentSituation">
+                    <option>Cursando</option>
+                    <option>Concluido</option>
+                </select>
+            </div>
+            
+            <div class="form-row my-2">
+                <label class="col-12 col-md-2" for="inputDateCompletion">Data Conclusão:</label>
+                <input type="text" class="form-control form-control-sm col-12 col-md-3" id="inputDateCompletion"
+                    placeholder="02/02/1995">
+            </div>
+            
+            <div class="form-row my-2">
+                <div class="col-12 col-md-5 pr-0 text-right">
+                    <button class="btn btn-outline-danger mr-1" (click)="isEdition = false">Cancelar</button>
+                    <button class="btn btn-outline-primary ml-1" (click)="isEdition = false">Salvar</button>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+</card-template>

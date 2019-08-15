@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-@Component({ selector: 'user-address', templateUrl: './user-address.component.html' })
-export class UserAddressComponent implements OnInit {
+@Component({ selector: 'academic-formation', templateUrl: './academic-formation.component.html' })
+export class AcademicFormationComponent implements OnInit {
 
     /**
      * Flag if is the profile of the logged user.

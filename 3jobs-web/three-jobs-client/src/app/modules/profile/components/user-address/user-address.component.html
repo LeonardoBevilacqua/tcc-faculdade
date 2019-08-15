@@ -1,71 +1,64 @@
-<!-- card header -->
-<div id="tabAddress" class="card-header bg-default cursor-pointer" role="tab" href="#collapseAddress"
-    data-toggle="collapse" aria-expanded="false" aria-controls="collapseAddress">
-    <a class="card-title text-white font-weight-bold">Endereço</a>
-</div>
-<!-- collapse -->
-<div id="collapseAddress" class="collapse show shadow" role="tabpanel" aria-labelledby="tabAddress">
-    <!-- card body -->
-    <div class="card-body bg-light">
+<card-template title="Endereço" [cardBodyContent]="userAddress">
+    <ng-template #userAddress>
         <!-- address -->
         <div class="d-flex" *ngIf="!isEdition">
-            <div class="d-inline-flex flex-column">
-                <span><strong>CEP: </strong>13188-200</span>
-                <span><strong>Estado: </strong>São Paulo</span>
-                <span><strong>Cidade: </strong>Hortolândia</span>
-                <span><strong>Bairro: </strong>Jardim Amanda II</span>
-                <span><strong>Endereço: </strong>R. Érico Veríssimo</span>
-                <span><strong>País: </strong>Brasil</span>
-            </div>
-            <div class="ml-auto" *ngIf="isLoggedUserProfile">
-                <button type="button" class="btn btn-outline-primary btn-sm" (click)="isEdition = true">Editar</button>
-            </div>
-        </div>
-        <!-- edit address -->
-        <form *ngIf="isEdition">
-            
-            <div class="form-row my-2">
-                <label class="col-12 col-md-2" for="inputCep">CEP</label>
-                <input type="text" class="form-control form-control-sm col-12 col-md-3" id="inputCep">
-            </div>
-            
-            <div class="form-row my-2">
-                <label class="col-12 col-md-2" for="selectState">Estado</label>
-                <select class="form-control form-control-sm col-12 col-md-3" id="selectState">
-                    <option>São Paulo</option>
-                </select>
-            </div>
-            
-            <div class="form-row my-2">
-                <label class="col-12 col-md-2" for="selectCity">Cidade</label>
-                <select class="form-control form-control-sm col-12 col-md-3" id="selectCity">
-                    <option>Hortolândia</option>
-                </select>
-            </div>
-            
-            <div class="form-row my-2">
-                <label class="col-12 col-md-2" for="inputNeighborhood">Bairro</label>
-                <input type="text" class="form-control form-control-sm col-12 col-md-3" id="inputNeighborhood">
-            </div>
-            
-            <div class="form-row my-2">
-                <label class="col-12 col-md-2" for="inputAddress">Endereço</label>
-                <input type="text" class="form-control form-control-sm col-12 col-md-3" id="inputAddress">
-            </div>
-            
-            <div class="form-row my-2">
-                <label class="col-12 col-md-2" for="selectCountry">País</label>
-                <select class="form-control form-control-sm col-12 col-md-3" id="selectCountry">
-                    <option>Brasil</option>
-                </select>
-            </div>
-            
-            <div class="form-row my-2">
-                <div class="col-12 col-md-5 pr-0 text-right">
-                    <button class="btn btn-outline-danger mr-1" (click)="isEdition = false">Cancelar</button>
-                    <button class="btn btn-outline-primary ml-1" (click)="isEdition = false">Salvar</button>
+                <div class="d-inline-flex flex-column">
+                    <span><strong>CEP: </strong>13188-200</span>
+                    <span><strong>Estado: </strong>São Paulo</span>
+                    <span><strong>Cidade: </strong>Hortolândia</span>
+                    <span><strong>Bairro: </strong>Jardim Amanda II</span>
+                    <span><strong>Endereço: </strong>R. Érico Veríssimo</span>
+                    <span><strong>País: </strong>Brasil</span>
+                </div>
+                <div class="ml-auto" *ngIf="isLoggedUserProfile">
+                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="isEdition = true">Editar</button>
                 </div>
             </div>
-        </form>
-    </div>
-</div>
+            <!-- edit address -->
+            <form *ngIf="isEdition">
+                
+                <div class="form-row my-2">
+                    <label class="col-12 col-md-2" for="inputCep">CEP:</label>
+                    <input type="text" class="form-control form-control-sm col-12 col-md-3" id="inputCep">
+                </div>
+                
+                <div class="form-row my-2">
+                    <label class="col-12 col-md-2" for="selectState">Estado:</label>
+                    <select class="form-control form-control-sm col-12 col-md-3" id="selectState">
+                        <option>São Paulo</option>
+                    </select>
+                </div>
+                
+                <div class="form-row my-2">
+                    <label class="col-12 col-md-2" for="selectCity">Cidade:</label>
+                    <select class="form-control form-control-sm col-12 col-md-3" id="selectCity">
+                        <option>Hortolândia</option>
+                    </select>
+                </div>
+                
+                <div class="form-row my-2">
+                    <label class="col-12 col-md-2" for="inputNeighborhood">Bairro:</label>
+                    <input type="text" class="form-control form-control-sm col-12 col-md-3" id="inputNeighborhood">
+                </div>
+                
+                <div class="form-row my-2">
+                    <label class="col-12 col-md-2" for="inputAddress">Endereço:</label>
+                    <input type="text" class="form-control form-control-sm col-12 col-md-3" id="inputAddress">
+                </div>
+                
+                <div class="form-row my-2">
+                    <label class="col-12 col-md-2" for="selectCountry">País:</label>
+                    <select class="form-control form-control-sm col-12 col-md-3" id="selectCountry">
+                        <option>Brasil</option>
+                    </select>
+                </div>
+                
+                <div class="form-row my-2">
+                    <div class="col-12 col-md-5 pr-0 text-right">
+                        <button class="btn btn-outline-danger mr-1" (click)="isEdition = false">Cancelar</button>
+                        <button class="btn btn-outline-primary ml-1" (click)="isEdition = false">Salvar</button>
+                    </div>
+                </div>
+            </form>
+    </ng-template>
+</card-template>

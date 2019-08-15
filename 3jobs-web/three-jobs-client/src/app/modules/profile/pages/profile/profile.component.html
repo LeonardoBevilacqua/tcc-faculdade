@@ -26,60 +26,10 @@
         <div class="accordion indicator-plus-before round-indicator mt-5" aria-multiselectable="true">
             <personal-data [isLoggedUserProfile]="isLoggedUserProfile"></personal-data>
             <user-address [isLoggedUserProfile]="isLoggedUserProfile"></user-address>
+            <academic-formation [isLoggedUserProfile]="isLoggedUserProfile"></academic-formation>
 
             
-            <div class="card-header bg-default" role="tab" id="tabAcademic" href="#collapseAcademic"
-                data-toggle="collapse" aria-expanded="false" aria-controls="collapseAcademic">
-                <a class="card-title">Formação Acadêmica</a>
-            </div>
-            <div class="collapse show" id="collapseAcademic" role="tabpanel" aria-labelledby="tabAcademic">
-                <div class="card-body bg-light">
-                    <ul class="p-0">
-                        <li><strong>Graduação</strong></li>
-                        <li>Ciências da Computação, Faculdade DeVry Metrocamp</li>
-                        <li>(Dezembro de 2019) - Cursando</li>
-                        <li><button type="button" class="btn btn-outline-primary btn-sm">Editar</button></li>
-                    </ul>
-
-
-                    <form id="formAcademic" class="d-none">
-                        <div class="form-group">
-                            <label for="inputCourseName">Nome do Curso</label>
-                            <input type="text" class="form-control form-control-sm" id="inputCourseName">
-                        </div>
-                        <div class="form-group">
-                            <label for="selectCourseType">Tipo do Curso</label>
-                            <select class="form-control form-control-sm" id="selectCourseType">
-                                <option>Graduação</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputInstitution">Instituição</label>
-                            <input type="text" class="form-control form-control-sm" id="inputInstitution">
-                        </div>
-                        <div class="form-group">
-                            <label for="selectDurationCourse">Duração do Curso</label>
-                            <select class="form-control form-control-sm" id="selectDurationCourse">
-                                <option>Curta até 40 horas</option>
-                                <option>Média até 360 horas</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="selectCurrentSituation">Situação Atual</label>
-                            <select class="form-control form-control-sm" id="selectCurrentSituation">
-                                <option>Cursando</option>
-                                <option>Concluido</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputDateCompletion">Data Conclusão</label>
-                            <input type="text" class="form-control form-control-sm" id="inputDateCompletion"
-                                placeholder="02/02/1995">
-                        </div>
-                    </form>
-                </div>
-
-            </div>
+            
             <div class="card-header bg-default" role="tab" id="tabSkills" href="#collapseSkills" data-toggle="collapse"
                 aria-expanded="false" aria-controls="collapseSkills">
                 <a class="card-title">Habilidades</a>

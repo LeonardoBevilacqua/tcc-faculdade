@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-@Component({ selector: 'personal-data', templateUrl: './personal-data.component.html', styleUrls: ['../components.scss'] })
+@Component({ selector: 'personal-data', templateUrl: './personal-data.component.html' })
 export class PersonalDataComponent implements OnInit {
 
     /**
