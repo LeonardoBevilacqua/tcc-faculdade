@@ -1,0 +1,56 @@
+<card-template title="Experiência Profissional" [cardBodyContent]="experience">
+    <ng-template #experience>
+        <!-- experience -->
+        <div *ngIf="!isEdition">
+            <div class="d-flex border-bottom my-2" *ngFor="let i of [0,1]">
+                <div class="d-inline-flex flex-column">
+                    <span><strong>INSTITUTO DE PESQUISA ELDORADO</strong></span>
+                    <span>Desenvolvedor - 02/2019 a 07/2019</span>
+                    <span>Atuava no back-end do desenvolvimento</span>
+                </div>
+                <div class="ml-auto">
+                    <button type="button" class="btn btn-outline-primary btn-sm"
+                        (click)="isEdition = true">Editar</button>
+                </div>
+            </div>
+        </div>
+
+        <form *ngIf="isEdition">
+
+            <div class="form-row my-2">
+                <label class="col-12 col-md-2" for="inputCompany">Empresa:</label>
+                <input type="text" class="form-control form-control-sm col-12 col-md-3" id="inputCompany">
+            </div>
+
+            <div class="form-row my-2">
+                <label class="col-12 col-md-2" for="inputOffice">Cargo:</label>
+                <input type="text" class="form-control form-control-sm col-12 col-md-3" id="inputOffice">
+            </div>
+
+            <div class="form-row my-2">
+                <label class="col-12 col-md-2" for="inputDateStart">Data Inicio:</label>
+                <input type="text" class="form-control form-control-sm col-12 col-md-3" id="inputDateStart"
+                    placeholder="02/02/1995">
+            </div>
+
+            <div class="form-row my-2">
+                <label class="col-12 col-md-2" for="inputDateEnd">Data Término:</label>
+                <input type="text" class="form-control form-control-sm col-12 col-md-3" id="inputDateEnd"
+                    placeholder="02/02/1995">
+            </div>
+
+            <div class="form-row my-2">
+                <label class="col-12 col-md-2" for="inputDescription">Descrição:</label>
+                <textarea type="text" class="form-control form-control-sm col-12 col-md-3"
+                    id="inputDescription"></textarea>
+            </div>
+
+            <div class="form-row my-2">
+                <div class="col-12 col-md-5 pr-0 text-right">
+                    <button class="btn btn-outline-danger mr-1" (click)="isEdition = false">Cancelar</button>
+                    <button class="btn btn-outline-primary ml-1" (click)="isEdition = false">Salvar</button>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+</card-template>
