@@ -12,4 +12,9 @@ export class CardTemplateComponent {
      * The card body that will be rendered.
      */
     @Input() cardBodyContent: any;
+
+    /**
+     * The id used in the collapse
+     */
+    @Input() cardBodyId: string;
 }
