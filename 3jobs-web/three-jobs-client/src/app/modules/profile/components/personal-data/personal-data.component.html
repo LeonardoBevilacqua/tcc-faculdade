@@ -12,31 +12,39 @@
             </div>
         </div>
         <!-- edit personal data -->
-        <form *ngIf="isEdition">
+        <form *ngIf="isEdition" #profileForm="ngForm"
+            (ngSubmit)="profileForm.form.valid && onSubmit();isEdition = !isSubmitted">
             <div class="form-row my-2">
-                <label class="col-12 col-md-2" for="inputBirth">Nascimento:</label>
-                <input type="text" class="form-control form-control-sm col-12 col-md-3" id="inputBirth"
-                    placeholder="02/02/2019">
+                <label class="col-12 col-md-2" for="dateOfBirth">Nascimento:</label>
+                <input type="date" class="form-control form-control-sm col-12 col-md-3 mr-2" name="dateOfBirth"
+                    id="dateOfBirth" [(ngModel)]="model.dateOfBirth" #dateOfBirth="ngModel" required>
+                <validation-message [inputControl]="dateOfBirth"></validation-message>
             </div>
 
             <div class="form-row my-2">
-                <label class="col-12 col-md-2" for="selectMaritalStatus">Estado Civil:</label>
-                <select class="form-control form-control-sm col-12 col-md-3" id="selectMaritalStatus">
+                <label class="col-12 col-md-2" for="martialSatus">Estado Civil:</label>
+                <select class="form-control form-control-sm col-12 col-md-3 mr-2" name="martialSatus" id="martialSatus"
+                    [(ngModel)]="model.martialSatus" #martialSatus="ngModel" required>
                     <option>Solteiro(a)</option>
                 </select>
+                <validation-message [inputControl]="martialSatus"></validation-message>
             </div>
 
             <div class="form-row my-2">
-                <label class="col-12 col-md-2" for="selectNationality">Nascionalidade:</label>
-                <select class="form-control form-control-sm col-12 col-md-3" id="selectNationality">
+                <label class="col-12 col-md-2" for="nationality">Nascionalidade:</label>
+                <select class="form-control form-control-sm col-12 col-md-3 mr-2" name="nationality" id="nationality"
+                    [(ngModel)]="model.nationality" #nationality="ngModel" required>
                     <option>Brasil</option>
                 </select>
+                <validation-message [inputControl]="nationality"></validation-message>
             </div>
 
             <div class="form-row my-2">
                 <div class="col-12 col-md-5 pr-0 text-right">
-                    <button class="btn btn-outline-danger mr-1" (click)="isEdition = false">Cancelar</button>
-                    <button class="btn btn-outline-primary ml-1" (click)="isEdition = false">Salvar</button>
+                    <button type="button" class="btn btn-outline-danger mr-1"
+                        (click)="isEdition = false">Cancelar</button>
+                    <button type="submit" class="btn btn-outline-primary ml-1"
+                        [disabled]="!profileForm.form.valid">Salvar</button>
                 </div>
             </div>
         </form>
