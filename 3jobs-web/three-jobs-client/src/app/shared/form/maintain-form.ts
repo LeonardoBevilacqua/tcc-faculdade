@@ -1,11 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { EntityService } from 'src/app/core/services/entity.service';
 import { Entity } from 'src/app/shared/models/entity';
-import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 /**
  * Generic class, responsible to deal with forms management.
@@ -61,7 +61,7 @@ export class MaintainForm<E extends Entity> implements OnInit {
      * Method responsible to submit the form.
      */
     onSubmit() {
-        this.isSubmitted = true;
+        this.isSubmitted = false;
         this.spinnerService.show();
 
         // If current id was set, then make a PUT request
@@ -73,6 +73,7 @@ export class MaintainForm<E extends Entity> implements OnInit {
                         console.log(response);
                         this.toastr.success(response.message ? response.message : 'Informações atualizadas com sucesso!');
                         this.spinnerService.hide();
+                        this.isSubmitted = true;
                     },
                     (error: HttpErrorResponse) => this.errorHandler(error)
                 )
@@ -85,12 +86,11 @@ export class MaintainForm<E extends Entity> implements OnInit {
                     console.log(response);
                     this.toastr.success(response.message ? response.message : 'Informações salvas com sucesso!');
                     this.spinnerService.hide();
+                    this.isSubmitted = true;
                 },
                 (error: HttpErrorResponse) => this.errorHandler(error)
             );
         }
-
-        
     }
 
     /**
