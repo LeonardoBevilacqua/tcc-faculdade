@@ -8,9 +8,11 @@ import { PersonalDataComponent } from './components/personal-data/personal-data.
 import { UserAddressComponent } from './components/user-address/user-address.component';
 import { AcademicFormationComponent } from './components/academic-formation/academic-formation.component';
 import { CardTemplateComponent } from './components/card-template/card-template.component';
+import { AbilitiesComponent } from './components/abilities/abilities.component';
+import { ExperienceComponent } from './components/experience/experience.component';
 
 @NgModule({
-  declarations: [ProfileComponent, PersonalDataComponent, UserAddressComponent, AcademicFormationComponent, CardTemplateComponent],
+  declarations: [ProfileComponent, PersonalDataComponent, UserAddressComponent, AcademicFormationComponent, CardTemplateComponent, AbilitiesComponent, ExperienceComponent],
   imports: [
     CommonModule,
     ProfileRoutingModule,
