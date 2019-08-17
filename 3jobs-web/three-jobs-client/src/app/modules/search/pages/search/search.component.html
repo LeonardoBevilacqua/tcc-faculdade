@@ -1,3 +1,103 @@
-<p>
-  search works!
-</p>
+<app-header [isLogged]="true"></app-header>
+<div class="d-flex flex-column vh-100" style="padding-top: 56px; overflow-x: hidden;">
+    <div class="container-fluid px-5 py-3 mb-3" style="background: #f7f8fa">
+        <div class="px-5">
+            <span>148 resultados para: </span><strong>java</strong>
+            <button class="btn badge badge-pill badge-primary ml-2">teste <i class="fa fa-times"></i></button>
+        </div>
+        <div class="d-flex flex-row align-items-center justify-content-between px-5 pt-3">
+            <div>
+                <a href="" class="mr-2">Vagas</a>
+                <a href="" class="mr-2">Candidatos</a>
+                <a href="" class="mr-2">HeadHunters</a>
+            </div>
+            <div>
+                <button type="button" class="btn btn-outline-danger">
+                    Cancelar
+                </button>
+                <button type="button" class="btn btn-outline-primary ml-2">
+                    Aplicar
+                </button>
+                <button type="button" class="btn btn-outline-primary ml-2">
+                    <i class="fa fa-filter" aria-hidden="true">Filtros</i>
+                </button>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class=" mb-3 col-md-4">
+                <strong class="text-primary">NÍVEL</strong>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Default checkbox
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck2">
+                        Disabled checkbox
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Default checkbox
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck2">
+                        Disabled checkbox
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row pl-5">
+        <div class="col-md-9">
+            <div class="card rounded-0 border-left-0 border-right-0 border-bottom-0">
+                <div class="card-body">
+                    <h4 class="card-title m-0">Java</h4>
+
+                    <span><i class="fa fa-building" aria-hidden="true"></i> Eldorado</span>
+                    <span><i class="fa fa-diamond" aria-hidden="true"></i> Júnior</span>
+                    <span><i class="fa fa-map-marker" aria-hidden="true"></i> Campinas</span>
+                    <p class="py-3">asdasdasdasdas Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos voluptates beatae
+                        vel quam rem quos qui! Eos officia nisi pariatur laboriosam sequi blanditiis. Modi iste culpa,
+                        expedita adipisci in eos!</p>
+
+                    <footer class="d-flex flex-row-reverse">
+                        <span><i class="fa fa-clock-o pr-1" aria-hidden="true"></i>Públicada Há: 4 dias </span>
+                    </footer>
+                </div>
+            </div>
+
+            <div class="card rounded-0 border-left-0 border-right-0 border-bottom-0">
+                    <div class="card-body">
+                        <h4 class="card-title m-0">Java</h4>
+    
+                        <span><i class="fa fa-building" aria-hidden="true"></i> Eldorado</span>
+                        <span><i class="fa fa-diamond" aria-hidden="true"></i> Júnior</span>
+                        <span><i class="fa fa-map-marker" aria-hidden="true"></i> Campinas</span>
+                        <p class="py-3">asdasdasdasdas Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos voluptates beatae
+                            vel quam rem quos qui! Eos officia nisi pariatur laboriosam sequi blanditiis. Modi iste culpa,
+                            expedita adipisci in eos!</p>
+    
+                        <footer class="d-flex flex-row-reverse">
+                            <span><i class="fa fa-clock-o pr-1" aria-hidden="true"></i>Públicada Há: 4 dias </span>
+                        </footer>
+                    </div>
+                </div>
+            <button type="button" class="my-5 btn btn-primary btn-lg btn-block">Ver Mais</button>
+        </div>
+        <div class="col-md-3">
+
+            <div style="height: 500px;width: 90%;background: rebeccapurple"></div>
+
+
+        </div>
+    </div>
+
+    <app-footer [isLogged]="true"></app-footer>
+</div>
