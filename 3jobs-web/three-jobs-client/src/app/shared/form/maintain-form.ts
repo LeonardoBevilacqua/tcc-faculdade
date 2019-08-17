@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 /**
  * Generic class, responsible to deal with forms management.
  */
-export class MaintainForm<E extends Entity> implements OnInit {
+export class MaintainForm<E extends Entity> {
 
     /**
      * Holds the current model data.
@@ -47,16 +47,6 @@ export class MaintainForm<E extends Entity> implements OnInit {
 
     }
 
-    ngOnInit() {
-        // get the current path id if exists
-        this.currentId = +this.router.url.split('/')[2];
-
-        // if current id is set, load model data.
-        if (this.currentId) {
-            this.loadModel();
-        }
-    }
-
     /**
      * Method responsible to submit the form.
      */
@@ -65,7 +55,7 @@ export class MaintainForm<E extends Entity> implements OnInit {
         this.spinnerService.show();
 
         // If current id was set, then make a PUT request
-        if (this.currentId) {
+        if (this.isEdition) {
             // If current id matches the model id
             if (this.currentId === this.model.id) {
                 this.entityService.update(this.model).subscribe(
@@ -94,21 +84,27 @@ export class MaintainForm<E extends Entity> implements OnInit {
     }
 
     /**
-     * Method responsible to load the model using the current id.
+     * Method responsible to load the model using the current id if is set. 
      */
-    loadModel() {
+    loadModelFromCurrentId() {
+        // get the current path id if exists
+        this.currentId = +this.router.url.split('/')[2];
+
         // set the edition flag to true
         this.isEdition = true;
         this.spinnerService.show();
 
         // load the model
         this.entityService.read(this.currentId).subscribe(
-            response => {
+            response => {                
                 this.toastr.info('Dados carregados');
                 this.model = response;
                 this.spinnerService.hide();
             },
-            (error: HttpErrorResponse) => this.errorHandler(error)
+            (error: HttpErrorResponse) => {
+                this.errorHandler(error);
+                this.router.navigate(['/']);
+            }
         );
     }
 
