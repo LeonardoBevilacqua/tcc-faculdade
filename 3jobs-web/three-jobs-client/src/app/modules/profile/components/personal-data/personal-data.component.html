@@ -1,19 +1,19 @@
 <card-template title="Dados pessoais" [cardBodyContent]="personalData" cardBodyId="personalData">
     <ng-template #personalData>
         <!-- personal data -->
-        <div class="d-flex" *ngIf="!isEdition">
+        <div class="d-flex" *ngIf="!isEdition || isSubmitted">
             <div class="d-inline-flex flex-column">
                 <span><strong>Idade: </strong>24 anos</span>
                 <span><strong>Estado Civil: </strong>Solteiro(a)</span>
                 <span><strong>Nacionalidade: </strong>Brasileira</span>
             </div>
             <div class="ml-auto" *ngIf="isLoggedUserProfile">
-                <button type="button" class="btn btn-outline-primary btn-sm" (click)="isEdition = true">Editar</button>
+                <button type="button" class="btn btn-outline-primary btn-sm" (click)="isEdition = true; isSubmitted = false">Editar</button>
             </div>
         </div>
         <!-- edit personal data -->
-        <form *ngIf="isEdition" #profileForm="ngForm"
-            (ngSubmit)="profileForm.form.valid && onSubmit();isEdition = !isSubmitted">
+        <form *ngIf="isEdition && !isSubmitted" #profileForm="ngForm"
+            (ngSubmit)="profileForm.form.valid && onSubmit();">
             <div class="form-row my-2">
                 <label class="col-12 col-md-2" for="dateOfBirth">Nascimento:</label>
                 <input type="date" class="form-control form-control-sm col-12 col-md-3 mr-2" name="dateOfBirth"

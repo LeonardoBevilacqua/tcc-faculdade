@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { MaintainForm } from 'src/app/shared/form/maintain-form';
 import { Profile } from 'src/app/shared/models/profile';
 import { ProfileService } from 'src/app/core/services/profile.service';
@@ -38,5 +38,4 @@ export class PersonalDataComponent extends MaintainForm<Profile> implements OnIn
         this.isEdition = false;
         this.model = new Profile();
     }
-
 }

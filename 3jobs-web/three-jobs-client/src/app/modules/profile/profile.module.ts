@@ -10,13 +10,18 @@ import { AcademicFormationComponent } from './components/academic-formation/acad
 import { CardTemplateComponent } from './components/card-template/card-template.component';
 import { AbilitiesComponent } from './components/abilities/abilities.component';
 import { ExperienceComponent } from './components/experience/experience.component';
+import { profileInterceptor } from 'src/app/core/mocks/profile-interceptor';
 
 @NgModule({
-  declarations: [ProfileComponent, PersonalDataComponent, UserAddressComponent, AcademicFormationComponent, CardTemplateComponent, AbilitiesComponent, ExperienceComponent],
-  imports: [
-    CommonModule,
-    ProfileRoutingModule,
-    SharedModule,
-  ]
+    declarations: [ProfileComponent, PersonalDataComponent, UserAddressComponent, AcademicFormationComponent, CardTemplateComponent, AbilitiesComponent, ExperienceComponent],
+    imports: [
+        CommonModule,
+        ProfileRoutingModule,
+        SharedModule,
+    ],
+    providers: [
+        // provider used to create fake backend
+        profileInterceptor
+    ]
 })
 export class ProfileModule { }
