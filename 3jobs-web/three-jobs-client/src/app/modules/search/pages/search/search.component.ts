@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 declare const $: any;
 
-@Component({
-    selector: 'app-search',
-    templateUrl: './search.component.html',
-    styleUrls: ['./search.component.scss']
-})
+@Component({ selector: 'app-search', templateUrl: './search.component.html' })
 export class SearchComponent implements OnInit {
 
     tagsList: String[] = ["angular", "java", "backend"];
@@ -76,46 +72,46 @@ export class SearchComponent implements OnInit {
     listCandidate: Object = [
         {
             name: "Marcelo Rodrigues Costa",
-            title:"Desenvolvedor| JAVA| Software",
+            title: "Desenvolvedor| JAVA| Software",
             city: "Campinas",
             description: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos
             voluptates beatae
             vel quam rem quos qui! Eos officia nisi pariatur laboriosam sequi blanditiis. Modi iste culpa,
             expedita adipisci in eos!`,
-            skills:["Java", "Spring Boot", "Angular"]
+            skills: ["Java", "Spring Boot", "Angular"]
         },
         {
             name: "Thiago Oliveira",
-            title:"Auxiliar de Culinaria",
+            title: "Auxiliar de Culinaria",
             city: "Campinas",
             description: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos
             voluptates beatae
             vel quam rem quos qui! Eos officia nisi pariatur laboriosam sequi blanditiis. Modi iste culpa,
             expedita adipisci in eos!`,
-            skills:["C#", "ReactJS", ".NET"]
+            skills: ["C#", "ReactJS", ".NET"]
         }
     ];
 
     constructor() { }
 
     ngOnInit() {
-        $(document).ready(function(){
-            $('#btn-filter-filter').click(() =>{
-                $( "#container-filters" ).removeClass('d-none');
+        $(document).ready(function () {
+            $('#btn-filter-filter').click(() => {
+                $("#container-filters").removeClass('d-none');
                 $('#btn-filter-filter').addClass('d-none');
                 $('#btn-filter-cancel').removeClass('d-none');
                 $('#btn-filter-apply').removeClass('d-none');
             });
-            $('#btn-filter-cancel').click(() =>{
-                $( "#container-filters" ).addClass('d-none');
+            $('#btn-filter-cancel').click(() => {
+                $("#container-filters").addClass('d-none');
                 $('#btn-filter-filter').removeClass('d-none');
                 $('#btn-filter-cancel').addClass('d-none');
                 $('#btn-filter-apply').addClass('d-none');
             });
         });
-        
+
     }
 
-    
+
 
 }
