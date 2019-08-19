@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Profile } from 'src/app/shared/models/profile';
 import { ProfileService } from 'src/app/core/services/profile.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({ selector: 'app-profile', templateUrl: './profile.component.html', styleUrls: ['./profile.component.scss'] })
 export class ProfileComponent implements OnInit {
@@ -16,7 +19,7 @@ export class ProfileComponent implements OnInit {
      */
     profile: Profile;
     
-    constructor(private titleService: Title, private profileService: ProfileService) { 
+    constructor(private titleService: Title, private profileService: ProfileService, private router: Router, private toast: ToastrService, private spinnerService: Ng4LoadingSpinnerService) { 
         this.profile = new Profile();
     }
   
@@ -24,11 +27,23 @@ export class ProfileComponent implements OnInit {
         // set the page title
         this.titleService.setTitle(`${this.titleService.getTitle()} | Perfil`);
 
-        this.isLoggedUserProfile = true;        
+        this.spinnerService.show();
 
-        this.profileService.read(1).subscribe(
+        this.isLoggedUserProfile = true;      
+        
+        // get the current path id if exists
+        let currentId = +this.router.url.split('/')[2];
+
+        this.profileService.read(currentId).subscribe(
             (profile) => {
+                console.log(profile);
                 this.profile = profile;
+                this.spinnerService.hide();
+            },
+            (error) => {
+                this.router.navigate(['/']);
+                this.toast.error(error.statusText);
+                this.spinnerService.hide();
             }
         );
     }

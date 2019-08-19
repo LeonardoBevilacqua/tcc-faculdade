@@ -1,9 +1,9 @@
-import { HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { delay, dematerialize, materialize, mergeMap } from 'rxjs/operators';
-import { Profile } from 'src/app/shared/models/profile';
 import { Address } from 'src/app/shared/models/address';
+import { Profile } from 'src/app/shared/models/profile';
 
 @Injectable()
 export class ProfileInterceptor implements HttpInterceptor {
@@ -59,12 +59,22 @@ export class ProfileInterceptor implements HttpInterceptor {
 
         function getProfileById() {
             const profile = profiles.find(x => x.id == idFromUrl());
-            return ok(profile);
+
+            if (profile) {
+                return ok(profile);                
+            }
+            else {
+                return notFound('Perfil não encontrado!');
+            }
         }
 
         // helpers 
         function ok(body?) {
-            return of(new HttpResponse({ status: 200, body }))
+            return of(new HttpResponse({ status: 200, body }));
+        }
+
+        function notFound(message: string) {
+            return throwError(new HttpResponse({ status: 404, headers: new HttpHeaders({ 'Content-Type': 'application/json' }), statusText: message }));
         }
 
         function idFromUrl() {
