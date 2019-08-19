@@ -1,0 +1,45 @@
+<card-template title="Habilidades" [cardBodyContent]="abilities" cardBodyId="abilities">
+    <ng-template #abilities>
+        <!-- add abilities -->
+        <form>
+            <div class="form-row my-2">
+                <label class="col-12 col-md-1" for="inputSkill">Habilidade</label>
+                <input type="text" class="form-control form-control-sm col-12 col-md-2" id="inputSkill">
+                <button type="button" class="btn btn-outline-success btn-sm col-12 col-md-1">Adicionar</button>
+            </div>
+        </form>
+        <!-- abilities -->
+        <div class="row">
+            <table class="table table-striped col-12 col-md-4">
+                <thead>
+                    <tr>
+                        <th scope="col">Conhecimento</th>
+                        <th scope="col">Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr scope="row">
+                        <td>Banco de Dados (MySQL)</td>
+                        <td class="text-center"><i class="fa fa-trash"></i></td>
+                    </tr>
+                    <tr scope="row">
+                        <td>java (OO)</td>
+                        <td class="text-center"><i class="fa fa-trash"></i></td>
+                    </tr>
+                    <tr scope="row">
+                        <td>Javascript</td>
+                        <td class="text-center"><i class="fa fa-trash"></i></td>
+                    </tr>
+                    <tr scope="row">
+                        <td>Git</td>
+                        <td class="text-center"><i class="fa fa-trash"></i></td>
+                    </tr>
+                    <tr scope="row">
+                        <td>Conhecimento em HTML e CSS</td>
+                        <td class="text-center"><i class="fa fa-trash"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </ng-template>
+</card-template>

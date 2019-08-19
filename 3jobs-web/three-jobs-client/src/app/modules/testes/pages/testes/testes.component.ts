@@ -14,8 +14,6 @@ export class TestesComponent extends MaintainForm<Testes> implements OnInit {
   }
 
   ngOnInit() {
-      super.ngOnInit();
-
       this.model = new Testes();
   }
 }

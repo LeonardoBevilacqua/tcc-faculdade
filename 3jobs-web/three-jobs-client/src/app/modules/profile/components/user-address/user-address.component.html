@@ -1,0 +1,63 @@
+<card-template title="Endereço" [cardBodyContent]="userAddress" cardBodyId="userAddress">
+    <ng-template #userAddress>
+        <!-- address -->
+        <div class="d-flex" *ngIf="!isFormEdition">
+                <div class="d-inline-flex flex-column">
+                    <span><strong>CEP: </strong>{{address.zipCode}}</span>
+                    <span><strong>Estado: </strong>{{address.state}}</span>
+                    <span><strong>Cidade: </strong>{{address.city}}</span>
+                    <span><strong>Bairro: </strong>{{address.district}}</span>
+                    <span><strong>Endereço: </strong>{{address.name}}</span>
+                </div>
+                <div class="ml-auto" *ngIf="isLoggedUserProfile">
+                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="isFormEdition = true">Editar</button>
+                </div>
+            </div>
+            <!-- edit address -->
+            <form *ngIf="isFormEdition">
+                
+                <div class="form-row my-2">
+                    <label class="col-12 col-md-2" for="inputCep">CEP:</label>
+                    <input type="text" class="form-control form-control-sm col-12 col-md-3" id="inputCep">
+                </div>
+                
+                <div class="form-row my-2">
+                    <label class="col-12 col-md-2" for="selectState">Estado:</label>
+                    <select class="form-control form-control-sm col-12 col-md-3" id="selectState">
+                        <option>São Paulo</option>
+                    </select>
+                </div>
+                
+                <div class="form-row my-2">
+                    <label class="col-12 col-md-2" for="selectCity">Cidade:</label>
+                    <select class="form-control form-control-sm col-12 col-md-3" id="selectCity">
+                        <option>Hortolândia</option>
+                    </select>
+                </div>
+                
+                <div class="form-row my-2">
+                    <label class="col-12 col-md-2" for="inputNeighborhood">Bairro:</label>
+                    <input type="text" class="form-control form-control-sm col-12 col-md-3" id="inputNeighborhood">
+                </div>
+                
+                <div class="form-row my-2">
+                    <label class="col-12 col-md-2" for="inputAddress">Endereço:</label>
+                    <input type="text" class="form-control form-control-sm col-12 col-md-3" id="inputAddress">
+                </div>
+                
+                <div class="form-row my-2">
+                    <label class="col-12 col-md-2" for="selectCountry">País:</label>
+                    <select class="form-control form-control-sm col-12 col-md-3" id="selectCountry">
+                        <option>Brasil</option>
+                    </select>
+                </div>
+                
+                <div class="form-row my-2">
+                    <div class="col-12 col-md-5 pr-0 text-right">
+                        <button class="btn btn-outline-danger mr-1" (click)="isFormEdition = false">Cancelar</button>
+                        <button class="btn btn-outline-primary ml-1" (click)="isFormEdition = false">Salvar</button>
+                    </div>
+                </div>
+            </form>
+    </ng-template>
+</card-template>
