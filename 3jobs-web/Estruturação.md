@@ -46,6 +46,14 @@
         - Responsável por guardar itens que seram utilizados por toda aplicação.
         - Geralmente contem components, pipes, filters, models.
 
+## Comandos para criação de um novo modulo
+
+* Dentro da pasta do modulo, deve ser realizado o comando.
+    `ng g module <name> --routing=true`
+* Em seguida, deve ser criado a pastas `pages`, para incluir o componente da página e criado o componente da página.
+    `ng g c <component>`
+* Se necessário componentes extras, criar a pasta `components`.
+
 -----
 
 # Formularios
