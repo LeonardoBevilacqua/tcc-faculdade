@@ -73,6 +73,29 @@ export class SearchComponent implements OnInit {
         }
     ];
 
+    listCandidate: Object = [
+        {
+            name: "Marcelo Rodrigues Costa",
+            title:"Desenvolvedor| JAVA| Software",
+            city: "Campinas",
+            description: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos
+            voluptates beatae
+            vel quam rem quos qui! Eos officia nisi pariatur laboriosam sequi blanditiis. Modi iste culpa,
+            expedita adipisci in eos!`,
+            skills:["Java", "Spring Boot", "Angular"]
+        },
+        {
+            name: "Thiago Oliveira",
+            title:"Auxiliar de Culinaria",
+            city: "Campinas",
+            description: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos
+            voluptates beatae
+            vel quam rem quos qui! Eos officia nisi pariatur laboriosam sequi blanditiis. Modi iste culpa,
+            expedita adipisci in eos!`,
+            skills:["C#", "ReactJS", ".NET"]
+        }
+    ];
+
     constructor() { }
 
     ngOnInit() {

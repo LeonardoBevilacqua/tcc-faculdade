@@ -1,0 +1,21 @@
+<div class="card rounded-0 border-left-0 border-right-0 border-bottom-0" *ngFor="let job of jobs">
+    <div class="card-body">
+        <h4 class="card-title text-primary m-0">{{job.title}}</h4>
+        <i class="fa fa-building text-primary mr-3" aria-hidden="true">
+            <span class="text-dark">{{job.company}}</span>
+        </i>
+        <i class="fa fa-diamond text-primary mr-3" aria-hidden="true">
+            <span class="text-dark">{{job.nivel}}</span>
+        </i>
+        <i class="fa fa-map-marker text-primary mr-3" aria-hidden="true">
+            <span class="text-dark">{{job.city}}</span>
+        </i>
+        <p class="py-3">{{job.description}}</p>
+        <footer class="d-flex flex-row-reverse">
+            <span>
+                <i class="fa fa-clock-o pr-1" aria-hidden="true"></i>
+                Públicada : {{job.publicated}}
+            </span>
+        </footer>
+    </div>
+</div>
