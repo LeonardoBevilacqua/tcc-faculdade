@@ -12,5 +12,6 @@ export class Profile extends Entity {
     dateOfBirth: Date;
     martialSatus: string;
     nationality: string;
+    addressId: number;
     address: Address;
 }

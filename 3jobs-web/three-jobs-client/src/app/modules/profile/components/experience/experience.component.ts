@@ -11,12 +11,12 @@ export class ExperienceComponent implements OnInit {
     /**
      * Flag if the data is being edited.
      */
-    isEdition: boolean;
+    isFormEdition: boolean;
 
     constructor() { }
 
     ngOnInit() {
-        this.isEdition = false;
+        this.isFormEdition = false;
     }
 
 }

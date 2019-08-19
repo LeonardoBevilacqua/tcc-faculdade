@@ -11,6 +11,7 @@ import { CardTemplateComponent } from './components/card-template/card-template.
 import { AbilitiesComponent } from './components/abilities/abilities.component';
 import { ExperienceComponent } from './components/experience/experience.component';
 import { profileInterceptor } from 'src/app/core/mocks/profile-interceptor';
+import { AgePipe } from 'src/app/shared/pipes/age.pipe';
 
 @NgModule({
     declarations: [ProfileComponent, PersonalDataComponent, UserAddressComponent, AcademicFormationComponent, CardTemplateComponent, AbilitiesComponent, ExperienceComponent],

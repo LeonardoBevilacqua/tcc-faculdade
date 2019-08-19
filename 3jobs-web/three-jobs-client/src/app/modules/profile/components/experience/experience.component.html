@@ -1,7 +1,7 @@
 <card-template title="Experiência Profissional" [cardBodyContent]="experience" cardBodyId="experience">
     <ng-template #experience>
         <!-- experience -->
-        <div *ngIf="!isEdition">
+        <div *ngIf="!isFormEdition">
             <div class="d-flex border-bottom my-2" *ngFor="let i of [0,1]">
                 <div class="d-inline-flex flex-column">
                     <span><strong>INSTITUTO DE PESQUISA ELDORADO</strong></span>
@@ -10,12 +10,12 @@
                 </div>
                 <div class="ml-auto">
                     <button type="button" class="btn btn-outline-primary btn-sm"
-                        (click)="isEdition = true">Editar</button>
+                        (click)="isFormEdition = true">Editar</button>
                 </div>
             </div>
         </div>
 
-        <form *ngIf="isEdition">
+        <form *ngIf="isFormEdition">
 
             <div class="form-row my-2">
                 <label class="col-12 col-md-2" for="inputCompany">Empresa:</label>
@@ -47,8 +47,8 @@
 
             <div class="form-row my-2">
                 <div class="col-12 col-md-5 pr-0 text-right">
-                    <button class="btn btn-outline-danger mr-1" (click)="isEdition = false">Cancelar</button>
-                    <button class="btn btn-outline-primary ml-1" (click)="isEdition = false">Salvar</button>
+                    <button class="btn btn-outline-danger mr-1" (click)="isFormEdition = false">Cancelar</button>
+                    <button class="btn btn-outline-primary ml-1" (click)="isFormEdition = false">Salvar</button>
                 </div>
             </div>
         </form>

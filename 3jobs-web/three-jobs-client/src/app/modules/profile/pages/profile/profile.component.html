@@ -1,7 +1,7 @@
 <app-header [isLogged]="true"></app-header>
 <div class="d-flex flex-column vh-100">
     <!-- Profile section -->
-    <section class="content py-4 container-fluid mb-auto">
+    <section class="content py-4 container-fluid mb-auto">        
         <!-- User header -->
         <div class="p-3 d-flex align-items-center bg-default text-white">
             <!-- User picture -->
@@ -12,10 +12,10 @@
             <!-- User details -->
             <div class="pl-5">
                 <div class="d-inline-flex flex-column">
-                    <h2>Marcelo Rodrigues Costa</h2>
+                    <h2>{{profile.name}} {{profile.lastname}}</h2>
                     <span><strong>E-mail: </strong>capp59marcelo@gmail.com</span>
-                    <span><strong>Telefone: </strong>(19) 4122-2611</span>
-                    <span><strong>Celular: </strong>(19) 98991-7220</span>
+                    <span><strong>Telefone: </strong>{{profile.phone}}</span>
+                    <span><strong>Celular: </strong>{{profile.cellphone}}</span>
                 </div>
                 <!-- edit button -->
                 <a *ngIf="isLoggedUserProfile" class="btn btn-link text-light" href="./">Editar</a>
@@ -24,8 +24,8 @@
 
 
         <div class="accordion indicator-plus-before round-indicator mt-5" aria-multiselectable="true">
-            <personal-data [isLoggedUserProfile]="isLoggedUserProfile"></personal-data>
-            <user-address [isLoggedUserProfile]="isLoggedUserProfile"></user-address>
+            <personal-data [isLoggedUserProfile]="isLoggedUserProfile" [profile]="profile"></personal-data>
+            <user-address [isLoggedUserProfile]="isLoggedUserProfile" [address]="profile.address" *ngIf="profile.address"></user-address>
             <academic-formation [isLoggedUserProfile]="isLoggedUserProfile"></academic-formation>
             <abilities [isLoggedUserProfile]="isLoggedUserProfile"></abilities>
             <experience [isLoggedUserProfile]="isLoggedUserProfile"></experience>

@@ -1,21 +1,20 @@
 <card-template title="Endereço" [cardBodyContent]="userAddress" cardBodyId="userAddress">
     <ng-template #userAddress>
         <!-- address -->
-        <div class="d-flex" *ngIf="!isEdition">
+        <div class="d-flex" *ngIf="!isFormEdition">
                 <div class="d-inline-flex flex-column">
-                    <span><strong>CEP: </strong>13188-200</span>
-                    <span><strong>Estado: </strong>São Paulo</span>
-                    <span><strong>Cidade: </strong>Hortolândia</span>
-                    <span><strong>Bairro: </strong>Jardim Amanda II</span>
-                    <span><strong>Endereço: </strong>R. Érico Veríssimo</span>
-                    <span><strong>País: </strong>Brasil</span>
+                    <span><strong>CEP: </strong>{{address.zipCode}}</span>
+                    <span><strong>Estado: </strong>{{address.state}}</span>
+                    <span><strong>Cidade: </strong>{{address.city}}</span>
+                    <span><strong>Bairro: </strong>{{address.district}}</span>
+                    <span><strong>Endereço: </strong>{{address.name}}</span>
                 </div>
                 <div class="ml-auto" *ngIf="isLoggedUserProfile">
-                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="isEdition = true">Editar</button>
+                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="isFormEdition = true">Editar</button>
                 </div>
             </div>
             <!-- edit address -->
-            <form *ngIf="isEdition">
+            <form *ngIf="isFormEdition">
                 
                 <div class="form-row my-2">
                     <label class="col-12 col-md-2" for="inputCep">CEP:</label>
@@ -55,8 +54,8 @@
                 
                 <div class="form-row my-2">
                     <div class="col-12 col-md-5 pr-0 text-right">
-                        <button class="btn btn-outline-danger mr-1" (click)="isEdition = false">Cancelar</button>
-                        <button class="btn btn-outline-primary ml-1" (click)="isEdition = false">Salvar</button>
+                        <button class="btn btn-outline-danger mr-1" (click)="isFormEdition = false">Cancelar</button>
+                        <button class="btn btn-outline-primary ml-1" (click)="isFormEdition = false">Salvar</button>
                     </div>
                 </div>
             </form>

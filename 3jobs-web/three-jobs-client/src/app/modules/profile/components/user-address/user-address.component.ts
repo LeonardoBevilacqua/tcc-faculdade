@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Address } from 'src/app/shared/models/address';
 
 @Component({ selector: 'user-address', templateUrl: './user-address.component.html' })
 export class UserAddressComponent implements OnInit {
@@ -9,14 +10,19 @@ export class UserAddressComponent implements OnInit {
     @Input() isLoggedUserProfile: boolean;
 
     /**
+     * The profile's address.
+     */
+    @Input() address: Address;
+
+    /**
      * Flag if the data is being edited.
      */
-    isEdition: boolean;
+    isFormEdition: boolean;
 
     constructor() { }
 
     ngOnInit() {
-        this.isEdition = false;
+        this.isFormEdition = false;
     }
 
 }

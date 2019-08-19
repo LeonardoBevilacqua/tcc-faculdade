@@ -15,9 +15,14 @@ export class PersonalDataComponent extends MaintainForm<Profile> implements OnIn
     @Input() isLoggedUserProfile: boolean;
 
     /**
+     * The profile model.
+     */
+    @Input() profile: Profile;
+
+    /**
      * Flag if the data is being edited.
      */
-    isEdition: boolean;
+    isFormEdition: boolean;
 
     /**
      * The default constructor.
@@ -32,10 +37,9 @@ export class PersonalDataComponent extends MaintainForm<Profile> implements OnIn
     }
 
     ngOnInit() {
-        // default ngOnInit
-        super.ngOnInit();
+        this.isFormEdition = false;
+        this.isEdition = true;
 
-        this.isEdition = false;
-        this.model = new Profile();
+        this.model = this.profile;
     }
 }

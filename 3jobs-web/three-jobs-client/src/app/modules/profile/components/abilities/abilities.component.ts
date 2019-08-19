@@ -11,7 +11,7 @@ export class AbilitiesComponent implements OnInit {
     /**
      * Flag if the data is being edited.
      */
-    isEdition: boolean;
+    isFormEdition: boolean;
 
     constructor() { }
 

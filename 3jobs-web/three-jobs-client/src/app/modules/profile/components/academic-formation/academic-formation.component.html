@@ -1,18 +1,18 @@
 <card-template title="Formação academica" [cardBodyContent]="academicFormation" cardBodyId="academicFormation">
     <ng-template #academicFormation>
         <!-- academic formation -->
-        <div class="d-flex" *ngIf="!isEdition">
+        <div class="d-flex" *ngIf="!isFormEdition">
             <div class="d-inline-flex flex-column">
                 <span><strong>Graduação</strong></span>
                 <span>Ciências da Computação, Faculdade DeVry Metrocamp</span>
                 <span>(Dezembro de 2019) - Cursando</span>
             </div>
             <div class="ml-auto" *ngIf="isLoggedUserProfile">
-                <button type="button" class="btn btn-outline-primary btn-sm" (click)="isEdition = true">Editar</button>
+                <button type="button" class="btn btn-outline-primary btn-sm" (click)="isFormEdition = true">Editar</button>
             </div>
         </div>
         <!-- edit academic formation -->
-        <form *ngIf="isEdition">
+        <form *ngIf="isFormEdition">
             
             <div class="form-row my-2">
                 <label class="col-12 col-md-2" for="inputCourseName">Nome do Curso:</label>
@@ -55,8 +55,8 @@
             
             <div class="form-row my-2">
                 <div class="col-12 col-md-5 pr-0 text-right">
-                    <button class="btn btn-outline-danger mr-1" (click)="isEdition = false">Cancelar</button>
-                    <button class="btn btn-outline-primary ml-1" (click)="isEdition = false">Salvar</button>
+                    <button class="btn btn-outline-danger mr-1" (click)="isFormEdition = false">Cancelar</button>
+                    <button class="btn btn-outline-primary ml-1" (click)="isFormEdition = false">Salvar</button>
                 </div>
             </div>
         </form>

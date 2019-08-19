@@ -1,13 +1,39 @@
-import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { delay, mergeMap, dematerialize, materialize } from 'rxjs/operators';
-import { ok } from 'assert';
+import { delay, dematerialize, materialize, mergeMap } from 'rxjs/operators';
+import { Profile } from 'src/app/shared/models/profile';
+import { Address } from 'src/app/shared/models/address';
 
 @Injectable()
 export class ProfileInterceptor implements HttpInterceptor {
+    
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const { url, method, headers, body } = request;
+        const addresses: Array<Address> = [
+            {
+                city: 'Campinas',
+                district: 'Vila industrial',
+                id: 1,
+                name: 'Rua Dr. Sales de Oliveira, 1661',
+                state: 'São Paulo',
+                zipCode: '11111-111',
+            }
+        ]
+        const profiles: Array<Profile> = [
+            {
+                id: 1,
+                addressId: 1,
+                address: addresses.find(a => a.id === 1),
+                cellphone: '(11) 99999-9999',
+                dateOfBirth: new Date('10/01/1997'),
+                name: 'Leonardo',
+                lastname: 'Bevilacqua',
+                martialSatus: 'Solteiro',
+                nationality: 'Brasileiro',
+                phone: '(11) 3333-3333'
+            }
+        ];
 
         // wrap in delayed observable to simulate serve api call.
         return of(null)
@@ -18,6 +44,8 @@ export class ProfileInterceptor implements HttpInterceptor {
         
         function handleRoute() {
             switch (true) {
+                case url.match(/\/profiles\/\d+$/) && method === 'GET':
+                    return getProfileById();
                 case url.endsWith('/profiles') && method === 'POST': 
                     return testes();
                 default:
@@ -29,8 +57,19 @@ export class ProfileInterceptor implements HttpInterceptor {
             return ok({message: 'Dados alterados com sucesso!'});
         }
 
+        function getProfileById() {
+            const profile = profiles.find(x => x.id == idFromUrl());
+            return ok(profile);
+        }
+
+        // helpers 
         function ok(body?) {
             return of(new HttpResponse({ status: 200, body }))
+        }
+
+        function idFromUrl() {
+            const urlParts = url.split('/');
+            return parseInt(urlParts[urlParts.length - 1]);
         }
     }
 }
