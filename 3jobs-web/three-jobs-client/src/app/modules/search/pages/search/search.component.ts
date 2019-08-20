@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-declare const $: any;
 
 @Component({ selector: 'app-search', templateUrl: './search.component.html' })
 export class SearchComponent implements OnInit {
@@ -92,24 +91,15 @@ export class SearchComponent implements OnInit {
         }
     ];
 
+    /**
+     * Flag if the filter is active.
+     */
+    isFilterActive: boolean;
+
     constructor() { }
 
     ngOnInit() {
-        $(document).ready(function () {
-            $('#btn-filter-filter').click(() => {
-                $("#container-filters").removeClass('d-none');
-                $('#btn-filter-filter').addClass('d-none');
-                $('#btn-filter-cancel').removeClass('d-none');
-                $('#btn-filter-apply').removeClass('d-none');
-            });
-            $('#btn-filter-cancel').click(() => {
-                $("#container-filters").addClass('d-none');
-                $('#btn-filter-filter').removeClass('d-none');
-                $('#btn-filter-cancel').addClass('d-none');
-                $('#btn-filter-apply').addClass('d-none');
-            });
-        });
-
+        this.isFilterActive = false;
     }
 
 
