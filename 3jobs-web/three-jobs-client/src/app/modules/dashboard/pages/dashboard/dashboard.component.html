@@ -1,5 +1,5 @@
 <app-header [isLogged]="true"></app-header>
-<div class="d-flex flex-column vh-100 bg-light">
+<div class="d-flex flex-column bg-light overflow-hidden">
     <div class="content pt-4 container-fluid ">
         <div class="row">
             <div class="col-sm-6 col-md-3 mb-4">
@@ -89,76 +89,16 @@
                 </div>
             </div>
             <div class="col-md-8 mb-3">
-                <table class="table table-bordered table-hover shadow bg-white">
+                <table class="table table-bordered shadow bg-white">
                     <thead>
                         <tr>
                             <th scope="col">Vaga</th>
-                            <th scope="col">HeadHunters</th>
-                            <th scope="col">Status</th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Mark</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <td>Mark</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <td>Mark</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <td>Mark</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <td>Mark</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <td>Mark</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <td>Mark</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <table class="table table-striped table-bordered table-hover shadow">
-                    <thead>
-                        <tr class="bg-primary">
-                            <th scope="col">Vaga</th>
-                            <th scope="col">HeadHunters</th>
-                            <th scope="col">Status</th>
+                            <th scope="col" style="width: 110px">Status</th>
                             <th scope="col" style="width: 100px"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Mark</td>
                             <td>Mark</td>
                             <td><span class="badge badge-success">Aprovado</span></td>
                             <td>
@@ -167,7 +107,73 @@
                         </tr>
                         <tr>
                             <td>Mark</td>
+                            <td><span class="badge badge-success">Aprovado</span></td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
+                            </td>
+                        </tr>
+                        <tr>
                             <td>Jacob</td>
+                            <td><span class="badge badge-success">Aprovado</span></td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Jacob</td>
+                            <td><span class="badge badge-success">Aprovado</span></td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mark</td>
+                            <td><span class="badge badge-success">Aprovado</span></td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mark</td>
+                            <td><span class="badge badge-success">Aprovado</span></td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mark</td>
+                            <td><span class="badge badge-success">Aprovado</span></td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered shadow  bg-white">
+                    <thead>
+                        <tr>
+                            <th scope="col">HeadHunters</th>
+                            <th scope="col" class="d-none d-sm-table-cell">Avaliação</th>
+                            <th scope="col" style="width: 110px">Status</th>
+                            <th scope="col" style="width: 100px"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mark</td>
+                            <td class="d-none d-sm-table-cell">Mark</td>
+                            <td><span class="badge badge-success">Aprovado</span></td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mark</td>
+                            <td class="d-none d-sm-table-cell">Mark</td>
                             <td><span class="badge badge-secondary">Pendente</span></td>
                             <td>
                                 <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
@@ -175,15 +181,15 @@
                         </tr>
                         <tr>
                             <td>Mark</td>
-                            <td>Jacob</td>
-                            <td><span class="badge badge-danger">Reprovado</span></td>
+                            <td class="d-none d-sm-table-cell">Mark</td>
+                            <td><span class="badge badge-success">Aprovado</span></td>
                             <td>
                                 <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
                             </td>
                         </tr>
                         <tr>
                             <td>Mark</td>
-                            <td>Jacob</td>
+                            <td class="d-none d-sm-table-cell">Mark</td>
                             <td><span class="badge badge-primary">Aprovado</span></td>
                             <td>
                                 <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
@@ -191,7 +197,7 @@
                         </tr>
                         <tr>
                             <td>Mark</td>
-                            <td>Jacob</td>
+                            <td class="d-none d-sm-table-cell">Mark</td>
                             <td><span class="badge badge-primary">Aprovado</span></td>
                             <td>
                                 <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
@@ -199,7 +205,7 @@
                         </tr>
                         <tr>
                             <td>Mark</td>
-                            <td>Jacob</td>
+                            <td class="d-none d-sm-table-cell">Mark</td>
                             <td><span class="badge badge-primary">Aprovado</span></td>
                             <td>
                                 <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
@@ -207,7 +213,7 @@
                         </tr>
                         <tr>
                             <td>Mark</td>
-                            <td>Jacob</td>
+                            <td class="d-none d-sm-table-cell">Mark</td>
                             <td><span class="badge badge-primary">Aprovado</span></td>
                             <td>
                                 <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
@@ -215,6 +221,7 @@
                         </tr>
                     </tbody>
                 </table>
+
             </div>
         </div>
         <form>
@@ -232,7 +239,11 @@
         <div class="row">
             <div class="col-md-4  mb-3">
                 <div class="card shadow">
-                    <div style="height: 220px;background: red;">asdasd</div>
+                    <div class="d-flex flex-column justify-content-center align-items-center" style="height: 220px;position: relative; background: linear-gradient(to right, #1e5799 0%,  #3ccdbb 0%, #16c9f6 100%);">
+                            <button type="button" class="btn btn-primary btn-sm" style="position: absolute; right: 5px;top: 5px">Ver Mais</button>
+                            <div class="bg-success rounded-circle" style="width: 120px;height: 120px;"></div>
+                            <strong>Marcelo Rodrigues</strong>
+                    </div>
                     <div class="card-body p-0">
                         <table class="table">
                             <thead>
@@ -307,64 +318,80 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    graficos
+                <div class="d-flex flex-column flex-md-row">
+                    <div style="background: red; width: 100%;">grafico 1</div>
+                    <div style="background: blue;width: 100%;">grafico 2</div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
-                <table class="table table-striped table-bordered table-hover shadow">
+
+                <table class="table table-bordered shadow  bg-white">
                     <thead>
-                        <tr class="bg-primary">
-                            <th scope="col">Vaga</th>
-                            <th scope="col">HeadHunters</th>
-                            <th scope="col">Status</th>
-                            <th scope="col"></th>
+                        <tr>
+                            <th scope="col">Candidato</th>
+                            <th scope="col" class="d-none d-sm-table-cell" style="width: 150px">Avaliação</th>
+                            <th scope="col" style="width: 110px">Status</th>
+                            <th scope="col" style="width: 100px"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>Mark</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <td class="d-none d-sm-table-cell">Mark</td>
+                            <td><span class="badge badge-success">Aprovado</span></td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Ver Mais</button>
+                            </td>
                         </tr>
                         <tr>
                             <td>Mark</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
+                            <td class="d-none d-sm-table-cell">Jacob</td>
+                            <td><span class="badge badge-secondary">Pendente</span></td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Ver Mais</button>
+                            </td>
                         </tr>
                         <tr>
                             <td>Mark</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
+                            <td class="d-none d-sm-table-cell">Jacob</td>
+                            <td><span class="badge badge-success">Aprovado</span></td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Ver Mais</button>
+                            </td>
                         </tr>
                         <tr>
                             <td>Mark</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
+                            <td class="d-none d-sm-table-cell">Jacob</td>
+                            <td><span class="badge badge-primary">Aprovado</span></td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Ver Mais</button>
+                            </td>
                         </tr>
                         <tr>
                             <td>Mark</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
+                            <td class="d-none d-sm-table-cell">Jacob</td>
+                            <td><span class="badge badge-primary">Aprovado</span></td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Ver Mais</button>
+                            </td>
                         </tr>
                         <tr>
                             <td>Mark</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
+                            <td class="d-none d-sm-table-cell">Jacob</td>
+                            <td><span class="badge badge-primary">Aprovado</span></td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Ver Mais</button>
+                            </td>
                         </tr>
                         <tr>
                             <td>Mark</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
+                            <td class="d-none d-sm-table-cell">Jacob</td>
+                            <td><span class="badge badge-primary">Aprovado</span></td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Ver Mais</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
