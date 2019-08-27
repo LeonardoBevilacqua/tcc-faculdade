@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'search', loadChildren: './modules/search/search.module#SearchModule', },
   { path: 'testes', loadChildren: './modules/testes/testes.module#TestesModule', },
   { path: 'job-details', loadChildren: './modules/job-details/job-details.module#JobDetailsModule', },
+  { path: 'dashboard', loadChildren: './modules/dashboard/dashboard.module#DashboardModule', }
 ];
 
 @NgModule({
