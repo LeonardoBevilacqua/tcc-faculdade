@@ -1,9 +1,18 @@
-import { HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse, HttpHeaders } from '@angular/common/http';
+import {
+    HTTP_INTERCEPTORS,
+    HttpEvent,
+    HttpHandler,
+    HttpHeaders,
+    HttpInterceptor,
+    HttpRequest,
+    HttpResponse,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, dematerialize, materialize, mergeMap } from 'rxjs/operators';
 import { Address } from 'src/app/shared/models/address';
 import { Profile } from 'src/app/shared/models/profile';
+import { User } from 'src/app/shared/models/user';
 
 @Injectable()
 export class ProfileInterceptor implements HttpInterceptor {
@@ -31,7 +40,12 @@ export class ProfileInterceptor implements HttpInterceptor {
                 lastname: 'Bevilacqua',
                 martialSatus: 'Solteiro',
                 nationality: 'Brasileiro',
-                phone: '(11) 3333-3333'
+                phone: '(11) 3333-3333',
+                experiences: [],
+                skills: [],
+                tags: [],
+                user: new User(),
+                userId: 1
             }
         ];
 
