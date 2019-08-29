@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponseBase } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
-import { EntityService } from './entity.service';
 import { map } from 'rxjs/operators';
 import { User } from 'src/app/shared/models/user';
+
+import { EntityService } from './entity.service';
 
 @Injectable()
 export class AuthService extends EntityService<User>{
@@ -12,14 +12,14 @@ export class AuthService extends EntityService<User>{
     public token: string;
 
     constructor(httpClient: HttpClient) {
-        super(httpClient, "user");
+        super(httpClient, 'login');
     }
 
-    public signIn(user: User): Observable<boolean> {
-        return this.httpClient.post(`${this.apiUrl}/${this.endpoint}`, { user: user.email, password: user.password })
-        .pipe(map((response: any) => {
-            // login successful if there's a jwt token in the response
-            let token = response && response.token;
+    public login(user: User): Observable<boolean> {
+        return this.httpClient.post(`${this.apiUrl}/${this.endpoint}`, { email: user.email, password: user.password }, {observe: 'response'})
+        .pipe(map((response: HttpResponseBase) => {
+            // login successful if there's a jwt token in the response header
+            let token = response && response.headers.get('Authorization');
             if(token) {
                 // set token property
                 this.token = token;

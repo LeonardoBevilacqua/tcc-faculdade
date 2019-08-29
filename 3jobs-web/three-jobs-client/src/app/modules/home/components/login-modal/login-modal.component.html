@@ -1,5 +1,5 @@
-<!-- sign in Modal -->
-<div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel"
+<!-- login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -13,7 +13,7 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <form #loginForm="ngForm" (ngSubmit)="loginForm.form.valid && signIn()">
+                        <form #loginForm="ngForm" (ngSubmit)="loginForm.form.valid && login()">
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" class="form-control" id="email" name="email" placeholder="email@email.com" [(ngModel)]="model.email" #email="ngModel" required>
