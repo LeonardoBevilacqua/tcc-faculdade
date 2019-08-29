@@ -1,0 +1,33 @@
+package com.core.service;
+
+import com.core.exception.UserNotFoundException;
+import com.core.model.Company;
+import com.core.respository.CompanyRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class CompanyService {
+
+    @Autowired
+    private CompanyRepository companyRepository;
+
+    public List<Company> getCompanies() {
+        return companyRepository.findAll();
+    }
+
+    public Company getCompany(Long id) {
+        Optional<Company> jobOpt = companyRepository.findById(id);
+        if (jobOpt.isEmpty()) {
+            throw new UserNotFoundException("Company Not Found");
+        }
+        return jobOpt.get();
+    }
+
+    public Company saveCompany(Company job) {
+        return companyRepository.save(job);
+    }
+}
