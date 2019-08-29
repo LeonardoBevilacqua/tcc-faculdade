@@ -9,8 +9,16 @@ import { EntityService } from './entity.service';
 @Injectable()
 export class AuthService extends EntityService<User>{
 
+    /**
+     * The auth token
+     */
     public token: string;
 
+    /**
+     * Default contructor
+     * 
+     * @param httpClient the http client to handle the requests.
+     */
     constructor(httpClient: HttpClient) {
         super(httpClient, 'login');
     }
