@@ -18,8 +18,8 @@ import { RegisterModule } from './modules/register/register.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     ToastrModule.forRoot(),
-    Ng4LoadingSpinnerModule.forRoot(),
-    RegisterModule
+    Ng4LoadingSpinnerModule.forRoot()
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
