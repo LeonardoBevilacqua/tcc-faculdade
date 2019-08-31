@@ -3,9 +3,9 @@ import { Title } from '@angular/platform-browser';
 
 
 import { Router } from '@angular/router';
-import { RegisterService } from 'src/app/core/services/register.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/core/services/user.service';
 
 
 
@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class registersComponent implements OnInit {
 
 
-    constructor(private titleService: Title, private registerService: RegisterService, private router: Router, private spinnerService: Ng4LoadingSpinnerService, private toast: ToastrService) { }
+    constructor(private titleService: Title, private userService: UserService, private router: Router, private spinnerService: Ng4LoadingSpinnerService, private toast: ToastrService) { }
 
     ngOnInit() {
         this.titleService.setTitle(`${this.titleService.getTitle()} | Crie sua conta`);
@@ -26,7 +26,7 @@ export class registersComponent implements OnInit {
         form.value.roles = this.roles;
         
 
-        this.registerService.create(form.value).subscribe((res) => {
+        this.userService.create(form.value).subscribe((res) => {
             console.log(form.value);
             this.router.navigateByUrl('/');
            
