@@ -18,7 +18,7 @@ public class User {
     private Long id;
 
     private String name;
-    private String rg;
+    private String cpf;
     private String email;
     private String password;
 
@@ -82,12 +82,12 @@ public class User {
         this.name = name;
     }
 
-    public String getRg() {
-        return rg;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setRg(String rg) {
-        this.rg = rg;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public Set<Role> getRoles() {
@@ -103,7 +103,7 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", rg='" + rg + '\'' +
+                ", cpf='" + cpf + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

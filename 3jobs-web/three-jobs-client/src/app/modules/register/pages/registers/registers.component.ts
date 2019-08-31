@@ -8,6 +8,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ToastrService } from 'ngx-toastr';
 
 
+
 @Component({ selector: 'app-registers', templateUrl: './registers.component.html', styleUrls: ['./registers.component.scss'] })
 export class registersComponent implements OnInit {
 
@@ -18,15 +19,22 @@ export class registersComponent implements OnInit {
         this.titleService.setTitle(`${this.titleService.getTitle()} | Crie sua conta`);
     }
 
+    roles = [];
     register(form) {
-        console.log(form.value);
+
+        this.roles.push(form.value.roles);
+        form.value.roles = this.roles;
+        
+
         this.registerService.create(form.value).subscribe((res) => {
+            console.log(form.value);
             this.router.navigateByUrl('/');
+           
         },
-        (error) => {            
-            this.toast.error(error.statusText);
-            this.spinnerService.hide();
-        });
+            (error) => {
+                this.toast.error(error.statusText);
+                this.spinnerService.hide();
+            });
     }
 
 }

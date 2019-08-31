@@ -8,8 +8,7 @@ export class User extends Entity {
     cpf: string;
     email: string;
     password: string;
-    nome: string;
-    sobrenome: string;
-    rate: string;
-    data: string;
+    name: string;
+    roles: object;
+    
 }
