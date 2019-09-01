@@ -44,6 +44,22 @@ public class Profile {
     @JsonIgnore
     private User user;
 
+    @ManyToMany
+    @JoinTable(
+            name = "profile_tags",
+            joinColumns = @JoinColumn(name = "profile_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    private List<Tag> tags;
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
+
     public User getUser() {
         return user;
     }

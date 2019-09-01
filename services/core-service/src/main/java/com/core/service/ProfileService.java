@@ -1,6 +1,6 @@
 package com.core.service;
 
-import com.core.exception.UserNotFoundException;
+import com.core.exception.EntityNotFoundException;
 import com.core.model.Profile;
 import com.core.respository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class ProfileService {
     public Profile getProfile(Long id) {
         Optional<Profile> jobOpt = profileRepository.findById(id);
         if (jobOpt.isEmpty()) {
-            throw new UserNotFoundException("Company Not Found");
+            throw new EntityNotFoundException("Profile não encontrado");
         }
         return jobOpt.get();
     }

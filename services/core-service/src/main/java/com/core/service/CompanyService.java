@@ -1,6 +1,6 @@
 package com.core.service;
 
-import com.core.exception.UserNotFoundException;
+import com.core.exception.EntityNotFoundException;
 import com.core.model.Company;
 import com.core.respository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class CompanyService {
     public Company getCompany(Long id) {
         Optional<Company> jobOpt = companyRepository.findById(id);
         if (jobOpt.isEmpty()) {
-            throw new UserNotFoundException("Company Not Found");
+            throw new EntityNotFoundException("Empresa não encontrada");
         }
         return jobOpt.get();
     }
