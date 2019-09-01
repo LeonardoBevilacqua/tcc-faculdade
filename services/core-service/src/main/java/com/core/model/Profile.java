@@ -1,6 +1,7 @@
 package com.core.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -41,7 +42,7 @@ public class Profile {
     private List<Rate> rates;
 
     @OneToOne(mappedBy = "profile")
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private User user;
 
     @ManyToMany

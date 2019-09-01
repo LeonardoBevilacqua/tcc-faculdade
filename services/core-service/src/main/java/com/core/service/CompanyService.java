@@ -30,4 +30,8 @@ public class CompanyService {
     public Company saveCompany(Company job) {
         return companyRepository.save(job);
     }
+
+    public Company updateCompany(Long id, Company company) {
+        return companyRepository.save(company);
+    }
 }

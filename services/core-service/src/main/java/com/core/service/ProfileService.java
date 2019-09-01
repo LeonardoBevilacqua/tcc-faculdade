@@ -21,4 +21,8 @@ public class ProfileService {
         }
         return jobOpt.get();
     }
+
+    public Profile updateProfile(Long id, Profile profile) {
+        return profileRepository.save(profile);
+    }
 }
