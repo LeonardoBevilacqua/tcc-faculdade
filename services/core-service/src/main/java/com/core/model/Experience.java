@@ -10,7 +10,7 @@ import java.util.Date;
 public class Experience {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String location;
@@ -19,7 +19,7 @@ public class Experience {
     private Date endDate;
 
     @ManyToOne
-    @JoinColumn(name = "profile_id")
+    @JoinColumn(name = "profile_id", nullable = false)
     @JsonIgnore
     private Profile profile;
 
@@ -64,10 +64,24 @@ public class Experience {
     }
 
     public Profile getProfile() {
+        System.out.println("VOU PEGAR");
         return profile;
     }
 
     public void setProfile(Profile profile) {
+        System.out.println("VOU SETAR");
         this.profile = profile;
+    }
+
+    @Override
+    public String toString() {
+        return "Experience{" +
+                "id=" + id +
+                ", location='" + location + '\'' +
+                ", description='" + description + '\'' +
+                ", beginDate=" + beginDate +
+                ", endDate=" + endDate +
+                ", profile=" + profile +
+                '}';
     }
 }
