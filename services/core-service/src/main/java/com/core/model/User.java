@@ -1,7 +1,6 @@
 package com.core.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -18,8 +17,10 @@ public class User {
     private Long id;
 
     private String name;
-    private String rg;
+    private String cpf;
     private String email;
+
+    @JsonIgnore
     private String password;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -74,6 +75,14 @@ public class User {
         this.id = id;
     }
 
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
     public String getName() {
         return name;
     }
@@ -82,12 +91,18 @@ public class User {
         this.name = name;
     }
 
-    public String getRg() {
-        return rg;
-    }
-
-    public void setRg(String rg) {
-        this.rg = rg;
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", profile=" + profile +
+                ", jobs=" + jobs +
+                ", roles=" + roles +
+                '}';
     }
 
     public Set<Role> getRoles() {
@@ -96,15 +111,5 @@ public class User {
 
     public void addRole(Role role) {
         roles.add(role.getCod());
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", rg='" + rg + '\'' +
-                ", password='" + password + '\'' +
-                '}';
     }
 }

@@ -27,26 +27,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JWTUtil jwtUtil;
 
-    private static final String[] PUBLIC_MATCHERS = {
+    private static final String[] PUBLIC_POST = {
+            "/h2-console/**",
+            "/users/**",
+    };
+
+    private static final String[] PUBLIC_GET = {
             "/h2-console/**",
             "/users/**",
             "/jobs/**",
-            "/companies/**",
             "/rates/**"
-    };
-
-    private static final String[] PUBLIC_MATCHERS_GET = {
-            "/h2-console/**",
-            "/users/**"
     };
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable();
         http.authorizeRequests()
-                .antMatchers(HttpMethod.POST, PUBLIC_MATCHERS).permitAll()
-                .antMatchers(HttpMethod.PUT, PUBLIC_MATCHERS).permitAll()
-                .antMatchers(HttpMethod.GET, PUBLIC_MATCHERS).permitAll()
+                .antMatchers(HttpMethod.POST, PUBLIC_POST).permitAll()
+                .antMatchers(HttpMethod.GET, PUBLIC_POST).permitAll()
                 .anyRequest().authenticated();
         http.addFilter(new JWTAuthenticationFilter(jwtUtil, authenticationManager()));
         http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
