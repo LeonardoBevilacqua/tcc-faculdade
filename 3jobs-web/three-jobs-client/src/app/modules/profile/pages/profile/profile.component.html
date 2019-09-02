@@ -27,7 +27,7 @@
             <div class="accordion indicator-plus-before round-indicator mt-5" aria-multiselectable="true">
                 <personal-data [isLoggedUserProfile]="isLoggedUserProfile" [profile]="profile"></personal-data>
                 <user-address [isLoggedUserProfile]="isLoggedUserProfile" [address]="profile.address" *ngIf="profile.address"></user-address>
-                <academic-formation [isLoggedUserProfile]="isLoggedUserProfile"></academic-formation>
+                <academic-formation [isLoggedUserProfile]="isLoggedUserProfile" [profile]="profile"></academic-formation>
                 <abilities [isLoggedUserProfile]="isLoggedUserProfile"></abilities>
                 <experience [isLoggedUserProfile]="isLoggedUserProfile"></experience>
             </div>

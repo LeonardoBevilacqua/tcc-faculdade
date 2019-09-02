@@ -14,7 +14,7 @@ export class Profile extends Entity {
     cellphone: string;
     phone: string;
     dateOfBirth: Date;
-    martialSatus: string;
+    martialStatus: string;
     nationality: string;
     addressId: number;
     address: Address;

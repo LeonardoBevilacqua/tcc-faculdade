@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 
@@ -10,6 +10,7 @@ import { PersonalDataComponent } from './components/personal-data/personal-data.
 import { UserAddressComponent } from './components/user-address/user-address.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ProfileRoutingModule } from './profile-routing.module';
+import { profileInterceptor } from 'src/app/core/mocks/profile-interceptor';
 
 @NgModule({
     declarations: [ProfileComponent, PersonalDataComponent, UserAddressComponent, AcademicFormationComponent, CardTemplateComponent, AbilitiesComponent, ExperienceComponent],
@@ -18,5 +19,6 @@ import { ProfileRoutingModule } from './profile-routing.module';
         ProfileRoutingModule,
         SharedModule,
     ],
+    providers: [profileInterceptor, DatePipe]
 })
 export class ProfileModule { }
