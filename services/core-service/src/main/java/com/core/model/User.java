@@ -1,6 +1,6 @@
 package com.core.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -13,14 +13,14 @@ import java.util.stream.Collectors;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String name;
     private String cpf;
     private String email;
 
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -28,7 +28,7 @@ public class User {
     private Profile profile;
 
     @ManyToMany(mappedBy = "users")
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Job> jobs;
 
     @ElementCollection(fetch = FetchType.EAGER)
