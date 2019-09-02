@@ -1,7 +1,6 @@
 package com.core.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -20,6 +19,8 @@ public class User {
     private String name;
     private String cpf;
     private String email;
+
+    @JsonIgnore
     private String password;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -74,14 +75,6 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getCpf() {
         return cpf;
     }
@@ -90,12 +83,12 @@ public class User {
         this.cpf = cpf;
     }
 
-    public Set<Role> getRoles() {
-        return roles.stream().map(role -> Role.toEnum(role)).collect(Collectors.toSet());
+    public String getName() {
+        return name;
     }
 
-    public void addRole(Role role) {
-        roles.add(role.getCod());
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
@@ -104,7 +97,19 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", cpf='" + cpf + '\'' +
+                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", profile=" + profile +
+                ", jobs=" + jobs +
+                ", roles=" + roles +
                 '}';
+    }
+
+    public Set<Role> getRoles() {
+        return roles.stream().map(role -> Role.toEnum(role)).collect(Collectors.toSet());
+    }
+
+    public void addRole(Role role) {
+        roles.add(role.getCod());
     }
 }
