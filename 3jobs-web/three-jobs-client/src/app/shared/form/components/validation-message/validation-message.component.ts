@@ -10,4 +10,5 @@ export class ValidationMessageComponent {
      * the input control.
      */
     @Input() inputControl: NgControl;
+    @Input() msgError: string;
 }

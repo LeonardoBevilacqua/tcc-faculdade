@@ -1,5 +1,5 @@
 <div class="d-flex flex-column  bg-default ">
-    <div class="content col-md-auto  container">
+    <div class="content col-md-auto vh-100  container">
         <section class="content col-md-auto  container">
 
             <div class="jumbotron jumbotron-fluid bg-white pt-5 justify-content-center">
@@ -17,61 +17,90 @@
                                             </div>
                                         </div>
 
-                                        <form #myform="ngForm" (ngSubmit)="register(myform)" name="register">
-                                            <div class="form-group">
+                                        <form [formGroup]="formulario" (ngSubmit)="formulario.valid && onSubmit()">
+                                            <div class="form-group" [ngClass]="aplicaCssErro('name')">
                                                 <label for="exampleInputEmail1">Nome</label>
-                                                <input type="text" class="form-control" name="name" id="register-nome"
-                                                    aria-describedby="nameHelp" ngModel required>
+                                                <input type="text" class="form-control" formControlName="name"
+                                                    id="register-nome" aria-describedby="nameHelp">
+
+                                                <validation-message [inputControl]="formulario.get('name')">
+                                                </validation-message>
+
                                             </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Sobrenome</label>
-                                                <input type="text" class="form-control" name="sobrenome"
-                                                    id="register-sobrenome" aria-describedby="nameHelp" ngModel
-                                                    required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Data de Nascimento</label>
-                                                <input type="date" class="form-control" id="register-data" name="data"
-                                                    aria-describedby="dateHelp" ngModel required>
-                                            </div>
+
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Email</label>
                                                 <input type="email" class="form-control" id="register-email"
-                                                    name="email" aria-describedby="emailHelp" ngModel required>
-                                                <small id="emailHelp" class="form-text text-muted">Nunca vamos
-                                                    compartilhar
-                                                    seu email, com ninguém.</small>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Confirme o Email</label>
-                                                <input type="email" class="form-control" id="register-email2"
-                                                    name="email2" aria-describedby="emailHelp">
+                                                    formControlName="email" aria-describedby="emailHelp">
+
+                                                <validation-message [inputControl]="formulario.get('email')">
+                                                </validation-message>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">Senha</label>
                                                 <input type="password" class="form-control" id="register-password"
-                                                    name="password" ngModel required>
+                                                    formControlName="password">
                                             </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword1">Confirme a Senha</label>
-                                                <input type="password" class="form-control"
-                                                    id="register-exampleInputPassword2" name="Password2">
-                                            </div>
+
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">CPF</label>
-                                                <input type="text" class="form-control" id="register-cpf" name="cpf"
-                                                    ngModel required>
+                                                <input type="text" class="form-control" id="register-cpf"
+                                                    formControlName="cpf" mask="000000000-00">
+                                                    <validation-message [inputControl]="formulario.get('cpf')" msgError="Campo deve ser um cpf válido!">
+                                                    </validation-message>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Você é um ?</label>
-                                                <select type="number" class="form-control" id="register-roles" name="roles" ngModel
-                                                    required>
-                                                    <option value="3">Candidato</option>
-                                                    <option value="2">Headhunter</option>
-                                                    <option value="4">Recrutador</option>
-                                                </select>
-                                            </div>
+
+                                            <!--  <div class="form-group">
+                                                    <label for="exampleInputEmail1">Sobrenome</label>
+                                                    <input type="text" class="form-control" name="sobrenome"
+                                                        id="register-sobrenome" aria-describedby="nameHelp" ngModel
+                                                        required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Data de Nascimento</label>
+                                                    <input type="date" class="form-control" id="register-data"
+                                                        name="data" aria-describedby="dateHelp" ngModel required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Email</label>
+                                                    <input type="email" class="form-control" id="register-email"
+                                                        name="email" aria-describedby="emailHelp" ngModel required>
+                                                    <small id="emailHelp" class="form-text text-muted">Nunca vamos
+                                                        compartilhar
+                                                        seu email, com ninguém.</small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Confirme o Email</label>
+                                                    <input type="email" class="form-control" id="register-email2"
+                                                        name="email2" aria-describedby="emailHelp">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputPassword1">Senha</label>
+                                                    <input type="password" class="form-control" id="register-password"
+                                                        name="password" ngModel required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputPassword1">Confirme a Senha</label>
+                                                    <input type="password" class="form-control"
+                                                        id="register-exampleInputPassword2" name="Password2">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">CPF</label>
+                                                    <input type="text" class="form-control" id="register-cpf" name="cpf"
+                                                        ngModel required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Você é um ?</label>
+                                                    <select type="number" class="form-control" id="register-roles"
+                                                        name="roles" ngModel required>
+                                                        <option value="3">Candidato</option>
+                                                        <option value="2">Headhunter</option>
+                                                        <option value="4">Recrutador</option>
+                                                    </select>
+                                                </div> -->
                                             <button type="submit" class="btn btn-primary float-right">Cadastrar</button>
+
+                                            <app-form-debug [form]="formulario"></app-form-debug>
                                         </form>
                                     </div>
                                 </div>
