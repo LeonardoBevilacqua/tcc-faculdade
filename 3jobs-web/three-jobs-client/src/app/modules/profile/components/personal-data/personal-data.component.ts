@@ -5,7 +5,6 @@ import { ProfileService } from 'src/app/core/services/profile.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-import { DatePipe } from '@angular/common';
 
 @Component({ selector: 'personal-data', templateUrl: './personal-data.component.html' })
 export class PersonalDataComponent extends MaintainForm<Profile> implements OnInit {
@@ -32,9 +31,8 @@ export class PersonalDataComponent extends MaintainForm<Profile> implements OnIn
      * @param router router for nagivation.
      * @param toastr toastr service.
      * @param spinnerService spinner service.
-     * @param datePipe date pipe.
      */
-    constructor(profileService: ProfileService, router: Router, toastr: ToastrService, spinnerService: Ng4LoadingSpinnerService, private datePipe: DatePipe) {
+    constructor(profileService: ProfileService, router: Router, toastr: ToastrService, spinnerService: Ng4LoadingSpinnerService) {
         super(profileService, router, toastr, spinnerService);
     }
 
