@@ -40,7 +40,7 @@ export class MaintainForm<E extends Entity> {
      * @param toastr The toastr service for notifications.
      * @param spinnerService The spinner service.
      */
-    constructor(private entityService: EntityService<E>, private router: Router, private toastr: ToastrService, private spinnerService: Ng4LoadingSpinnerService) {
+    constructor(private entityService: EntityService<E>, protected router: Router, protected toastr: ToastrService, protected spinnerService: Ng4LoadingSpinnerService) {
         // initialize the variables
         this.isSubmitted = false;
         this.isEdition = false;

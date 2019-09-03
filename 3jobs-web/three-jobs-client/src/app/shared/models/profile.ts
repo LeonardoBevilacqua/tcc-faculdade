@@ -10,11 +10,11 @@ import { Skill } from './skill';
  */
 export class Profile extends Entity {
     name: string;
-    lastname: string;
+    lastName: string;
     cellphone: string;
     phone: string;
     dateOfBirth: Date;
-    martialSatus: string;
+    maritalStatus: string;
     nationality: string;
     addressId: number;
     address: Address;

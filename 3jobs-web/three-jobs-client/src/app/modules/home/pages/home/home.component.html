@@ -12,6 +12,9 @@
     <!-- navbar options -->
     <div class="collapse navbar-collapse mt-2 mt-md-0" id="navbar-options">
         <ul class="navbar-nav ml-auto text-uppercase font-weight-bold">
+            <li class="navbar-item border-right">
+                <span class="nav-link cursor-pointer" data-toggle="modal" data-target="#loginModal">entrar <i class="fa fa-sign-in"></i></span>
+            </li>
             <li class="navbar-item" data-target="#homeCarousel" data-slide-to="0">
                 <a class="nav-link cursor-pointer" (click)="setCurrentSection('home')"
                     [ngClass]="{'active': currentSection === 'home'}">Início</a>
@@ -28,17 +31,17 @@
     </div>
 </nav>
 
-	<!-- Landing background -->
-		<div id="homeCarousel" class="carousel slide m-md-0" data-interval="false" data-keyboard="false" data-touch="false">
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<!-- home section -->
-					<app-home-section></app-home-section>
-				</div>
-				<div class="carousel-item">
-					<!-- about section -->
-					<app-about-section></app-about-section>
-				</div>
+<!-- Landing background -->
+<div id="homeCarousel" class="carousel slide m-md-0" data-interval="false" data-keyboard="false" data-touch="false">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <!-- home section -->
+            <app-home-section></app-home-section>
+        </div>
+        <div class="carousel-item">
+            <!-- about section -->
+            <app-about-section></app-about-section>
+        </div>
 
         <div class="carousel-item">
             <!-- feedback section -->

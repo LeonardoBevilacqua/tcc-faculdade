@@ -1,7 +1,7 @@
 <app-header [isLogged]="true"></app-header>
 <div class="d-flex flex-column vh-100">
     <!-- Profile section -->
-    <section class="content py-4 container-fluid mb-auto">        
+    <section *ngIf="profile && profile.user" class="content py-4 container-fluid mb-auto">        
         <!-- User header -->
         <div class="p-3 d-flex align-items-center bg-default text-white">
             <!-- User picture -->
@@ -12,8 +12,8 @@
             <!-- User details -->
             <div class="pl-5">
                 <div class="d-inline-flex flex-column">
-                    <h2>{{profile.name}} {{profile.lastname}}</h2>
-                    <span><strong>E-mail: </strong>capp59marcelo@gmail.com</span>
+                    <h2>{{profile.name}} {{profile.lastName}}</h2>
+                    <span><strong>E-mail: </strong>{{profile.user.email}}</span>
                     <span><strong>Telefone: </strong>{{profile.phone}}</span>
                     <span><strong>Celular: </strong>{{profile.cellphone}}</span>
                 </div>

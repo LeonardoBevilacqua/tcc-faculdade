@@ -16,14 +16,14 @@ export class EntityService<E extends Entity>{
     /**
      * the environment API url.
      */
-    private apiUrl: string;
+    protected apiUrl: string;
     /**
      * 
      * @param httpClient the http client to handle the requests.
      * @param url 
      * @param endpoint the endpoint of the API.
      */
-    constructor(private httpClient: HttpClient, private endpoint: string) {
+    constructor(protected httpClient: HttpClient, protected endpoint: string) {
         // initialize variables.
         this.apiUrl = environment.apiUrl;
     }
