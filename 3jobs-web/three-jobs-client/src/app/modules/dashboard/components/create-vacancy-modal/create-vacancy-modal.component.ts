@@ -25,7 +25,9 @@ export class CreateVacancyModalComponent extends MaintainForm<Job> implements On
     }
 
     public onSubmit(){
+
         this.spinnerService.show();
+        console.log(this.model);
         this.jobService.create(this.model).subscribe(
             (response: any) => {
                 console.log(response);
@@ -33,7 +35,12 @@ export class CreateVacancyModalComponent extends MaintainForm<Job> implements On
                $('#createVacancyModal').modal('hide');
                this.toastr.success(response.message ? response.message : 'Informações salvas com sucesso!');
             },
-            (error) => this.toastr.error(error)
+            (error) => {
+                console.log(error);
+                
+                this.toastr.error(error);
+                this.spinnerService.hide();
+            }
         );
         
     }

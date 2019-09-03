@@ -1,3 +1,4 @@
+import { JobService } from './services/job.service';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -19,7 +20,8 @@ import { UserService } from './services/user.service';
         TestesService, 
         ProfileService, 
         UserService, 
-        AuthService, 
+        AuthService,
+        JobService,
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
     ],
 })
