@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/core/services/user.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, FormControlName } from '@angular/forms';
 import { validateConfig } from '@angular/router/src/config';
 import { ConditionalExpr } from '@angular/compiler';
 
@@ -16,6 +16,7 @@ import { ConditionalExpr } from '@angular/compiler';
 export class registersComponent implements OnInit {
 
     formulario: FormGroup;
+    formulario2: FormGroup;
 
     constructor(private formBuilder: FormBuilder, private titleService: Title, private userService: UserService, private router: Router, private spinnerService: Ng4LoadingSpinnerService, private toast: ToastrService) { }
 
@@ -28,7 +29,11 @@ export class registersComponent implements OnInit {
             email2: [null],
             password: [null, [Validators.required, Validators.minLength(8)]],
             password2: [null],
-            cpf: [null, [Validators.required, Validators.pattern("([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})")]]
+            cpf: [null, [Validators.required, Validators.pattern("([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})")]],
+            profile: this.formBuilder.group({
+                name: [null],
+                lastName: [null, Validators.required]
+            })
         }, { validator: [this.mustMatch('password', 'password2'), this.mustMatch('email', 'email2')] })
 
 
@@ -36,9 +41,10 @@ export class registersComponent implements OnInit {
 
     onSubmit() {
 
-        this.formulario.get('password2').reset();       
+        this.formulario.get('profile.name').setValue(this.formulario.get('name').value);
+        this.formulario.get('password2').reset();
         this.formulario.get('password2').disable();
-        this.formulario.get('email2').reset();       
+        this.formulario.get('email2').reset();
         this.formulario.get('email2').disable();
 
         this.userService.create(this.formulario.value).subscribe((res) => {
