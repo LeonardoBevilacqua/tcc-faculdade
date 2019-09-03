@@ -1,46 +1,51 @@
 <card-template title="Formação academica" [cardBodyContent]="academicFormation" cardBodyId="academicFormation">
     <ng-template #academicFormation>
         <!-- academic formation -->
-        <div *ngFor="let experience of profile.experiences">
-            <div class="d-flex py-2 border-bottom" *ngIf="!isFormEdition">
-                <div class="d-inline-flex flex-column">
-                    <span><strong>{{experience.description}}</strong></span>
-                    <span>{{experience.location}}</span>
-                    <span>{{experience.beginDate | date: 'dd/MM/yyyy'}} -
-                        {{experience.endDate != null ? (experience.endDate | date: 'dd/MM/yyyy') : 'Cursando'}}</span>
-                </div>
-                <div class="ml-auto" *ngIf="isLoggedUserProfile">
-                    <button type="button" class="btn btn-outline-primary btn-sm"
-                        (click)="openForm(experience.id)">Editar</button>
+        <div *ngIf="profile.experiences.length === 0; else academicFormationList">
+            <span>Sem dados sobre formação academica.</span>
+        </div>
+        <ng-template #academicFormationList>
+            <div *ngIf="!isFormEdition">
+                <div class="d-flex py-2 border-bottom" *ngFor="let experience of profile.experiences">
+                    <div class="d-inline-flex flex-column">
+                        <span><strong>{{experience.description}}</strong></span>
+                        <span>{{experience.location}}</span>
+                        <span>{{experience.beginDate | date: 'dd/MM/yyyy'}} -
+                            {{experience.endDate != null ? (experience.endDate | date: 'dd/MM/yyyy') : 'Cursando'}}</span>
+                    </div>
+                    <div class="ml-auto" *ngIf="isLoggedUserProfile">
+                        <button type="button" class="btn btn-outline-primary btn-sm"
+                            (click)="openForm(experience.id)">Editar</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </ng-template>
         <!-- edit academic formation -->
         <form *ngIf="isFormEdition">
 
             <div class="form-row my-2">
-                <label class="col-12 col-md-2" for="inputCourseName">Descrição:</label>
+                <label class="col-12 col-md-2" for="description">Descrição:</label>
                 <input type="text" class="form-control form-control-sm col-12 col-md-3" name="description"
                     id="description" [ngModel]="model.experiences[experienceIndex].description" #description="ngModel" required>
                 <validation-message [inputControl]="description"></validation-message>
             </div>
 
             <div class="form-row my-2">
-                <label class="col-12 col-md-2" for="selectCourseType">Local:</label>
+                <label class="col-12 col-md-2" for="location">Local:</label>
                 <input class="form-control form-control-sm col-12 col-md-3" name="location" id="location"
                     [ngModel]="model.experiences[experienceIndex].location" #location="ngModel" required>
                     <validation-message [inputControl]="location"></validation-message>                    
             </div>
 
             <div class="form-row my-2">
-                <label class="col-12 col-md-2" for="inputInstitution">Data de inicio:</label>
+                <label class="col-12 col-md-2" for="beginDate">Data de inicio:</label>
                 <input type="date" class="form-control form-control-sm col-12 col-md-3" name="beginDate" id="beginDate"
                     [ngModel]="model.experiences[experienceIndex].beginDate | date: 'yyyy-MM-dd'" (ngModelChange)="model.experiences[experienceIndex].beginDate = $event" #beginDate="ngModel" required>
                 <validation-message [inputControl]="beginDate"></validation-message>
             </div>
 
             <div class="form-row my-2">
-                <label class="col-12 col-md-2" for="selectDurationCourse">Data de termino:</label>
+                <label class="col-12 col-md-2" for="endDate">Data de termino:</label>
                 <input type="date" class="form-control form-control-sm col-12 col-md-3" name="endDate" id="endDate"
                     [ngModel]="model.experiences[experienceIndex].endDate | date: 'yyyy-MM-dd'" (ngModelChange)="model.experiences[experienceIndex].endDate = $event" #endDate="ngModel" required>
             </div>

@@ -88,7 +88,7 @@ export class MaintainForm<E extends Entity> {
      */
     loadModelFromCurrentId() {
         // get the current path id if exists
-        this.currentId = +this.router.url.split('/')[2];
+        this.getCurrentId();        
 
         // set the edition flag to true
         this.isEdition = true;
@@ -106,6 +106,13 @@ export class MaintainForm<E extends Entity> {
                 this.router.navigate(['/']);
             }
         );
+    }
+
+    /**
+     * get the current path id if exists
+     */
+    getCurrentId() {
+        this.currentId = +this.router.url.split('/')[2];
     }
 
     /**

@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { ToastrService } from 'ngx-toastr';
+import { ProfileService } from 'src/app/core/services/profile.service';
 import { MaintainForm } from 'src/app/shared/form/maintain-form';
 import { Profile } from 'src/app/shared/models/profile';
-import { ProfileService } from 'src/app/core/services/profile.service';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-import { DatePipe } from '@angular/common';
 
 @Component({ selector: 'personal-data', templateUrl: './personal-data.component.html' })
 export class PersonalDataComponent extends MaintainForm<Profile> implements OnInit {
@@ -43,5 +43,7 @@ export class PersonalDataComponent extends MaintainForm<Profile> implements OnIn
         this.isEdition = true;
 
         this.model = this.profile;
+        
+        this.getCurrentId();
     }
 }

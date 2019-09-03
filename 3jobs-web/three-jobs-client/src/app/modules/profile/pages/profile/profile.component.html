@@ -18,15 +18,13 @@
                         <span><strong>Telefone: </strong>{{profile.phone}}</span>
                         <span><strong>Celular: </strong>{{profile.cellphone}}</span>
                     </div>
-                    <!-- edit button -->
-                    <a *ngIf="isLoggedUserProfile" class="btn btn-link text-light" href="./">Editar</a>
                 </div>
             </div>
     
     
             <div class="accordion indicator-plus-before round-indicator mt-5" aria-multiselectable="true">
                 <personal-data [isLoggedUserProfile]="isLoggedUserProfile" [profile]="profile"></personal-data>
-                <user-address [isLoggedUserProfile]="isLoggedUserProfile" [address]="profile.address" *ngIf="profile.address"></user-address>
+                <user-address [isLoggedUserProfile]="isLoggedUserProfile" [profile]="profile"></user-address>
                 <academic-formation [isLoggedUserProfile]="isLoggedUserProfile" [profile]="profile"></academic-formation>
                 <abilities [isLoggedUserProfile]="isLoggedUserProfile" [profile]="profile"></abilities>
                 <experience [isLoggedUserProfile]="isLoggedUserProfile"></experience>

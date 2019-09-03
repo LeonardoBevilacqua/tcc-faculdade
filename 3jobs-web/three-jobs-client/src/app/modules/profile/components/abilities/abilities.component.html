@@ -1,5 +1,9 @@
 <card-template title="Habilidades" [cardBodyContent]="abilities" cardBodyId="abilities">
     <ng-template #abilities>
+        <div *ngIf="profile.skills.length === 0; else abilitiesList">
+            <span>Sem dados sobre habilidades.</span>
+        </div>
+
         <!-- add abilities -->
         <form #skillForm="ngForm" (ngSubmit)="skillForm.form.valid && addSkill();">
             <div class=" form-row my-2">
@@ -10,22 +14,25 @@
                     [disabled]="!skillForm.form.valid">Adicionar</button>
             </div>
         </form>
+
         <!-- abilities -->
-        <div class="row">
-            <table class="table table-striped col-12 col-md-4">
-                <thead>
-                    <tr>
-                        <th scope="col">Conhecimento</th>
-                        <th scope="col">Opções</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr scope="row" *ngFor="let skill of profile.skills">
-                        <td>{{skill.description}}</td>
-                        <td class="text-center"><button class="btn" (click)="deleteSkill(skill.id)"><i class="fa fa-trash"></i></button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <ng-template #abilitiesList>
+            <div class="row">
+                <table class="table table-striped col-12 col-md-4">
+                    <thead>
+                        <tr>
+                            <th scope="col">Conhecimento</th>
+                            <th scope="col">Opções</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr scope="row" *ngFor="let skill of profile.skills">
+                            <td>{{skill.description}}</td>
+                            <td class="text-center"><button class="btn" (click)="deleteSkill(skill.id)"><i class="fa fa-trash"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </ng-template>
     </ng-template>
 </card-template>

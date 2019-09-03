@@ -10,65 +10,44 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, dematerialize, materialize, mergeMap } from 'rxjs/operators';
-import { Address } from 'src/app/shared/models/address';
 import { Profile } from 'src/app/shared/models/profile';
-import { User } from 'src/app/shared/models/user';
 
 @Injectable()
 export class ProfileInterceptor implements HttpInterceptor {
-    
+
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const { url, method, headers, body } = request;
-        const addresses: Array<Address> = [
-            {
-                city: 'Campinas',
-                district: 'Vila industrial',
-                id: 1,
-                name: 'Rua Dr. Sales de Oliveira, 1661',
-                state: 'São Paulo',
-                zipCode: '11111-111',
-            }
-        ]
-        const profiles: Array<Profile> = [
+        let profiles: Array<Profile> = [
             {
                 id: 1,
                 addressId: 1,
-                address: addresses.find(a => a.id === 1),
+                address: {
+                    city: 'Campinas',
+                    district: 'Vila industrial',
+                    id: 1,
+                    name: 'Rua Dr. Sales de Oliveira, 1661',
+                    state: 'São Paulo',
+                    zipCode: '11111-111',
+                },
                 cellphone: '(11) 99999-9999',
                 dateOfBirth: new Date('10/01/1997'),
                 name: 'Leonardo',
-                lastname: 'Bevilacqua',
+                lastName: 'Bevilacqua',
                 martialStatus: 'Solteiro',
                 nationality: 'Brasileiro',
                 phone: '(11) 3333-3333',
-                experiences: [
-                    {
-                        id: 1,
-                        description: 'Graduação - Ciências da Computação',
-                        location: 'Faculdade DeVry Metrocamp',
-                        beginDate: new Date(),
-                        endDate: null
-                    },
-                    {
-                        id: 2,
-                        description: 'Técnico - Técnico em informatica',
-                        location: 'Senai',
-                        beginDate: new Date('01/01/2015'),
-                        endDate: new Date('12/30/2016')
-                    },
-                ],
-                skills: [
-                    {
-                        id: 1,
-                        description: 'Java'
-                    },
-                    {
-                        id: 2,
-                        description: 'Angular'
-                    }
-                ],
+                experiences: [],
+                skills: [],
                 tags: [],
-                user: new User(),
+                user: {
+                    id: 1,
+                    cpf: '46371376837',
+                    email: 'leonardo.bevilacqua@gmail.com',
+                    company: null,
+                    companyId: null,
+                    password: null,
+                    role: null
+                },
                 userId: 1
             }
         ];
@@ -79,27 +58,31 @@ export class ProfileInterceptor implements HttpInterceptor {
             .pipe(materialize())
             .pipe(delay(500))
             .pipe(dematerialize());
-        
+
         function handleRoute() {
             switch (true) {
                 case url.match(/\/profiles\/\d+$/) && method === 'GET':
                     return getProfileById();
-                case url.endsWith('/profiles') && method === 'POST': 
-                    return testes();
+                case url.match(/\/profiles\/\d+$/) && method === 'PUT':
+                    return updateProfile();
                 default:
                     return next.handle(request);
             }
         }
 
-        function testes() {
-            return ok({message: 'Dados alterados com sucesso!'});
+        function updateProfile() {
+            console.log('body', body);
+            const profile = body;
+            profiles.findIndex(p => p.id === profile.id);
+            
+            return ok({ message: 'Dados alterados com sucesso!' });
         }
 
         function getProfileById() {
             const profile = profiles.find(x => x.id == idFromUrl());
 
             if (profile) {
-                return ok(profile);                
+                return ok(profile);
             }
             else {
                 return notFound('Perfil não encontrado!');

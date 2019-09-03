@@ -3,11 +3,11 @@
         <!-- address -->
         <div class="d-flex" *ngIf="!isFormEdition || isSubmitted">
             <div class="d-inline-flex flex-column">
-                <span><strong>CEP: </strong>{{address.zipCode}}</span>
-                <span><strong>Estado: </strong>{{address.state}}</span>
-                <span><strong>Cidade: </strong>{{address.city}}</span>
-                <span><strong>Bairro: </strong>{{address.district}}</span>
-                <span><strong>Endereço: </strong>{{address.name}}</span>
+                <span><strong>CEP: </strong>{{profile.address.zipCode}}</span>
+                <span><strong>Estado: </strong>{{profile.address.state}}</span>
+                <span><strong>Cidade: </strong>{{profile.address.city}}</span>
+                <span><strong>Bairro: </strong>{{profile.address.district}}</span>
+                <span><strong>Endereço: </strong>{{profile.address.name}}</span>
             </div>
             <div class="ml-auto" *ngIf="isLoggedUserProfile">
                 <button type="button" class="btn btn-outline-primary btn-sm"
@@ -19,37 +19,37 @@
             (ngSubmit)="userAddressForm.form.valid && onSubmit();">
 
             <div class="form-row my-2">
-                <label class="col-12 col-md-2" for="inputCep">CEP:</label>
+                <label class="col-12 col-md-2" for="zipCode">CEP:</label>
                 <input type="text" class="form-control form-control-sm col-12 col-md-3" name="zipCode" id="zipCode"
-                    [ngModel]="model.zipCode" #zipCode="ngModel" required>
+                    [(ngModel)]="model.address.zipCode" #zipCode="ngModel" required>
                 <validation-message [inputControl]="zipCode"></validation-message>
             </div>
 
             <div class="form-row my-2">
-                <label class="col-12 col-md-2" for="selectState">Estado:</label>
+                <label class="col-12 col-md-2" for="state">Estado:</label>
                 <input class="form-control form-control-sm col-12 col-md-3" name="state" id="state"
-                    [ngModel]="model.state" #state="ngModel" required>
+                    [(ngModel)]="model.address.state" #state="ngModel" required>
                 <validation-message [inputControl]="state"></validation-message>
             </div>
 
             <div class="form-row my-2">
-                <label class="col-12 col-md-2" for="selectCity">Cidade:</label>
-                <input class="form-control form-control-sm col-12 col-md-3" name="city" id="city" [ngModel]="model.city"
+                <label class="col-12 col-md-2" for="city">Cidade:</label>
+                <input class="form-control form-control-sm col-12 col-md-3" name="city" id="city" [(ngModel)]="model.address.city"
                     #city="ngModel" required>
                 <validation-message [inputControl]="city"></validation-message>
             </div>
 
             <div class="form-row my-2">
-                <label class="col-12 col-md-2" for="inputNeighborhood">Bairro:</label>
+                <label class="col-12 col-md-2" for="district">Bairro:</label>
                 <input type="text" class="form-control form-control-sm col-12 col-md-3" name="district" id="district"
-                    [ngModel]="model.district" #district="ngModel" required>
+                    [(ngModel)]="model.address.district" #district="ngModel" required>
                 <validation-message [inputControl]="district"></validation-message>
             </div>
 
             <div class="form-row my-2">
-                <label class="col-12 col-md-2" for="inputAddress">Endereço:</label>
+                <label class="col-12 col-md-2" for="name">Endereço:</label>
                 <input type="text" class="form-control form-control-sm col-12 col-md-3" name="name" id="name"
-                    [ngModel]="model.name" #name="ngModel" required>
+                    [(ngModel)]="model.address.name" #name="ngModel" required>
                 <validation-message [inputControl]="name"></validation-message>
             </div>
 

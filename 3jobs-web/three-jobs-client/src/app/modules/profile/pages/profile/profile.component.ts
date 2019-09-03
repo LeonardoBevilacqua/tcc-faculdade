@@ -36,7 +36,6 @@ export class ProfileComponent implements OnInit {
 
         this.profileService.read(currentId).subscribe(
             (profile) => {
-                console.log(profile);
                 this.profile = profile;
                 this.spinnerService.hide();
             },
