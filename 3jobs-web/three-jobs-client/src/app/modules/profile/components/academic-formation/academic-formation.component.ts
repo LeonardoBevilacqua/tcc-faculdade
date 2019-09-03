@@ -41,7 +41,7 @@ export class AcademicFormationComponent extends MaintainForm<Profile> implements
 
     public openForm(experienceId: number) {
         this.isFormEdition = true;         
-        this.experienceIndex = this.profile.experiences.findIndex(e => e.id = experienceId);
+        this.experienceIndex = this.profile.experiences.findIndex(e => e.id == experienceId);
     }
 
 }
