@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Rate {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String status;
@@ -54,5 +54,15 @@ public class Rate {
 
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    @Override
+    public String toString() {
+        return "Rate{" +
+                "id=" + id +
+                ", status='" + status + '\'' +
+                ", profile=" + profile +
+                ", company=" + company +
+                '}';
     }
 }

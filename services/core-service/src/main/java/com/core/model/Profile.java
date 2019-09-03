@@ -1,6 +1,5 @@
 package com.core.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -12,7 +11,7 @@ import java.util.List;
 public class Profile {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -23,7 +22,7 @@ public class Profile {
     private String maritalStatus;
     private String nationality;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "profile_skills",
             joinColumns = @JoinColumn(name = "profile_id"),
@@ -31,14 +30,15 @@ public class Profile {
     )
     private List<Skill> skills;
 
-    @OneToMany(mappedBy = "profile")
-    private List<Experience> experience;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "profile_id",referencedColumnName = "ID", nullable = false)
+    private List<Experience> experiences;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
-    @OneToMany(mappedBy = "profile")
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
     private List<Rate> rates;
 
     @OneToOne(mappedBy = "profile")
@@ -141,12 +141,12 @@ public class Profile {
         this.skills = skills;
     }
 
-    public List<Experience> getExperience() {
-        return experience;
+    public List<Experience> getExperiences() {
+        return experiences;
     }
 
-    public void setExperience(List<Experience> experience) {
-        this.experience = experience;
+    public void setExperiences(List<Experience> experiences) {
+        this.experiences = experiences;
     }
 
     public List<Rate> getRates() {
@@ -163,5 +163,25 @@ public class Profile {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", cellphone='" + cellphone + '\'' +
+                ", phone='" + phone + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", maritalStatus='" + maritalStatus + '\'' +
+                ", nationality='" + nationality + '\'' +
+                ", skills=" + skills +
+                ", experiences=" + experiences +
+                ", address=" + address +
+                ", rates=" + rates +
+                ", user=" + user +
+                ", tags=" + tags +
+                '}';
     }
 }
