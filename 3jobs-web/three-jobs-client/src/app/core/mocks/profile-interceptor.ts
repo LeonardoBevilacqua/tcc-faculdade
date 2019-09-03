@@ -57,7 +57,16 @@ export class ProfileInterceptor implements HttpInterceptor {
                         endDate: new Date('12/30/2016')
                     },
                 ],
-                skills: [],
+                skills: [
+                    {
+                        id: 1,
+                        description: 'Java'
+                    },
+                    {
+                        id: 2,
+                        description: 'Angular'
+                    }
+                ],
                 tags: [],
                 user: new User(),
                 userId: 1

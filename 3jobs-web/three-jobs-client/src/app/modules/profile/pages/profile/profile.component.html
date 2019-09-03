@@ -28,7 +28,7 @@
                 <personal-data [isLoggedUserProfile]="isLoggedUserProfile" [profile]="profile"></personal-data>
                 <user-address [isLoggedUserProfile]="isLoggedUserProfile" [address]="profile.address" *ngIf="profile.address"></user-address>
                 <academic-formation [isLoggedUserProfile]="isLoggedUserProfile" [profile]="profile"></academic-formation>
-                <abilities [isLoggedUserProfile]="isLoggedUserProfile"></abilities>
+                <abilities [isLoggedUserProfile]="isLoggedUserProfile" [profile]="profile"></abilities>
                 <experience [isLoggedUserProfile]="isLoggedUserProfile"></experience>
             </div>
         </div>
