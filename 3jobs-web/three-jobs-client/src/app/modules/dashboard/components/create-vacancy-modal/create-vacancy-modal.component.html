@@ -1,0 +1,62 @@
+<!-- login Modal -->
+<div class="modal fade" id="createVacancyModal" tabindex="-1" role="dialog" aria-labelledby="createVacancyModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Cadastrar Vaga</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <form #createVacancyForm="ngForm" (ngSubmit)="createVacancyForm.form.valid && onSubmit();">
+                            <div class="form-group">
+                                <label for="titleVacancy">Titulo</label>
+                                <input type="text" class="form-control" id="titleVacancy" name="titleVacancy"
+                                    placeholder="" [(ngModel)]="model.title" #titleVacancy="ngModel" required>
+                                <validation-message [inputControl]="titleVacancy"></validation-message>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="jobRoleVacancy">Cargo</label>
+                                <input type="text" class="form-control" id="jobRoleVacancy" name="jobRoleVacancy"
+                                    placeholder="" [(ngModel)]="model.jobRole" #jobRoleVacancy="ngModel" required>
+                                <validation-message [inputControl]="jobRoleVacancy"></validation-message>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="requirementVacancy">Requisitos</label>
+                                <textarea class="form-control" id="requirementVacancy" name="requirementVacancy"
+                                    [(ngModel)]="model.requirement" #requirementVacancy="ngModel" required>
+                                    </textarea>
+                                <validation-message [inputControl]="requirementVacancy"></validation-message>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="descriptionVacancy">Descrição da vaga</label>
+                                <textarea class="form-control" id="descriptionVacancy" name="descriptionVacancy"
+                                    [(ngModel)]="model.description" #descriptionVacancy="ngModel" required>
+                                </textarea>
+                                <validation-message [inputControl]="descriptionVacancy"></validation-message>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="benefitVacancy">Benefícios </label>
+                                <input type="text" class="form-control" id="benefitVacancy" name="benefitVacancy"
+                                    placeholder="" [(ngModel)]="model.benefit" #benefitVacancy="ngModel" required>
+                                <validation-message [inputControl]="benefitVacancy"></validation-message>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary"
+                                [disabled]="!createVacancyForm.form.valid">Salvar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
