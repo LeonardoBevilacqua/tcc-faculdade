@@ -6,7 +6,7 @@ import { Entity } from './entity';
 export class Experience extends Entity {
     location: string;
     description: string;
-    type: string;
     beginDate: Date;
     endDate: Date;
+    type: string;
 }
