@@ -9,5 +9,4 @@ export class User extends Entity {
     email: string;
     password: string;
     profile: Profile;
-    //roles: Array<Role>;
 }
