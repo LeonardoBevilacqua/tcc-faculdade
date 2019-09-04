@@ -1,14 +1,17 @@
 package com.core.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
 import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "experiences")
 public class Experience {
-
+	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,6 +20,7 @@ public class Experience {
     private String description;
     private Date beginDate;
     private Date endDate;
+    private String type;
 
     public Long getId() {
         return id;
@@ -56,9 +60,17 @@ public class Experience {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
-    }
+    }        
 
-    @Override
+    public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	@Override
     public String toString() {
         return "Experience{" +
                 "id=" + id +
@@ -66,6 +78,7 @@ public class Experience {
                 ", description='" + description + '\'' +
                 ", beginDate=" + beginDate +
                 ", endDate=" + endDate +
+                ", type=" + type +
                 '}';
     }
 }
