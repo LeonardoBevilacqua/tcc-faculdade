@@ -2,7 +2,7 @@
 <div class="d-flex flex-column vh-100">
     <!-- Profile section -->
     <section class="content py-4 container-fluid mb-auto">
-        <div *ngIf="profile && profile.user">
+        <div *ngIf="user && user.profile">
             <!-- User header -->
             <div class="p-3 d-flex align-items-center bg-default text-white">
                 <!-- User picture -->
@@ -13,21 +13,22 @@
                 <!-- User details -->
                 <div class="pl-5">
                     <div class="d-inline-flex flex-column">
-                        <h2>{{profile.name}} {{profile.lastName}}</h2>
-                        <span><strong>E-mail: </strong>{{profile.user.email}}</span>
-                        <span><strong>Telefone: </strong>{{profile.phone}}</span>
-                        <span><strong>Celular: </strong>{{profile.cellphone}}</span>
+                        <h2>{{user.profile.name}} {{user.profile.lastName}}</h2>
+                        <span><strong>E-mail: </strong>{{user.email}}</span>
+                        <span><strong>Telefone: </strong>{{user.profile.phone}}</span>
+                        <span><strong>Celular: </strong>{{user.profile.cellphone}}</span>
                     </div>
                 </div>
             </div>
     
     
             <div class="accordion indicator-plus-before round-indicator mt-5" aria-multiselectable="true">
-                <personal-data [isLoggedUserProfile]="isLoggedUserProfile" [profile]="profile"></personal-data>
-                <user-address [isLoggedUserProfile]="isLoggedUserProfile" [profile]="profile"></user-address>
-                <academic-formation [isLoggedUserProfile]="isLoggedUserProfile" [profile]="profile"></academic-formation>
-                <abilities [isLoggedUserProfile]="isLoggedUserProfile" [profile]="profile"></abilities>
+                <personal-data [isLoggedUserProfile]="isLoggedUserProfile" [user]="user"></personal-data>
+            <!--     <user-address [isLoggedUserProfile]="isLoggedUserProfile" [user]="user"></user-address>
+                <academic-formation [isLoggedUserProfile]="isLoggedUserProfile" [user]="user"></academic-formation>
+                <abilities [isLoggedUserProfile]="isLoggedUserProfile" [user]="user"></abilities>
                 <experience [isLoggedUserProfile]="isLoggedUserProfile"></experience>
+                 -->
             </div>
         </div>
     </section>

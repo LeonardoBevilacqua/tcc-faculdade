@@ -10,7 +10,6 @@ import { PersonalDataComponent } from './components/personal-data/personal-data.
 import { UserAddressComponent } from './components/user-address/user-address.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ProfileRoutingModule } from './profile-routing.module';
-import { profileInterceptor } from 'src/app/core/mocks/profile-interceptor';
 
 @NgModule({
     declarations: [ProfileComponent, PersonalDataComponent, UserAddressComponent, AcademicFormationComponent, CardTemplateComponent, AbilitiesComponent, ExperienceComponent],
@@ -19,6 +18,6 @@ import { profileInterceptor } from 'src/app/core/mocks/profile-interceptor';
         ProfileRoutingModule,
         SharedModule,
     ],
-    providers: [profileInterceptor, DatePipe]
+    providers: [DatePipe]
 })
 export class ProfileModule { }

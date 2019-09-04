@@ -46,7 +46,7 @@ export class AbilitiesComponent extends MaintainForm<Profile> implements OnInit 
     }
 
     public addSkill() {
-        this.profile.skills.push({description: this.descriptionSkill, id: this.profile.skills.length+1});
+        //this.profile.skills.push({description: this.descriptionSkill, id: this.profile.skills.length+1});
         this.descriptionSkill = '';
     }
 

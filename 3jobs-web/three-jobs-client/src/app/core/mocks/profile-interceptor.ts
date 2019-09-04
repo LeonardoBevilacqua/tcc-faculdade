@@ -17,40 +17,7 @@ export class ProfileInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const { url, method, headers, body } = request;
-        let profiles: Array<Profile> = [
-            {
-                id: 1,
-                addressId: 1,
-                address: {
-                    city: 'Campinas',
-                    district: 'Vila industrial',
-                    id: 1,
-                    name: 'Rua Dr. Sales de Oliveira, 1661',
-                    state: 'São Paulo',
-                    zipCode: '11111-111',
-                },
-                cellphone: '(11) 99999-9999',
-                dateOfBirth: new Date('10/01/1997'),
-                name: 'Leonardo',
-                lastName: 'Bevilacqua',
-                martialStatus: 'Solteiro',
-                nationality: 'Brasileiro',
-                phone: '(11) 3333-3333',
-                experiences: [],
-                skills: [],
-                tags: [],
-                user: {
-                    id: 1,
-                    cpf: '46371376837',
-                    email: 'leonardo.bevilacqua@gmail.com',
-                    company: null,
-                    companyId: null,
-                    password: null,
-                    role: null
-                },
-                userId: 1
-            }
-        ];
+        let profiles: null;
 
         // wrap in delayed observable to simulate serve api call.
         return of(null)
@@ -72,14 +39,14 @@ export class ProfileInterceptor implements HttpInterceptor {
 
         function updateProfile() {
             console.log('body', body);
-            const profile = body;
-            profiles.findIndex(p => p.id === profile.id);
+            //const profile = body;
+            //profiles.findIndex(p => p.id === profile.id);
             
             return ok({ message: 'Dados alterados com sucesso!' });
         }
 
         function getProfileById() {
-            const profile = profiles.find(x => x.id == idFromUrl());
+            const profile = null; //profiles.find(x => x.id == idFromUrl());
 
             if (profile) {
                 return ok(profile);
