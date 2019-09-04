@@ -1,6 +1,6 @@
 package com.core.service;
 
-import com.core.exception.UserNotFoundException;
+import com.core.exception.EntityNotFoundException;
 import com.core.exception.UserUnauthorizedException;
 import com.core.model.Role;
 import com.core.model.User;
@@ -26,15 +26,12 @@ public class UserService {
     public User getUser(Long id) throws RuntimeException {
         UserSecurity user = UserService.authenticated();
         System.out.println("User => "+user);
-        if(user == null) {
-            throw new UserUnauthorizedException("Usuário não tem acesso ao perfil de outros usuários");
-        }
         if(!user.hasRole(Role.ADMIN) && id != user.getId()) {
             throw new UserUnauthorizedException("Usuário não tem acesso ao perfil de outros usuários");
         }
         Optional<User> userOpt = userRepository.findById(id);
         if (!userOpt.isPresent()) {
-            throw new UserNotFoundException("Usuário não encontrado");
+            throw new EntityNotFoundException("Usuário não encontrado");
         }
         return userOpt.get();
     }
@@ -48,8 +45,7 @@ public class UserService {
             return (UserSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         }
         catch (Exception e) {
-            System.out.println("ENTREI NO EXCEPT DO USERSERVICE");
-            return null;
+            throw new UserUnauthorizedException("Usuário não autenticado");
         }
 
     }

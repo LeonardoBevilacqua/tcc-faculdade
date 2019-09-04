@@ -1,23 +1,23 @@
 package com.core.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "skills")
-public class Skill {
+@Table(name = "tags")
+public class Tag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
     private String description;
+    private String type;
 
-    @ManyToMany(mappedBy = "skills")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToMany(mappedBy = "tags")
+    private List<Job> jobs;
+
+    @ManyToMany(mappedBy = "tags")
     private List<Profile> profiles;
 
     public Long getId() {
@@ -34,6 +34,22 @@ public class Skill {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public List<Job> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(List<Job> jobs) {
+        this.jobs = jobs;
     }
 
     public List<Profile> getProfiles() {

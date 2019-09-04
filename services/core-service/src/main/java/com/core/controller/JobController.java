@@ -15,7 +15,6 @@ public class JobController {
     private JobService jobService;
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> getJobs() {
         return ResponseEntity.ok(jobService.getJobs());
     }
@@ -25,6 +24,11 @@ public class JobController {
         return ResponseEntity.ok(jobService.getJob(id));
     }
 
+    @PreAuthorize(
+            "hasRole('ROLE_ADMIN') or " +
+            "hasRole('ROLE_RECRUTER') or " +
+            "hasRole('ROLE_RECRUTER_ADMIN')"
+    )
     @PostMapping
     public ResponseEntity<?> saveJob(@RequestBody Job job){
         return ResponseEntity.ok(jobService.saveJob(job));
