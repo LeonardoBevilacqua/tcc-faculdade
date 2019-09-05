@@ -1,4 +1,3 @@
-<!-- login Modal -->
 <div class="modal fade" id="createVacancyModal" tabindex="-1" role="dialog" aria-labelledby="createVacancyModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -14,12 +13,25 @@
                     <div class="col-12">
                         <form #createVacancyForm="ngForm" (ngSubmit)="createVacancyForm.form.valid && onSubmit();">
                             <div class="form-group">
-                                <label for="titleVacancy">Titulo</label>
+                                <label for="titleVacancy">Titulo
+                                </label>
                                 <input type="text" class="form-control" id="titleVacancy" name="titleVacancy"
                                     placeholder="" [(ngModel)]="model.title" #titleVacancy="ngModel" required>
                                 <validation-message [inputControl]="titleVacancy"></validation-message>
                             </div>
-
+                            <div class="form-group row">
+                                <div class="col-12 col-sm-6">
+                                    <label for="beginDateVacancy">Date Inicio</label>
+                                    <input class="form-control" type="date" id="beginDateVacancy"
+                                        name="beginDateVacancy" [(ngModel)]="model.beginDate"
+                                        #beginDateVacancy="ngModel" required>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <label for="endDateVacancy">Date Término</label>
+                                    <input class="form-control" type="date" id="endDateVacancy" name="endDateVacancy"
+                                        [(ngModel)]="model.endDate" #beginDateVacancy="ngModel" required>
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <label for="jobRoleVacancy">Cargo</label>
@@ -49,6 +61,11 @@
                                 <input type="text" class="form-control" id="benefitVacancy" name="benefitVacancy"
                                     placeholder="" [(ngModel)]="model.benefit" #benefitVacancy="ngModel" required>
                                 <validation-message [inputControl]="benefitVacancy"></validation-message>
+                            </div>
+                            <div class="form-group">
+                                <label for="tagsVacancy">Palavras chaves<i class="ml-1 fa fa-info-circle" aria-hidden="true" title="Separe as palavras chaves por virgula"></i> </label>
+                                <input type="text" class="form-control" id="tagsVacancy" name="tagsVacancy"
+                                    placeholder="EX: java,pleno,docker" [(ngModel)]="model.tags" #tagsVacancy="ngModel">
                             </div>
 
                             <button type="submit" class="btn btn-primary"

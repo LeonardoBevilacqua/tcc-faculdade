@@ -20,29 +20,22 @@ export class CreateVacancyModalComponent extends MaintainForm<Job> implements On
     }
 
     ngOnInit() {
-        
         this.model = new Job();
     }
 
-    public onSubmit(){
+    public onSubmit() {
 
         this.spinnerService.show();
-        console.log(this.model);
         this.jobService.create(this.model).subscribe(
             (response: any) => {
-                console.log(response);
-               this.spinnerService.hide();
-               $('#createVacancyModal').modal('hide');
-               this.toastr.success(response.message ? response.message : 'Informações salvas com sucesso!');
+                this.spinnerService.hide();
+                $('#createVacancyModal').modal('hide');
+                this.toastr.success(response.message ? response.message : 'Informações salvas com sucesso!');
             },
             (error) => {
-                console.log(error);
-                
                 this.toastr.error(error);
                 this.spinnerService.hide();
             }
         );
-        
     }
-
 }
