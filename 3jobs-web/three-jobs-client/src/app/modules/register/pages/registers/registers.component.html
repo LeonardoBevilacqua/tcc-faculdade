@@ -19,85 +19,73 @@
 
                                         <form [formGroup]="formulario" (ngSubmit)="formulario.valid && onSubmit()">
                                             <div class="form-group">
-                                                <label for="exampleInputName">Nome</label>
+                                                <label for="exampleInputEmail1">Você é um ?</label>
+                                                <select type="number" class="form-control" id="register-roles"
+                                                    formControlName="roles">
+                                                    <option value="3">Candidato</option>
+                                                    <option value="2">Headhunter</option>
+                                                    <option value="4">Recrutador</option>
+                                                </select>
+                                                <validation-message [inputControl]="formulario.get('roles')">
+                                                </validation-message>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputName">Nome:</label>
                                                 <input type="text" class="form-control" formControlName="name"
                                                     id="register-nome" aria-describedby="nameHelp" maxlength="60">
-
                                                 <validation-message [inputControl]="formulario.get('name')">
                                                 </validation-message>
-
                                             </div>
-                                            <div formGroupName="profile">
-                                                <div class="form-group">
-
-                                                    <label for="exampleInputName2">Sobrenome</label>
-                                                    <input type="text" class="form-control" formControlName="lastName"
-                                                        id="register-lastName" aria-describedby="nameHelp"
-                                                        maxlength="60">
-
-                                                    <validation-message
-                                                        [inputControl]="formulario.get('profile.lastName')">
-                                                    </validation-message>
-
-                                                </div>
-                                            </div>
-
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Email</label>
+                                                <label for="exampleInputName2">Sobrenome:</label>
+                                                <input type="text" class="form-control" formControlName="lastName"
+                                                    id="register-lastName" aria-describedby="nameHelp" maxlength="60">
+                                                <validation-message [inputControl]="formulario.get('lastName')">
+                                                </validation-message>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Email:</label>
                                                 <input type="email" class="form-control" id="register-email"
                                                     formControlName="email" aria-describedby="emailHelp" maxlength="60">
-
                                                 <validation-message [inputControl]="formulario.get('email')">
                                                 </validation-message>
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Confirme o Email</label>
+                                                <label for="exampleInputEmail1">Confirme o Email:</label>
                                                 <input type="email" class="form-control" id="register-email2"
                                                     formControlName="email2" aria-describedby="emailHelp"
                                                     maxlength="60">
-
                                                 <validation-message [inputControl]="formulario.get('email2')"
                                                     msgError="Os emails não são iguais">
                                                 </validation-message>
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputPassword1">Senha</label>
+                                                <label for="exampleInputPassword1">Senha:</label>
                                                 <input type="password" class="form-control" id="register-password"
                                                     formControlName="password" maxlength="20">
                                                 <validation-message [inputControl]="formulario.get('password')">
                                                 </validation-message>
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputPassword2">Confirme a senha</label>
+                                                <label for="exampleInputPassword2">Confirme a senha:</label>
                                                 <input type="password" class="form-control" id="register-password2"
-                                                    formControlName="password2" maxlength="20">
+                                                    formControlName="password2" maxlength="20"
+                                                    mustMatch="('password', 'password2')">
                                                 <validation-message [inputControl]="formulario.get('password2')"
                                                     msgError="As senhas não são iguais">
                                                 </validation-message>
                                             </div>
-
                                             <div class="form-group">
-                                                <label for="exampleInputCpf1">CPF</label>
+                                                <label for="exampleInputCpf1">CPF:</label>
                                                 <input type="text" class="form-control" id="register-cpf"
-                                                    formControlName="cpf" maxlength="11">
+                                                    formControlName="cpf" maxlength="11" pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})" required>
+                                                    <small id="emailHelp" class="form-text text-muted">Inserir apenas numeros, sem pontos.</small>
                                                 <validation-message [inputControl]="formulario.get('cpf')"
-                                                    msgError="Campo deve ser um cpf válido!">
+                                                    msgError="Formato inválido">
                                                 </validation-message>
                                             </div>
-
-                                            <!--  
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Você é um ?</label>
-                                                    <select type="number" class="form-control" id="register-roles"
-                                                        name="roles" ngModel required>
-                                                        <option value="3">Candidato</option>
-                                                        <option value="2">Headhunter</option>
-                                                        <option value="4">Recrutador</option>
-                                                    </select>
-                                                </div> -->
-                                            <button type="submit" class="btn btn-primary float-right">Cadastrar</button>
-
-                                            <app-form-debug [form]="formulario"></app-form-debug>
+                                            <button type="submit" [disabled]="!formulario.valid"
+                                                class="btn btn-primary float-right">Cadastrar</button>
                                         </form>
                                     </div>
                                 </div>
