@@ -4,23 +4,22 @@ import { User } from './user';
 import { Tag } from './tag';
 import { Experience } from './experience';
 import { Skill } from './skill';
+import { Rate } from './rate';
 
 /**
  * Class representing the profile model.
  */
 export class Profile extends Entity {
     name: string;
-    lastname: string;
+    lastName: string;
     cellphone: string;
     phone: string;
     dateOfBirth: Date;
-    martialSatus: string;
+    maritalStatus: string;
     nationality: string;
-    addressId: number;
-    address: Address;
-    user: User;
-    userId: number;
-    tags: Array<Tag>;
-    experiences: Array<Experience>;
     skills: Array<Skill>
+    experiences: Array<Experience>;
+    address: Address;
+    rates: Array<Rate>;
+    tags: Array<Tag>;
 }

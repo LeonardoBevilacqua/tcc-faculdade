@@ -7,7 +7,8 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegisterModule } from './modules/register/register.module';
+import { AuthGuard } from './core/mechanism/auth.guard';
+import { CoreModule } from './core/core.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -21,8 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     AppRoutingModule,
     ToastrModule.forRoot(),
-    Ng4LoadingSpinnerModule.forRoot()
-    
+    Ng4LoadingSpinnerModule.forRoot(),
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

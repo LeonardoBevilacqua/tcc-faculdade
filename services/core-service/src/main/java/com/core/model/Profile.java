@@ -11,7 +11,7 @@ import java.util.List;
 public class Profile {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -30,7 +30,8 @@ public class Profile {
     )
     private List<Skill> skills;
 
-    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "profile_id",referencedColumnName = "ID", nullable = false)
     private List<Experience> experiences;
 
     @OneToOne(cascade = CascadeType.ALL)

@@ -1,31 +1,30 @@
 package com.core.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
 import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "experiences")
 public class Experience {
-
+	
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String location;
     private String description;
     private Date beginDate;
     private Date endDate;
-
-    @ManyToOne
-    @JoinColumn(name = "profile_id", nullable = false)
-    @JsonIgnore
-    private Profile profile;
+    private String type;
 
     public Long getId() {
         return id;
-    }
+    } 
 
     public void setId(Long id) {
         this.id = id;
@@ -61,19 +60,17 @@ public class Experience {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
-    }
+    }        
 
-    public Profile getProfile() {
-        System.out.println("VOU PEGAR");
-        return profile;
-    }
+    public String getType() {
+		return type;
+	}
 
-    public void setProfile(Profile profile) {
-        System.out.println("VOU SETAR");
-        this.profile = profile;
-    }
+	public void setType(String type) {
+		this.type = type;
+	}
 
-    @Override
+	@Override
     public String toString() {
         return "Experience{" +
                 "id=" + id +
@@ -81,7 +78,7 @@ public class Experience {
                 ", description='" + description + '\'' +
                 ", beginDate=" + beginDate +
                 ", endDate=" + endDate +
-                ", profile=" + profile +
+                ", type=" + type +
                 '}';
     }
 }

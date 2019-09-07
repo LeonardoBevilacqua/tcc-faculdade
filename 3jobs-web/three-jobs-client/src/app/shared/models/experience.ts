@@ -8,4 +8,5 @@ export class Experience extends Entity {
     description: string;
     beginDate: Date;
     endDate: Date;
+    type: string;
 }

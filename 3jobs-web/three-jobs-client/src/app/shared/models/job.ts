@@ -1,7 +1,7 @@
-import { Entity } from './entity';
 import { Company } from './company';
-import { Profile } from './profile';
+import { Entity } from './entity';
 import { Tag } from './tag';
+import { User } from './user';
 
 /**
  * Class representing the job model.
@@ -14,8 +14,7 @@ export class Job extends Entity {
     benefit: string;
     beginDate: Date;
     endDate: Date;
+    users: Array<User>;
     company: Company;
-    companyId: number;
-    profiles: Array<Profile>;
     tags: Array<Tag>
 }

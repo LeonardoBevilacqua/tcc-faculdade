@@ -56,8 +56,7 @@ export class LoginComponent extends MaintainForm<User> implements OnInit {
                 },
                 // server is not working
                 (responseError: HttpErrorResponse) => {
-                    // TODO: remove this
-                    let error = responseError.status != 0 ? JSON.parse(responseError.error.trim().slice(0, -1) + '}') : null;
+                    let error = responseError.status != 0 ? responseError.error : null;
 
                     const message = error && error.message ? error.message : 'Falha ao tentar se conectar!';
                     // hide the spinner and notify the error
