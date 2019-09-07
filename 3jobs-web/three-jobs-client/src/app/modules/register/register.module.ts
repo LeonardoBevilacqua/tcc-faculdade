@@ -7,10 +7,9 @@ import { CoreModule } from 'src/app/core/core.module';
 import { registersComponent } from './pages/registers/registers.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormDebugComponent } from './pages/form-debug/form-debug.component';
 
 @NgModule({
-    declarations: [registersComponent, FormDebugComponent],
+    declarations: [registersComponent],
     imports: [
         CommonModule,
         RegisterRoutingModule,
