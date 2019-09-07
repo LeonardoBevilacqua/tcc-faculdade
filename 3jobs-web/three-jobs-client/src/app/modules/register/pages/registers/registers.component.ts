@@ -45,7 +45,6 @@ export class registersComponent extends MaintainForm<User> implements OnInit {
     }
 
     onSubmit() {
-        this.model.name = this.formulario.get('name').value;
         this.model.profile.name = this.formulario.get('name').value;
         this.model.profile.lastName = this.formulario.get('lastName').value;
         this.model.email = this.formulario.get('email').value;
@@ -54,7 +53,7 @@ export class registersComponent extends MaintainForm<User> implements OnInit {
         this.model.roles.push(this.formulario.get('roles').value);
 
         this.spinnerService.show();
-        
+
         this.userService.create(this.model).subscribe((res) => {
             this.spinnerService.hide();
             this.router.navigateByUrl('/');
