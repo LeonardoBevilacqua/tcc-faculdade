@@ -11,6 +11,6 @@ export class User extends Entity {
     password: string;
     name: string;   
     profile: Profile;
-    roles: Array<string> = [];
+    roles: Array<string>;
     
 }

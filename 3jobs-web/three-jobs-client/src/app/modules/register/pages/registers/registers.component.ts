@@ -18,8 +18,7 @@ import { ValidationMessageComponent } from 'src/app/shared/form/components/valid
 export class registersComponent extends MaintainForm<User> implements OnInit {
 
     formulario: FormGroup;
-    roles = [];
-
+    
     constructor(private formBuilder: FormBuilder, private titleService: Title, private userService: UserService, router: Router, spinnerService: Ng4LoadingSpinnerService, toastr: ToastrService) {
         super(null, router, toastr, spinnerService);
     }
@@ -29,6 +28,7 @@ export class registersComponent extends MaintainForm<User> implements OnInit {
 
         this.model = new User();
         this.model.profile = new Profile();
+        this.model.roles = [];
 
         this.formulario = this.formBuilder.group({
             name: [null, Validators.required],
@@ -47,17 +47,16 @@ export class registersComponent extends MaintainForm<User> implements OnInit {
     onSubmit() {
         this.model.name = this.formulario.get('name').value;
         this.model.profile.name = this.formulario.get('name').value;
-        this.model.profile.lastname = this.formulario.get('lastName').value;
+        this.model.profile.lastName = this.formulario.get('lastName').value;
         this.model.email = this.formulario.get('email').value;
         this.model.password = this.formulario.get('password').value;
         this.model.cpf = this.formulario.get('cpf').value;
         this.model.roles.push(this.formulario.get('roles').value);
 
         this.spinnerService.show();
-
+        
         this.userService.create(this.model).subscribe((res) => {
             this.spinnerService.hide();
-            console.log(this.formulario.value);
             this.router.navigateByUrl('/');
         },
             (error) => {
