@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/core/services/user.service';
-import { FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MaintainForm } from 'src/app/shared/form/maintain-form';
 import { User } from 'src/app/shared/models/user';
 import { Profile } from 'src/app/shared/models/profile';
@@ -18,7 +18,7 @@ import { ValidationMessageComponent } from 'src/app/shared/form/components/valid
 export class registersComponent extends MaintainForm<User> implements OnInit {
 
     formulario: FormGroup;
-    
+
     constructor(private formBuilder: FormBuilder, private titleService: Title, private userService: UserService, router: Router, spinnerService: Ng4LoadingSpinnerService, toastr: ToastrService) {
         super(null, router, toastr, spinnerService);
     }
@@ -63,5 +63,5 @@ export class registersComponent extends MaintainForm<User> implements OnInit {
                 this.toastr.error(error.statusText);
                 this.spinnerService.hide();
             });
-    }
+        }
 }
