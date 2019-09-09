@@ -4,7 +4,7 @@
     <div *ngIf="inputControl.errors.minlength">Campo deve conter no mínimo {{inputControl.errors.minlength.requiredLength}} caracteres!</div>
     <div *ngIf="inputControl.errors.maxlength">Campo deve conter no máximo {{inputControl.errors.maxlength.requiredLength}} caracteres!</div>
     <div *ngIf="inputControl.errors.email">Campo deve ser um email válido!</div>
-    <div *ngIf="inputControl.errors.pattern">{{msgError}}</div>
-    <div *ngIf="inputControl.errors.mustMatch">{{msgError}}</div>
+    <div *ngIf="inputControl.errors.pattern">Formato digitado no campo é inválido</div>
+    <div *ngIf="!inputControl.errors.mustMatch">Os campos não são iguais</div>
     <div *ngIf="inputControl.errors.cpfNotValid">CPF inválido</div>
 </div>
