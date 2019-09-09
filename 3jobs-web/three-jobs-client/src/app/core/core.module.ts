@@ -1,3 +1,4 @@
+import { JobService } from './services/job.service';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -20,9 +21,10 @@ import { AuthGuard } from './mechanism/auth.guard';
         TestesService, 
         ProfileService, 
         UserService, 
-        AuthService, 
+        AuthService,
+        JobService,
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-        AuthGuard
+        AuthGuard,
     ],
 })
 export class CoreModule { }

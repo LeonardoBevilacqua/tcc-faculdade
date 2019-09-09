@@ -94,7 +94,9 @@
                         <tr>
                             <th scope="col">Vaga</th>
                             <th scope="col" style="width: 110px">Status</th>
-                            <th scope="col" style="width: 100px"></th>
+                            <th scope="col" style="width: 100px">
+                                <button class="btn btn-success" data-toggle="modal" data-target="#createVacancyModal">Cadastrar</button>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -404,5 +406,6 @@
             </div>
         </div>
     </section>
+    <app-create-vacancy-modal></app-create-vacancy-modal>
     <app-footer [isLogged]="true"></app-footer>
 </div>
