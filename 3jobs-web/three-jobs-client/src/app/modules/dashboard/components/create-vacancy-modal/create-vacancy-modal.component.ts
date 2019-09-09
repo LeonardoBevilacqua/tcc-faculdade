@@ -8,11 +8,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 declare const $: any;
 
-@Component({
-    selector: 'app-create-vacancy-modal',
-    templateUrl: './create-vacancy-modal.component.html',
-    styleUrls: ['./create-vacancy-modal.component.scss']
-})
+@Component({ selector: 'app-create-vacancy-modal', templateUrl: './create-vacancy-modal.component.html', })
 export class CreateVacancyModalComponent extends MaintainForm<Job> implements OnInit {
 
     constructor(private jobService: JobService, router: Router, toastr: ToastrService, spinnerService: Ng4LoadingSpinnerService) {
