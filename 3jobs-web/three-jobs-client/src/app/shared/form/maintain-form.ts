@@ -34,13 +34,17 @@ export class MaintainForm<E extends Entity> {
 
     /**
      * The Default constructor.
-     * 
+     *
      * @param entityService The current service that will be used.
      * @param router The router service.
      * @param toastr The toastr service for notifications.
      * @param spinnerService The spinner service.
      */
-    constructor(private entityService: EntityService<E>, protected router: Router, protected toastr: ToastrService, protected spinnerService: Ng4LoadingSpinnerService) {
+    constructor(
+        private entityService: EntityService<E>,
+        protected router: Router,
+        protected toastr: ToastrService,
+        protected spinnerService: Ng4LoadingSpinnerService) {
         // initialize the variables
         this.isSubmitted = false;
         this.isEdition = false;
@@ -50,7 +54,7 @@ export class MaintainForm<E extends Entity> {
     /**
      * Method responsible to submit the form.
      */
-    onSubmit() {
+    onSubmit(redirectPath: string = null) {
         this.isSubmitted = false;
         this.spinnerService.show();
 
@@ -60,23 +64,29 @@ export class MaintainForm<E extends Entity> {
             if (this.currentId === this.model.id) {
                 this.entityService.update(this.model).subscribe(
                     (response: any) => {
-                        console.log(response);
                         this.toastr.success(response.message ? response.message : 'Informações atualizadas com sucesso!');
                         this.spinnerService.hide();
                         this.isSubmitted = true;
+
+                        if (redirectPath) {
+                            this.router.navigateByUrl(redirectPath);
+                        }
                     },
                     (error: HttpErrorResponse) => this.errorHandler(error)
-                )
+                );
             }
         }
         // Otherwise, make a POST request
         else {
             this.entityService.create(this.model).subscribe(
                 (response: any) => {
-                    console.log(response);
                     this.toastr.success(response.message ? response.message : 'Informações salvas com sucesso!');
                     this.spinnerService.hide();
                     this.isSubmitted = true;
+
+                    if (redirectPath) {
+                        this.router.navigateByUrl(redirectPath);
+                    }
                 },
                 (error: HttpErrorResponse) => this.errorHandler(error)
             );
@@ -84,11 +94,11 @@ export class MaintainForm<E extends Entity> {
     }
 
     /**
-     * Method responsible to load the model using the current id if is set. 
+     * Method responsible to load the model using the current id if is set.
      */
     loadModelFromCurrentId() {
         // get the current path id if exists
-        this.getCurrentId();        
+        this.getCurrentId();
 
         // set the edition flag to true
         this.isEdition = true;
@@ -96,7 +106,7 @@ export class MaintainForm<E extends Entity> {
 
         // load the model
         this.entityService.read(this.currentId).subscribe(
-            response => {                
+            response => {
                 this.toastr.info('Dados carregados');
                 this.model = response;
                 this.spinnerService.hide();
@@ -117,10 +127,11 @@ export class MaintainForm<E extends Entity> {
 
     /**
      * Method responsible to handle the request error.
-     * 
+     *
      * @param error Response error object
      */
     private errorHandler(error: HttpErrorResponse) {
+        this.isSubmitted = false;
         // if error is set, Show the server message.
         if (error.error && error.status !== 0) {
             // set a title to show
