@@ -11,7 +11,7 @@ COPY ./three-jobs-client/ /app/
 
 ARG env=production
 
-RUN npm run build -- --configuration $env
+RUN npm run build --configuration $env
 
 # Stage 1 - Based On Nginx to have a compiled and production ready build.
 FROM nginx:alpine
