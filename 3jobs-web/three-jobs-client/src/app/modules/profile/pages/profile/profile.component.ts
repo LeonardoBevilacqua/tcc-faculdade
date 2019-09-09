@@ -43,7 +43,7 @@ export class ProfileComponent implements OnInit {
             (user: User) => {
                 this.user = user;
                 // TODO: REMOVE THIS
-                this.user.roles = null;
+                this.user.roles = [];
 
                 this.spinnerService.hide();
             },
