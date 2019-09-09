@@ -18,7 +18,7 @@ export class AuthService extends EntityService<User>{
     }
 
     public login(user: User): Observable<boolean> {
-        return this.httpClient.post(`${this.apiUrl}/${this.endpoint}`, { email: user.email, password: user.password }, {observe: 'response'})
+        return this.httpClient.post(`https://3jobs-api.azurewebsites.net/${this.endpoint}`, { email: user.email, password: user.password }, {observe: 'response'})
         .pipe(map((response: HttpResponseBase) => {
             // login successful if there's a jwt token in the response header
             let token = response && response.headers.get('Authorization');

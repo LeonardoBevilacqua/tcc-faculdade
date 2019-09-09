@@ -10,12 +10,6 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: 'git checkout frontend'
-  displayName: 'Checkout frontend'
-
 - task: Docker@2
   inputs:
     containerRegistry: 'bevilacquaTeste'
@@ -28,9 +22,22 @@ steps:
     script: |
       cd 3jobs-web
       docker build -t leonardobevilacqua/bevilacqua_teste:angularapp .
-  displayName: 'Build docker'
+  displayName: 'Build docker frontend'
 
 - task: CmdLine@2
   inputs:
     script: 'docker push leonardobevilacqua/bevilacqua_teste:angularapp'
-  displayName: 'Push docker'
+  displayName: 'Push docker frontend'
+
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      cd services/core-service/
+      docker build -t leonardobevilacqua/3jobs-api:3jobsApi .
+  displayName: 'Build docker backend'
+
+- task: CmdLine@2
+  inputs:
+    script: 'docker push leonardobevilacqua/3jobs-api:3jobsApi'
+  displayName: 'Push docker backend'
