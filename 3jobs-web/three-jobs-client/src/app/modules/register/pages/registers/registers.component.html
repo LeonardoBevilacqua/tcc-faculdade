@@ -1,100 +1,82 @@
-<div class="d-flex flex-column  bg-default ">
-    <div class="content col-md-auto container">
-        <section class="content col-md-auto  container">
+<div class="d-flex flex-column min-vh-100 bg-default">
+    <section class="content container-fluid mb-auto mt-0 py-4">
+        <div class="jumbtron-fluid bg-white w-35 mx-auto py-5 px-4">
 
-            <div class="jumbotron jumbotron-fluid bg-white pt-5 justify-content-center">
-                <section>
-                    <div class="container ">
-                        <div class="row d-flex justify-content-center">
-                            <div class="col-md-auto">
-                                <div class="d-flex flex-row col-md-auto">
-                                    <div>
-                                        <div class="row justify-content-center mb-3 ">
-                                            <div class="col-auto col-md-auto justify-content-center">
-                                                <h4>Sign Up</h4>
-                                                <p class="text-sm-left text-secondary">Cadastre-se e tenha acesso a
-                                                    todos os serviços.</p>
-                                            </div>
-                                        </div>
-
-                                        <form [formGroup]="formulario" (ngSubmit)="formulario.valid && onSubmit()">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Você é um ?</label>
-                                                <select type="number" class="form-control" id="register-roles"
-                                                    formControlName="roles">
-                                                    <option value="3">Candidato</option>
-                                                    <option value="2">Headhunter</option>
-                                                    <option value="4">Recrutador</option>
-                                                </select>
-                                                <validation-message [inputControl]="formulario.get('roles')">
-                                                </validation-message>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputName">Nome:</label>
-                                                <input type="text" class="form-control" formControlName="name"
-                                                    id="register-nome" aria-describedby="nameHelp" maxlength="60">
-                                                <validation-message [inputControl]="formulario.get('name')">
-                                                </validation-message>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputName2">Sobrenome:</label>
-                                                <input type="text" class="form-control" formControlName="lastName"
-                                                    id="register-lastName" aria-describedby="nameHelp" maxlength="60">
-                                                <validation-message [inputControl]="formulario.get('lastName')">
-                                                </validation-message>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Email:</label>
-                                                <input type="email" class="form-control" id="register-email"
-                                                    formControlName="email" aria-describedby="emailHelp" maxlength="60">
-                                                <validation-message [inputControl]="formulario.get('email')">
-                                                </validation-message>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Confirme o Email:</label>
-                                                <input type="email" class="form-control" id="register-email2"
-                                                    formControlName="email2" aria-describedby="emailHelp"
-                                                    maxlength="60">
-                                                <validation-message [inputControl]="formulario.get('email2')"
-                                                    msgError="Os emails não são iguais">
-                                                </validation-message>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword1">Senha:</label>
-                                                <input type="password" class="form-control" id="register-password"
-                                                    formControlName="password" maxlength="20">
-                                                <validation-message [inputControl]="formulario.get('password')">
-                                                </validation-message>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword2">Confirme a senha:</label>
-                                                <input type="password" class="form-control" id="register-password2"
-                                                    formControlName="password2" maxlength="20"
-                                                    mustMatch="('password', 'password2')">
-                                                <validation-message [inputControl]="formulario.get('password2')"
-                                                    msgError="As senhas não são iguais">
-                                                </validation-message>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputCpf1">CPF:</label>
-                                                <input type="text" class="form-control" id="register-cpf"
-                                                    formControlName="cpf" maxlength="11" pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})" required>
-                                                    <small id="emailHelp" class="form-text text-muted">Inserir apenas numeros, sem pontos.</small>
-                                                <validation-message [inputControl]="formulario.get('cpf')"
-                                                    msgError="Formato inválido">
-                                                </validation-message>
-                                            </div>
-                                            <button type="submit" [disabled]="!formulario.valid"
-                                                class="btn btn-primary float-right">Cadastrar</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+            <!-- sign up header -->
+            <div class="mb-3">
+                <h4>Crie sua conta</h4>
+                <span class="text-sm-left text-secondary">Cadastre-se e tenha acesso a todos os serviços.</span>
             </div>
-        </section>
-    </div>
+
+            <!-- sign up form -->
+            <form #signUpForm="ngForm" (ngSubmit)="signUpForm.form.valid && onSubmit('/')">
+                <!-- role -->
+                <div class="form-group">
+                    <label for="role">Você é um ?</label>
+                    <select required class="form-control" id="role" name="role" [(ngModel)]="model.roles[0]" #role="ngModel">
+                        <option value="3">Candidato</option>
+                        <option value="2">Headhunter</option>
+                        <option value="4">Recrutador</option>
+                    </select>
+                    <validation-message [inputControl]="role"></validation-message>
+                </div>
+
+                <!-- name -->
+                <div class="form-group">
+                    <label for="name">Nome:</label>
+                    <input required maxlength="60" type="text" class="form-control" id="name" name="name" [(ngModel)]="model.profile.name" #name="ngModel">
+                    <validation-message [inputControl]="name"></validation-message>
+                </div>
+
+                <!-- lastName -->
+                <div class="form-group">
+                    <label for="lastName">Sobrenome:</label>
+                    <input required maxlength="60" type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="model.profile.lastName" #lastName="ngModel">
+                    <validation-message [inputControl]="lastName"></validation-message>
+                </div>
+
+                <!-- email -->
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input required email type="email" class="form-control" id="email" name="email" [(ngModel)]="model.email" #email="ngModel" mustMatch="confirmEmail" reverse="true">
+                    <validation-message [inputControl]="email"></validation-message>
+                </div>
+
+                <!-- confirm email -->
+                <div class="form-group">
+                    <label for="confirmEmail">Confirme o Email:</label>
+                    <input required email type="email" class="form-control" name="confirmEmail" [(ngModel)]="emailField" #confirmEmail="ngModel" mustMatch="email">
+                    <validation-message [inputControl]="confirmEmail"></validation-message>
+                </div>
+
+                <!-- password -->
+                <div class="form-group">
+                    <label for="password">Senha:</label>
+                    <input required type="password" class="form-control" id="password" name="password" [(ngModel)]="model.password" #password="ngModel" mustMatch="confirmPassword" reverse="true">
+                    <validation-message [inputControl]="password"></validation-message>
+                </div>
+
+                <!-- confirm password -->
+                <div class="form-group">
+                    <label for="confirmPassword">Confirme a senha:</label>
+                    <input required type="password" class="form-control" name="confirmPassword" [(ngModel)]="passwordField" #confirmPassword="ngModel" mustMatch="password">
+                    <validation-message [inputControl]="confirmPassword"></validation-message>
+                </div>
+
+                <!-- cpf -->
+                <div class="form-group">
+                    <label for="cpf">CPF:</label>
+                    <input required maxlength="11" pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})"
+                        type="text" class="form-control" id="cpf" name="cpf" [(ngModel)]="model.cpf" #cpf="ngModel" cpfValidation>
+                    <validation-message [inputControl]="cpf"></validation-message>
+                    <small class="form-text text-muted">Inserir apenas numeros, sem pontos.</small>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" [disabled]="!signUpForm.form.valid" class="btn btn-primary float-right">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </section>
     <app-footer [isLogged]="true"></app-footer>
 </div>

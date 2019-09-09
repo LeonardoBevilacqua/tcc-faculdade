@@ -1,5 +1,4 @@
 import { Entity } from './entity';
-import { Company } from './company';
 import { Profile } from './profile';
 
 /**
@@ -11,5 +10,4 @@ export class User extends Entity {
     password: string;
     profile: Profile;
     roles: Array<string>;
-    
 }
