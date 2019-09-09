@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
 
     ngOnInit() {
         // set the page title
-        this.titleService.setTitle(`${this.titleService.getTitle()} | Perfil`);
+        this.titleService.setTitle(`3Jobs | Perfil`);
 
         this.spinnerService.show();
 

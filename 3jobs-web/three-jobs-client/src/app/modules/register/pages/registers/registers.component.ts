@@ -31,7 +31,7 @@ export class RegistersComponent extends MaintainForm<User> implements OnInit {
     }
 
     ngOnInit() {
-        this.titleService.setTitle(`${this.titleService.getTitle()} | Crie sua conta`);
+        this.titleService.setTitle(`3Jobs | Crie sua conta`);
 
         this.model = new User();
         this.model.profile = new Profile();
