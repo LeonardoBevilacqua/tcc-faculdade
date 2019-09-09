@@ -26,7 +26,7 @@ export class MustMatchDirective implements Validator {
 
         // value not equal
         if (e && v !== e.value && !this.isReverse) {
-            return { mustMatch: false };
+            return { mustMatch: true };
         }
 
         // value equal and reverse
@@ -39,7 +39,7 @@ export class MustMatchDirective implements Validator {
 
         // value not equal and reverse
         if (e && v !== e.value && this.isReverse) {
-            e.setErrors({ mustMatch: false });
+            e.setErrors({ mustMatch: true });
         }
 
         return null;

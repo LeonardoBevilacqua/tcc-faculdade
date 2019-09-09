@@ -45,7 +45,7 @@ export class LoginComponent extends MaintainForm<User> implements OnInit {
                     if (result) {
                         // hide the spinner and modal and redirect
                         this.spinnerService.hide();
-                        $('#loginModal').modal('hide')
+                        $('#loginModal').modal('hide');
                         this.router.navigateByUrl('/dashboard');
                     }
                     else {
@@ -56,7 +56,7 @@ export class LoginComponent extends MaintainForm<User> implements OnInit {
                 },
                 // server is not working
                 (responseError: HttpErrorResponse) => {
-                    let error = responseError.status != 0 ? responseError.error : null;
+                    const error = responseError.status !== 0 ? responseError.error : null;
 
                     const message = error && error.message ? error.message : 'Falha ao tentar se conectar!';
                     // hide the spinner and notify the error

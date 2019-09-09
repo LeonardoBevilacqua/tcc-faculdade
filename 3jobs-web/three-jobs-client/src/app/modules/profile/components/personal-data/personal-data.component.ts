@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
@@ -27,14 +26,17 @@ export class PersonalDataComponent extends MaintainForm<User> implements OnInit 
 
     /**
      * The default constructor.
-     * 
+     *
      * @param userService profile service.
      * @param router router for nagivation.
      * @param toastr toastr service.
      * @param spinnerService spinner service.
-     * @param datePipe date pipe.
      */
-    constructor(userService: UserService, router: Router, toastr: ToastrService, spinnerService: Ng4LoadingSpinnerService, private datePipe: DatePipe) {
+    constructor(
+        userService: UserService,
+        router: Router,
+        toastr: ToastrService,
+        spinnerService: Ng4LoadingSpinnerService) {
         super(userService, router, toastr, spinnerService);
     }
 
@@ -43,7 +45,7 @@ export class PersonalDataComponent extends MaintainForm<User> implements OnInit 
         this.isEdition = true;
 
         this.model = this.user;
-        
+
         this.getCurrentId();
     }
 }

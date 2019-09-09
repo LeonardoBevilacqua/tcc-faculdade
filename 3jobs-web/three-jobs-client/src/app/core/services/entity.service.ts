@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-}
+};
 
 @Injectable()
 /**
@@ -18,9 +18,8 @@ export class EntityService<E extends Entity>{
      */
     protected apiUrl: string;
     /**
-     * 
+     *
      * @param httpClient the http client to handle the requests.
-     * @param url 
      * @param endpoint the endpoint of the API.
      */
     constructor(protected httpClient: HttpClient, protected endpoint: string) {

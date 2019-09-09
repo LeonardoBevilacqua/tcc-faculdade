@@ -1,7 +1,7 @@
 <card-template title="Endereço" [cardBodyContent]="userAddress" cardBodyId="userAddress">
     <ng-template #userAddress>
         <!-- address -->
-        <div class="d-flex" *ngIf="!isFormEdition || isSubmitted">
+        <div class="d-flex" *ngIf="user.profile.address && (!isFormEdition || isSubmitted)">
             <div class="d-inline-flex flex-column">
                 <span><strong>CEP: </strong>{{user.profile.address.zipCode}}</span>
                 <span><strong>Estado: </strong>{{user.profile.address.state}}</span>
