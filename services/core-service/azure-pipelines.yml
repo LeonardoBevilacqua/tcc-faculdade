@@ -1,0 +1,30 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: Docker@2
+  inputs:
+    containerRegistry: 'bevilacquaTeste'
+    command: 'login'
+  displayName: 'Login docker'
+
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      cd services/core-service/
+      docker build -t leonardobevilacqua/3jobs-api:3jobsApi .
+  displayName: 'Build docker'
+
+- task: CmdLine@2
+  inputs:
+    script: 'docker push leonardobevilacqua/3jobs-api:3jobsApi'
+  displayName: 'Push docker'

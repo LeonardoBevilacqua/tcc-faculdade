@@ -1,19 +1,40 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-
+import { Router } from '@angular/router';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/core/services/user.service';
+import { MaintainForm } from 'src/app/shared/form/maintain-form';
+import { Profile } from 'src/app/shared/models/profile';
+import { User } from 'src/app/shared/models/user';
 
 @Component({ selector: 'app-registers', templateUrl: './registers.component.html', styleUrls: ['./registers.component.scss'] })
-export class registersComponent implements OnInit {
+export class RegistersComponent extends MaintainForm<User> implements OnInit {
 
+    /**
+     * variable responsible to verify the password
+     */
+    passwordField: string;
 
-    constructor(private titleService: Title) { }
+    /**
+     * variable responsible to verify the email
+     */
+    emailField: string;
+
+    constructor(private titleService: Title,
+                userService: UserService,
+                router: Router,
+                spinnerService: Ng4LoadingSpinnerService,
+                toastr: ToastrService) {
+        super(userService, router, toastr, spinnerService);
+    }
 
     ngOnInit() {
         this.titleService.setTitle(`${this.titleService.getTitle()} | Crie sua conta`);
-    }
 
-    register(form){
-        console.log(form.value);
+        this.model = new User();
+        this.model.profile = new Profile();
+        this.model.roles = [];
     }
-
 }

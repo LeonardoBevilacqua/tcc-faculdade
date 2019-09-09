@@ -1,14 +1,14 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { MaintainForm } from 'src/app/shared/form/maintain-form';
-import { Profile } from 'src/app/shared/models/profile';
-import { ProfileService } from 'src/app/core/services/profile.service';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { DatePipe } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/core/services/user.service';
+import { MaintainForm } from 'src/app/shared/form/maintain-form';
+import { User } from 'src/app/shared/models/user';
 
 @Component({ selector: 'personal-data', templateUrl: './personal-data.component.html' })
-export class PersonalDataComponent extends MaintainForm<Profile> implements OnInit {
+export class PersonalDataComponent extends MaintainForm<User> implements OnInit {
 
     /**
      * Flag if is the profile of the logged user.
@@ -18,7 +18,7 @@ export class PersonalDataComponent extends MaintainForm<Profile> implements OnIn
     /**
      * The profile model.
      */
-    @Input() profile: Profile;
+    @Input() user: User;
 
     /**
      * Flag if the data is being edited.
@@ -28,20 +28,22 @@ export class PersonalDataComponent extends MaintainForm<Profile> implements OnIn
     /**
      * The default constructor.
      * 
-     * @param profileService profile service.
+     * @param userService profile service.
      * @param router router for nagivation.
      * @param toastr toastr service.
      * @param spinnerService spinner service.
      * @param datePipe date pipe.
      */
-    constructor(profileService: ProfileService, router: Router, toastr: ToastrService, spinnerService: Ng4LoadingSpinnerService, private datePipe: DatePipe) {
-        super(profileService, router, toastr, spinnerService);
+    constructor(userService: UserService, router: Router, toastr: ToastrService, spinnerService: Ng4LoadingSpinnerService, private datePipe: DatePipe) {
+        super(userService, router, toastr, spinnerService);
     }
 
     ngOnInit() {
         this.isFormEdition = false;
         this.isEdition = true;
 
-        this.model = this.profile;
+        this.model = this.user;
+        
+        this.getCurrentId();
     }
 }

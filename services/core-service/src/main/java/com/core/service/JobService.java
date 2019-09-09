@@ -1,6 +1,6 @@
 package com.core.service;
 
-import com.core.exception.UserNotFoundException;
+import com.core.exception.EntityNotFoundException;
 import com.core.model.Job;
 import com.core.respository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class JobService {
     public Job getJob(Long id) {
         Optional<Job> jobOpt = jobRepository.findById(id);
         if (jobOpt.isEmpty()) {
-            throw new UserNotFoundException("Job Not Found");
+            throw new EntityNotFoundException("Vaga não encontrada");
         }
         return jobOpt.get();
     }
@@ -34,5 +34,11 @@ public class JobService {
     @Transactional
     public Job saveJob(Job job) {
         return jobRepository.save(job);
+    }
+
+    public Job updateJob(Long id, Job job) {
+        Job jobFound = getJob(id);
+        jobFound = job;
+        return jobRepository.save(jobFound);
     }
 }

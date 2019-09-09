@@ -37,6 +37,8 @@ export class AuthService extends EntityService<User>{
     }
 
     public getToken() {
-        return JSON.parse(localStorage.getItem('user')).token;
+        const user = JSON.parse(localStorage.getItem('user'));
+        
+        return user != null ? user.token : null;
     }
 }

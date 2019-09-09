@@ -24,6 +24,6 @@ public class JWTAuthenticationFailureHandler implements AuthenticationFailureHan
                 + "\"status\": 403, "
                 + "\"error\": \"Não autorizado\", "
                 + "\"message\": \"Email ou senha inválidos\", "
-                + "\"path\": \"login\", ";
+                + "\"path\": \"login\"}";
     }
 }

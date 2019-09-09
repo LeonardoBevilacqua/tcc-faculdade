@@ -1,34 +1,35 @@
 <app-header [isLogged]="true"></app-header>
 <div class="d-flex flex-column vh-100">
     <!-- Profile section -->
-    <section *ngIf="profile && profile.user" class="content py-4 container-fluid mb-auto">        
-        <!-- User header -->
-        <div class="p-3 d-flex align-items-center bg-default text-white">
-            <!-- User picture -->
-            <div class="profile-picture">
-                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                    alt="..." class="rounded-circle">
-            </div>
-            <!-- User details -->
-            <div class="pl-5">
-                <div class="d-inline-flex flex-column">
-                    <h2>{{profile.name}} {{profile.lastName}}</h2>
-                    <span><strong>E-mail: </strong>{{profile.user.email}}</span>
-                    <span><strong>Telefone: </strong>{{profile.phone}}</span>
-                    <span><strong>Celular: </strong>{{profile.cellphone}}</span>
+    <section class="content py-4 container-fluid mb-auto">
+        <div *ngIf="user && user.profile">
+            <!-- User header -->
+            <div class="p-3 d-flex align-items-center bg-default text-white">
+                <!-- User picture -->
+                <div class="profile-picture">
+                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                        alt="..." class="rounded-circle">
                 </div>
-                <!-- edit button -->
-                <a *ngIf="isLoggedUserProfile" class="btn btn-link text-light" href="./">Editar</a>
+                <!-- User details -->
+                <div class="pl-5">
+                    <div class="d-inline-flex flex-column">
+                        <h2>{{user.profile.name}} {{user.profile.lastName}}</h2>
+                        <span><strong>E-mail: </strong>{{user.email}}</span>
+                        <span><strong>Telefone: </strong>{{user.profile.phone}}</span>
+                        <span><strong>Celular: </strong>{{user.profile.cellphone}}</span>
+                    </div>
+                </div>
             </div>
-        </div>
 
 
-        <div class="accordion indicator-plus-before round-indicator mt-5" aria-multiselectable="true">
-            <personal-data [isLoggedUserProfile]="isLoggedUserProfile" [profile]="profile"></personal-data>
-            <user-address [isLoggedUserProfile]="isLoggedUserProfile" [address]="profile.address" *ngIf="profile.address"></user-address>
-            <academic-formation [isLoggedUserProfile]="isLoggedUserProfile"></academic-formation>
-            <abilities [isLoggedUserProfile]="isLoggedUserProfile"></abilities>
-            <experience [isLoggedUserProfile]="isLoggedUserProfile"></experience>
+            <div class="accordion indicator-plus-before round-indicator mt-5" aria-multiselectable="true">
+                <personal-data [isLoggedUserProfile]="isLoggedUserProfile" [user]="user"></personal-data>
+                <user-address [isLoggedUserProfile]="isLoggedUserProfile" [user]="user"></user-address>
+                <!-- TODO: verificar o funcionamento desses componentes -->
+                <!-- <academic-formation [isLoggedUserProfile]="isLoggedUserProfile" [user]="user"></academic-formation>
+                <abilities [isLoggedUserProfile]="isLoggedUserProfile" [user]="user"></abilities>
+                <experience [isLoggedUserProfile]="isLoggedUserProfile"></experience> -->
+            </div>
         </div>
     </section>
     <app-footer [isLogged]="true"></app-footer>

@@ -5,7 +5,8 @@ public enum Role {
     ADMIN(1, "ROLE_ADMIN"),
     HEADHUNTER(2, "ROLE_HEADHUNTER"),
     CANDIDATE(3, "ROLE_CANDIDATE"),
-    RECRUTER(4, "ROLE_RECRUTER");
+    RECRUTER_ADMIN(4, "ROLE_RECRUTER_ADMIN"),
+    RECRUTER(5, "ROLE_RECRUTER");
 
     private int cod;
     private String description;

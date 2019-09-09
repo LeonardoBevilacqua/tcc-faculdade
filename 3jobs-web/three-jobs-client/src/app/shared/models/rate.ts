@@ -1,13 +1,12 @@
+import { Company } from './company';
 import { Entity } from './entity';
-import { User } from './user';
+import { Profile } from './profile';
 
 /**
  * Class representing the rate model.
  */
 export class Rate extends Entity {
-    type: string;
-    typeId: number;
-    rate: number;
-    user: User;
-    userId: number;
+    status: String;
+    profile: Profile;
+    company: Company;
 }

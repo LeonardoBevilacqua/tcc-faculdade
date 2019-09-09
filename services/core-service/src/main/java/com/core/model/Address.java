@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Address {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String zipCode;
@@ -89,5 +89,19 @@ public class Address {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", zipCode='" + zipCode + '\'' +
+                ", state='" + state + '\'' +
+                ", city='" + city + '\'' +
+                ", district='" + district + '\'' +
+                ", name='" + name + '\'' +
+                ", profile=" + profile +
+                ", company=" + company +
+                '}';
     }
 }
