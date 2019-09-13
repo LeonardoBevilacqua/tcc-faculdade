@@ -1,5 +1,6 @@
 package com.core.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -24,6 +25,7 @@ public class User {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Profile profile;
 
     @ManyToMany(mappedBy = "users")
@@ -89,8 +91,6 @@ public class User {
                 ", cpf='" + cpf + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", profile=" + profile +
-                ", jobs=" + jobs +
                 ", roles=" + roles +
                 '}';
     }

@@ -2,9 +2,9 @@ package com.core.security;
 
 import com.core.dto.UserDTO;
 import com.core.model.User;
-import com.core.respository.UserRepository;
+import com.core.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -22,14 +22,13 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     private JWTUtil jwtUtil;
     private AuthenticationManager authenticationManager;
+    private UserService userService;
 
-    @Autowired
-    private UserRepository userRepository;
-
-    public JWTAuthenticationFilter(JWTUtil jwtUtil, AuthenticationManager authenticationManager) {
+    public JWTAuthenticationFilter(JWTUtil jwtUtil, AuthenticationManager authenticationManager, ApplicationContext ctx) {
         setAuthenticationFailureHandler(new JWTAuthenticationFailureHandler());
         this.jwtUtil = jwtUtil;
         this.authenticationManager = authenticationManager;
+        this.userService = ctx.getBean(UserService.class);
     }
 
     @Override
@@ -47,11 +46,11 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
-        String username = ((UserSecurity) authResult.getPrincipal()).getUsername();
-        String token = jwtUtil.generateToken(username);
+        String email = ((UserSecurity) authResult.getPrincipal()).getUsername();
+        String token = jwtUtil.generateToken(email);
         response.addHeader("Authorization", "Bearer " + token);
         response.addHeader("access-control-expose-headers", "Authorization");
-        User user = userRepository.findByEmail(username);
+        User user = userService.getUserByEmail(email);
         String json = new ObjectMapper().writeValueAsString(user);
         response.getWriter().write(json);
         response.flushBuffer();
