@@ -1,7 +1,10 @@
 package com.core.security;
 
 import com.core.dto.UserDTO;
+import com.core.model.User;
+import com.core.respository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -19,6 +22,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     private JWTUtil jwtUtil;
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private UserRepository userRepository;
 
     public JWTAuthenticationFilter(JWTUtil jwtUtil, AuthenticationManager authenticationManager) {
         setAuthenticationFailureHandler(new JWTAuthenticationFailureHandler());
@@ -45,5 +51,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String token = jwtUtil.generateToken(username);
         response.addHeader("Authorization", "Bearer " + token);
         response.addHeader("access-control-expose-headers", "Authorization");
+        User user = userRepository.findByEmail(username);
+        String json = new ObjectMapper().writeValueAsString(user);
+        response.getWriter().write(json);
+        response.flushBuffer();
     }
 }
