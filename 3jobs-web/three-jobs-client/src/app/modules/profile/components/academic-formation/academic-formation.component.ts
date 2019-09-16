@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Profile } from 'src/app/shared/models/profile';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { MaintainForm } from 'src/app/shared/form/maintain-form';
+import { Profile } from 'src/app/shared/models/profile';
+import { isNullOrUndefined } from 'util';
 
 @Component({ selector: 'academic-formation', templateUrl: './academic-formation.component.html' })
 export class AcademicFormationComponent extends MaintainForm<Profile> implements OnInit {
@@ -28,11 +29,17 @@ export class AcademicFormationComponent extends MaintainForm<Profile> implements
      */
     experienceIndex: number;
 
+    // TODO
     constructor(router: Router, toastr: ToastrService, spinnerService: Ng4LoadingSpinnerService) {
         super(null, router, toastr, spinnerService);
     }
 
     ngOnInit() {
+        if (isNullOrUndefined(this.profile)) {
+            this.profile = new Profile();
+            this.profile.experiences = [];
+        }
+
         this.isFormEdition = false;
         this.isEdition = true;
 
@@ -40,8 +47,8 @@ export class AcademicFormationComponent extends MaintainForm<Profile> implements
     }
 
     public openForm(experienceId: number) {
-        this.isFormEdition = true;         
-        this.experienceIndex = this.profile.experiences.findIndex(e => e.id == experienceId);
+        this.isFormEdition = true;
+        this.experienceIndex = this.profile.experiences.findIndex(e => e.id === experienceId);
     }
 
 }
