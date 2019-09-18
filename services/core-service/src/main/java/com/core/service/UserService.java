@@ -25,7 +25,6 @@ public class UserService {
 
     public User getUser(Long id) throws RuntimeException {
         UserSecurity user = UserService.authenticated();
-        System.out.println("User => "+user);
         if(!user.hasRole(Role.ADMIN) && id != user.getId()) {
             throw new UserUnauthorizedException("Usuário não tem acesso ao perfil de outros usuários");
         }
@@ -55,5 +54,9 @@ public class UserService {
         user.setPassword(userFound.getPassword());
         userFound = user;
         return userRepository.save(userFound);
+    }
+
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }
