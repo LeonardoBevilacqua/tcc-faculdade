@@ -16,7 +16,8 @@ public class Company {
     private String name;
     private String description;
 
-    @OneToOne(mappedBy = "company")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
