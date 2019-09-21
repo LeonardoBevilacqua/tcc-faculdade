@@ -20,15 +20,17 @@ export class AuthService extends EntityService<User>{
     public login(user: User): Observable<boolean> {
         return this.httpClient.post(
             `${this.apiUrl}/${this.endpoint}`,
-            { email: user.email, password: user.password },
+            { email: user.email, password: user.password, id: user.id},
             { observe: 'response' }
         )
             .pipe(map((response: HttpResponseBase) => {
                 // login successful if there's a jwt token in the response header
                 const token = response && response.headers.get('Authorization');
+                
                 if (token) {
                     // store email and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('user', JSON.stringify({ email: user.email, token }));
+
+                    localStorage.setItem('user', JSON.stringify({ response: response, email: user.email, token }));
 
                     // return true to indicate successful login
                     return true;
@@ -44,5 +46,11 @@ export class AuthService extends EntityService<User>{
         const user = JSON.parse(localStorage.getItem('user'));
 
         return user != null ? user.token : null;
+    }
+
+    public getUserId() {
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        return user != null ? user.response.body.id : null;
     }
 }

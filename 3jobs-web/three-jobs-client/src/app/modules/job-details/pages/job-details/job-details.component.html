@@ -16,7 +16,7 @@
                                             </a>
                                         </div>
                                         <div class="col-auto col-md-auto align-items-baseline ">
-                                            <button type="button" class="btn btn-primary">Candidatar-se</button>
+                                            <button type="button" (click)="apply()" class="btn btn-primary">Candidatar-se</button>
                                         </div>
                                     </div>
                                     <hr class="pt-0 mt-0">
@@ -47,7 +47,7 @@
                                         <div class="col-auto col-md-auto pr-0">
                                             <div>
                                                 <p class="font-weight-bold"><span class="title-icon text-danger"><i
-                                                            class="fa fa-clock-o fa-lg mr-1"></i></span>{{job.endDate}}
+                                                            class="fa fa-clock-o fa-lg mr-1"></i></span>{{job.endDate | date: 'dd-MM-yyyy'}}
                                                 </p>
                                             </div>
                                         </div>

@@ -8,6 +8,8 @@ import { Job } from 'src/app/shared/models/job';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Company } from 'src/app/shared/models/company';
 import { Address } from 'src/app/shared/models/address';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { User } from 'src/app/shared/models/user';
 
 
 @Component({ selector: 'app-job-details', templateUrl: './job-details.component.html' })
@@ -16,6 +18,7 @@ export class JobDetailsComponent implements OnInit {
   isLoggedUserProfile: boolean;
 
   job: Job;
+  user: User;
 
   
   constructor(
@@ -23,17 +26,22 @@ export class JobDetailsComponent implements OnInit {
       private jobService: JobService,
       private router: Router,
       private toast: ToastrService,
-      private spinnerService: Ng4LoadingSpinnerService) {
+      private spinnerService: Ng4LoadingSpinnerService,
+      private authService: AuthService) {
+        this.user = new User();
       this.job = new Job();
       this.job.company = new Company;
       this.job.company.address = new Address;
       this.job.tags = []
+     
       }
       
 
   ngOnInit() {
       // set the page title
       this.titleService.setTitle(`3Jobs | Vagas`);
+
+      console.log(this.authService.getUserId())
 
       this.spinnerService.show();
 
@@ -63,6 +71,16 @@ export class JobDetailsComponent implements OnInit {
               this.router.navigateByUrl('/');
           }
       );
+  }
+
+
+
+  apply(){
+
+    this.job.users = [];
+    this.user.id = this.authService.getUserId()
+    this.job.users.push(this.user)
+    console.log(    this.job.users)
   }
 
 }
