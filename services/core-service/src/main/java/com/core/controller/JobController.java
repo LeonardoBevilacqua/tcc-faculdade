@@ -39,4 +39,10 @@ public class JobController {
         return ResponseEntity.ok(jobService.saveJob(job));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateJob(@PathVariable Long id, @RequestBody Job job) {
+        return ResponseEntity.ok(jobService.updateJob(id, job));
+    }
+
+
 }
