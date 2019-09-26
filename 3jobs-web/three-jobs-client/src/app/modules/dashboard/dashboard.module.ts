@@ -6,9 +6,10 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CreateVacancyModalComponent } from './components/create-vacancy-modal/create-vacancy-modal.component';
 import { JobDashboardComponent } from './pages/job-dashboard/job-dashboard.component';
+import { CardDashboardComponent } from './components/card-dashboard/card-dashboard.component';
 
 @NgModule({
-  declarations: [DashboardComponent, CreateVacancyModalComponent, JobDashboardComponent],
+  declarations: [DashboardComponent, CreateVacancyModalComponent, JobDashboardComponent, CardDashboardComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
