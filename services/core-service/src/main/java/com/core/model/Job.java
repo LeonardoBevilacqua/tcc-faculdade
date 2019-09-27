@@ -21,6 +21,7 @@ public class Job {
     private String benefit;
     private Date beginDate;
     private Date endDate;
+    private Long salaryValue;
 
     @ManyToMany
     @JoinTable(
@@ -35,7 +36,7 @@ public class Job {
     @JoinColumn(name = "company_id")
     private Company company;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "jobs_tags",
             joinColumns = @JoinColumn(name = "job_id"),
@@ -129,6 +130,14 @@ public class Job {
 
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    public Long getSalaryValue() {
+        return salaryValue;
+    }
+
+    public void setSalaryValue(Long salaryValue) {
+        this.salaryValue = salaryValue;
     }
 
     @Override

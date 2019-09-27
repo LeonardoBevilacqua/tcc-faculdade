@@ -15,8 +15,13 @@ public class JobController {
     private JobService jobService;
 
     @GetMapping
-    public ResponseEntity<?> getJobs() {
-        return ResponseEntity.ok(jobService.getJobs());
+    public ResponseEntity<?> getJobs(
+            @RequestParam(value = "description", defaultValue = "") String description,
+            @RequestParam(value = "orderBy", defaultValue = "title") String orderBy,
+            @RequestParam(value = "direction", defaultValue = "ASC") String direction,
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = "20") int size) {
+        return ResponseEntity.ok(jobService.getJobsPageable(page, size, orderBy, direction, description));
     }
 
     @GetMapping("/{id}")
@@ -33,5 +38,11 @@ public class JobController {
     public ResponseEntity<?> saveJob(@RequestBody Job job){
         return ResponseEntity.ok(jobService.saveJob(job));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateJob(@PathVariable Long id, @RequestBody Job job) {
+        return ResponseEntity.ok(jobService.updateJob(id, job));
+    }
+
 
 }

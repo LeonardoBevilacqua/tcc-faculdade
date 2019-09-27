@@ -27,11 +27,13 @@ public class CompanyService {
         return jobOpt.get();
     }
 
-    public Company saveCompany(Company job) {
-        return companyRepository.save(job);
+    public Company saveCompany(Company company) {
+        return companyRepository.save(company);
     }
 
     public Company updateCompany(Long id, Company company) {
-        return companyRepository.save(company);
+        Company companyFound = getCompany(id);
+        companyFound = company;
+        return companyRepository.save(companyFound);
     }
 }

@@ -4,6 +4,9 @@ import com.core.exception.EntityNotFoundException;
 import com.core.model.Job;
 import com.core.respository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,5 +43,12 @@ public class JobService {
         Job jobFound = getJob(id);
         jobFound = job;
         return jobRepository.save(jobFound);
+    }
+
+    public Page<Job> getJobsPageable(Integer page, Integer linesPerPage, String orderBy,
+                                     String direction, String description) {
+        PageRequest pageRequest = PageRequest.of(page, linesPerPage,
+                Sort.Direction.valueOf(direction), orderBy);
+        return jobRepository.findByDescriptionContaining(description, pageRequest);
     }
 }

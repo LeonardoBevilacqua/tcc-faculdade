@@ -33,4 +33,9 @@ public class CompanyController {
     public ResponseEntity<?> saveCompany(@RequestBody Company company){
         return ResponseEntity.ok(companyService.saveCompany(company));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateCompany(@PathVariable Long id, @RequestBody Company company) {
+        return ResponseEntity.ok(companyService.updateCompany(id, company));
+    }
 }
