@@ -51,10 +51,11 @@ public class JobService {
     }
 
     public Page<JobSimpleDTO> getJobsPageable(Integer page, Integer linesPerPage, String orderBy,
-                                     String direction, String description) {
+                                     String direction, String description, String title) {
         PageRequest pageRequest = PageRequest.of(page, linesPerPage,
                 Sort.Direction.valueOf(direction), orderBy);
-        return jobRepository.findByDescriptionContaining(description, pageRequest).
+        return jobRepository.findDistinctByTitleIgnoreCaseContainingAndDescriptionContainingIgnoreCase(
+                title, description, pageRequest).
                 map(this::convertJobToSimpleJob);
     }
 
@@ -85,5 +86,15 @@ public class JobService {
     public JobSimpleDTO getSimpleJob(Long id) {
         Job job = getJob(id);
         return convertJobToSimpleJob(job);
+    }
+
+    public Job unregisterToJob(Long jobId, Long userId) {
+        User userFound = userService.getUser(userId);
+        Job jobFound = getJob(jobId);
+        userFound.getJobs().remove(jobFound);
+        jobFound.getUsers().remove(userFound);
+        userService.updateUser(userId, userFound);
+        updateJob(jobId, jobFound);
+        return jobFound;
     }
 }
