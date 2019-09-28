@@ -48,10 +48,6 @@ export class ProfileComponent implements OnInit {
 
         this.spinnerService.show();
 
-
-
-
-
         this.profileService.read(this.currentId).subscribe(
             (profile: Profile) => {
                 this.profile = profile;
