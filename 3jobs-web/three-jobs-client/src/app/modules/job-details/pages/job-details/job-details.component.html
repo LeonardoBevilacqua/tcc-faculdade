@@ -18,7 +18,7 @@
                                         <div class="col-auto col-md-auto align-items-baseline ">
                                             <button type="button" (click)="apply()"
                                                 class="btn btn-primary">Candidatar-se</button>
-                                        </div>                                        
+                                        </div>
                                     </div>
                                     <hr class="pt-0 mt-0">
                                     <h4 class="text-primary">{{job.title}}</h4>
@@ -93,14 +93,14 @@
                                 <div>
                                     <h4>Vagas similares</h4>
                                     <div class="list-group list-group-flush">
-                                        <a href="#" class="list-group-item list-group-item-action">Analista de
-                                            Sistema</a>
-                                        <a href="#" class="list-group-item list-group-item-action">Técnico de
-                                            Suporte</a>
-                                        <a href="#" class="list-group-item list-group-item-action">Analista de
-                                            Requisitos</a>
-                                        <a href="#" class="list-group-item list-group-item-action ">Desenvolvedor</a>
-                                        <a href="#" class="list-group-item list-group-item-action "></a>
+                                        <ul class="list-group list-group-flush">
+                                            <ng-container *ngFor="let jobMatch of jobMatch">
+                                                <li class="list-group-item p-0" *ngIf="jobMatch.id != currentId"><a
+                                                        href="/job-details/{{jobMatch.id}}"
+                                                        class="list-group-item list-group-item-action">{{jobMatch.title}}</a>
+                                                </li>
+                                            </ng-container>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>

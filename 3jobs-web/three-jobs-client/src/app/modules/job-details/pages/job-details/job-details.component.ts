@@ -10,14 +10,16 @@ import { Company } from 'src/app/shared/models/company';
 import { Address } from 'src/app/shared/models/address';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { User } from 'src/app/shared/models/user';
+import { tap, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 
 @Component({ selector: 'app-job-details', templateUrl: './job-details.component.html' })
 export class JobDetailsComponent implements OnInit {
 
-    isLoggedUserProfile: boolean;
-
+  
     job: Job;
+    jobMatch: Array<Job>;
     user: User;
     currentId: number;
 
@@ -32,25 +34,30 @@ export class JobDetailsComponent implements OnInit {
         this.job = new Job();
         this.job.company = new Company;
         this.job.company.address = new Address;
-       
-    }
+        this.jobMatch = [new Job]
 
+    }
 
     ngOnInit() {
         // set the page title
-        this.titleService.setTitle(`3Jobs | Vagas`);    
+        this.titleService.setTitle(`3Jobs | Vagas`);
 
         this.spinnerService.show();
 
-        this.isLoggedUserProfile = true;
-
-        // get the current path id if exists
+         // get the current path id if exists
         this.currentId = +this.router.url.split('/')[2];
 
         this.jobService.read(this.currentId).subscribe(
             (job: Job) => {
                 console.log(job)
                 this.job = job;
+                this.jobService.search(this.job.description, 0, 4).subscribe(
+                    ((res: any) => {
+                        this.jobMatch = res.content
+                        console.log(this.jobMatch)
+                    }
+                    )
+                );
                 this.spinnerService.hide();
             },
             (error: HttpErrorResponse) => {
@@ -69,7 +76,6 @@ export class JobDetailsComponent implements OnInit {
             }
         );
     }
-
     apply() {
         this.spinnerService.show();
 
@@ -85,15 +91,11 @@ export class JobDetailsComponent implements OnInit {
                 if (error.status === 403) {
                     this.toast.warning('Por gentileza, logar no sistema para se candidatar-se');
                 }
-               
+
                 else {
                     this.toast.error('Ocorreu um erro inesperado, por favor aguarde!');
                 }
-              
             }
-
-            
         );
     }
-
 }
