@@ -21,6 +21,7 @@ public class Profile {
     private Date dateOfBirth;
     private String maritalStatus;
     private String nationality;
+    private String email;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -164,8 +165,18 @@ public class Profile {
     public void setAddress(Address address) {
         this.address = address;
     }
+    
+    
 
-    @Override
+    public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	@Override
     public String toString() {
         return "Profile{" +
                 "id=" + id +
@@ -182,6 +193,7 @@ public class Profile {
                 ", rates=" + rates +
                 ", user=" + user +
                 ", tags=" + tags +
+                ", email=" + email +
                 '}';
     }
 }
