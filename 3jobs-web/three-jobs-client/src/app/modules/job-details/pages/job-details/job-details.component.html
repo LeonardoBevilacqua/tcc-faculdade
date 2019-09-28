@@ -6,7 +6,7 @@
                 <div class="container">
                     <div class="row justify-content-between d-flex">
                         <div class="col-lg-8 justify-content-center">
-                            <div class="d-flex flex-row">
+                            <div>
                                 <div>
                                     <div class="row justify-content-between">
                                         <div class="col-auto col-md-auto align-items-baseline">
@@ -16,8 +16,9 @@
                                             </a>
                                         </div>
                                         <div class="col-auto col-md-auto align-items-baseline ">
-                                            <button type="button" (click)="apply()" class="btn btn-primary">Candidatar-se</button>
-                                        </div>
+                                            <button type="button" (click)="apply()"
+                                                class="btn btn-primary">Candidatar-se</button>
+                                        </div>                                        
                                     </div>
                                     <hr class="pt-0 mt-0">
                                     <h4 class="text-primary">{{job.title}}</h4>
@@ -27,7 +28,7 @@
                                         <div class="col-auto col-md-auto pr-0">
                                             <div>
                                                 <p class="font-weight-bold "><span class="title-icon text-success"><i
-                                                            class="fa fa-usd fa-lg mr-1"></i></span>Salário a combinar
+                                                            class="fa fa-usd fa-lg mr-1"></i></span>{{job.salaryValue}}
                                                 </p>
                                             </div>
                                         </div>
@@ -41,7 +42,8 @@
                                         <div class="col-auto col-md-auto pr-0">
                                             <div>
                                                 <p class="font-weight-bold"><span class="title-icon text-warning"><i
-                                                            class="fa fa-address-card fa-lg mr-1"></i></span>{{job.jobRole}}</p>
+                                                            class="fa fa-address-card fa-lg mr-1"></i></span>{{job.jobRole}}
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="col-auto col-md-auto pr-0">
@@ -80,7 +82,7 @@
                                 <ul>
                                     <li>
                                         <span>{{job.benefit}}</span>
-                                    </li>                                   
+                                    </li>
                                 </ul>
                             </div>
                             <hr class="my-5">
