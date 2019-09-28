@@ -1,9 +1,12 @@
 package com.core.service;
 
+import com.core.dto.UserToDoDTO;
 import com.core.exception.EntityNotFoundException;
 import com.core.exception.UserUnauthorizedException;
 import com.core.model.Role;
+import com.core.model.ToDo;
 import com.core.model.User;
+import com.core.respository.TodoRepository;
 import com.core.respository.UserRepository;
 import com.core.security.UserSecurity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private TodoRepository todoRepository;
 
     public List<User> getUsers() {
         return userRepository.findAll();
@@ -58,5 +64,27 @@ public class UserService {
 
     public User getUserByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    public UserToDoDTO getUserTodos(Long id) {
+        return buildUserToDos(getUser(id));
+    }
+
+    public List<ToDo> addUserTodo(Long id, ToDo todo) {
+        User user = getUser(id);
+        user.getToDos().add(todo);
+        todoRepository.save(todo);
+        saveUser(user);
+        return user.getToDos();
+    }
+
+    public List<ToDo> deleteUserTodo(Long id, Long todoId) {
+        todoRepository.deleteById(todoId);
+        User user = getUser(id);
+        return user.getToDos();
+    }
+
+    public UserToDoDTO buildUserToDos(User user) {
+        return new UserToDoDTO(user.getToDos());
     }
 }
