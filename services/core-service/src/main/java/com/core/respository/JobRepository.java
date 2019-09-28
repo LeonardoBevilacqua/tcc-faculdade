@@ -7,5 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface JobRepository extends JpaRepository<Job, Long> {
 
-    Page<Job> findByDescriptionContaining(String description, Pageable pageable);
+    Page<Job> findDistinctByTitleIgnoreCaseContainingAndDescriptionContainingIgnoreCase(
+            String title, String description, Pageable pageable);
 }

@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Profile } from 'src/app/shared/models/profile';
-import { MaintainForm } from 'src/app/shared/form/maintain-form';
-import { ProfileService } from 'src/app/core/services/profile.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-import { Skill } from 'src/app/shared/models/skill';
+import { ToastrService } from 'ngx-toastr';
+import { ProfileService } from 'src/app/core/services/profile.service';
+import { MaintainForm } from 'src/app/shared/form/maintain-form';
+import { Profile } from 'src/app/shared/models/profile';
+import { isNullOrUndefined } from 'util';
 
 @Component({ selector: 'abilities', templateUrl: './abilities.component.html', })
 export class AbilitiesComponent extends MaintainForm<Profile> implements OnInit {
@@ -24,21 +24,18 @@ export class AbilitiesComponent extends MaintainForm<Profile> implements OnInit 
      * Flag if the data is being edited.
      */
     isFormEdition: boolean;
-
+    // TODO
     descriptionSkill: string;
-
-    /**
-     * 
-     * @param profileService 
-     * @param router 
-     * @param toastr 
-     * @param spinnerService 
-     */
+    // TODO
     constructor(profileService: ProfileService, router: Router, toastr: ToastrService, spinnerService: Ng4LoadingSpinnerService) {
-        super(profileService, router, toastr, spinnerService)
+        super(profileService, router, toastr, spinnerService);
     }
 
     ngOnInit() {
+        if (isNullOrUndefined(this.profile)) {
+            this.profile = new Profile();
+            this.profile.skills = [];
+        }
         this.isFormEdition = false;
         this.isEdition = true;
 
@@ -46,7 +43,7 @@ export class AbilitiesComponent extends MaintainForm<Profile> implements OnInit 
     }
 
     public addSkill() {
-        //this.profile.skills.push({description: this.descriptionSkill, id: this.profile.skills.length+1});
+        // this.profile.skills.push({description: this.descriptionSkill, id: this.profile.skills.length+1});
         this.descriptionSkill = '';
     }
 

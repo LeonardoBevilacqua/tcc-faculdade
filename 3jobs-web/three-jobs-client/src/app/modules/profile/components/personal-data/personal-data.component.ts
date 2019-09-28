@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/core/services/user.service';
 import { MaintainForm } from 'src/app/shared/form/maintain-form';
 import { User } from 'src/app/shared/models/user';
+import { isNullOrUndefined } from 'util';
+import { Profile } from 'src/app/shared/models/profile';
 
 @Component({ selector: 'personal-data', templateUrl: './personal-data.component.html' })
 export class PersonalDataComponent extends MaintainForm<User> implements OnInit {
@@ -41,6 +43,11 @@ export class PersonalDataComponent extends MaintainForm<User> implements OnInit 
     }
 
     ngOnInit() {
+        if (isNullOrUndefined(this.user)) {
+            this.user = new User();
+            this.user.profile = new Profile();
+        }
+
         this.isFormEdition = false;
         this.isEdition = true;
 
