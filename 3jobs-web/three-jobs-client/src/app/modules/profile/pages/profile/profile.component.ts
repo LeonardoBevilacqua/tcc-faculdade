@@ -1,11 +1,11 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { UserService } from 'src/app/core/services/user.service';
-import { User } from 'src/app/shared/models/user';
-import { HttpErrorResponse } from '@angular/common/http';
+import { ProfileService } from 'src/app/core/services/profile.service';
+import { Profile } from 'src/app/shared/models/profile';
 
 @Component({ selector: 'app-profile', templateUrl: './profile.component.html', styleUrls: ['./profile.component.scss'] })
 export class ProfileComponent implements OnInit {
@@ -15,17 +15,31 @@ export class ProfileComponent implements OnInit {
      */
     isLoggedUserProfile: boolean;
 
+    currentId: number;
+
     /**
-     * The user model.
+     * The profile mode.
      */
-    user: User;
+    profile: Profile;
+
     constructor(
         private titleService: Title,
-        private userService: UserService,
+        private profileService: ProfileService,
         private router: Router,
         private toast: ToastrService,
         private spinnerService: Ng4LoadingSpinnerService) {
-        this.user = new User();
+        // get the current path id if exists
+        this.currentId = +this.router.url.split('/')[2];
+
+        if (isNaN(this.currentId)) {
+            // set the user
+            this.currentId = JSON.parse(localStorage.getItem('user')).user.profileId;
+            this.isLoggedUserProfile = true;
+        }
+        else {
+            const localStorageProfileId: number = JSON.parse(localStorage.getItem('user')).user.profileId;
+            this.isLoggedUserProfile = this.currentId === localStorageProfileId;
+        }
     }
 
     ngOnInit() {
@@ -34,16 +48,13 @@ export class ProfileComponent implements OnInit {
 
         this.spinnerService.show();
 
-        this.isLoggedUserProfile = true;
 
-        // get the current path id if exists
-        const currentId = +this.router.url.split('/')[2];
 
-        this.userService.read(currentId).subscribe(
-            (user: User) => {
-                this.user = user;
-                // TODO: REMOVE THIS
-                this.user.roles = [];
+
+
+        this.profileService.read(this.currentId).subscribe(
+            (profile: Profile) => {
+                this.profile = profile;
 
                 this.spinnerService.hide();
             },
@@ -62,6 +73,6 @@ export class ProfileComponent implements OnInit {
                 this.router.navigateByUrl('/');
             }
         );
-    }
 
+    }
 }

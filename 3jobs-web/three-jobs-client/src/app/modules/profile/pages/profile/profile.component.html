@@ -2,7 +2,7 @@
 <div class="d-flex flex-column vh-100">
     <!-- Profile section -->
     <section class="content py-4 container-fluid mb-auto">
-        <div *ngIf="user && user.profile">
+        <div *ngIf="profile; else noData">
             <!-- User header -->
             <div class="p-3 d-flex align-items-center bg-default text-white">
                 <!-- User picture -->
@@ -13,10 +13,10 @@
                 <!-- User details -->
                 <div class="pl-5">
                     <div class="d-inline-flex flex-column">
-                        <h2>{{user.profile.name}} {{user.profile.lastName}}</h2>
-                        <span><strong>E-mail: </strong>{{user.email}}</span>
-                        <span><strong>Telefone: </strong>{{user.profile.phone}}</span>
-                        <span><strong>Celular: </strong>{{user.profile.cellphone}}</span>
+                        <h2>{{profile.name}} {{profile.lastName}}</h2>
+                        <span><strong>E-mail: </strong>{{profile.email}}</span>
+                        <span><strong>Telefone: </strong>{{profile.phone}}</span>
+                        <span><strong>Celular: </strong>{{profile.cellphone}}</span>
                     </div>
                 </div>
             </div>
@@ -31,6 +31,12 @@
                 <experience [isLoggedUserProfile]="isLoggedUserProfile"></experience> -->
             </div>
         </div>
+
+        <ng-template #noData>
+            <div class="alert alert-danger text-center" role="alert">
+                Sem informações de perfil para serem exibidas!
+            </div>
+        </ng-template>
     </section>
     <app-footer></app-footer>
 </div>
