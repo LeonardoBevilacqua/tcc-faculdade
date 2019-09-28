@@ -2,7 +2,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ProfileService } from 'src/app/core/services/profile.service';
 import { Profile } from 'src/app/shared/models/profile';
@@ -26,8 +25,7 @@ export class ProfileComponent implements OnInit {
         private titleService: Title,
         private profileService: ProfileService,
         private router: Router,
-        private toast: ToastrService,
-        private spinnerService: Ng4LoadingSpinnerService) {
+        private toast: ToastrService) {
         // get the current path id if exists
         this.currentId = +this.router.url.split('/')[2];
 
@@ -46,17 +44,11 @@ export class ProfileComponent implements OnInit {
         // set the page title
         this.titleService.setTitle(`3Jobs | Perfil`);
 
-        this.spinnerService.show();
-
         this.profileService.read(this.currentId).subscribe(
             (profile: Profile) => {
                 this.profile = profile;
-
-                this.spinnerService.hide();
             },
             (error: HttpErrorResponse) => {
-                this.spinnerService.hide();
-
                 if (error.status === 404) {
                     this.toast.error('O usuário que está tentando buscar não existe!');
                 }
