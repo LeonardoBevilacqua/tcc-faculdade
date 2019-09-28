@@ -44,5 +44,10 @@ public class JobController {
         return ResponseEntity.ok(jobService.updateJob(id, job));
     }
 
+    @PutMapping("/{jobId}/register/{userId}")
+    public ResponseEntity<?> registerToJob(@PathVariable Long jobId, @PathVariable Long userId) {
+        return ResponseEntity.ok(jobService.registerToJob(jobId, userId));
+    }
+
 
 }
