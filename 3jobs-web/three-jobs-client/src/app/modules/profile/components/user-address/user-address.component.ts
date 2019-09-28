@@ -2,15 +2,14 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { UserService } from 'src/app/core/services/user.service';
+import { ProfileService } from 'src/app/core/services/profile.service';
 import { MaintainForm } from 'src/app/shared/form/maintain-form';
-import { User } from 'src/app/shared/models/user';
 import { Address } from 'src/app/shared/models/address';
-import { isNullOrUndefined } from 'util';
 import { Profile } from 'src/app/shared/models/profile';
+import { isNullOrUndefined } from 'util';
 
 @Component({ selector: 'user-address', templateUrl: './user-address.component.html' })
-export class UserAddressComponent extends MaintainForm<User> implements OnInit {
+export class UserAddressComponent extends MaintainForm<Profile> implements OnInit {
 
     /**
      * Flag if is the profile of the logged user.
@@ -18,34 +17,33 @@ export class UserAddressComponent extends MaintainForm<User> implements OnInit {
     @Input() isLoggedUserProfile: boolean;
 
     /**
-     * The user.
+     * The profile model.
      */
-    @Input() user: User;
+    @Input() profile: Profile;
 
     /**
      * Flag if the data is being edited.
      */
     isFormEdition: boolean;
 
-    constructor(userService: UserService, router: Router, toastr: ToastrService, spinnerService: Ng4LoadingSpinnerService) {
-        super(userService, router, toastr, spinnerService);
+    constructor(profileService: ProfileService, router: Router, toastr: ToastrService, spinnerService: Ng4LoadingSpinnerService) {
+        super(profileService, router, toastr, spinnerService);
     }
 
     ngOnInit() {
-        if (isNullOrUndefined(this.user)) {
-            this.user = new User();
-            this.user.profile = new Profile();
+        if (isNullOrUndefined(this.profile)) {
+            this.profile = new Profile();
         }
 
         this.isFormEdition = false;
         this.isEdition = true;
 
-        this.model = this.user;
+        this.model = this.profile;
 
-        if (!this.model.profile.address) {
-            this.model.profile.address = new Address();
+        if (!this.model.address) {
+            this.model.address = new Address();
         }
 
-        this.getCurrentId();
+        this.currentId = this.profile.id;
     }
 }
