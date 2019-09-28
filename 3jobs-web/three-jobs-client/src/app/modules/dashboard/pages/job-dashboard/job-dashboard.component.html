@@ -1,67 +1,19 @@
 <app-header [isLogged]="true"></app-header>
 <div class="d-flex flex-column vh-100 bg-light" style="overflow-x: hidden;">
-    <section class="content pt-4 container-fluid mb-auto">
+    <section class="content pt-4 container-fluid mb-5 pb-5">
         <div class="row">
             <div class="col-md-4  mb-3">
-                <div class="card shadow">
-                    <div class="d-flex flex-column justify-content-center align-items-center"
-                        style="height: 220px;position: relative; background: linear-gradient(to right, #1e5799 0%,  #3ccdbb 0%, #16c9f6 100%);">
-                        <button type="button" class="btn btn-primary btn-sm"
-                            style="position: absolute; right: 5px;top: 5px">Ver Mais</button>
-                        <div class="bg-success rounded-circle" style="width: 120px;height: 120px;"></div>
-                        <strong>Marcelo Rodrigues</strong>
-                    </div>
-                    <div class="card-body p-0">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Rank</th>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col" style="width: 100px"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Mark</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-sm">Ver Mais</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Thornton</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-sm">Ver Mais</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Jacob</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-sm">Ver Mais</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Thornton</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-sm">Ver Mais</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
+                <app-card-ranking [ranking]="ranking"></app-card-ranking>
             </div>
             <div class="col-md-8 mb-3">
                 <div class="row">
                     <div class="col-sm-6">
-                        <app-card-dashboard [titulo]="'Quantidade'" [subtitulo]="'candidato'" [valor]="0"></app-card-dashboard>
+                        <app-card-dashboard [titulo]="'Quantidade'" [subtitulo]="'candidato'" [valor]="0">
+                        </app-card-dashboard>
                     </div>
                     <div class="col-sm-6">
-                        <app-card-dashboard [titulo]="'Quantidade'" [subtitulo]="'Avaliado'" [valor]="0"></app-card-dashboard>
+                        <app-card-dashboard [titulo]="'Quantidade'" [subtitulo]="'Avaliado'" [valor]="0">
+                        </app-card-dashboard>
                     </div>
                 </div>
                 <div class="row">
@@ -73,7 +25,6 @@
         </div>
         <div class="row">
             <div class="col-12">
-
                 <table class="table table-bordered shadow  bg-white">
                     <thead>
                         <tr>
@@ -91,30 +42,7 @@
                             <td class="d-none d-sm-table-cell">10</td>
                             <td><span class="badge badge-success">Aprovado</span></td>
                             <td>
-                                <button type="button" class="btn btn-primary btn-sm">Ver Mais</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="col-12">
-                <table class="table table-bordered shadow  bg-white">
-                    <thead>
-                        <tr>
-                            <th scope="col">HeadHunter</th>
-                            <th scope="col">E-mail</th>
-                            <th scope="col" style="width: 110px">Avaliação</th>
-                            <th scope="col" style="width: 100px"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Mark</td>
-                            <td class="d-none d-sm-table-cell">metrocamp.team@gmail.com</td>
-                            <td class="d-none d-sm-table-cell">10</td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-sm">Ver Mais</button>
+                                <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
                             </td>
                         </tr>
                     </tbody>

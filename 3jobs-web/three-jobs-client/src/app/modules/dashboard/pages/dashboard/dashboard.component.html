@@ -1,6 +1,6 @@
 <app-header [isLogged]="true"></app-header>
 <div class="d-flex flex-column vh-100 bg-light">
-    <section class="content pt-4 container-fluid mb-auto">
+    <section class="content pt-4 container-fluid mb-5 pb-5">
         <div class="row">
             <div class="col-sm-6 col-md-3 mb-4">
                 <app-card-dashboard [titulo]="'Total'" [subtitulo]="'Processos'" [valor]="0"></app-card-dashboard>
@@ -26,7 +26,7 @@
                             <th scope="col">Vaga</th>
                             <th scope="col" style="width: 110px">Status</th>
                             <th scope="col" style="width: 140px">
-                                <button class="btn btn-success" data-toggle="modal"
+                                <button class="btn btn-success btn-sm" data-toggle="modal"
                                     data-target="#createVacancyModal">Cadastrar</button>
                             </th>
                         </tr>
@@ -36,13 +36,13 @@
                             <td>Mark</td>
                             <td><span class="badge badge-success">Aprovado</span></td>
                             <td>
-                                <button type="button" class="btn btn-primary btn-sm">
+                                <button type="button" class="btn btn-primary btn-sm" title="Editar Vaga">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                 </button>
-                                <button type="button" class="btn btn-success btn-sm mx-2">
+                                <button type="button" class="btn btn-success btn-sm mx-2" title="Ver Vaga">
                                     <i class="fa fa-share" aria-hidden="true"></i>
                                 </button>
-                                <button type="button" class="btn btn-dark btn-sm">
+                                <button type="button" class="btn btn-dark btn-sm"  title="Questionario">
                                     <i class="fa fa-file-text" aria-hidden="true"></i>
                                 </button>
                             </td>
@@ -55,20 +55,24 @@
                 <table class="table table-bordered shadow  bg-white">
                     <thead>
                         <tr>
-                            <th scope="col">HeadHunters</th>
-                            <th scope="col" class="d-none d-sm-table-cell">Avaliação</th>
-                            <th scope="col" style="width: 110px">Status</th>
-                            <th scope="col" style="width: 100px"></th>
+                            <th scope="col">Recrutador</th>
+                            <th scope="col" class="d-none d-sm-table-cell">E-mail</th>
+                            <th scope="col" style="width: 110px">
+                                <button class="btn btn-success btn-sm" data-toggle="modal"
+                                data-target="#createVacancyModal">Cadastrar</button>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Mark</td>
-                            <td class="d-none d-sm-table-cell">Mark</td>
-                            <td><span class="badge badge-success">Aprovado</span></td>
+                            <td>Marcelo</td>
+                            <td class="d-none d-sm-table-cell">capp59marcelo@hotmail.com</td>
                             <td>
-                                <button type="button" class="btn btn-primary btn-sm">
+                                <button type="button" class="btn btn-primary btn-sm" title="Editar Recrutador">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="btn btn-success btn-sm mx-2" title="Perfil Recrutador">
+                                    <i class="fa fa-share" aria-hidden="true"></i>
                                 </button>
                             </td>
                     </tbody>

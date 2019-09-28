@@ -9,6 +9,33 @@ import Chart from 'chart.js';
 export class JobDashboardComponent implements OnInit {
 
     BarChartCidades: any;
+    ranking: Array<Object> = [
+        {
+            rank: 1,
+            nome: "marcelo",
+            perfil: "caminhodoperfil"
+        },
+        {
+            rank: 2,
+            nome: "Leonardo",
+            perfil: "caminhodoperfil"
+        },
+        {
+            rank: 3,
+            nome: "Marcio",
+            perfil: "caminhodoperfil"
+        },
+        {
+            rank: 4,
+            nome: "Thiago",
+            perfil: "caminhodoperfil"
+        },
+        {
+            rank: 5,
+            nome: "Ronaldo",
+            perfil: "caminhodoperfil"
+        },
+    ];
 
     constructor() { }
 

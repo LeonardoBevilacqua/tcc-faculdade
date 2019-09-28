@@ -8,9 +8,10 @@ import { CreateVacancyModalComponent } from './components/create-vacancy-modal/c
 import { JobDashboardComponent } from './pages/job-dashboard/job-dashboard.component';
 import { CardDashboardComponent } from './components/card-dashboard/card-dashboard.component';
 import { ToDoListComponent } from './components/to-do-list/to-do-list.component';
+import { CardRankingComponent } from './components/card-ranking/card-ranking.component';
 
 @NgModule({
-  declarations: [DashboardComponent, CreateVacancyModalComponent, JobDashboardComponent, CardDashboardComponent, ToDoListComponent],
+  declarations: [DashboardComponent, CreateVacancyModalComponent, JobDashboardComponent, CardDashboardComponent, ToDoListComponent, CardRankingComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
