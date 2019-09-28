@@ -1,5 +1,6 @@
 package com.core.service;
 
+import com.core.dto.JobSimpleDTO;
 import com.core.exception.EntityNotFoundException;
 import com.core.model.Job;
 import com.core.model.User;
@@ -49,11 +50,26 @@ public class JobService {
         return jobRepository.save(jobFound);
     }
 
-    public Page<Job> getJobsPageable(Integer page, Integer linesPerPage, String orderBy,
+    public Page<JobSimpleDTO> getJobsPageable(Integer page, Integer linesPerPage, String orderBy,
                                      String direction, String description) {
         PageRequest pageRequest = PageRequest.of(page, linesPerPage,
                 Sort.Direction.valueOf(direction), orderBy);
-        return jobRepository.findByDescriptionContaining(description, pageRequest);
+        return jobRepository.findByDescriptionContaining(description, pageRequest).
+                map(this::convertJobToSimpleJob);
+    }
+
+    public JobSimpleDTO convertJobToSimpleJob(final Job job) {
+        return new JobSimpleDTO(
+                job.getId(),
+                job.getTitle(),
+                job.getDescription(),
+                job.getJobRole(),
+                job.getRequirement(),
+                job.getBenefit(),
+                job.getBeginDate(),
+                job.getEndDate(),
+                job.getSalaryValue(),
+                job.getTags());
     }
 
     public Job registerToJob(Long jobId, Long userId) {
@@ -64,5 +80,10 @@ public class JobService {
         userService.updateUser(userId, userFound);
         updateJob(jobId, jobFound);
         return jobFound;
+    }
+
+    public JobSimpleDTO getSimpleJob(Long id) {
+        Job job = getJob(id);
+        return convertJobToSimpleJob(job);
     }
 }

@@ -29,11 +29,11 @@ public class Job {
             joinColumns = @JoinColumn(name = "job_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<User> users;
 
     @ManyToOne
     @JoinColumn(name = "company_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Company company;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -43,6 +43,8 @@ public class Job {
             inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
     private List<Tag> tags;
+
+    private String status;
 
     public List<Tag> getTags() {
         return tags;
@@ -138,6 +140,14 @@ public class Job {
 
     public void setSalaryValue(Long salaryValue) {
         this.salaryValue = salaryValue;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override

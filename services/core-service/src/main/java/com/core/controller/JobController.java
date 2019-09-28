@@ -29,6 +29,11 @@ public class JobController {
         return ResponseEntity.ok(jobService.getJob(id));
     }
 
+    @GetMapping("/{id}/simple")
+    public ResponseEntity<?> getSimpleJob(@PathVariable Long id){
+        return ResponseEntity.ok(jobService.getSimpleJob(id));
+    }
+
     @PreAuthorize(
             "hasRole('ROLE_ADMIN') or " +
             "hasRole('ROLE_RECRUTER') or " +
@@ -48,6 +53,4 @@ public class JobController {
     public ResponseEntity<?> registerToJob(@PathVariable Long jobId, @PathVariable Long userId) {
         return ResponseEntity.ok(jobService.registerToJob(jobId, userId));
     }
-
-
 }
