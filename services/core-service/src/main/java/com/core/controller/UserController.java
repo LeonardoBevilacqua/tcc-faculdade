@@ -1,5 +1,6 @@
 package com.core.controller;
 
+import com.core.model.ToDo;
 import com.core.model.User;
 import com.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,20 @@ public class UserController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User user) {
         return ResponseEntity.ok(userService.updateUser(id, user));
+    }
+
+    @GetMapping("/{id}/todo")
+    public ResponseEntity<?> getUserTodos(@PathVariable Long id) {
+        return ResponseEntity.ok(userService.getUserTodos(id));
+    }
+
+    @PutMapping("/{id}/todo/add")
+    public ResponseEntity<?> addUserTodo(@PathVariable Long id, @RequestBody ToDo todo) {
+        return ResponseEntity.ok(userService.addUserTodo(id, todo));
+    }
+
+    @DeleteMapping("/{id}/todo/{todoId}/remove")
+    public ResponseEntity<?> deleteUserTodo(@PathVariable Long id, @PathVariable Long todoId) {
+        return ResponseEntity.ok(userService.deleteUserTodo(id, todoId));
     }
 }

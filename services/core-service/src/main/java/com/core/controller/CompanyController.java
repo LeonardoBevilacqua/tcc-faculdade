@@ -24,6 +24,11 @@ public class CompanyController {
         return ResponseEntity.ok(companyService.getCompany(id));
     }
 
+    @GetMapping("/{id}/simple")
+    public ResponseEntity<?> getSimpleCompany(@PathVariable Long id){
+        return ResponseEntity.ok(companyService.getSimpleCompany(id));
+    }
+
     @PreAuthorize(
             "hasRole('ROLE_ADMIN') or " +
             "hasRole('ROLE_RECRUTER') or " +
@@ -32,5 +37,10 @@ public class CompanyController {
     @PostMapping
     public ResponseEntity<?> saveCompany(@RequestBody Company company){
         return ResponseEntity.ok(companyService.saveCompany(company));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateCompany(@PathVariable Long id, @RequestBody Company company) {
+        return ResponseEntity.ok(companyService.updateCompany(id, company));
     }
 }

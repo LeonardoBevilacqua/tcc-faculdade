@@ -24,6 +24,7 @@ public class User {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Profile profile;
 
     @ManyToMany(mappedBy = "users")
@@ -33,6 +34,23 @@ public class User {
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "ROLES")
     private Set<Integer> roles = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id",referencedColumnName = "ID", nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private List<ToDo> toDos;
+
+    public void setRoles(Set<Integer> roles) {
+        this.roles = roles;
+    }
+
+    public List<ToDo> getToDos() {
+        return toDos;
+    }
+
+    public void setToDos(List<ToDo> toDos) {
+        this.toDos = toDos;
+    }
 
     public Profile getProfile() {
         return profile;
@@ -89,8 +107,6 @@ public class User {
                 ", cpf='" + cpf + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", profile=" + profile +
-                ", jobs=" + jobs +
                 ", roles=" + roles +
                 '}';
     }

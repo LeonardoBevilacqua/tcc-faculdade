@@ -21,6 +21,7 @@ public class Job {
     private String benefit;
     private Date beginDate;
     private Date endDate;
+    private Long salaryValue;
 
     @ManyToMany
     @JoinTable(
@@ -28,20 +29,22 @@ public class Job {
             joinColumns = @JoinColumn(name = "job_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<User> users;
 
     @ManyToOne
     @JoinColumn(name = "company_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Company company;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "jobs_tags",
             joinColumns = @JoinColumn(name = "job_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
     private List<Tag> tags;
+
+    private String status;
 
     public List<Tag> getTags() {
         return tags;
@@ -129,6 +132,22 @@ public class Job {
 
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    public Long getSalaryValue() {
+        return salaryValue;
+    }
+
+    public void setSalaryValue(Long salaryValue) {
+        this.salaryValue = salaryValue;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override
