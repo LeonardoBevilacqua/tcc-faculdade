@@ -1,0 +1,32 @@
+<div class="card shadow">
+    <div class="d-flex flex-column justify-content-center align-items-center"
+        style="height: 200px;position: relative; background: linear-gradient(to right, #1e5799 0%,  #3ccdbb 0%, #16c9f6 100%);">
+        <button type="button" class="btn btn-primary btn-sm" style="position: absolute; right: 5px;top: 5px">Ver
+            Perfil</button>
+        <div class="bg-success rounded-circle"
+            style="width: 120px;height: 120px; background: url('https://cdn.ome.lt/_1KF0rLSFPxVwCR-u5XA6Mc-k4E=/1200x630/smart/extras/conteudos/goku3.jpg') center no-repeat; background-size: cover;">
+            <img />
+        </div>
+        <strong>Marcelo Rodrigues</strong>
+    </div>
+    <div class="card-body p-0">
+        <table class="table mb-0">
+            <thead>
+                <tr>
+                    <th scope="col">Rank</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col" style="width: 100px"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of ranking; index as i;">
+                    <td>{{item.rank}}</td>
+                    <td>{{item.nome}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

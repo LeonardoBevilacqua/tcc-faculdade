@@ -1,0 +1,54 @@
+<app-header></app-header>
+<div class="d-flex flex-column vh-100 bg-light" style="overflow-x: hidden;">
+    <section class="content pt-4 container-fluid mb-5 pb-5">
+        <div class="row">
+            <div class="col-md-4  mb-3">
+                <app-card-ranking [ranking]="ranking"></app-card-ranking>
+            </div>
+            <div class="col-md-8 mb-3">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <app-card-dashboard [titulo]="'Quantidade'" [subtitulo]="'candidato'" [valor]="0">
+                        </app-card-dashboard>
+                    </div>
+                    <div class="col-sm-6">
+                        <app-card-dashboard [titulo]="'Quantidade'" [subtitulo]="'Avaliado'" [valor]="0">
+                        </app-card-dashboard>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <canvas id="barChartCidades" style="height: 440px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered shadow  bg-white">
+                    <thead>
+                        <tr>
+                            <th scope="col">Candidato</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col" class="d-none d-sm-table-cell" style="width: 150px">Avaliação</th>
+                            <th scope="col" style="width: 110px">Status</th>
+                            <th scope="col" style="width: 100px"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mark</td>
+                            <td class="d-none d-sm-table-cell">metrocamp.team@gmail.com</td>
+                            <td class="d-none d-sm-table-cell">10</td>
+                            <td><span class="badge badge-success">Aprovado</span></td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <app-footer></app-footer>
+</div>

@@ -1,92 +1,23 @@
 <app-header></app-header>
 <div class="d-flex flex-column vh-100 bg-light">
-    <section class="content pt-4 container-fluid mb-auto">
+    <section class="content pt-4 container-fluid mb-5 pb-5">
         <div class="row">
             <div class="col-sm-6 col-md-3 mb-4">
-                <div class="card shadow"
-                    style="background: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%) !important;">
-                    <div class="card-body text-white d-flex flex-column align-items-center p-2">
-                        <strong>Total de Processos</strong>
-                        <span>25</span>
-                    </div>
-                </div>
+                <app-card-dashboard [titulo]="'Total'" [subtitulo]="'Processos'" [valor]="0"></app-card-dashboard>
             </div>
             <div class="col-sm-6 col-md-3 mb-4">
-                <div class="card shadow"
-                    style="background: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%) !important;">
-                    <div class="card-body text-white d-flex flex-column align-items-center p-2">
-                        <strong>Total de Pendentes</strong>
-                        <span>25</span>
-                    </div>
-                </div>
+                <app-card-dashboard [titulo]="'Total'" [subtitulo]="'Pendente'" [valor]="0"></app-card-dashboard>
             </div>
             <div class="col-sm-6 col-md-3 mb-4">
-                <div class="card shadow"
-                    style="background: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%) !important;">
-                    <div class="card-body text-white d-flex flex-column align-items-center p-2">
-                        <strong>Processos Atrazados</strong>
-                        <span>25</span>
-                    </div>
-                </div>
+                <app-card-dashboard [titulo]="'Total'" [subtitulo]="'Atrasado'" [valor]="0"></app-card-dashboard>
             </div>
             <div class="col-sm-6 col-md-3 mb-4">
-                <div class="card shadow"
-                    style="background: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%) !important;">
-                    <div class="card-body text-white d-flex flex-column align-items-center p-2">
-                        <strong>Processos Finalizados</strong>
-                        <span>25</span>
-                    </div>
-                </div>
+                <app-card-dashboard [titulo]="'Total'" [subtitulo]="'Finalizado'" [valor]="0"></app-card-dashboard>
             </div>
         </div>
         <div class="row">
             <div class="col-md-4  mb-3">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h3>TO DO LIST</h3>
-
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Recipient's username"
-                                aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn btn-primary btn-sm" type="button" id="button-addon2">
-
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card" style="max-height: 245px; overflow: auto;">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item d-flex justify-content-between"><span>tesadasd</span> <i
-                                        class="fa fa-trash"></i></li>
-                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                <li class="list-group-item">Vestibulum at eros</li>
-                                <li class="list-group-item">Cras justo odio</li>
-                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                <li class="list-group-item">Vestibulum at eros</li>
-                                <li class="list-group-item">Cras justo odio</li>
-                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                <li class="list-group-item">Vestibulum at eros</li>
-                                <li class="list-group-item">Cras justo odio</li>
-                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                <li class="list-group-item">Vestibulum at eros</li>
-                                <li class="list-group-item">Cras justo odio</li>
-                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                <li class="list-group-item">Vestibulum at eros</li>
-                                <li class="list-group-item">Cras justo odio</li>
-                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                <li class="list-group-item">Vestibulum at eros</li>
-                                <li class="list-group-item">Cras justo odio</li>
-                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                <li class="list-group-item">Vestibulum at eros</li>
-                                <li class="list-group-item">Cras justo odio</li>
-                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                <li class="list-group-item">Vestibulum at eros</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
+                <app-to-do-list></app-to-do-list>
             </div>
             <div class="col-md-8 mb-3">
                 <table class="table table-bordered shadow bg-white">
@@ -94,8 +25,9 @@
                         <tr>
                             <th scope="col">Vaga</th>
                             <th scope="col" style="width: 110px">Status</th>
-                            <th scope="col" style="width: 100px">
-                                <button class="btn btn-success" data-toggle="modal" data-target="#createVacancyModal">Cadastrar</button>
+                            <th scope="col" style="width: 140px">
+                                <button class="btn btn-success btn-sm" data-toggle="modal"
+                                    data-target="#createVacancyModal">Cadastrar</button>
                             </th>
                         </tr>
                     </thead>
@@ -104,303 +36,45 @@
                             <td>Mark</td>
                             <td><span class="badge badge-success">Aprovado</span></td>
                             <td>
-                                <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
+                                <button type="button" class="btn btn-primary btn-sm" title="Editar Vaga">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="btn btn-success btn-sm mx-2" title="Ver Vaga">
+                                    <i class="fa fa-share" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="btn btn-dark btn-sm"  title="Questionario">
+                                    <i class="fa fa-file-text" aria-hidden="true"></i>
+                                </button>
                             </td>
-                        </tr>
-                        <tr>
-                            <td>Mark</td>
-                            <td><span class="badge badge-success">Aprovado</span></td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Jacob</td>
-                            <td><span class="badge badge-success">Aprovado</span></td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Jacob</td>
-                            <td><span class="badge badge-success">Aprovado</span></td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Mark</td>
-                            <td><span class="badge badge-success">Aprovado</span></td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Mark</td>
-                            <td><span class="badge badge-success">Aprovado</span></td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Mark</td>
-                            <td><span class="badge badge-success">Aprovado</span></td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="row">
+        <div class="row" *ngIf="shouldDisplayRecrutersTable()">
             <div class="col-12">
-                <table class="table table-bordered shadow  bg-white">
+                <table class="table table-bordered shadow bg-white">
                     <thead>
                         <tr>
-                            <th scope="col">HeadHunters</th>
-                            <th scope="col" class="d-none d-sm-table-cell">Avaliação</th>
-                            <th scope="col" style="width: 110px">Status</th>
-                            <th scope="col" style="width: 100px"></th>
+                            <th scope="col">Recrutador</th>
+                            <th scope="col" class="d-none d-sm-table-cell">E-mail</th>
+                            <th scope="col" style="width: 110px">
+                                <button class="btn btn-success btn-sm" data-toggle="modal"
+                                data-target="#createVacancyModal">Cadastrar</button>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Mark</td>
-                            <td class="d-none d-sm-table-cell">Mark</td>
-                            <td><span class="badge badge-success">Aprovado</span></td>
+                            <td>Marcelo</td>
+                            <td class="d-none d-sm-table-cell">capp59marcelo@hotmail.com</td>
                             <td>
-                                <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
+                                <button type="button" class="btn btn-primary btn-sm" title="Editar Recrutador">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="btn btn-success btn-sm mx-2" title="Perfil Recrutador">
+                                    <i class="fa fa-share" aria-hidden="true"></i>
+                                </button>
                             </td>
-                        </tr>
-                        <tr>
-                            <td>Mark</td>
-                            <td class="d-none d-sm-table-cell">Mark</td>
-                            <td><span class="badge badge-secondary">Pendente</span></td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Mark</td>
-                            <td class="d-none d-sm-table-cell">Mark</td>
-                            <td><span class="badge badge-success">Aprovado</span></td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Mark</td>
-                            <td class="d-none d-sm-table-cell">Mark</td>
-                            <td><span class="badge badge-primary">Aprovado</span></td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Mark</td>
-                            <td class="d-none d-sm-table-cell">Mark</td>
-                            <td><span class="badge badge-primary">Aprovado</span></td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Mark</td>
-                            <td class="d-none d-sm-table-cell">Mark</td>
-                            <td><span class="badge badge-primary">Aprovado</span></td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Mark</td>
-                            <td class="d-none d-sm-table-cell">Mark</td>
-                            <td><span class="badge badge-primary">Aprovado</span></td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
-            </div>
-        </div>
-        <form>
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Select de exemplo</label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </div>
-        </form>
-        <div class="row">
-            <div class="col-md-4  mb-3">
-                <div class="card shadow">
-                    <div class="d-flex flex-column justify-content-center align-items-center"
-                        style="height: 220px;position: relative; background: linear-gradient(to right, #1e5799 0%,  #3ccdbb 0%, #16c9f6 100%);">
-                        <button type="button" class="btn btn-primary btn-sm"
-                            style="position: absolute; right: 5px;top: 5px">Ver Mais</button>
-                        <div class="bg-success rounded-circle" style="width: 120px;height: 120px;"></div>
-                        <strong>Marcelo Rodrigues</strong>
-                    </div>
-                    <div class="card-body p-0">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Rank</th>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col" style="width: 100px"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Mark</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-sm">Ver Mais</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Thornton</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-sm">Ver Mais</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Jacob</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-sm">Ver Mais</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Thornton</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-sm">Ver Mais</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-md-8 mb-3">
-                <div class="row">
-                    <div class="col-sm-6 col-md-4 mb-4">
-                        <div class="card shadow"
-                            style="background: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%) !important;">
-                            <div class="card-body text-white d-flex flex-column align-items-center p-2">
-                                <strong>Total de Pendentes</strong>
-                                <span>25</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 mb-4">
-                        <div class="card shadow"
-                            style="background: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%) !important;">
-                            <div class="card-body text-white d-flex flex-column align-items-center p-2">
-                                <strong>Processos Atrazados</strong>
-                                <span>25</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 mb-4">
-                        <div class="card shadow "
-                            style="background: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%) !important;">
-                            <div class="card-body text-white d-flex flex-column align-items-center p-2">
-                                <strong>Processos Finalizados</strong>
-                                <span>25</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <canvas id="doughnutChart" style="height: 250px;"></canvas>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <canvas id="pieChart" style="height: 250px;"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-
-                <table class="table table-bordered shadow  bg-white">
-                    <thead>
-                        <tr>
-                            <th scope="col">Candidato</th>
-                            <th scope="col" class="d-none d-sm-table-cell" style="width: 150px">Avaliação</th>
-                            <th scope="col" style="width: 110px">Status</th>
-                            <th scope="col" style="width: 100px"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Mark</td>
-                            <td class="d-none d-sm-table-cell">Mark</td>
-                            <td><span class="badge badge-success">Aprovado</span></td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-sm">Ver Mais</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Mark</td>
-                            <td class="d-none d-sm-table-cell">Jacob</td>
-                            <td><span class="badge badge-secondary">Pendente</span></td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-sm">Ver Mais</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Mark</td>
-                            <td class="d-none d-sm-table-cell">Jacob</td>
-                            <td><span class="badge badge-success">Aprovado</span></td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-sm">Ver Mais</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Mark</td>
-                            <td class="d-none d-sm-table-cell">Jacob</td>
-                            <td><span class="badge badge-primary">Aprovado</span></td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-sm">Ver Mais</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Mark</td>
-                            <td class="d-none d-sm-table-cell">Jacob</td>
-                            <td><span class="badge badge-primary">Aprovado</span></td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-sm">Ver Mais</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Mark</td>
-                            <td class="d-none d-sm-table-cell">Jacob</td>
-                            <td><span class="badge badge-primary">Aprovado</span></td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-sm">Ver Mais</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Mark</td>
-                            <td class="d-none d-sm-table-cell">Jacob</td>
-                            <td><span class="badge badge-primary">Aprovado</span></td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-sm">Ver Mais</button>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>

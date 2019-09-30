@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { User } from 'src/app/shared/models/user';
 
 import { EntityService } from './entity.service';
+import { Role } from 'src/app/shared/models/enums/role.enum';
 
 @Injectable()
 export class AuthService extends EntityService<User>{
@@ -53,8 +54,9 @@ export class AuthService extends EntityService<User>{
     }
 
     public getUserRole() {
-        const user: User = JSON.parse(localStorage.getItem('user'));
+        const localStorageUser = JSON.parse(localStorage.getItem('user'));
+        const user: User = localStorageUser ? localStorageUser.user : new User();
 
-        return user != null && user.roles != null ? user.roles : null;
+        return user.roles[0];
     }
 }
