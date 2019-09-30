@@ -9,6 +9,7 @@ import { ProfileService } from './services/profile.service';
 import { TestesService } from './services/testes.service';
 import { UserService } from './services/user.service';
 import { AuthGuard } from './mechanism/auth.guard';
+import { LoggedInGuard } from './mechanism/logged-in.guard';
 
 
 @NgModule({
@@ -18,13 +19,14 @@ import { AuthGuard } from './mechanism/auth.guard';
         HttpClientModule
     ],
     providers: [
-        TestesService, 
-        ProfileService, 
-        UserService, 
+        TestesService,
+        ProfileService,
+        UserService,
         AuthService,
         JobService,
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         AuthGuard,
+        LoggedInGuard,
     ],
 })
 export class CoreModule { }

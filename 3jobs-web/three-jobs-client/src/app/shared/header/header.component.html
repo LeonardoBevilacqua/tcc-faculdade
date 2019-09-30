@@ -10,7 +10,7 @@
 
     <!-- navbar options -->
     <div class="collapse navbar-collapse mt-2 mt-md-0" id="navbar-options">
-        <div *ngIf="isLogged; else navigation" class="container-fluid px-0">
+        <div class="container-fluid px-0">
             <div class="row">
                 <!-- the search bar -->
                 <div class="col-10 col-md-8">
@@ -33,26 +33,14 @@
                         <button class="btn btn-outline-light" type="button">
                             <span class="fa fa-cogs"></span>
                         </button>
+                        <!-- logout button -->
+                        <button class="btn btn-outline-light ml-2" type="button" (click)="logout()">
+                            Sair
+                            <span class="fa fa-sign-out"></span>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-
-        <ng-template #navigation>
-            <ul class="navbar-nav ml-auto text-uppercase font-weight-bold">
-                <li class="navbar-item" data-target="#homeCarousel" data-slide-to="0">
-                    <a class="nav-link cursor-pointer" (click)="setCurrentSection('home')"
-                        [ngClass]="{'active': currentSection === 'home'}">Início</a>
-                </li>
-                <li class="navbar-item" data-target="#homeCarousel" data-slide-to="1">
-                    <a class="nav-link cursor-pointer" (click)="setCurrentSection('about')"
-                        [ngClass]="{'active': currentSection === 'about'}">Sobre nós</a>
-                </li>
-                <li class="navbar-item" data-target="#homeCarousel" data-slide-to="2">
-                    <a class="nav-link cursor-pointer" (click)="setCurrentSection('feedback')"
-                        [ngClass]="{'active': currentSection === 'feedback'}">Deixe sua opinião</a>
-                </li>
-            </ul>
-        </ng-template>
     </div>
 </nav>

@@ -1,5 +1,7 @@
 package com.core.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -15,9 +17,11 @@ public class Tag {
     private String type;
 
     @ManyToMany(mappedBy = "tags")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Job> jobs;
 
     @ManyToMany(mappedBy = "tags")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Profile> profiles;
 
     public Long getId() {

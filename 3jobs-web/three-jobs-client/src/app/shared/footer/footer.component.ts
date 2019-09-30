@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 /**
  * Component responsible to display and handle the footer of the page.
@@ -9,10 +10,11 @@ export class FooterComponent implements OnInit {
     /**
      * Flag if the user is logged
      */
-    @Input() isLogged: boolean;
-    constructor() { }
+    isLogged: boolean;
+    constructor(private authService: AuthService) { }
 
     ngOnInit() {
+        this.isLogged = this.authService.getToken() !== null;
     }
 
 }

@@ -22,8 +22,7 @@ public class Address {
     @JsonIgnore
     private Profile profile;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "company_id")
+    @OneToOne(mappedBy = "address")
     @JsonIgnore
     private Company company;
 
