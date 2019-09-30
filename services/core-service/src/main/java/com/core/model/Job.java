@@ -1,7 +1,5 @@
 package com.core.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -33,7 +31,6 @@ public class Job {
 
     @ManyToOne
     @JoinColumn(name = "company_id")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Company company;
 
     @ManyToMany(cascade = CascadeType.ALL)

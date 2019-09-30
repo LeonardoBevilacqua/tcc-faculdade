@@ -3,7 +3,6 @@ package com.core.dto;
 import com.core.model.Tag;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public class JobSimpleDTO {
