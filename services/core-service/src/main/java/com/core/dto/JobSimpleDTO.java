@@ -2,6 +2,7 @@ package com.core.dto;
 
 import com.core.model.Tag;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -13,13 +14,13 @@ public class JobSimpleDTO {
     private String jobRole;
     private String requirement;
     private String benefit;
-    private Date beginDate;
-    private Date endDate;
+    private LocalDate beginDate;
+    private LocalDate endDate;
     private Long salaryValue;
     private List<Tag> tags;
 
     public JobSimpleDTO(Long id, String title, String description, String jobRole,
-                        String requirement, String benefit, Date beginDate, Date endDate,
+                        String requirement, String benefit, LocalDate beginDate, LocalDate endDate,
                         Long salaryValue, List<Tag> tags) {
         this.id = id;
         this.title = title;
@@ -84,19 +85,19 @@ public class JobSimpleDTO {
         this.benefit = benefit;
     }
 
-    public Date getBeginDate() {
+    public LocalDate getBeginDate() {
         return beginDate;
     }
 
-    public void setBeginDate(Date beginDate) {
+    public void setBeginDate(LocalDate beginDate) {
         this.beginDate = beginDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
