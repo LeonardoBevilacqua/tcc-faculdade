@@ -17,5 +17,5 @@ export class Job extends Entity {
     endDate: Date;
     users: Array<User>;
     company: Company;
-    tags: Array<Tag>
+    tags: Array<Tag>;
 }

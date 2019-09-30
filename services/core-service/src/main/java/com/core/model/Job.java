@@ -1,9 +1,7 @@
 package com.core.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -19,8 +17,8 @@ public class Job {
     private String jobRole;
     private String requirement;
     private String benefit;
-    private Date beginDate;
-    private Date endDate;
+    private LocalDate beginDate;
+    private LocalDate endDate;
     private Long salaryValue;
 
     @ManyToMany
@@ -33,7 +31,6 @@ public class Job {
 
     @ManyToOne
     @JoinColumn(name = "company_id")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Company company;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -102,19 +99,19 @@ public class Job {
         this.benefit = benefit;
     }
 
-    public Date getBeginDate() {
+    public LocalDate getBeginDate() {
         return beginDate;
     }
 
-    public void setBeginDate(Date beginDate) {
+    public void setBeginDate(LocalDate beginDate) {
         this.beginDate = beginDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 

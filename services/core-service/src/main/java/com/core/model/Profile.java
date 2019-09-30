@@ -3,7 +3,7 @@ package com.core.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -18,7 +18,7 @@ public class Profile {
     private String lastName;
     private String cellphone;
     private String phone;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private String maritalStatus;
     private String nationality;
     private String email;
@@ -110,11 +110,11 @@ public class Profile {
         this.phone = phone;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
