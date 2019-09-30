@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
 
-@Component({
-    selector: 'app-job-dashboard',
-    templateUrl: './job-dashboard.component.html',
-    styleUrls: ['./job-dashboard.component.scss']
-})
+@Component({ selector: 'app-job-dashboard', templateUrl: './job-dashboard.component.html' })
 export class JobDashboardComponent implements OnInit {
 
     BarChartCidades: any;
