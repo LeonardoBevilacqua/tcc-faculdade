@@ -1,37 +1,27 @@
-package com.core.model;
+package com.core.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.core.model.Address;
+import com.core.model.Rate;
 
-import javax.persistence.*;
 import java.util.List;
 
-@Entity
-@Table(name = "companies")
-public class Company {
+public class CompanySimpleDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
     private String description;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
-
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private List<Rate> rates;
 
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-    private List<Job> jobs;
-
-    public List<Job> getJobs() {
-        return jobs;
+    public CompanySimpleDTO() {
     }
 
-    public void setJobs(List<Job> jobs) {
-        this.jobs = jobs;
+    public CompanySimpleDTO(Long id, String name, String description, Address address, List<Rate> rates) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.address = address;
+        this.rates = rates;
     }
 
     public Long getId() {

@@ -24,6 +24,11 @@ public class CompanyController {
         return ResponseEntity.ok(companyService.getCompany(id));
     }
 
+    @GetMapping("/{id}/simple")
+    public ResponseEntity<?> getSimpleCompany(@PathVariable Long id){
+        return ResponseEntity.ok(companyService.getSimpleCompany(id));
+    }
+
     @PreAuthorize(
             "hasRole('ROLE_ADMIN') or " +
             "hasRole('ROLE_RECRUTER') or " +
