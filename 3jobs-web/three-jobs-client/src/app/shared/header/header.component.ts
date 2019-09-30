@@ -1,19 +1,16 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { Router } from '@angular/router';
 
 /**
  * Component responsible to display and handle the header of the page.
  */
 @Component({ selector: 'app-header', templateUrl: './header.component.html', styleUrls: ['./header.component.scss'] })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent{
+    constructor(private authService: AuthService, private router: Router) { }
 
-    /**
-     * Flag if the user is logged
-     */
-    @Input() isLogged: boolean;
-
-    constructor() { }
-
-    ngOnInit() {
+    logout() {
+        this.authService.logout();
+        this.router.navigateByUrl('/');
     }
-
 }

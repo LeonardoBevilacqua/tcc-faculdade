@@ -4,26 +4,24 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from 'src/app/shared/shared.module';
 
-import { AboutSectionComponent } from '../../components/about-section/about-section.component';
-import { FeedbackSectionComponent } from '../../components/feedback-section/feedback-section.component';
-import { HomeSectionComponent } from '../../components/home-section/home-section.component';
-import { LoginComponent } from '../../components/login-modal/login-modal.component';
-import { HomeComponent } from './home.component';
+import { CardDashboardComponent } from '../../components/card-dashboard/card-dashboard.component';
+import { CardRankingComponent } from '../../components/card-ranking/card-ranking.component';
+import { JobDashboardComponent } from './job-dashboard.component';
 
-describe('HomeComponent', () => {
-    let component: HomeComponent;
-    let fixture: ComponentFixture<HomeComponent>;
+describe('JobDashboardComponent', () => {
+    let component: JobDashboardComponent;
+    let fixture: ComponentFixture<JobDashboardComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [HomeComponent, HomeSectionComponent, AboutSectionComponent, LoginComponent, FeedbackSectionComponent],
+            declarations: [JobDashboardComponent, CardRankingComponent, CardDashboardComponent],
             imports: [SharedModule, RouterTestingModule, ToastrModule.forRoot(), Ng4LoadingSpinnerModule.forRoot()]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(HomeComponent);
+        fixture = TestBed.createComponent(JobDashboardComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

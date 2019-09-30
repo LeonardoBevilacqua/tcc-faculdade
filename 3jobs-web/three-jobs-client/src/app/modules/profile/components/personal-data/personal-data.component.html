@@ -3,9 +3,9 @@
         <!-- personal data -->
         <div class="d-flex" *ngIf="!isFormEdition || isSubmitted">
             <div class="d-inline-flex flex-column">
-                <span><strong>Idade: </strong>{{user.profile.dateOfBirth | age }}</span>
-                <span><strong>Estado Civil: </strong>{{user.profile.maritalStatus}}</span>
-                <span><strong>Nacionalidade: </strong>{{user.profile.nationality}}</span>
+                <span><strong>Idade: </strong>{{profile.dateOfBirth | age }}</span>
+                <span><strong>Estado Civil: </strong>{{profile.maritalStatus}}</span>
+                <span><strong>Nacionalidade: </strong>{{profile.nationality}}</span>
             </div>
             <div class="ml-auto" *ngIf="isLoggedUserProfile">
                 <button type="button" class="btn btn-outline-primary btn-sm"
@@ -18,22 +18,22 @@
             <div class="form-row my-2">
                 <label class="col-12 col-md-2" for="dateOfBirth">Nascimento:</label>
                 <input type="date" class="form-control form-control-sm col-12 col-md-3 mr-2" name="dateOfBirth"
-                    id="dateOfBirth" [ngModel]="model.profile.dateOfBirth | date: 'yyyy-MM-dd'"
-                    (ngModelChange)="model.profile.dateOfBirth = $event" #dateOfBirth="ngModel" required>
+                    id="dateOfBirth" [ngModel]="model.dateOfBirth | date: 'yyyy-MM-dd'"
+                    (ngModelChange)="model.dateOfBirth = $event" #dateOfBirth="ngModel">
                 <validation-message [inputControl]="dateOfBirth"></validation-message>
             </div>
 
             <div class="form-row my-2">
                 <label class="col-12 col-md-2" for="maritalStatus">Estado Civil:</label>
                 <input class="form-control form-control-sm col-12 col-md-3 mr-2" name="maritalStatus" id="maritalStatus"
-                    [(ngModel)]="model.profile.maritalStatus" #maritalStatus="ngModel" required>
+                    [(ngModel)]="model.maritalStatus" #maritalStatus="ngModel">
                 <validation-message [inputControl]="maritalStatus"></validation-message>
             </div>
 
             <div class="form-row my-2">
                 <label class="col-12 col-md-2" for="nationality">Nascionalidade:</label>
                 <input class="form-control form-control-sm col-12 col-md-3 mr-2" name="nationality" id="nationality"
-                    [(ngModel)]="model.profile.nationality" #nationality="ngModel" required />
+                    [(ngModel)]="model.nationality" #nationality="ngModel" />
                 <validation-message [inputControl]="nationality"></validation-message>
             </div>
 
