@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
     currentId: number;
 
     /**
-     * The profile mode.
+     * The profile model.
      */
     profile: Profile;
 
