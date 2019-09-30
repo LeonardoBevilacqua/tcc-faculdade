@@ -42,6 +42,7 @@ public class UserService {
     }
 
     public User saveUser(User user) {
+    	user.getProfile().setEmail(user.getEmail());
         return userRepository.save(user);
     }
 
@@ -59,6 +60,7 @@ public class UserService {
         User userFound = getUser(id);
         user.setPassword(userFound.getPassword());
         userFound = user;
+        userFound.getProfile().setEmail(userFound.getEmail());
         return userRepository.save(userFound);
     }
 
