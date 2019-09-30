@@ -4,25 +4,24 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from 'src/app/shared/shared.module';
 
-import { CreateVacancyModalComponent } from '../../components/create-vacancy-modal/create-vacancy-modal.component';
-import { DashboardComponent } from './dashboard.component';
 import { CardDashboardComponent } from '../../components/card-dashboard/card-dashboard.component';
-import { ToDoListComponent } from '../../components/to-do-list/to-do-list.component';
+import { CardRankingComponent } from '../../components/card-ranking/card-ranking.component';
+import { JobDashboardComponent } from './job-dashboard.component';
 
-describe('DashboardComponent', () => {
-    let component: DashboardComponent;
-    let fixture: ComponentFixture<DashboardComponent>;
+describe('JobDashboardComponent', () => {
+    let component: JobDashboardComponent;
+    let fixture: ComponentFixture<JobDashboardComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [DashboardComponent, CreateVacancyModalComponent, CardDashboardComponent, ToDoListComponent],
+            declarations: [JobDashboardComponent, CardRankingComponent, CardDashboardComponent],
             imports: [SharedModule, RouterTestingModule, ToastrModule.forRoot(), Ng4LoadingSpinnerModule.forRoot()]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(DashboardComponent);
+        fixture = TestBed.createComponent(JobDashboardComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

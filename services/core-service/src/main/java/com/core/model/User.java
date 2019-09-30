@@ -26,6 +26,10 @@ public class User {
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Profile profile;
+    
+    @Column(name = "profile_id", insertable = false, updatable = false)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private Long profileId;
 
     @ManyToMany(mappedBy = "users")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

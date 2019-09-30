@@ -1,10 +1,11 @@
-import { HttpClient, HttpResponseBase } from '@angular/common/http';
+import { HttpClient, HttpResponseBase, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from 'src/app/shared/models/user';
 
 import { EntityService } from './entity.service';
+import { Role } from 'src/app/shared/models/enums/role.enum';
 
 @Injectable()
 export class AuthService extends EntityService<User>{
@@ -22,30 +23,41 @@ export class AuthService extends EntityService<User>{
             `${this.apiUrl}/${this.endpoint}`,
             { email: user.email, password: user.password, id: user.id},
             { observe: 'response' }
-        )
-            .pipe(map((response: HttpResponseBase) => {
-                // login successful if there's a jwt token in the response header
-                const token = response && response.headers.get('Authorization');
-                
-                if (token) {
-                    // store email and jwt token in local storage to keep user logged in between page refreshes
+        ).pipe(map((response) => {
+            // login successful if there's a jwt token in the response header
+            const token = response && response.headers.get('Authorization');
+            if (token) {
+                // store email and jwt token in local storage to keep user logged in between page refreshes
+                localStorage.setItem('userToken', JSON.stringify({ email: user.email, token }));
 
-                    localStorage.setItem('user', JSON.stringify({ response: response, email: user.email, token }));
+                // store user
+                localStorage.setItem('user', JSON.stringify({ user: response.body }));
 
-                    // return true to indicate successful login
-                    return true;
-                }
-                else {
-                    // return false to indicate failed login
-                    return false;
-                }
-            }));
+                // return true to indicate successful login
+                return true;
+            }
+            else {
+                // return false to indicate failed login
+                return false;
+            }
+        }));
+    }
+
+    public logout() {
+        localStorage.clear();
     }
 
     public getToken() {
-        const user = JSON.parse(localStorage.getItem('user'));
+        const userToken = JSON.parse(localStorage.getItem('userToken'));
 
-        return user != null ? user.token : null;
+        return userToken != null ? userToken.token : null;
+    }
+
+    public getUserRole() {
+        const localStorageUser = JSON.parse(localStorage.getItem('user'));
+        const user: User = localStorageUser ? localStorageUser.user : new User();
+
+        return user.roles[0];
     }
 
     public getUserId() {
