@@ -1,26 +1,26 @@
 <div class="card shadow">
     <div class="card-body">
         <h3>TO DO LIST</h3>
-
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
-                aria-describedby="button-addon2">
-            <div class="input-group-append">
-                <button class="btn btn btn-primary btn-sm" type="button" id="button-addon2">
-
-                    <i class="fa fa-plus" aria-hidden="true"></i>
-                </button>
+        <form #toDoForm="ngForm"  (ngSubmit)="toDoForm.form.valid && onSubmit();">
+            <div class="input-group">
+                <input type="text" class="form-control" id="taskToDo" name="taskToDo" [(ngModel)]="model.task"
+                     #taskToDo="ngModel" minlength="3" />
+                <div class="input-group-append">
+                    <button class="btn btn btn-primary btn-sm" type="submit" [disabled]="!toDoForm.form.valid">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </button>
+                </div>
             </div>
-        </div>
-        <div class="card" style="max-height: 245px; overflow: auto;">
+            <validation-message [inputControl]="taskToDo"></validation-message>
+        </form>
+        <div class="card mt-3" style="max-height: 245px; overflow: auto;">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item d-flex justify-content-between">
-                    <span>tesadasd</span>
-                    <button type="button" class="btn btn-danger btn-sm py-0 px-1 m-0">
+                <li *ngFor="let task of tasks;" class="list-group-item d-flex justify-content-between">
+                    <span>{{task.task}}</span>
+                    <button type="button" class="btn btn-danger btn-sm py-0 px-1 m-0" (click)="removeTask(task.id);">
                         <i class="fa fa-trash"></i>
                     </button>
                 </li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
             </ul>
         </div>
     </div>

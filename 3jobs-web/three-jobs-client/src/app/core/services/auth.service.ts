@@ -59,4 +59,9 @@ export class AuthService extends EntityService<User>{
 
         return user.roles[0];
     }
+
+    public getUserId() {
+        const { user } = JSON.parse(localStorage.getItem('user'));
+        return user != null ? user.id : null;
+    }
 }
