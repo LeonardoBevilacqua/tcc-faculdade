@@ -1,24 +1,21 @@
 .bg-default {
-   
-    background-image: url("images/body-bg.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    -moz-background-size: cover;
-    -webkit-background-size: cover;
-    -o-background-size: cover;
-    -ms-background-size: cover;
-    background-position: center center;   
-    margin: 0px;
+	background-image: url("images/body-bg.jpg");
+	background-repeat: no-repeat;
+	background-size: inherit;
+	-moz-background-size: inherit;
+	-webkit-background-size: inherit;
+	-o-background-size: inherit;
+	-ms-background-size: inherit;
+	margin: 0px;
 }
 .icon {
-    color: #0072ff;
-
+	color: #0072ff;
 }
 
 .w-35 {
-    width: 35%;
+	width: 35%;
 }
 
 .min-vh-100 {
-    min-height: 100vh;
+	min-height: 100vh;
 }
