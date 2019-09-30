@@ -1,7 +1,7 @@
 export enum Role {
-    ADMIN = 1,
-    HEADHUNTER = 2,
-    CANDIDATE = 3,
-    RECRUTER_ADMIN = 4,
-    RECRUTER = 5
+    ADMIN = 'ADMIN',
+    HEADHUNTER = 'HEADHUNTER',
+    CANDIDATE = 'CANDIDATE',
+    RECRUTER_ADMIN = 'RECRUTER_ADMIN',
+    RECRUTER = 'RECRUTER'
 }

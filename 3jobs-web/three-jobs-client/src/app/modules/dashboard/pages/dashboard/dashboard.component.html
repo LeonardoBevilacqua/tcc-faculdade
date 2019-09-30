@@ -50,9 +50,9 @@
                 </table>
             </div>
         </div>
-        <div class="row">
+        <div class="row" *ngIf="shouldDisplayRecrutersTable()">
             <div class="col-12">
-                <table class="table table-bordered shadow  bg-white">
+                <table class="table table-bordered shadow bg-white">
                     <thead>
                         <tr>
                             <th scope="col">Recrutador</th>
