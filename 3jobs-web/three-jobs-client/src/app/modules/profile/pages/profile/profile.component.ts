@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
 
         if (isNaN(this.currentId)) {
             // set the user
-            this.currentId = JSON.parse(localStorage.getItem('user')).user.profileId;
+            this.currentId = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).user.profileId : 0;
             this.isLoggedUserProfile = true;
         }
         else {
