@@ -50,13 +50,12 @@ public class JobService {
         return jobRepository.save(jobFound);
     }
 
-    public Page<JobSimpleDTO> getJobsPageable(Integer page, Integer linesPerPage, String orderBy,
+    public Page<Job> getJobsPageable(Integer page, Integer linesPerPage, String orderBy,
                                      String direction, String description, String title) {
         PageRequest pageRequest = PageRequest.of(page, linesPerPage,
                 Sort.Direction.valueOf(direction), orderBy);
         return jobRepository.findDistinctByTitleIgnoreCaseContainingAndDescriptionContainingIgnoreCase(
-                title, description, pageRequest).
-                map(this::convertJobToSimpleJob);
+                title, description, pageRequest);
     }
 
     public JobSimpleDTO convertJobToSimpleJob(final Job job) {
