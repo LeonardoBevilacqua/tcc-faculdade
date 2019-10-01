@@ -68,8 +68,8 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    public UserToDoDTO getUserTodos(Long id) {
-        return buildUserToDos(getUser(id));
+    public List<ToDo> getUserTodos(Long id) {
+        return getUser(id).getToDos();
     }
 
     public List<ToDo> addUserTodo(Long id, ToDo todo) {

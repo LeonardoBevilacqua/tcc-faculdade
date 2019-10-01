@@ -24,6 +24,7 @@ public class Company {
     private List<Rate> rates;
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Job> jobs;
 
     public List<Job> getJobs() {
