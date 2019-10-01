@@ -1,3 +1,4 @@
+  
 import { HttpClient, HttpResponseBase, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -21,7 +22,7 @@ export class AuthService extends EntityService<User>{
     public login(user: User): Observable<boolean> {
         return this.httpClient.post(
             `${this.apiUrl}/${this.endpoint}`,
-            { email: user.email, password: user.password, id: user.id},
+            { email: user.email, password: user.password },
             { observe: 'response' }
         ).pipe(map((response) => {
             // login successful if there's a jwt token in the response header
@@ -60,10 +61,11 @@ export class AuthService extends EntityService<User>{
         return user.roles[0];
     }
 
+
     public getUserId() {
         const localStorageUser = JSON.parse(localStorage.getItem('user'));
-        const user: User = localStorageUser ? localStorageUser.user : new User();
-
-        return user.id;
+        
+        return localStorageUser != null ? localStorageUser.user.id : null;
     }
+    
 }

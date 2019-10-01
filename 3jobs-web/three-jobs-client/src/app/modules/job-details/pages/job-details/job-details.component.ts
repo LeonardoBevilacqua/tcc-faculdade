@@ -10,14 +10,12 @@ import { Company } from 'src/app/shared/models/company';
 import { Address } from 'src/app/shared/models/address';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { User } from 'src/app/shared/models/user';
-import { tap, map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 
 
 @Component({ selector: 'app-job-details', templateUrl: './job-details.component.html' })
 export class JobDetailsComponent implements OnInit {
 
-  
+
     job: Job;
     jobMatch: Array<Job>;
     user: User;
@@ -44,7 +42,7 @@ export class JobDetailsComponent implements OnInit {
 
         this.spinnerService.show();
 
-         // get the current path id if exists
+        // get the current path id if exists
         this.currentId = +this.router.url.split('/')[2];
 
         this.jobService.read(this.currentId).subscribe(
@@ -54,7 +52,6 @@ export class JobDetailsComponent implements OnInit {
                 this.jobService.search(this.job.description, 0, 4).subscribe(
                     ((res: any) => {
                         this.jobMatch = res.content
-                        console.log(this.jobMatch)
                     }
                     )
                 );
@@ -77,25 +74,23 @@ export class JobDetailsComponent implements OnInit {
         );
     }
     apply() {
-        this.spinnerService.show();
-
-        this.jobService.register(this.authService.getUserId(), this.currentId).subscribe(
-            (response: any) => {
-                this.spinnerService.hide();
-                this.toast.success('Cadastrado com sucesso!');
-                this.router.navigateByUrl('/dashboard');
-            },
-            (error: HttpErrorResponse) => {
-
-                this.spinnerService.hide();
-                if (error.status === 403) {
-                    this.toast.warning('Por gentileza, logar no sistema para se candidatar-se');
-                }
-
-                else {
+        if (this.authService.getToken() == null) {
+            this.toast.warning('Por gentileza, Logar no Sistema para Candidatar-se');
+        } else {
+            this.jobService.register(this.authService.getUserId(), this.currentId).subscribe(
+                (response: any) => {
+                    this.spinnerService.hide();
+                    this.toast.success('Cadastrado com sucesso!');
+                    this.router.navigateByUrl('/dashboard');
+                },
+                (error: HttpErrorResponse) => {
                     this.toast.error('Ocorreu um erro inesperado, por favor aguarde!');
                 }
-            }
-        );
+            );
+
+        }
+
+
+
     }
 }
