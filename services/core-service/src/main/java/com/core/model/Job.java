@@ -41,7 +41,7 @@ public class Job {
     )
     private List<Tag> tags;
 
-    private String status;
+    private String status = "ativo";
 
     public List<Tag> getTags() {
         return tags;
