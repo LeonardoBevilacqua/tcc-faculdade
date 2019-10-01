@@ -34,10 +34,6 @@ export class ProfileComponent implements OnInit {
             this.currentId = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).user.profileId : 0;
             this.isLoggedUserProfile = true;
         }
-        else {
-            const localStorageProfileId: number = JSON.parse(localStorage.getItem('user')).user.profileId;
-            this.isLoggedUserProfile = this.currentId === localStorageProfileId;
-        }
     }
 
     ngOnInit() {

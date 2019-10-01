@@ -29,10 +29,20 @@
                 <!-- the icon buttons section -->
                 <div class="col-2 col-md-4">
                     <div class="d-flex justify-content-end">
-                        <!-- configuration button -->
-                        <button class="btn btn-outline-light" type="button">
-                            <span class="fa fa-cogs"></span>
-                        </button>
+                        <div class="btn-group">
+                            <!-- go to dashboar -->
+                            <button routerLink="/dashboard" routerLinkActive="active" title="Meu painel" class="btn btn-outline-light" type="button">
+                                <span class="fa fa-columns"></span>
+                            </button>
+                            <!-- go to profile -->
+                            <button routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" title="Meu perfil" class="btn btn-outline-light" type="button">
+                                <span class="fa fa-user"></span>
+                            </button>
+                            <!-- configuration button -->
+                            <button title="Configurações" class="btn btn-outline-light" type="button">
+                                <span class="fa fa-cogs"></span>
+                            </button>
+                        </div>
                         <!-- logout button -->
                         <button class="btn btn-outline-light ml-2" type="button" (click)="logout()">
                             Sair
