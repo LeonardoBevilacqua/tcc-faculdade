@@ -6,7 +6,7 @@
                 <div class="container">
                     <div class="row justify-content-between d-flex">
                         <div class="col-lg-8 justify-content-center">
-                            <div class="d-flex flex-row">
+                            <div>
                                 <div>
                                     <div class="row justify-content-between">
                                         <div class="col-auto col-md-auto align-items-baseline">
@@ -16,39 +16,41 @@
                                             </a>
                                         </div>
                                         <div class="col-auto col-md-auto align-items-baseline ">
-                                            <button type="button" class="btn btn-primary">Candidatar-se</button>
+                                            <button type="button" (click)="apply()"
+                                                class="btn btn-primary">Candidatar-se</button>
                                         </div>
                                     </div>
                                     <hr class="pt-0 mt-0">
-                                    <h4 class="text-primary">Servente de Limpeza / Analista de Faxina</h4>
-                                    <h6>Matera Systems</h6>
-                                    <p>
-                                        Nós acreditamos que compartilhar conhecimento é a melhor forma de unir o time,
-                                        aprender mais rápido e alcançar o sucesso.
-                                    </p>
+                                    <h4 class="text-primary">{{job.title}}</h4>
+                                    <h6>{{job.company.name}}</h6>
+                                    <p>{{job.description}}</p>
                                     <div class="row">
-                                        <div class="col-auto col-md-auto d-flex align-items-baseline">
+                                        <div class="col-auto col-md-auto pr-0">
                                             <div>
                                                 <p class="font-weight-bold "><span class="title-icon text-success"><i
-                                                            class="fa fa-usd fa-lg"></i></span> Salário a combinar</p>
+                                                            class="fa fa-usd fa-lg mr-1"></i></span>{{job.salaryValue}}
+                                                </p>
                                             </div>
                                         </div>
-                                        <div class="col-auto col-md-auto d-flex align-items-baseline">
+                                        <div class="col-auto col-md-auto pr-0">
                                             <div>
                                                 <p class="font-weight-bold"><span class="title-icon text-primary"><i
-                                                            class="fa fa-map-signs fa-lg"></i></span> Campinas - SP</p>
+                                                            class="fa fa-map-signs fa-lg mr-1"></i></span>{{job.company.address.city}}
+                                                </p>
                                             </div>
                                         </div>
-                                        <div class="col-auto col-md-auto d-flex align-items-baseline">
+                                        <div class="col-auto col-md-auto pr-0">
                                             <div>
                                                 <p class="font-weight-bold"><span class="title-icon text-warning"><i
-                                                            class="fa fa-address-card fa-lg"></i></span> Junior</p>
+                                                            class="fa fa-address-card fa-lg mr-1"></i></span>{{job.jobRole}}
+                                                </p>
                                             </div>
                                         </div>
-                                        <div class="col-auto col-md-auto d-flex align-items-baseline">
+                                        <div class="col-auto col-md-auto pr-0">
                                             <div>
                                                 <p class="font-weight-bold"><span class="title-icon text-danger"><i
-                                                            class="fa fa-clock-o fa-lg"></i></span> 10/06/2019</p>
+                                                            class="fa fa-clock-o fa-lg mr-1"></i></span>{{job.endDate | date: 'dd-MM-yyyy'}}
+                                                </p>
                                             </div>
                                         </div>
 
@@ -56,58 +58,22 @@
                                 </div>
                             </div>
                             <div class="row ml-1">
-                                <div class="d-flex">
-                                    <span class="badge badge-pill badge-info m-1">Devepole</span>
-                                </div>
-                                <div class="d-flex">
-                                    <span class="badge badge-pill badge-info m-1">SQL</span>
-                                </div>
-                                <div class="d-flex">
-                                    <span class="badge badge-pill badge-info m-1">Tag1</span>
-                                </div>
-                                <div class="d-flex">
-                                    <span class="badge badge-pill badge-info m-1">JAVA</span>
-                                </div>
-                                <div class="d-flex">
-                                    <span class="badge badge-pill badge-info m-1">Devepole</span>
-                                </div>
-                                <div class="d-flex">
-                                    <span class="badge badge-pill badge-info m-1">SQL</span>
-                                </div>
-                                <div class="d-flex">
-                                    <span class="badge badge-pill badge-info m-1">Tag1</span>
-                                </div>
-                                <div class="d-flex">
-                                    <span class="badge badge-pill badge-info m-1">JAVA</span>
-                                </div>
+                                <ul class="list-inline">
+                                    <li class="list-inline-item" *ngFor="let tag of job.tags">
+                                        <div class="d-flex">
+                                            <span class="badge badge-pill badge-info m-1">{{tag.description}}</span>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
-                            <hr class="my-1 py-2">
+                            <hr class="bt-0 mt-0 pt-0">
                             <div>
                                 <h4>Requisitos</h4>
                                 <ul>
                                     <li>
-                                        <span>Responsável por planejar, executar e controlar o esforço necessário á
-                                            manutenção da garantia da qualidade do produto e os testes
-                                            realizados.</span>
+                                        <span>{{job.requirement}}</span>
                                     </li>
-                                    <li>
-                                        <span>Realizar a validação no pacote final proveniente da integração de dois ou
-                                            mais produtos de sprints.</span>
-                                    </li>
-                                    <li>
-                                        <span>Apoiar a Homologação de versões.</span>
-                                    </li>
-                                    <li>
-                                        <span>Manter em execução processos dos sistemas nos ambientes internos.</span>
-                                    </li>
-                                    <li>
-                                        <span>Apoiar a equipe de homologação ativa (HMP) dos sistemas.</span>
-                                    </li>
-                                    <li>
-                                        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliquaut enim ad minim
-                                            veniam.</span>
-                                    </li>
+
                                 </ul>
                             </div>
                             <hr class="my-4">
@@ -115,28 +81,7 @@
                                 <h4>Benefícios</h4>
                                 <ul>
                                     <li>
-                                        <span>Assistência médica</span>
-                                    </li>
-                                    <li>
-                                        <span>Assistência odontológica</span>
-                                    </li>
-                                    <li>
-                                        <span>Auxílio desenvolvimento</span>
-                                    </li>
-                                    <li>
-                                        <span>Consignado</span>
-                                    </li>
-                                    <li>
-                                        <span>Seguro de vida</span>
-                                    </li>
-                                    <li>
-                                        <span>Vale alimentação</span>
-                                    </li>
-                                    <li>
-                                        <span>Vale-refeição</span>
-                                    </li>
-                                    <li>
-                                        <span>Vale-transporte</span>
+                                        <span>{{job.benefit}}</span>
                                     </li>
                                 </ul>
                             </div>
@@ -148,14 +93,14 @@
                                 <div>
                                     <h4>Vagas similares</h4>
                                     <div class="list-group list-group-flush">
-                                        <a href="#" class="list-group-item list-group-item-action">Analista de
-                                            Sistema</a>
-                                        <a href="#" class="list-group-item list-group-item-action">Técnico de
-                                            Suporte</a>
-                                        <a href="#" class="list-group-item list-group-item-action">Analista de
-                                            Requisitos</a>
-                                        <a href="#" class="list-group-item list-group-item-action ">Desenvolvedor</a>
-                                        <a href="#" class="list-group-item list-group-item-action "></a>
+                                        <ul class="list-group list-group-flush">
+                                            <ng-container *ngFor="let jobMatch of jobMatch">
+                                                <li class="list-group-item p-0" *ngIf="jobMatch.id != currentId"><a
+                                                        href="/job-details/{{jobMatch.id}}"
+                                                        class="list-group-item list-group-item-action">{{jobMatch.title}}</a>
+                                                </li>
+                                            </ng-container>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
