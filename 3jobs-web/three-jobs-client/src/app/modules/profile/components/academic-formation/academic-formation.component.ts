@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { MaintainForm } from 'src/app/shared/form/maintain-form';
 import { Profile } from 'src/app/shared/models/profile';
@@ -30,8 +29,8 @@ export class AcademicFormationComponent extends MaintainForm<Profile> implements
     experienceIndex: number;
 
     // TODO
-    constructor(router: Router, toastr: ToastrService, spinnerService: Ng4LoadingSpinnerService) {
-        super(null, router, toastr, spinnerService);
+    constructor(router: Router, toastr: ToastrService) {
+        super(null, router, toastr);
     }
 
     ngOnInit() {
