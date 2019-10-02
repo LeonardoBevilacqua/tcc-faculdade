@@ -4,14 +4,13 @@
         <form #toDoForm="ngForm"  (ngSubmit)="toDoForm.form.valid && onSubmit();">
             <div class="input-group">
                 <input type="text" class="form-control" id="taskToDo" name="taskToDo" [(ngModel)]="model.task"
-                     #taskToDo="ngModel" minlength="3" />
+                     #taskToDo="ngModel" minlength="3" required/>
                 <div class="input-group-append">
                     <button class="btn btn btn-primary btn-sm" type="submit" [disabled]="!toDoForm.form.valid">
                         <i class="fa fa-plus" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
-            <validation-message [inputControl]="taskToDo"></validation-message>
         </form>
         <div class="card mt-3" style="max-height: 245px; overflow: auto;">
             <ul class="list-group list-group-flush">
