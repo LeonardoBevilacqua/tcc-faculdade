@@ -58,7 +58,7 @@ export class AuthService extends EntityService<User>{
         const localStorageUser = JSON.parse(localStorage.getItem('user'));
         const user: User = localStorageUser ? localStorageUser.user : new User();
 
-        return user.roles[0];
+        return user.roles ? user.roles[0] : null;
     }
 
 

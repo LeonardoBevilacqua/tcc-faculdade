@@ -1,7 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { EntityService } from 'src/app/core/services/entity.service';
 import { Entity } from 'src/app/shared/models/entity';
@@ -38,13 +36,11 @@ export class MaintainForm<E extends Entity> {
      * @param entityService The current service that will be used.
      * @param router The router service.
      * @param toastr The toastr service for notifications.
-     * @param spinnerService The spinner service.
      */
     constructor(
         private entityService: EntityService<E>,
         protected router: Router,
-        protected toastr: ToastrService,
-        protected spinnerService: Ng4LoadingSpinnerService) {
+        protected toastr: ToastrService) {
         // initialize the variables
         this.isSubmitted = false;
         this.isEdition = false;
@@ -56,7 +52,7 @@ export class MaintainForm<E extends Entity> {
      */
     onSubmit(redirectPath: string = null) {
         this.isSubmitted = false;
-        this.spinnerService.show();
+
 
         // If current id was set, then make a PUT request
         if (this.isEdition) {
@@ -65,7 +61,7 @@ export class MaintainForm<E extends Entity> {
                 this.entityService.update(this.model).subscribe(
                     (response: any) => {
                         this.toastr.success(response.message ? response.message : 'Informações atualizadas com sucesso!');
-                        this.spinnerService.hide();
+
                         this.isSubmitted = true;
 
                         if (redirectPath) {
@@ -81,7 +77,7 @@ export class MaintainForm<E extends Entity> {
             this.entityService.create(this.model).subscribe(
                 (response: any) => {
                     this.toastr.success(response.message ? response.message : 'Informações salvas com sucesso!');
-                    this.spinnerService.hide();
+
                     this.isSubmitted = true;
 
                     if (redirectPath) {
@@ -102,14 +98,14 @@ export class MaintainForm<E extends Entity> {
 
         // set the edition flag to true
         this.isEdition = true;
-        this.spinnerService.show();
+
 
         // load the model
         this.entityService.read(this.currentId).subscribe(
             response => {
                 this.toastr.info('Dados carregados');
                 this.model = response;
-                this.spinnerService.hide();
+
             },
             (error: HttpErrorResponse) => {
                 this.errorHandler(error);
@@ -144,7 +140,7 @@ export class MaintainForm<E extends Entity> {
             this.toastr.error('Tente novamente mais tarde.', 'Falha ao se comunicar com servidor!');
         }
 
-        this.spinnerService.hide();
+
 
         if (!environment.production) {
             // for debug

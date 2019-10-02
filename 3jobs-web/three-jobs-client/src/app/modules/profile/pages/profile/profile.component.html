@@ -15,8 +15,8 @@
                     <div class="d-inline-flex flex-column">
                         <h2>{{profile.name}} {{profile.lastName}}</h2>
                         <span><strong>E-mail: </strong>{{profile.email}}</span>
-                        <span><strong>Telefone: </strong>{{profile.phone}}</span>
-                        <span><strong>Celular: </strong>{{profile.cellphone}}</span>
+                        <span *ngIf="profile.phone"><strong>Telefone: </strong>{{profile.phone}}</span>
+                        <span *ngIf="profile.cellphone"><strong>Celular: </strong>{{profile.cellphone}}</span>
                     </div>
                 </div>
             </div>
