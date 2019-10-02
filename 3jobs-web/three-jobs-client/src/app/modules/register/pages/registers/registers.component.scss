@@ -1,11 +1,11 @@
 .bg-default {
 	background-image: url("images/body-bg.jpg");
 	background-repeat: no-repeat;
-	background-size: inherit;
-	-moz-background-size: inherit;
-	-webkit-background-size: inherit;
-	-o-background-size: inherit;
-	-ms-background-size: inherit;
+	background-size: 100% 100%;
+	-moz-background-size: 100% 100%;
+	-webkit-background-size: 100% 100%;
+	-o-background-size: 100% 100%;
+	-ms-background-size: 100% 100%;
 	margin: 0px;
 }
 .icon {
