@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { TestesService } from 'src/app/core/services/testes.service';
 import { MaintainForm } from 'src/app/shared/form/maintain-form';
 import { Testes } from 'src/app/shared/models/testes';
-import { TestesService } from 'src/app/core/services/testes.service';
-import { Router } from '@angular/router';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({ selector: 'app-testes', templateUrl: './testes.component.html', styleUrls: ['./testes.component.scss'] })
 export class TestesComponent extends MaintainForm<Testes> implements OnInit {
 
-  constructor(testesService: TestesService, router: Router, toastr: ToastrService, spinnerService: Ng4LoadingSpinnerService) { 
-      super(testesService, router, toastr, spinnerService);
-  }
+    constructor(testesService: TestesService, router: Router, toastr: ToastrService) {
+        super(testesService, router, toastr);
+    }
 
-  ngOnInit() {
-      this.model = new Testes();
-  }
+    ngOnInit() {
+        this.model = new Testes();
+    }
 }

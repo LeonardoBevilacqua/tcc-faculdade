@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="d-flex flex-column vh-100 bg-light" style="overflow-x: hidden;">
-    <section class="content pt-4 container-fluid mb-5 pb-5">
+    <section class="content pt-4 container-fluid mb-auto pb-5">
         <div class="row">
             <div class="col-md-4  mb-3">
                 <app-card-ranking [ranking]="ranking"></app-card-ranking>
@@ -8,11 +8,11 @@
             <div class="col-md-8 mb-3">
                 <div class="row">
                     <div class="col-sm-6">
-                        <app-card-dashboard [titulo]="'Quantidade'" [subtitulo]="'candidato'" [valor]="0">
+                        <app-card-dashboard [title]="'Quantidade'" [subtitle]="'candidato'" [value]="0">
                         </app-card-dashboard>
                     </div>
                     <div class="col-sm-6">
-                        <app-card-dashboard [titulo]="'Quantidade'" [subtitulo]="'Avaliado'" [valor]="0">
+                        <app-card-dashboard [title]="'Quantidade'" [subtitle]="'Avaliado'" [value]="0">
                         </app-card-dashboard>
                     </div>
                 </div>

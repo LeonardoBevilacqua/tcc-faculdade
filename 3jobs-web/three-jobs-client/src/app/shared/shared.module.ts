@@ -9,13 +9,15 @@ import { CpfValidationDirective } from './form/directive/cpf-validation.directiv
 import { MustMatchDirective } from './form/directive/must-match.directive';
 import { HeaderComponent } from './header/header.component';
 import { AgePipe } from './pipes/age.pipe';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
     declarations: [ValidationMessageComponent, HeaderComponent, FooterComponent, AgePipe, MustMatchDirective, CpfValidationDirective],
     imports: [
         CommonModule,
-        CoreModule
+        CoreModule,
+        RouterModule,
     ],
     exports: [
         CommonModule,

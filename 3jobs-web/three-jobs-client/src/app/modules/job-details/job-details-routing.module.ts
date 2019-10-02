@@ -4,7 +4,7 @@ import { JobDetailsComponent } from './pages/job-details/job-details.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':id',
     component: JobDetailsComponent,
   },
 ];

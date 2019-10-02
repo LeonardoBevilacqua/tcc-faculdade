@@ -1,3 +1,4 @@
+  
 import { HttpClient, HttpResponseBase, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -59,4 +60,12 @@ export class AuthService extends EntityService<User>{
 
         return user.roles ? user.roles[0] : null;
     }
+
+
+    public getUserId() {
+        const localStorageUser = JSON.parse(localStorage.getItem('user'));
+        
+        return localStorageUser != null ? localStorageUser.user.id : null;
+    }
+    
 }

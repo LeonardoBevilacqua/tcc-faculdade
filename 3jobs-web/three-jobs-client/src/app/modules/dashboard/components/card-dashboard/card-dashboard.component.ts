@@ -1,14 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({ selector: 'app-card-dashboard', templateUrl: './card-dashboard.component.html' })
-export class CardDashboardComponent implements OnInit {
+export class CardDashboardComponent {
 
-    @Input() titulo: String;
-    @Input() subtitulo: String;
-    @Input() valor: Number;
+    @Input() title: string;
+    @Input() subtitle: string;
+    @Input() value: number;
     constructor() { }
-
-    ngOnInit() {
-    }
-
 }
