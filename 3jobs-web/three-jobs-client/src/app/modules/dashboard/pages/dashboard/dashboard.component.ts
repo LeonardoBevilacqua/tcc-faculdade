@@ -10,15 +10,24 @@ export class DashboardComponent implements OnInit {
     vacancies: Array<Job>;
     constructor(private authService: AuthService, private jobService: JobService) { }
 
+    job: Job;
     ngOnInit() {
 
+        this.job = new Job();
         this.getAllVacancies();
+    }
+
+    public createVacancy() {
+        this.job = new Job();
+    }
+
+    public toEditVacancy(vacancy: Job) {
+        this.job = vacancy;
     }
 
     private getAllVacancies() {
         this.jobService.getAll().subscribe(
             (response) => {
-                console.log(response.content);
                 this.vacancies = response.content;
             },
             (error) => {

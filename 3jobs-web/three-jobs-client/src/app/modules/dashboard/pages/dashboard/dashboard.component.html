@@ -26,8 +26,8 @@
                             <th scope="col">Vaga</th>
                             <th scope="col" style="width: 110px">Status</th>
                             <th scope="col" style="width: 140px">
-                                <button class="btn btn-success btn-sm" data-toggle="modal"
-                                    data-target="#createVacancyModal">Cadastrar</button>
+                                <button (click)="createVacancy()" class="btn btn-success btn-sm"
+                                    data-toggle="modal" data-target="#createVacancyModal">Cadastrar</button>
                             </th>
                         </tr>
                     </thead>
@@ -36,11 +36,14 @@
                             <td>{{vacancy.title}}</td>
                             <td><span class="badge badge-success">{{vacancy.status}}</span></td>
                             <td>
-                                <button  type="button" class="btn btn-primary btn-sm" title="Editar Vaga">
+                                <button (click)="toEditVacancy(vacancy)" data-toggle="modal"
+                                    data-target="#createVacancyModal" type="button" class="btn btn-primary btn-sm"
+                                    title="Editar Vaga">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                 </button>
                                 <button [routerLink]="['/dashboard/job-dashboard/', vacancy.id]"
-                                routerLinkActive="router-link-active" type="button" class="btn btn-success btn-sm mx-2" title="Ver Vaga">
+                                    routerLinkActive="router-link-active" type="button"
+                                    class="btn btn-success btn-sm mx-2" title="Ver Vaga">
                                     <i class="fa fa-share" aria-hidden="true"></i>
                                 </button>
                                 <button type="button" class="btn btn-dark btn-sm" title="Questionario">
@@ -82,6 +85,6 @@
             </div>
         </div>
     </section>
-    <app-create-vacancy-modal></app-create-vacancy-modal>
+    <app-create-vacancy-modal [model]="job" (subject)="getAllVacancies()"></app-create-vacancy-modal>
     <app-footer></app-footer>
 </div>

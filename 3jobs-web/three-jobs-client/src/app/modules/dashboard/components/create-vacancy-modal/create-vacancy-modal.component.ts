@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { MaintainForm } from 'src/app/shared/form/maintain-form';
-import { JobService } from 'src/app/core/services/job.service';
-import { Job } from 'src/app/shared/models/job';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { ToastrService } from 'ngx-toastr';
+import { JobService } from 'src/app/core/services/job.service';
+import { MaintainForm } from 'src/app/shared/form/maintain-form';
+import { Job } from 'src/app/shared/models/job';
 
 declare const $: any;
 
@@ -15,8 +15,11 @@ export class CreateVacancyModalComponent extends MaintainForm<Job> implements On
         super(null, router, toastr, spinnerService);
     }
 
+    @Input() model: Job;
+    @Output() subject = new EventEmitter();
+
+
     ngOnInit() {
-        this.model = new Job();
     }
 
     public onSubmit() {
@@ -24,6 +27,7 @@ export class CreateVacancyModalComponent extends MaintainForm<Job> implements On
         this.spinnerService.show();
         this.jobService.create(this.model).subscribe(
             (response: any) => {
+                this.subject.emit();
                 this.spinnerService.hide();
                 $('#createVacancyModal').modal('hide');
                 this.toastr.success(response.message ? response.message : 'Informações salvas com sucesso!');
