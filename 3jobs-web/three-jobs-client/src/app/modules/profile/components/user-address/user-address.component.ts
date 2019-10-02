@@ -45,4 +45,12 @@ export class UserAddressComponent extends MaintainForm<Profile> implements OnIni
 
         this.currentId = this.profile.id;
     }
+
+    public userAddressHasData() {
+        return this.profile.address.zipCode ||
+            this.profile.address.state ||
+            this.profile.address.city ||
+            this.profile.address.district ||
+            this.profile.address.name;
+    }
 }

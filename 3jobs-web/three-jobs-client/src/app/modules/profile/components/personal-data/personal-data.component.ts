@@ -50,4 +50,10 @@ export class PersonalDataComponent extends MaintainForm<Profile> implements OnIn
 
         this.currentId = this.profile.id;
     }
+
+    public personalDataHasData() {
+        return this.profile.dateOfBirth ||
+            this.profile.maritalStatus ||
+            this.profile.nationality;
+    }
 }

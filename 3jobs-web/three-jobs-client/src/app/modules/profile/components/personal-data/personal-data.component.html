@@ -1,12 +1,15 @@
-<card-template title="Dados pessoais" [cardBodyContent]="personalData" cardBodyId="personalData">
+<card-template title="Dados pessoais" [cardBodyContent]="personalData" cardBodyId="personalData" *ngIf="personalDataHasData() || isLoggedUserProfile">
     <ng-template #personalData>
         <!-- personal data -->
         <div class="d-flex" *ngIf="!isFormEdition || isSubmitted">
-            <div class="d-inline-flex flex-column">
-                <span><strong>Idade: </strong>{{profile.dateOfBirth ? (profile.dateOfBirth | age) : '-' }}</span>
-                <span><strong>Estado Civil: </strong>{{profile.maritalStatus ? profile.maritalStatus : '-' }}</span>
-                <span><strong>Nacionalidade: </strong>{{profile.nationality ? profile.nationality : '-' }}</span>
+            <div class="d-inline-flex flex-column" *ngIf="personalDataHasData(); else messageBlock">
+                <span *ngIf="profile.dateOfBirth"><strong>Idade: </strong>{{ profile.dateOfBirth | age }}</span>
+                <span *ngIf="profile.maritalStatus"><strong>Estado Civil: </strong>{{ profile.maritalStatus }}</span>
+                <span *ngIf="profile.nationality"><strong>Nacionalidade: </strong>{{ profile.nationality }}</span>
             </div>
+            <ng-template #messageBlock>
+                <div class="alert alert-warning m-auto w-75 text-center">Sem informações sobre dados pessoais.</div>
+            </ng-template>
             <div class="ml-auto" *ngIf="isLoggedUserProfile">
                 <button type="button" class="btn btn-outline-primary btn-sm"
                     (click)="isFormEdition = true; isSubmitted = false">Editar</button>
