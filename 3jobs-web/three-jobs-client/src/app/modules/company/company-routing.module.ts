@@ -5,6 +5,7 @@ import { CompanyComponent } from './pages/company/company.component';
 
 const routes: Routes = [
     { path: '', component: CompanyComponent },
+    { path: ':id', component: CompanyComponent },
 ];
 
 @NgModule({

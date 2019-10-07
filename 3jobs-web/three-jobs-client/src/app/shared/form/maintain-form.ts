@@ -105,11 +105,10 @@ export class MaintainForm<E extends Entity> {
             response => {
                 this.toastr.info('Dados carregados');
                 this.model = response;
-
             },
             (error: HttpErrorResponse) => {
                 this.errorHandler(error);
-                this.router.navigate(['/']);
+                this.router.navigateByUrl('/');
             }
         );
     }
