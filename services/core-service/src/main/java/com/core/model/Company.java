@@ -27,6 +27,17 @@ public class Company {
     @JsonIgnore
     private List<Job> jobs;
 
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    private List<User> recruters;
+
+    public List<User> getRecruters() {
+        return recruters;
+    }
+
+    public void setRecruters(List<User> recruters) {
+        this.recruters = recruters;
+    }
+
     public List<Job> getJobs() {
         return jobs;
     }

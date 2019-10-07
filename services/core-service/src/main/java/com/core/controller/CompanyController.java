@@ -43,4 +43,14 @@ public class CompanyController {
     public ResponseEntity<?> updateCompany(@PathVariable Long id, @RequestBody Company company) {
         return ResponseEntity.ok(companyService.updateCompany(id, company));
     }
+
+    @PutMapping("/{id}/recruters/add/{recruter_id}")
+    public ResponseEntity<?> addRecruterToCompany(@PathVariable Long id, @PathVariable Long recruter_id) {
+        return ResponseEntity.ok(companyService.addRecruterToCompany(id, recruter_id));
+    }
+
+    @PutMapping("/{id}/recruters/remove/{recruter_id}")
+    public ResponseEntity<?> removeRecruterToCompany(@PathVariable Long id, @PathVariable Long recruter_id) {
+        return ResponseEntity.ok(companyService.removeRecruterToCompany(id, recruter_id));
+    }
 }
