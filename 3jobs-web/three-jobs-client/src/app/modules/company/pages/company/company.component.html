@@ -1,3 +1,66 @@
-<p>
-  company works!
-</p>
+<app-header></app-header>
+<div class="d-flex flex-column min-vh-100 bg-light">
+    <section class="content py-4 container-fluid mb-auto">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 bg-white">
+                <h2>Cadastre sua empresa</h2>
+                <hr>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Nome:</label>
+                        <input type="text" class="form-control" name="name" id="name" #name="ngModel" [(ngModel)]="model.name" required>
+                        <validation-message [inputControl]="name"></validation-message>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Descrição:</label>
+                        <textarea class="form-control" name="description" id="description" #description="ngModel" [(ngModel)]="model.description" required></textarea>
+                        <validation-message [inputControl]="description"></validation-message>
+                    </div>
+
+                    <h4 class="mt-5">Endereço</h4>
+                    <hr>
+
+                    <div class="d-flex">
+                        <div class="form-group w-50 mr-1">
+                            <label for="addressName">Rua:</label>
+                            <input type="text" class="form-control" name="addressName" id="addressName" #addressName="ngModel" [(ngModel)]="model.address.name" required>
+                            <validation-message [inputControl]="addressName"></validation-message>
+                        </div>
+
+                        <div class="form-group w-50 ml-1">
+                            <label for="district">Bairro:</label>
+                            <input type="text" class="form-control" name="district" id="district" #district="ngModel" [(ngModel)]="model.address.district" required>
+                            <validation-message [inputControl]="district"></validation-message>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <div class="form-group w-25">
+                            <label for="city">Cidade:</label>
+                            <input type="text" class="form-control" name="city" id="city" #city="ngModel" [(ngModel)]="model.address.city" required> 
+                            <validation-message [inputControl]="city"></validation-message>
+                        </div>
+
+                        <div class="form-group w-25">
+                            <label for="state">Estado:</label>
+                            <input type="text" class="form-control" name="state" id="state" #state="ngModel" [(ngModel)]="model.address.state" required>
+                            <validation-message [inputControl]="state"></validation-message>
+                        </div>
+
+                        <div class="form-group w-25">
+                            <label for="zipCode">CEP:</label>
+                            <input type="text" class="form-control" name="zipCode" id="zipCode" #zipCode="ngModel" [(ngModel)]="model.address.zipCode" required>
+                            <validation-message [inputControl]="zipCode"></validation-message>
+                        </div>
+                    </div>
+
+                    <div class="form-group text-right">
+                        <button class="btn btn-primary">Cadastrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <app-footer></app-footer>
+</div>
