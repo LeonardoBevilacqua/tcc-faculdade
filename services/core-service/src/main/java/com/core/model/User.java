@@ -47,6 +47,10 @@ public class User {
     public void setRoles(Set<Integer> roles) {
         this.roles = roles;
     }
+    
+    @ManyToOne
+    @JoinColumn(name = "company_id", nullable = false)
+    private Company company;
 
     public List<ToDo> getToDos() {
         return toDos;
@@ -102,20 +106,32 @@ public class User {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
-    }
+    }       
+
+    public Long getProfileId() {
+		return profileId;
+	}
+
+	public void setProfileId(Long profileId) {
+		this.profileId = profileId;
+	}
+
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
 
     @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", cpf='" + cpf + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", roles=" + roles +
-                '}';
-    }
+	public String toString() {
+		return "User [id=" + id + ", cpf=" + cpf + ", email=" + email + ", password=" + password + ", profile="
+				+ profile + ", profileId=" + profileId + ", jobs=" + jobs + ", roles=" + roles + ", toDos=" + toDos
+				+ ", company=" + company + "]";
+	}
 
-    public Set<Role> getRoles() {
+	public Set<Role> getRoles() {
         return roles.stream().map(role -> Role.toEnum(role)).collect(Collectors.toSet());
     }
 

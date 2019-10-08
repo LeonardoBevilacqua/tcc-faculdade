@@ -30,7 +30,7 @@ public class Job {
     private List<User> users;
 
     @ManyToOne
-    @JoinColumn(name = "company_id")
+    @JoinColumn(name = "company_id", nullable = false)
     private Company company;
 
     @ManyToMany(cascade = CascadeType.ALL)
