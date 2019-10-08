@@ -22,8 +22,8 @@ export class LoginComponent extends MaintainForm<User> implements OnInit {
      * @param toastr The toastr service for notifications.
      * @param spinnerService The spinner service.
      */
-    constructor(private authService: AuthService, router: Router, toastr: ToastrService, spinnerService: Ng4LoadingSpinnerService) {
-        super(null, router, toastr, spinnerService);
+    constructor(private authService: AuthService, router: Router, toastr: ToastrService, private spinnerService: Ng4LoadingSpinnerService) {
+        super(null, router, toastr);
     }
 
     ngOnInit() {

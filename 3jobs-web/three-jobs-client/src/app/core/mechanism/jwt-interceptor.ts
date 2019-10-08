@@ -36,6 +36,7 @@ export class JwtInterceptor implements HttpInterceptor {
                 if (error instanceof HttpErrorResponse) {
                     if (error.status === 403) {
                         this.authService.logout();
+                        this.spinnerService.hide();
                         this.router.navigateByUrl('/');
                     }
                 }
