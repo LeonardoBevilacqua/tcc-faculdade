@@ -59,6 +59,8 @@ public class UserService {
     public User updateUser(Long id, User user) {
         User userFound = getUser(id);
         user.setPassword(userFound.getPassword());
+        user.setProfile(userFound.getProfile());
+        
         userFound = user;
         userFound.getProfile().setEmail(userFound.getEmail());
         return userRepository.save(userFound);

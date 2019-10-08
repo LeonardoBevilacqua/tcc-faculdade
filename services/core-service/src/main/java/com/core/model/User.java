@@ -49,7 +49,7 @@ public class User {
     }
     
     @ManyToOne
-    @JoinColumn(name = "company_id", nullable = false)
+    @JoinColumn(name = "company_id", nullable = true)
     private Company company;
 
     public List<ToDo> getToDos() {
