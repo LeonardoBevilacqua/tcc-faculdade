@@ -1,18 +1,11 @@
-<<<<<<< HEAD
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
-=======
-import { Component, OnInit } from '@angular/core';
->>>>>>> dev
 import { Router } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { JobService } from 'src/app/core/services/job.service';
 import { MaintainForm } from 'src/app/shared/form/maintain-form';
 import { Job } from 'src/app/shared/models/job';
-<<<<<<< HEAD
-=======
 import { Tag } from 'src/app/shared/models/tag';
->>>>>>> dev
 
 declare const $: any;
 
