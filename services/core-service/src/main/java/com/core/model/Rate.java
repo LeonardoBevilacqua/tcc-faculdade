@@ -16,12 +16,12 @@ public class Rate {
     private String status;
 
     @ManyToOne
-    @JoinColumn(name = "profile_id")
+    @JoinColumn(name = "profile_id", nullable = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Profile profile;
 
     @ManyToOne
-    @JoinColumn(name = "company_id")
+    @JoinColumn(name = "company_id", nullable = false)
     @JsonIgnore
     private Company company;
 

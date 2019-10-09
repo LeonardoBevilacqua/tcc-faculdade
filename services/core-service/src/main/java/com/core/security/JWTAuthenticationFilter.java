@@ -1,6 +1,7 @@
 package com.core.security;
 
 import com.core.dto.UserDTO;
+import com.core.dto.UserLoginDTO;
 import com.core.model.User;
 import com.core.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -51,7 +52,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.addHeader("Authorization", "Bearer " + token);
         response.addHeader("access-control-expose-headers", "Authorization");
         User user = userService.getUserByEmail(email);
-        String json = new ObjectMapper().writeValueAsString(user);
+        UserLoginDTO userLogin = userService.convertUserToLogin(user);
+        String json = new ObjectMapper().writeValueAsString(userLogin);
         response.getWriter().write(json);
         response.flushBuffer();
     }
