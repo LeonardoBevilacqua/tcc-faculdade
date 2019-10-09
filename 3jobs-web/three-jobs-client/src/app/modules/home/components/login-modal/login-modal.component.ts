@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { MaintainForm } from 'src/app/shared/form/maintain-form';
 import { Role } from 'src/app/shared/models/enums/role.enum';
 import { User } from 'src/app/shared/models/user';
-import { isNull } from 'util';
+import { isNull, isNullOrUndefined } from 'util';
 
 declare const $: any;
 
@@ -50,7 +50,7 @@ export class LoginComponent extends MaintainForm<User> implements OnInit {
                         $('#loginModal').modal('hide');
 
                         if (this.authService.getUserRole() === Role.RECRUTER_ADMIN &&
-                            isNull(this.authService.getUser().company)) {
+                            isNullOrUndefined(this.authService.getUser().companyId)) {
                             this.router.navigateByUrl('/company');
                         }
                         else {

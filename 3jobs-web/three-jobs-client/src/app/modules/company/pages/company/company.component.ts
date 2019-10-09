@@ -80,13 +80,15 @@ export class CompanyComponent extends MaintainForm<Company> implements OnInit {
     private updateUser(company: Company, redirectPath: string = null) {
         const user: User = this.authService.getUser();
         user.roles = this.roleValue.transform(user.roles[0]);
-        user.company = company;
+        user.companyId = company.id;
 
         this.userService.update(user).subscribe(
             () => {
                 this.toastr.success('Informações salvas com sucesso!');
 
                 this.isSubmitted = true;
+
+                this.authService.setUser(user);
 
                 if (redirectPath) {
                     this.router.navigateByUrl(redirectPath);

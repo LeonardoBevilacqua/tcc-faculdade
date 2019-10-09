@@ -7,15 +7,15 @@ export class RoleValuePipe implements PipeTransform {
     transform(role: Role): any {
         switch (role) {
             case Role.ADMIN:
-                return [0];
-            case Role.HEADHUNTER:
                 return [1];
-            case Role.CANDIDATE:
+            case Role.HEADHUNTER:
                 return [2];
-            case Role.RECRUTER_ADMIN:
+            case Role.CANDIDATE:
                 return [3];
-            case Role.RECRUTER:
+            case Role.RECRUTER_ADMIN:
                 return [4];
+            case Role.RECRUTER:
+                return [5];
         }
     }
 

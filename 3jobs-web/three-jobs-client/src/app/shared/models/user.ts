@@ -1,8 +1,6 @@
 import { Entity } from './entity';
-import { Profile } from './profile';
-import { Role } from './enums/role.enum';
 import { Job } from './job';
-import { Company } from './company';
+import { Profile } from './profile';
 
 /**
  * Class representing the user model.
@@ -15,5 +13,5 @@ export class User extends Entity {
     jobs: Array<Job>;
     roles: Array<any>;
     toDo: Array<any>;
-    company: Company;
+    companyId: number;
 }

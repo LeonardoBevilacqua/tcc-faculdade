@@ -31,7 +31,7 @@ export class AuthService extends EntityService<User>{
                 localStorage.setItem('userToken', JSON.stringify({ email: user.email, token }));
 
                 // store user
-                localStorage.setItem('user', JSON.stringify({ user: response.body }));
+                this.setUser(response.body);
 
                 // return true to indicate successful login
                 return true;
@@ -56,6 +56,10 @@ export class AuthService extends EntityService<User>{
     public getUser(): User {
         const localStorageUser = JSON.parse(localStorage.getItem('user'));
         return localStorageUser ? localStorageUser.user : new User();
+    }
+
+    public setUser(user) {
+        localStorage.setItem('user', JSON.stringify({ user }));
     }
 
     public getUserRole() {
