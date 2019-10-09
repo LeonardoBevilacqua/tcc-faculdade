@@ -58,6 +58,10 @@ public class User {
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Company company;
+    
+    @Column(name = "company_id", insertable = false, updatable = false)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private Long companyId;
 
     public Set<Job> getJobsHeadhunter() {
         return jobsHeadhunter;
@@ -75,14 +79,6 @@ public class User {
         this.scores = scores;
     }
 
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
-
     public String getPhotoUrl() {
         return photoUrl;
     }
@@ -94,21 +90,9 @@ public class User {
     public void setRoles(Set<Integer> roles) {
         this.roles = roles;
     }
-    
-    @ManyToOne
-    @JoinColumn(name = "company_id", nullable = true)
-    private Company company;
 
     public List<ToDo> getToDos() {
         return toDos;
-    }
-
-    public Long getProfileId() {
-        return profileId;
-    }
-
-    public void setProfileId(Long profileId) {
-        this.profileId = profileId;
     }
 
     public void setToDos(List<ToDo> toDos) {
@@ -179,12 +163,13 @@ public class User {
 		this.company = company;
 	}
 
-    @Override
-	public String toString() {
-		return "User [id=" + id + ", cpf=" + cpf + ", email=" + email + ", password=" + password + ", profile="
-				+ profile + ", profileId=" + profileId + ", jobs=" + jobs + ", roles=" + roles + ", toDos=" + toDos
-				+ ", company=" + company + "]";
+    public Long getCompanyId() {
+		return companyId;
 	}
+
+	public void setCompanyId(Long companyId) {
+		this.companyId = companyId;
+	}	
 
 	public Set<Role> getRoles() {
         return roles.stream().map(role -> Role.toEnum(role)).collect(Collectors.toSet());
@@ -193,4 +178,12 @@ public class User {
     public void addRole(Role role) {
         roles.add(role.getCod());
     }
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", cpf=" + cpf + ", email=" + email + ", photoUrl=" + photoUrl + ", password="
+				+ password + ", profile=" + profile + ", profileId=" + profileId + ", jobs=" + jobs + ", roles=" + roles
+				+ ", jobsHeadhunter=" + jobsHeadhunter + ", toDos=" + toDos + ", scores=" + scores + ", company="
+				+ company + ", companyId=" + companyId + "]";
+	}
 }

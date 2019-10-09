@@ -106,6 +106,7 @@ public class UserService {
                 user.getEmail(),
                 user.getPhotoUrl(),
                 user.getProfileId(),
+                user.getCompanyId(),
                 user.getRoles());
     }
 }
