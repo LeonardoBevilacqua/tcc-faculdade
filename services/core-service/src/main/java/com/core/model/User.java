@@ -1,5 +1,6 @@
 package com.core.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -18,13 +19,13 @@ public class User {
 
     private String cpf;
     private String email;
+    private String photoUrl;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Profile profile;
     
     @Column(name = "profile_id", insertable = false, updatable = false)
@@ -40,14 +41,39 @@ public class User {
     private Set<Integer> roles = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Set<Job> jobsHeadhunter;
+
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id",referencedColumnName = "ID", nullable = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<ToDo> toDos;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    @JsonIgnore
+    private List<Score> scores;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Company company;
+
+    public Set<Job> getJobsHeadhunter() {
+        return jobsHeadhunter;
+    }
+
+    public void setJobsHeadhunter(Set<Job> jobsHeadhunter) {
+        this.jobsHeadhunter = jobsHeadhunter;
+    }
+
+    public List<Score> getScores() {
+        return scores;
+    }
+
+    public void setScores(List<Score> scores) {
+        this.scores = scores;
+    }
 
     public Company getCompany() {
         return company;
@@ -57,12 +83,28 @@ public class User {
         this.company = company;
     }
 
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
     public void setRoles(Set<Integer> roles) {
         this.roles = roles;
     }
 
     public List<ToDo> getToDos() {
         return toDos;
+    }
+
+    public Long getProfileId() {
+        return profileId;
+    }
+
+    public void setProfileId(Long profileId) {
+        this.profileId = profileId;
     }
 
     public void setToDos(List<ToDo> toDos) {
