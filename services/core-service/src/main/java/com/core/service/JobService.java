@@ -1,10 +1,15 @@
 package com.core.service;
 
+import com.core.dto.DashboardDTO;
 import com.core.dto.JobSimpleDTO;
+import com.core.dto.UserSimpleDTO;
 import com.core.exception.EntityNotFoundException;
 import com.core.model.Job;
+import com.core.model.Score;
 import com.core.model.User;
 import com.core.respository.JobRepository;
+import com.core.respository.ScoreRepository;
+import com.core.util.CityAggregate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class JobService {
@@ -22,10 +28,13 @@ public class JobService {
     private JobRepository jobRepository;
 
     @Autowired
-    private CompanyService companyService;
+    private UserService userService;
 
     @Autowired
-    private UserService userService;
+    private CityAggregate aggregate;
+
+    @Autowired
+    private ScoreRepository scoreRepository;
 
     public List<Job> getJobs() {
         return jobRepository.findAll();
@@ -95,5 +104,34 @@ public class JobService {
         userService.updateUser(userId, userFound);
         updateJob(jobId, jobFound);
         return jobFound;
+    }
+
+    public DashboardDTO getJobDashborad(Long id) {
+        DashboardDTO dash = new DashboardDTO();
+        Job job = getJob(id);
+        dash.setHeadhunter(job.getRecruter());
+        List<Score> scores = scoreRepository.findByJobId(id);
+        dash.setCities(aggregate.countUserCities(job.getUsers()));
+        List<UserSimpleDTO> userFiltered = job.getUsers().stream().map(user ->
+                userService.convertUserToSimple(user)).collect(Collectors.toList());
+        dash.setJobUsers(userFiltered);
+        for (Score score:scores ) {
+            score.getUser().setProfile(null);
+        }
+        dash.setUsersScore(scores);
+        return dash;
+    }
+
+    public Job reviewUser(Long jobId, Long userId, Score score) {
+        Job job = getJob(jobId);
+        User user = userService.getUser(userId);
+        score.setJob(job);
+        score.setUser(user);
+        job.getScores().add(score);
+        user.getScores().add(score);
+        scoreRepository.save(score);
+        updateJob(job.getId(), job);
+        userService.updateUser(userId, user);
+        return job;
     }
 }

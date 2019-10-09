@@ -24,11 +24,6 @@ public class CompanyController {
         return ResponseEntity.ok(companyService.getCompany(id));
     }
 
-    @GetMapping("/{id}/simple")
-    public ResponseEntity<?> getSimpleCompany(@PathVariable Long id){
-        return ResponseEntity.ok(companyService.getSimpleCompany(id));
-    }
-
     @PreAuthorize(
             "hasRole('ROLE_ADMIN') or " +
             "hasRole('ROLE_RECRUTER') or " +
@@ -42,5 +37,15 @@ public class CompanyController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateCompany(@PathVariable Long id, @RequestBody Company company) {
         return ResponseEntity.ok(companyService.updateCompany(id, company));
+    }
+
+    @PutMapping("/{id}/recruters/add/{recruter_id}")
+    public ResponseEntity<?> addRecruterToCompany(@PathVariable Long id, @PathVariable Long recruter_id) {
+        return ResponseEntity.ok(companyService.addRecruterToCompany(id, recruter_id));
+    }
+
+    @PutMapping("/{id}/recruters/remove/{recruter_id}")
+    public ResponseEntity<?> removeRecruterToCompany(@PathVariable Long id, @PathVariable Long recruter_id) {
+        return ResponseEntity.ok(companyService.removeRecruterToCompany(id, recruter_id));
     }
 }

@@ -1,8 +1,11 @@
 package com.core.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "jobs")
@@ -30,6 +33,10 @@ public class Job {
     private List<User> users;
 
     @ManyToOne
+    @JoinColumn(name = "recruter_id")
+    private User recruter;
+
+    @ManyToOne
     @JoinColumn(name = "company_id", nullable = false)
     private Company company;
 
@@ -41,7 +48,20 @@ public class Job {
     )
     private List<Tag> tags;
 
-    private String status;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "score_id",referencedColumnName = "ID")
+    @JsonIgnore
+    private Set<Score> scores;
+
+    private String status = "ativo";
+
+    public User getRecruter() {
+        return recruter;
+    }
+
+    public void setRecruter(User recruter) {
+        this.recruter = recruter;
+    }
 
     public List<Tag> getTags() {
         return tags;
@@ -49,6 +69,14 @@ public class Job {
 
     public void setTags(List<Tag> tags) {
         this.tags = tags;
+    }
+
+    public Set<Score> getScores() {
+        return scores;
+    }
+
+    public void setScores(Set<Score> scores) {
+        this.scores = scores;
     }
 
     public Long getId() {

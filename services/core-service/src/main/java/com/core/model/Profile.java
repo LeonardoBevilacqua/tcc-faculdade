@@ -187,11 +187,7 @@ public class Profile {
                 ", dateOfBirth=" + dateOfBirth +
                 ", maritalStatus='" + maritalStatus + '\'' +
                 ", nationality='" + nationality + '\'' +
-                ", skills=" + skills +
-                ", experiences=" + experiences +
-                ", address=" + address +
                 ", rates=" + rates +
-                ", user=" + user +
                 ", tags=" + tags +
                 ", email=" + email +
                 '}';
