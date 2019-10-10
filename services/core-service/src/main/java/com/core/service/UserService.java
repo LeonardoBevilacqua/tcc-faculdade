@@ -61,6 +61,8 @@ public class UserService {
     public User updateUser(Long id, User user) {
         User userFound = getUser(id);
         user.setPassword(userFound.getPassword());
+        user.setProfile(userFound.getProfile());
+        
         userFound = user;
         userFound.setEmail(userFound.getEmail());
         return userRepository.save(userFound);
@@ -103,6 +105,7 @@ public class UserService {
                 user.getEmail(),
                 user.getPhotoUrl(),
                 user.getProfileId(),
+                user.getCompanyId(),
                 user.getRoles());
     }
 }

@@ -57,6 +57,10 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Company company;
+    
+    @Column(name = "company_id", insertable = false, updatable = false)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private Long companyId;
 
     public Set<Job> getJobsHeadhunter() {
         return jobsHeadhunter;
@@ -74,14 +78,6 @@ public class User {
         this.scores = scores;
     }
 
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
-
     public String getPhotoUrl() {
         return photoUrl;
     }
@@ -96,14 +92,6 @@ public class User {
 
     public List<ToDo> getToDos() {
         return toDos;
-    }
-
-    public Long getProfileId() {
-        return profileId;
-    }
-
-    public void setProfileId(Long profileId) {
-        this.profileId = profileId;
     }
 
     public void setToDos(List<ToDo> toDos) {
@@ -156,24 +144,45 @@ public class User {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
-    }
+    }       
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", cpf='" + cpf + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", roles=" + roles +
-                '}';
-    }
+    public Long getProfileId() {
+		return profileId;
+	}
+
+	public void setProfileId(Long profileId) {
+		this.profileId = profileId;
+	}
 
     public Set<Role> getRoles() {
         return roles.stream().map(Role::toEnum).collect(Collectors.toSet());
     }
 
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+
+    public Long getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(Long companyId) {
+		this.companyId = companyId;
+	}	
+
     public void addRole(Role role) {
         roles.add(role.getCod());
     }
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", cpf=" + cpf + ", email=" + email + ", photoUrl=" + photoUrl + ", password="
+				+ password + ", profile=" + profile + ", profileId=" + profileId + ", jobs=" + jobs + ", roles=" + roles
+				+ ", jobsHeadhunter=" + jobsHeadhunter + ", toDos=" + toDos + ", scores=" + scores + ", company="
+				+ company + ", companyId=" + companyId + "]";
+	}
 }

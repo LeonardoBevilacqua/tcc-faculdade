@@ -11,6 +11,7 @@ export class Job extends Entity {
     description: string;
     jobRole: string;
     requirement: string;
+    salaryValue: number;
     benefit: string;
     beginDate: Date;
     endDate: Date;

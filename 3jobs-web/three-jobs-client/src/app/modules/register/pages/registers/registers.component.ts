@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/core/services/user.service';
 import { MaintainForm } from 'src/app/shared/form/maintain-form';
@@ -25,9 +23,8 @@ export class RegistersComponent extends MaintainForm<User> implements OnInit {
     constructor(private titleService: Title,
                 userService: UserService,
                 router: Router,
-                spinnerService: Ng4LoadingSpinnerService,
                 toastr: ToastrService) {
-        super(userService, router, toastr, spinnerService);
+        super(userService, router, toastr);
     }
 
     ngOnInit() {

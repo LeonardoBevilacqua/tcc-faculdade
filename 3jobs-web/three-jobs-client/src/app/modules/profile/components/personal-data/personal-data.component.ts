@@ -1,11 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ProfileService } from 'src/app/core/services/profile.service';
 import { MaintainForm } from 'src/app/shared/form/maintain-form';
 import { Profile } from 'src/app/shared/models/profile';
-import { User } from 'src/app/shared/models/user';
 import { isNullOrUndefined } from 'util';
 
 @Component({ selector: 'personal-data', templateUrl: './personal-data.component.html' })
@@ -32,14 +30,12 @@ export class PersonalDataComponent extends MaintainForm<Profile> implements OnIn
      * @param profileService profile service.
      * @param router router for nagivation.
      * @param toastr toastr service.
-     * @param spinnerService spinner service.
      */
     constructor(
         profileService: ProfileService,
         router: Router,
-        toastr: ToastrService,
-        spinnerService: Ng4LoadingSpinnerService) {
-        super(profileService, router, toastr, spinnerService);
+        toastr: ToastrService) {
+        super(profileService, router, toastr);
     }
 
     ngOnInit() {
@@ -53,5 +49,11 @@ export class PersonalDataComponent extends MaintainForm<Profile> implements OnIn
         this.model = this.profile;
 
         this.currentId = this.profile.id;
+    }
+
+    public personalDataHasData() {
+        return this.profile.dateOfBirth ||
+            this.profile.maritalStatus ||
+            this.profile.nationality;
     }
 }

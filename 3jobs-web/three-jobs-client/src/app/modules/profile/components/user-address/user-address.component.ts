@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ProfileService } from 'src/app/core/services/profile.service';
 import { MaintainForm } from 'src/app/shared/form/maintain-form';
@@ -26,8 +25,8 @@ export class UserAddressComponent extends MaintainForm<Profile> implements OnIni
      */
     isFormEdition: boolean;
 
-    constructor(profileService: ProfileService, router: Router, toastr: ToastrService, spinnerService: Ng4LoadingSpinnerService) {
-        super(profileService, router, toastr, spinnerService);
+    constructor(profileService: ProfileService, router: Router, toastr: ToastrService) {
+        super(profileService, router, toastr);
     }
 
     ngOnInit() {
@@ -45,5 +44,13 @@ export class UserAddressComponent extends MaintainForm<Profile> implements OnIni
         }
 
         this.currentId = this.profile.id;
+    }
+
+    public userAddressHasData() {
+        return this.profile.address.zipCode ||
+            this.profile.address.state ||
+            this.profile.address.city ||
+            this.profile.address.district ||
+            this.profile.address.name;
     }
 }
