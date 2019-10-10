@@ -15,12 +15,12 @@ public class Score {
     private Long value;
 
     @ManyToOne
-    @JoinColumn(name = "job_id", unique=true)
+    @JoinColumn(name = "job_id")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Job job;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", unique=true)
+    @JoinColumn(name = "user_id")
     private User user;
 
     public User getUser() {

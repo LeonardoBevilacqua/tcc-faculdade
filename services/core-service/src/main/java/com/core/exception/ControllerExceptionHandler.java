@@ -12,7 +12,6 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<?> entityNotFound(EntityNotFoundException e, HttpServletRequest request) {
-        System.out.println("Entrei no Error");
         CommonError error = new CommonError("Teste", e.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }

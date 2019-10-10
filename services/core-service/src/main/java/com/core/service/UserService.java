@@ -93,7 +93,6 @@ public class UserService {
     }
 
     public UserSimpleDTO convertUserToSimple(User user) {
-        System.out.println("user " + user);
         return new UserSimpleDTO(user.getId(), user.getEmail(),
                 user.getProfile().getName() + ' ' + user.getProfile().getLastName());
     }

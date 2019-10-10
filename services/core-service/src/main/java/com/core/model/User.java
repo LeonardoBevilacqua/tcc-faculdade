@@ -55,7 +55,6 @@ public class User {
     private List<Score> scores;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "company_id", referencedColumnName = "id")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Company company;
 
@@ -171,7 +170,7 @@ public class User {
     }
 
     public Set<Role> getRoles() {
-        return roles.stream().map(role -> Role.toEnum(role)).collect(Collectors.toSet());
+        return roles.stream().map(Role::toEnum).collect(Collectors.toSet());
     }
 
     public void addRole(Role role) {
