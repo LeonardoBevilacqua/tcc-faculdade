@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ScoreRepository extends JpaRepository<Score, Long> {
 
-    List<Score> findByJobId(Long id);
+    List<Score> findByJobIdOrderByValueDesc(Long id);
 }
