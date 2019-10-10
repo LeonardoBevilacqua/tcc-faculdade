@@ -46,7 +46,12 @@ public class CompanyService {
     }
 
     public Company saveCompany(Company company) {
-        return companyRepository.save(company);
+        User user = userService.getUser(company.getAdmin().getId());
+        user.setCompany(company);
+        company.setAdmin(user);
+        companyRepository.save(company);
+        userRepository.save(user);
+        return company;
     }
 
     public Company updateCompany(Long id, Company company) {
