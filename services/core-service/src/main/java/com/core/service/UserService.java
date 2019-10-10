@@ -1,5 +1,7 @@
 package com.core.service;
 
+import com.core.dto.UserLoginDTO;
+import com.core.dto.UserSimpleDTO;
 import com.core.dto.UserToDoDTO;
 import com.core.exception.EntityNotFoundException;
 import com.core.exception.UserUnauthorizedException;
@@ -59,8 +61,10 @@ public class UserService {
     public User updateUser(Long id, User user) {
         User userFound = getUser(id);
         user.setPassword(userFound.getPassword());
+        user.setProfile(userFound.getProfile());
+        
         userFound = user;
-        userFound.getProfile().setEmail(userFound.getEmail());
+        userFound.setEmail(userFound.getEmail());
         return userRepository.save(userFound);
     }
 
@@ -88,5 +92,20 @@ public class UserService {
 
     public UserToDoDTO buildUserToDos(User user) {
         return new UserToDoDTO(user.getToDos());
+    }
+
+    public UserSimpleDTO convertUserToSimple(User user) {
+        return new UserSimpleDTO(user.getId(), user.getEmail(),
+                user.getProfile().getName() + ' ' + user.getProfile().getLastName());
+    }
+
+    public UserLoginDTO convertUserToLogin(User user) {
+        return new UserLoginDTO(user.getId(),
+                user.getCpf(),
+                user.getEmail(),
+                user.getPhotoUrl(),
+                user.getProfileId(),
+                user.getCompanyId(),
+                user.getRoles());
     }
 }

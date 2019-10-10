@@ -105,11 +105,10 @@ export class MaintainForm<E extends Entity> {
             response => {
                 this.toastr.info('Dados carregados');
                 this.model = response;
-
             },
             (error: HttpErrorResponse) => {
                 this.errorHandler(error);
-                this.router.navigate(['/']);
+                this.router.navigateByUrl('/');
             }
         );
     }
@@ -126,7 +125,7 @@ export class MaintainForm<E extends Entity> {
      *
      * @param error Response error object
      */
-    private errorHandler(error: HttpErrorResponse) {
+    public errorHandler(error: HttpErrorResponse) {
         this.isSubmitted = false;
         // if error is set, Show the server message.
         if (error.error && error.status !== 0) {

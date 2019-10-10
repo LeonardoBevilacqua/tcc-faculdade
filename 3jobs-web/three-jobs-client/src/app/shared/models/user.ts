@@ -1,6 +1,6 @@
 import { Entity } from './entity';
+import { Job } from './job';
 import { Profile } from './profile';
-import { Role } from './enums/role.enum';
 
 /**
  * Class representing the user model.
@@ -10,5 +10,8 @@ export class User extends Entity {
     email: string;
     password: string;
     profile: Profile;
-    roles: Array<Role>;
+    jobs: Array<Job>;
+    roles: Array<any>;
+    toDo: Array<any>;
+    companyId: number;
 }

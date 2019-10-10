@@ -1,5 +1,6 @@
 package com.core.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -18,13 +19,13 @@ public class User {
 
     private String cpf;
     private String email;
+    private String photoUrl;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Profile profile;
     
     @Column(name = "profile_id", insertable = false, updatable = false)
@@ -40,9 +41,50 @@ public class User {
     private Set<Integer> roles = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Set<Job> jobsHeadhunter;
+
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id",referencedColumnName = "ID", nullable = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<ToDo> toDos;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    @JsonIgnore
+    private List<Score> scores;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Company company;
+    
+    @Column(name = "company_id", insertable = false, updatable = false)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private Long companyId;
+
+    public Set<Job> getJobsHeadhunter() {
+        return jobsHeadhunter;
+    }
+
+    public void setJobsHeadhunter(Set<Job> jobsHeadhunter) {
+        this.jobsHeadhunter = jobsHeadhunter;
+    }
+
+    public List<Score> getScores() {
+        return scores;
+    }
+
+    public void setScores(List<Score> scores) {
+        this.scores = scores;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
 
     public void setRoles(Set<Integer> roles) {
         this.roles = roles;
@@ -102,24 +144,45 @@ public class User {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
-    }
+    }       
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", cpf='" + cpf + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", roles=" + roles +
-                '}';
-    }
+    public Long getProfileId() {
+		return profileId;
+	}
+
+	public void setProfileId(Long profileId) {
+		this.profileId = profileId;
+	}
 
     public Set<Role> getRoles() {
-        return roles.stream().map(role -> Role.toEnum(role)).collect(Collectors.toSet());
+        return roles.stream().map(Role::toEnum).collect(Collectors.toSet());
     }
+
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+
+    public Long getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(Long companyId) {
+		this.companyId = companyId;
+	}	
 
     public void addRole(Role role) {
         roles.add(role.getCod());
     }
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", cpf=" + cpf + ", email=" + email + ", photoUrl=" + photoUrl + ", password="
+				+ password + ", profile=" + profile + ", profileId=" + profileId + ", jobs=" + jobs + ", roles=" + roles
+				+ ", jobsHeadhunter=" + jobsHeadhunter + ", toDos=" + toDos + ", scores=" + scores + ", company="
+				+ company + ", companyId=" + companyId + "]";
+	}
 }
