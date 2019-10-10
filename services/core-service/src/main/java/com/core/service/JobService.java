@@ -110,7 +110,7 @@ public class JobService {
         DashboardDTO dash = new DashboardDTO();
         Job job = getJob(id);
         dash.setHeadhunter(job.getRecruter());
-        List<Score> scores = scoreRepository.findByJobId(id);
+        List<Score> scores = scoreRepository.findByJobIdOrderByValueDesc(id);
         dash.setCities(aggregate.countUserCities(job.getUsers()));
         List<UserSimpleDTO> userFiltered = job.getUsers().stream().map(user ->
                 userService.convertUserToSimple(user)).collect(Collectors.toList());
@@ -118,7 +118,7 @@ public class JobService {
         for (Score score:scores ) {
             score.getUser().setProfile(null);
         }
-        dash.setUsersScore(scores);
+        dash.setUsersScore(scores.stream().limit(5).collect(Collectors.toList()));
         return dash;
     }
 
