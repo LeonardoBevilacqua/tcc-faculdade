@@ -139,8 +139,6 @@ export class MaintainForm<E extends Entity> {
             this.toastr.error('Tente novamente mais tarde.', 'Falha ao se comunicar com servidor!');
         }
 
-
-
         if (!environment.production) {
             // for debug
             console.error(error);

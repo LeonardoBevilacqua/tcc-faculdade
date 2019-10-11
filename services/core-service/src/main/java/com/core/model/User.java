@@ -54,7 +54,7 @@ public class User {
     @JsonIgnore
     private List<Score> scores;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Company company;
     
