@@ -44,11 +44,13 @@ export class JwtInterceptor implements HttpInterceptor {
                         this.spinnerService.hide();
                         this.router.navigateByUrl('/');
                     }
-
-                    if (error.status === 404) {
+                    else if (error.status === 404) {
                         this.spinnerService.hide();
-                        this.toastr.error('Não encontrado!');
+                        this.toastr.error('Recurso não encontrado!');
                         this.router.navigateByUrl('/');
+                    }
+                    else {
+                        throw of(error);
                     }
                 }
 
