@@ -1,6 +1,5 @@
 package com.core.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -19,7 +18,6 @@ public class User {
 
     private String cpf;
     private String email;
-    private String photoUrl;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
@@ -41,18 +39,14 @@ public class User {
     private Set<Integer> roles = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "headhunter_id")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Set<Job> jobsHeadhunter;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id",referencedColumnName = "ID", nullable = false)
+    @JoinColumn(name = "user_id",referencedColumnName = "ID")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<ToDo> toDos;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id",referencedColumnName = "id")
-    @JsonIgnore
-    private List<Score> scores;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -68,22 +62,6 @@ public class User {
 
     public void setJobsHeadhunter(Set<Job> jobsHeadhunter) {
         this.jobsHeadhunter = jobsHeadhunter;
-    }
-
-    public List<Score> getScores() {
-        return scores;
-    }
-
-    public void setScores(List<Score> scores) {
-        this.scores = scores;
-    }
-
-    public String getPhotoUrl() {
-        return photoUrl;
-    }
-
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
     }
 
     public void setRoles(Set<Integer> roles) {
@@ -180,9 +158,9 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", cpf=" + cpf + ", email=" + email + ", photoUrl=" + photoUrl + ", password="
+		return "User [id=" + id + ", cpf=" + cpf + ", email=" + email + ", password="
 				+ password + ", profile=" + profile + ", profileId=" + profileId + ", jobs=" + jobs + ", roles=" + roles
-				+ ", jobsHeadhunter=" + jobsHeadhunter + ", toDos=" + toDos + ", scores=" + scores + ", company="
+				+ ", jobsHeadhunter=" + jobsHeadhunter + ", toDos=" + toDos + ", company="
 				+ company + ", companyId=" + companyId + "]";
 	}
 }
