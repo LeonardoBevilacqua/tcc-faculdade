@@ -20,7 +20,7 @@ import { SearchService } from 'src/app/core/services/search.service';
 export class InputSearchComponent implements OnInit {
 
 
-    jobs: Array<Object>;
+    jobs: Object;
 
     constructor(
         private titleService: Title,
@@ -37,14 +37,16 @@ export class InputSearchComponent implements OnInit {
 
     onSubmit(searchForm: NgForm) {
 
-        this.jobService.search(searchForm.value.description, 0, 4).subscribe(
+        this.jobService.search(searchForm.value.description, 0, 20).subscribe(
             ((res: any) => {
-                this.jobs = res.content
+                this.jobs = res
                 this.searchService.changeJobs(this.jobs)
+                this.searchService.changeSearch(searchForm.value.description)
+                this.router.navigateByUrl('/search');
             }
             )
         );
-        this.router.navigateByUrl('/search');
+
     }
 
 }

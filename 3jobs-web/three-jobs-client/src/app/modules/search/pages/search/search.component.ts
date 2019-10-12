@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from 'src/app/core/services/search.service';
+import { JobService } from 'src/app/core/services/job.service';
 
 @Component({ selector: 'app-search', templateUrl: './search.component.html' })
 export class SearchComponent implements OnInit {
@@ -44,8 +45,6 @@ export class SearchComponent implements OnInit {
         }
     ];
 
-    jobList: Array<Object>;
-
     listCandidate: Object = [
         {
             name: "Marcelo Rodrigues Costa",
@@ -74,13 +73,37 @@ export class SearchComponent implements OnInit {
      */
     isFilterActive: boolean;
 
-    constructor( private searchService: SearchService) { }
+    jobList: any;
+    tags = [];
+    valueSearch: string
+    constructor(private searchService: SearchService,
+        private jobService: JobService) { }
 
     ngOnInit() {
         this.searchService.currentJobs.subscribe(jobs => this.jobList = jobs)
+        this.searchService.currentValueSearch.subscribe(valueSearch => this.valueSearch = valueSearch)
+        console.log(this.jobList);
+        console.log(this.valueSearch);
         this.isFilterActive = false;
     }
 
+    loadMore() {
+        if (this.jobList.number != (this.jobList.totalPages - 1)) {
+            this.jobService.search('analista', this.jobList.number + 1, 20).subscribe(
+                ((res: any) => {
 
+                    length
+
+                    for (var i = 0; i < res.content.length; i++) {
+                        this.jobList.content.push(res.content[i]);
+                    }
+
+                    this.jobList.number = res.number
+                    this.jobList.totalPages = res.totalPages
+                }
+                )
+            );
+        }
+    }
 
 }

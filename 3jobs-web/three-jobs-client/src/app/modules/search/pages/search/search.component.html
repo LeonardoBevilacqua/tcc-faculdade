@@ -1,21 +1,24 @@
 <app-header></app-header>
 <div class="d-flex flex-column vh-100">
-    
+
     <div class="content pt-4 container-fluid mb-auto px-md-5 py-3 mb-3 bg-light">
         <div class="px-md-5">
-            <span>148 resultados para: </span><strong class="mr-2">java</strong>
+            <span>{{jobList.totalElements}} resultado(s) para: </span><strong class="mr-2">{{valueSearch}}</strong>
             <button class="btn badge badge-pill badge-primary mr-2" *ngFor="let item of tagsList">
                 {{item}} <i class="fa fa-times"></i>
             </button>
         </div>
         <div class="d-flex flex-row-reverse px-md-5 pt-3">
-            <button *ngIf="isFilterActive" type="button" class="btn btn-outline-primary ml-2" (click)="isFilterActive = false">
+            <button *ngIf="isFilterActive" type="button" class="btn btn-outline-primary ml-2"
+                (click)="isFilterActive = false">
                 Aplicar
             </button>
-            <button *ngIf="isFilterActive" type="button" class="btn btn-outline-danger" (click)="isFilterActive = false">
+            <button *ngIf="isFilterActive" type="button" class="btn btn-outline-danger"
+                (click)="isFilterActive = false">
                 Cancelar
             </button>
-            <button *ngIf="!isFilterActive" type="button" class="btn btn-outline-primary ml-md-2" (click)="isFilterActive = true">
+            <button *ngIf="!isFilterActive" type="button" class="btn btn-outline-primary ml-md-2"
+                (click)="isFilterActive = true">
                 <i class="fa fa-filter" aria-hidden="true">Filtros</i>
             </button>
         </div>
@@ -38,23 +41,40 @@
     <section>
         <div class="row pl-md-5 mb-5 w-100">
             <div class="col-md-9 px-md-5">
-                <app-card-job [jobs]= jobList></app-card-job>
-    
-                <app-card-candidate [candidates]= listCandidate></app-card-candidate>
-    
-                <div class="px-3 border-top border-top-1 ">
-                    <button type="button" class="my-5 btn btn-primary btn-lg btn-block">Ver Mais</button>
+                <div *ngIf="jobList.numberOfElements == 0">
+                    <div class="h1">Busca não encontrada!</div>
+                    <div class="h5">Não encontramos nenhuma vaga com "{{valueSearch}}"
+                    </div>
+
+                    <p class="h6 pd-0">Sugestões:</p>
+
+                    <ul>
+                        <li>Certifique-se de que todas as palavras estejam escritas corretamente.</li>
+                        <li>Tente palavras-chave diferentes.</li>
+                        <li>Tente palavras-chave mais genéricas.</li>
+                    </ul>
+
+                </div>
+
+                <!-- <app-card-job [jobs]=jobList></app-card-job> -->
+
+                <!-- <app-card-candidate [candidates]=listCandidate></app-card-candidate> -->
+
+                <div class="px-3 border-top border-top-1 " *ngIf="jobList.number != jobList.totalPages-1">
+                    <button type="button" class="my-5 btn btn-primary btn-lg btn-block" (click)="loadMore()"
+                        [disabled]="jobList.numberOfElements == 0">Ver Mais</button>
                 </div>
             </div>
-    
+
             <div class="col-md-3 d-flex justify-content-center">
-                <div class=" d-flex flex-column justify-content-center align-items-center" style="height: 600px;width: 200px;background: rgba(143, 143, 143, 0.753)">
-                   <h2>Anuncie</h2> 
-                   <h2>Aqui</h2> 
+                <div class=" d-flex flex-column justify-content-center align-items-center"
+                    style="height: 600px;width: 200px;background: rgba(143, 143, 143, 0.753)">
+                    <h2>Anuncie</h2>
+                    <h2>Aqui</h2>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <app-footer></app-footer>
 </div>
