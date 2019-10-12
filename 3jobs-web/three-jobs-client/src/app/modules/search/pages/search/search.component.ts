@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SearchService } from 'src/app/core/services/search.service';
 
 @Component({ selector: 'app-search', templateUrl: './search.component.html' })
 export class SearchComponent implements OnInit {
@@ -43,30 +44,7 @@ export class SearchComponent implements OnInit {
         }
     ];
 
-    jobList: Object = [
-        {
-            title: "Java",
-            company: "Eldorado",
-            nivel: "Júnior",
-            city: "Campinas",
-            description: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos
-            voluptates beatae
-            vel quam rem quos qui! Eos officia nisi pariatur laboriosam sequi blanditiis. Modi iste culpa,
-            expedita adipisci in eos!`,
-            publicated: "4 Dias"
-        },
-        {
-            title: "Java",
-            company: "Daitan",
-            nivel: "Pleno",
-            city: "Campinas",
-            description: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos
-            voluptates beatae
-            vel quam rem quos qui! Eos officia nisi pariatur laboriosam sequi blanditiis. Modi iste culpa,
-            expedita adipisci in eos!`,
-            publicated: "02/02/2019"
-        }
-    ];
+    jobList: Array<Object>;
 
     listCandidate: Object = [
         {
@@ -96,9 +74,10 @@ export class SearchComponent implements OnInit {
      */
     isFilterActive: boolean;
 
-    constructor() { }
+    constructor( private searchService: SearchService) { }
 
     ngOnInit() {
+        this.searchService.currentJobs.subscribe(jobs => this.jobList = jobs)
         this.isFilterActive = false;
     }
 
