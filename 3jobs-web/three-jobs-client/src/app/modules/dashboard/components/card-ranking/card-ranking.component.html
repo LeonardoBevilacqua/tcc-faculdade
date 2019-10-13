@@ -1,13 +1,14 @@
 <div class="card shadow">
     <div class="d-flex flex-column justify-content-center align-items-center"
         style="height: 200px;position: relative; background: linear-gradient(to right, #1e5799 0%,  #3ccdbb 0%, #16c9f6 100%);">
-        <button type="button" class="btn btn-primary btn-sm" style="position: absolute; right: 5px;top: 5px">Ver
-            Perfil</button>
-        <div class="bg-success rounded-circle"
-            style="width: 120px;height: 120px; background: url('https://cdn.ome.lt/_1KF0rLSFPxVwCR-u5XA6Mc-k4E=/1200x630/smart/extras/conteudos/goku3.jpg') center no-repeat; background-size: cover;">
-            <img />
+        <a target="_blank" href="/profile/{{headhunter.id}}" class="btn btn-primary btn-sm"
+            style="position: absolute; right: 5px;top: 5px">Ver
+            Perfil</a>
+        <div class="bg-success rounded-circle" [ngStyle]="{'background-image':'url('+headhunter.photoUrl+') '}"
+            style="width: 120px;height: 120px;  background: center no-repeat;background-size: cover;">
         </div>
-        <strong>Marcelo Rodrigues</strong>
+        <strong>HeadHunter</strong>
+        <strong>{{headhunter.name}}</strong>
     </div>
     <div class="card-body p-0">
         <table class="table mb-0">
@@ -20,10 +21,11 @@
             </thead>
             <tbody>
                 <tr *ngFor="let item of ranking; index as i;">
-                    <td>{{item.rank}}</td>
-                    <td>{{item.nome}}</td>
+                    <td>{{i + 1}}</td>
+                    <td>{{item.profile.name}}</td>
                     <td>
-                        <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
+                        <a target="_blank" href="/profile/{{item.profile.id}}" class="btn btn-primary btn-sm">Ver
+                            Perfil</a>
                     </td>
                 </tr>
             </tbody>

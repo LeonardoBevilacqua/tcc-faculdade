@@ -35,31 +35,42 @@ export class CreateVacancyModalComponent extends MaintainForm<Job> implements On
 
 
     ngOnInit() {
-        const user: User = this.authService.getUser();
 
-        this.model = new Job();
-        this.model.company = new Company();
-        this.model.company.id = user.companyId;
-
-        this.model.recruter = new User();
-        this.model.recruter.id = user.id;
     }
 
     public onSubmit() {
 
         this.spinnerService.show();
-        this.jobService.create(this.model).subscribe(
-            (response: any) => {
-                this.subject.emit();
-                this.spinnerService.hide();
-                $('#createVacancyModal').modal('hide');
-                this.toastr.success(response.message ? response.message : 'Informações salvas com sucesso!');
-            },
-            (error) => {
-                this.errorHandler(error);
-                this.spinnerService.hide();
-            }
-        );
+        if (this.model.id > 0) {
+            this.jobService.create(this.model).subscribe(
+                (response: any) => {
+                    this.subject.emit();
+                    this.spinnerService.hide();
+                    $('#createVacancyModal').modal('hide');
+                    this.toastr.success(response.message ? response.message : 'Informações salvas com sucesso!');
+                },
+                (error) => {
+                    this.errorHandler(error);
+                    this.spinnerService.hide();
+                }
+            );
+        }
+        else {
+            this.jobService.update(this.model).subscribe(
+                (response: any) => {
+                    this.subject.emit();
+                    this.spinnerService.hide();
+                    $('#createVacancyModal').modal('hide');
+                    this.toastr.success(response.message ? response.message : 'Informações salvas com sucesso!');
+                },
+                (error) => {
+                    this.errorHandler(error);
+                    this.spinnerService.hide();
+                }
+            );
+        }
+
+
     }
 
     public onTagsChange() {

@@ -1,3 +1,4 @@
+import { JobDashboard } from './../../shared/models/jobDashboard';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { EntityService } from './entity.service';
@@ -26,5 +27,9 @@ export class JobService extends EntityService<Job> {
     }
     public search(description: string, page = 0, size = 10) {
         return this.httpClient.get(`${this.apiUrl}/${this.endpoint}?description=${description}&page=${page}&size=${size}`);
+    }
+
+    public getJobDashborad(id: number): Observable<JobDashboard> {
+        return this.httpClient.get<JobDashboard>(`${this.apiUrl}/${this.endpoint}/${id}/dashboard`);
     }
 }
