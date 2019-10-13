@@ -1,5 +1,6 @@
 package com.core.dto;
 
+import com.core.model.Profile;
 import com.core.model.Score;
 import com.core.model.User;
 
@@ -10,23 +11,23 @@ public class DashboardDTO {
 
     private HashMap<String, Long> cities;
     private List<Score> usersScore;
-    private List<UserSimpleDTO> jobUsers;
-    private User headhunter;
+    private List<Profile> jobUsers;
+    private Profile headhunter;
 
-    public List<UserSimpleDTO> getJobUsers() {
-        return jobUsers;
-    }
-
-    public void setJobUsers(List<UserSimpleDTO> jobUsers) {
-        this.jobUsers = jobUsers;
-    }
-
-    public User getHeadhunter() {
+    public Profile getHeadhunter() {
         return headhunter;
     }
 
-    public void setHeadhunter(User headhunter) {
+    public void setHeadhunter(Profile headhunter) {
         this.headhunter = headhunter;
+    }
+
+    public List<Profile> getJobUsers() {
+        return jobUsers;
+    }
+
+    public void setJobUsers(List<Profile> jobUsers) {
+        this.jobUsers = jobUsers;
     }
 
     public HashMap<String, Long> getCities() {

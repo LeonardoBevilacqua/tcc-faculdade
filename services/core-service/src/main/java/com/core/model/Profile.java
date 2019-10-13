@@ -1,5 +1,6 @@
 package com.core.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class Profile {
     private String maritalStatus;
     private String nationality;
     private String email;
+    private String photoUrl;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -53,6 +55,27 @@ public class Profile {
             inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
     private List<Tag> tags;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "profile_id",referencedColumnName = "id")
+    @JsonIgnore
+    private List<Score> scores;
+
+    public List<Score> getScores() {
+        return scores;
+    }
+
+    public void setScores(List<Score> scores) {
+        this.scores = scores;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
 
     public List<Tag> getTags() {
         return tags;

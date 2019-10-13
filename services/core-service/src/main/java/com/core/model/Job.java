@@ -33,8 +33,8 @@ public class Job {
     private List<User> users;
 
     @ManyToOne
-    @JoinColumn(name = "recruter_id")
-    private User recruter;
+    @JoinColumn(name = "headhunter_id")
+    private User headhunter;
 
     @ManyToOne
     @JoinColumn(name = "company_id", nullable = false)
@@ -49,18 +49,18 @@ public class Job {
     private List<Tag> tags;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "score_id",referencedColumnName = "ID")
+    @JoinColumn(name = "score_id",referencedColumnName = "id")
     @JsonIgnore
     private Set<Score> scores;
 
     private String status = "ativo";
 
-    public User getRecruter() {
-        return recruter;
+    public User getHeadhunter() {
+        return headhunter;
     }
 
-    public void setRecruter(User recruter) {
-        this.recruter = recruter;
+    public void setHeadhunter(User headhunter) {
+        this.headhunter = headhunter;
     }
 
     public List<Tag> getTags() {

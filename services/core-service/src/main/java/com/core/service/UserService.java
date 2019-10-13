@@ -103,7 +103,6 @@ public class UserService {
         return new UserLoginDTO(user.getId(),
                 user.getCpf(),
                 user.getEmail(),
-                user.getPhotoUrl(),
                 user.getProfileId(),
                 user.getCompanyId(),
                 user.getRoles());
