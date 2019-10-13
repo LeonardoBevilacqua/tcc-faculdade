@@ -1,5 +1,6 @@
 package com.core.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -48,7 +49,12 @@ public class User {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<ToDo> toDos;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    @JsonIgnore
+    private List<Score> scores;
+
+    @OneToOne()
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Company company;
     
