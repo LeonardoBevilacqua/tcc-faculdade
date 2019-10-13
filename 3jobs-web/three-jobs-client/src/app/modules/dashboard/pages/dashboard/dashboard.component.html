@@ -26,8 +26,8 @@
                             <th scope="col">Vaga</th>
                             <th scope="col" style="width: 110px">Status</th>
                             <th scope="col" style="width: 140px">
-                                <button (click)="createVacancy()" class="btn btn-success btn-sm"
-                                    data-toggle="modal" data-target="#createVacancyModal">Cadastrar</button>
+                                <button (click)="createVacancy()" class="btn btn-success btn-sm" data-toggle="modal"
+                                    data-target="#createVacancyModal">Cadastrar</button>
                             </th>
                         </tr>
                     </thead>
@@ -63,21 +63,22 @@
                             <th scope="col">Recrutador</th>
                             <th scope="col" class="d-none d-sm-table-cell">E-mail</th>
                             <th scope="col" style="width: 110px">
-                                <button class="btn btn-success btn-sm" >Cadastrar</button>
+                                <button class="btn btn-success btn-sm">Cadastrar</button>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Marcelo</td>
-                            <td class="d-none d-sm-table-cell">capp59marcelo@hotmail.com</td>
+                        <tr *ngFor="let recruiter of recruiters;">
+                            <td>{{recruiter.profile.name}}</td>
+                            <td class="d-none d-sm-table-cell">{{recruiter.email}}</td>
                             <td>
                                 <button type="button" class="btn btn-primary btn-sm" title="Editar Recrutador">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                 </button>
-                                <button type="button" class="btn btn-success btn-sm mx-2" title="Perfil Recrutador">
+                                <a target="_blank" href="/profile/{{recruiter.profile.id}}"
+                                    class="btn btn-success btn-sm mx-2" title="Perfil Recrutador">
                                     <i class="fa fa-share" aria-hidden="true"></i>
-                                </button>
+                                </a>
                             </td>
                     </tbody>
                 </table>

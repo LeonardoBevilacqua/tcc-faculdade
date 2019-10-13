@@ -1,3 +1,5 @@
+import { Profile } from './../../../../shared/models/profile';
+import { CompanyService } from 'src/app/core/services/company.service';
 import { Job } from 'src/app/shared/models/job';
 import { JobService } from 'src/app/core/services/job.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,24 +12,30 @@ import { User } from 'src/app/shared/models/user';
 export class DashboardComponent implements OnInit {
 
     vacancies: Array<Job>;
-    constructor(private authService: AuthService, private jobService: JobService) { }
+    recruiters: Array<User>;
+    user: User;
+
+    constructor(private authService: AuthService, private jobService: JobService, private companyService: CompanyService) {
+        this.user = this.authService.getUser();
+    }
 
     job: Job;
     ngOnInit() {
 
         this.job = new Job();
         this.getAllVacancies();
+        this.getAllRecruiter();
     }
 
     public createVacancy() {
-        const user: User = this.authService.getUser();
+
 
         this.job = new Job();
         this.job.company = new Company();
-        this.job.company.id = user.companyId;
+        this.job.company.id = this.user.companyId;
 
         this.job.recruter = new User();
-        this.job.recruter.id = user.id;
+        this.job.recruter.id = this.user.id;
     }
 
     public toEditVacancy(vacancy: Job) {
@@ -35,7 +43,7 @@ export class DashboardComponent implements OnInit {
     }
 
     private getAllVacancies() {
-        
+
         this.jobService.getAll().subscribe(
             (response) => {
                 this.vacancies = response.content;
@@ -45,6 +53,19 @@ export class DashboardComponent implements OnInit {
             }
         );
     }
+
+    private getAllRecruiter() {
+
+        this.companyService.read(this.user.companyId).subscribe(
+            (response) => {
+                this.recruiters = response.recruters;
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
+    }
+
 
     shouldDisplayRecrutersTable() {
         return this.authService.getUserRole() === Role.RECRUTER_ADMIN;
