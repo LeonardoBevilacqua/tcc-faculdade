@@ -39,11 +39,6 @@ export class JobDashboardComponent implements OnInit {
                 console.log(error);
             }
         );
-
-
-
-
-        
     }
 
     private criateGraphic() {

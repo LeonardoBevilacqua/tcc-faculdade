@@ -14,16 +14,16 @@
         <table class="table mb-0">
             <thead>
                 <tr>
-                    <th scope="col">Rank</th>
+                    <th scope="col" class="px-1 text-center">Rank</th>
                     <th scope="col">Nome</th>
-                    <th scope="col" style="width: 100px"></th>
+                    <th scope="col" class="px-1" style="width: 100px"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let item of ranking; index as i;">
-                    <td>{{i + 1}}</td>
-                    <td>{{item.profile.name}}</td>
-                    <td>
+                    <td class="px-1 text-center">{{i + 1}}</td>
+                    <td style="word-break: break-word;"><span>{{item.profile.name}}</span></td>
+                    <td class="px-1">
                         <a target="_blank" href="/profile/{{item.profile.id}}" class="btn btn-primary btn-sm">Ver
                             Perfil</a>
                     </td>
