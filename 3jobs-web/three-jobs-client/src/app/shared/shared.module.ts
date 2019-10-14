@@ -11,6 +11,8 @@ import { HeaderComponent } from './header/header.component';
 import { AgePipe } from './pipes/age.pipe';
 import { RouterModule } from '@angular/router';
 import { RoleValuePipe } from './pipes/role-value.pipe';
+import { InputSearchComponent } from './header/component/input-search/input-search.component';
+
 
 
 @NgModule({
@@ -21,12 +23,17 @@ import { RoleValuePipe } from './pipes/role-value.pipe';
         AgePipe,
         MustMatchDirective,
         CpfValidationDirective,
-        RoleValuePipe
+        RoleValuePipe,
+        InputSearchComponent,
+        
+        
     ],
     imports: [
         CommonModule,
         CoreModule,
         RouterModule,
+        FormsModule,
+        
     ],
     exports: [
         CommonModule,
@@ -38,6 +45,8 @@ import { RoleValuePipe } from './pipes/role-value.pipe';
         RoleValuePipe,
         MustMatchDirective,
         CpfValidationDirective,
+        InputSearchComponent,
+        
     ],
 })
 export class SharedModule { }
