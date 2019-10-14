@@ -1,13 +1,14 @@
 package com.core.security;
 
-import com.core.model.Role;
+import java.util.Collection;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.Set;
-import java.util.stream.Collectors;
+import com.core.model.Role;
 
 public class UserSecurity implements UserDetails {
 
@@ -20,7 +21,7 @@ public class UserSecurity implements UserDetails {
         this.id = id;
         this.email = email;
         this.password = password;
-        this.authorities = roles.stream().map(role -> new SimpleGrantedAuthority(role.getDescription())).collect(Collectors.toList());
+        this.authorities = roles.stream().map(role -> new SimpleGrantedAuthority(role.toString())).collect(Collectors.toList());
     }
 
     public UserSecurity() {
@@ -66,6 +67,6 @@ public class UserSecurity implements UserDetails {
     }
 
     public boolean hasRole(Role role) {
-        return getAuthorities().contains(new SimpleGrantedAuthority(role.getDescription()));
+        return getAuthorities().contains(new SimpleGrantedAuthority(role.toString()));
     }
 }

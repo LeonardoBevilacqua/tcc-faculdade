@@ -33,7 +33,7 @@ public class UserService {
 
     public User getUser(Long id) throws RuntimeException {
         UserSecurity user = UserService.authenticated();
-        if(!user.hasRole(Role.ADMIN) && id != user.getId()) {
+        if(!user.hasRole(Role.ROLE_ADMIN) && id != user.getId()) {
             throw new UserUnauthorizedException("Usuário não tem acesso ao perfil de outros usuários");
         }
         Optional<User> userOpt = userRepository.findById(id);

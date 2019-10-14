@@ -1,13 +1,28 @@
 package com.core.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import javax.persistence.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
+
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "users")
@@ -37,7 +52,8 @@ public class User {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "ROLES")
-    private Set<Integer> roles = new HashSet<>();
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "headhunter_id")
@@ -70,7 +86,7 @@ public class User {
         this.jobsHeadhunter = jobsHeadhunter;
     }
 
-    public void setRoles(Set<Integer> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 
@@ -137,10 +153,10 @@ public class User {
 	public void setProfileId(Long profileId) {
 		this.profileId = profileId;
 	}
-
-    public Set<Role> getRoles() {
-        return roles.stream().map(Role::toEnum).collect(Collectors.toSet());
-    }
+    
+	public Set<Role> getRoles() {
+		return roles;
+	}
 
 	public Company getCompany() {
 		return company;
@@ -159,7 +175,7 @@ public class User {
 	}	
 
     public void addRole(Role role) {
-        roles.add(role.getCod());
+        roles.add(role);
     }
 
 	@Override

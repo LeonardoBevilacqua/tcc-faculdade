@@ -28,7 +28,6 @@ export class CompanyComponent extends MaintainForm<Company> implements OnInit {
         this.model = new Company();
         this.model.address = new Address();
         this.model.admin = this.authService.getUser();
-        this.model.admin.roles = this.model.admin.roles ? this.roleValue.transform(this.model.admin.roles[0]) : [];
     }
 
     ngOnInit() {

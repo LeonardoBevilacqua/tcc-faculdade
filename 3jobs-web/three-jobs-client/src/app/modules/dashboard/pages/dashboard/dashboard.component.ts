@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { Role } from 'src/app/shared/models/enums/role.enum';
 import { Company } from 'src/app/shared/models/company';
 import { User } from 'src/app/shared/models/user';
+import { isNullOrUndefined } from 'util';
 
 @Component({ selector: 'app-dashboard', templateUrl: './dashboard.component.html', styleUrls: ['./dashboard.component.scss'] })
 export class DashboardComponent implements OnInit {
@@ -28,8 +29,6 @@ export class DashboardComponent implements OnInit {
     }
 
     public createVacancy() {
-
-
         this.job = new Job();
         this.job.company = new Company();
         this.job.company.id = this.user.companyId;
@@ -68,7 +67,7 @@ export class DashboardComponent implements OnInit {
 
 
     shouldDisplayRecrutersTable() {
-        return this.authService.getUserRole() === Role.RECRUTER_ADMIN;
+        return this.authService.getUserRole() === Role.ROLE_RECRUTER_ADMIN;
     }
 
 }
