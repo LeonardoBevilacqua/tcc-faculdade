@@ -19,7 +19,6 @@ public class User {
 
     private String cpf;
     private String email;
-    private String photoUrl;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
@@ -76,14 +75,6 @@ public class User {
 
     public void setScores(List<Score> scores) {
         this.scores = scores;
-    }
-
-    public String getPhotoUrl() {
-        return photoUrl;
-    }
-
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
     }
 
     public void setRoles(Set<Integer> roles) {
@@ -180,9 +171,9 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", cpf=" + cpf + ", email=" + email + ", photoUrl=" + photoUrl + ", password="
-				+ password + ", profile=" + profile + ", profileId=" + profileId + ", jobs=" + jobs + ", roles=" + roles
-				+ ", jobsHeadhunter=" + jobsHeadhunter + ", toDos=" + toDos + ", scores=" + scores + ", company="
-				+ company + ", companyId=" + companyId + "]";
+		return "User [id=" + id + ", cpf=" + cpf + ", email=" + email + ", password=" + password + ", profile="
+				+ profile + ", profileId=" + profileId + ", jobs=" + jobs + ", roles=" + roles + ", jobsHeadhunter="
+				+ jobsHeadhunter + ", toDos=" + toDos + ", scores=" + scores + ", company=" + company + ", companyId="
+				+ companyId + "]";
 	}
 }

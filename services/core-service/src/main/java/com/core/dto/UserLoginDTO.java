@@ -9,7 +9,6 @@ public class UserLoginDTO {
     private Long id;
     private String cpf;
     private String email;
-    private String photoUrl;
     private Long profileId;
     private Long companyId;
     private Set<Role> roles;
@@ -17,12 +16,10 @@ public class UserLoginDTO {
     public UserLoginDTO() {
     }
 
-    public UserLoginDTO(Long id, String cpf, String email,
-                        String photoUrl, Long profileId, Long companyId, Set<Role> roles) {
+    public UserLoginDTO(Long id, String cpf, String email, Long profileId, Long companyId, Set<Role> roles) {
         this.id = id;
         this.cpf = cpf;
         this.email = email;
-        this.photoUrl = photoUrl;
         this.profileId = profileId;
         this.roles = roles;
         this.companyId = companyId; 
@@ -50,14 +47,6 @@ public class UserLoginDTO {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPhotoUrl() {
-        return photoUrl;
-    }
-
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
     }
 
     public Long getProfileId() {
