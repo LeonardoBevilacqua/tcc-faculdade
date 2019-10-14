@@ -60,9 +60,9 @@
 
                 <!-- <app-card-candidate [candidates]=listCandidate></app-card-candidate> -->
 
-                <div class="px-3 border-top border-top-1 " *ngIf="jobList.number != jobList.totalPages-1">
+                <div class="px-3 border-top border-top-1 " *ngIf="jobList.number != jobList.totalPages-1 ">
                     <button type="button" class="my-5 btn btn-primary btn-lg btn-block" (click)="loadMore()"
-                        [disabled]="jobList.numberOfElements == 0">Ver Mais</button>
+                        [disabled]="jobList.numberOfElements == 0 || valueSearch.length == 0">Ver Mais</button>
                 </div>
             </div>
 

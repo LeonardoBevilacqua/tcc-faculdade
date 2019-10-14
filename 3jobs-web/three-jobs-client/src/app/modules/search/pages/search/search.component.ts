@@ -74,7 +74,6 @@ export class SearchComponent implements OnInit {
     isFilterActive: boolean;
 
     jobList: any;
-    tags = [];
     valueSearch: string
     constructor(private searchService: SearchService,
         private jobService: JobService) { }
@@ -82,8 +81,6 @@ export class SearchComponent implements OnInit {
     ngOnInit() {
         this.searchService.currentJobs.subscribe(jobs => this.jobList = jobs)
         this.searchService.currentValueSearch.subscribe(valueSearch => this.valueSearch = valueSearch)
-        console.log(this.jobList);
-        console.log(this.valueSearch);
         this.isFilterActive = false;
     }
 
@@ -91,13 +88,9 @@ export class SearchComponent implements OnInit {
         if (this.jobList.number != (this.jobList.totalPages - 1)) {
             this.jobService.search('analista', this.jobList.number + 1, 20).subscribe(
                 ((res: any) => {
-
-                    length
-
                     for (var i = 0; i < res.content.length; i++) {
                         this.jobList.content.push(res.content[i]);
                     }
-
                     this.jobList.number = res.number
                     this.jobList.totalPages = res.totalPages
                 }
