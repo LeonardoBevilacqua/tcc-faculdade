@@ -1,4 +1,5 @@
-<card-template title="Dados pessoais" [cardBodyContent]="personalData" cardBodyId="personalData" *ngIf="personalDataHasData() || isLoggedUserProfile">
+<card-template title="Dados pessoais" [cardBodyContent]="personalData" cardBodyId="personalData"
+    *ngIf="personalDataHasData() || isLoggedUserProfile">
     <ng-template #personalData>
         <!-- personal data -->
         <div class="d-flex" *ngIf="!isFormEdition || isSubmitted">
@@ -12,7 +13,7 @@
             </ng-template>
             <div class="ml-auto" *ngIf="isLoggedUserProfile">
                 <button type="button" class="btn btn-outline-primary btn-sm"
-                    (click)="isFormEdition = true; isSubmitted = false">Editar</button>
+                    (click)="editForm()">Editar</button>
             </div>
         </div>
         <!-- edit personal data -->
@@ -21,15 +22,20 @@
             <div class="form-row my-2">
                 <label class="col-12 col-md-2" for="dateOfBirth">Nascimento:</label>
                 <input type="date" class="form-control form-control-sm col-12 col-md-3 mr-2" name="dateOfBirth"
-                    id="dateOfBirth" [ngModel]="model.dateOfBirth | date: 'yyyy-MM-dd'"
-                    (ngModelChange)="model.dateOfBirth = $event" #dateOfBirth="ngModel">
+                    id="dateOfBirth" [(ngModel)]="model.dateOfBirth" #dateOfBirth="ngModel">
                 <validation-message [inputControl]="dateOfBirth"></validation-message>
             </div>
 
             <div class="form-row my-2">
                 <label class="col-12 col-md-2" for="maritalStatus">Estado Civil:</label>
-                <input class="form-control form-control-sm col-12 col-md-3 mr-2" name="maritalStatus" id="maritalStatus"
-                    [(ngModel)]="model.maritalStatus" #maritalStatus="ngModel">
+                <select class="form-control form-control-sm col-12 col-md-3 mr-2" name="maritalStatus"
+                    id="maritalStatus" [(ngModel)]="model.maritalStatus" #maritalStatus="ngModel">
+                    <option value="Solteiro(a)">Solteiro(a)</option>
+                    <option value="Casado(a)">Casado(a)</option>
+                    <option value="Separado(a)">Separado(a)</option>
+                    <option value="Divorciado(a)">Divorciado(a)</option>
+                    <option value="Viúvo(a)">Viúvo(a)</option>
+                </select>
                 <validation-message [inputControl]="maritalStatus"></validation-message>
             </div>
 
@@ -43,7 +49,7 @@
             <div class="form-row my-2">
                 <div class="col-12 col-md-5 pr-0 text-right">
                     <button type="button" class="btn btn-outline-danger mr-1"
-                        (click)="isFormEdition = false">Cancelar</button>
+                        (click)="cancelForm()">Cancelar</button>
                     <button type="submit" class="btn btn-outline-primary ml-1"
                         [disabled]="!profileForm.form.valid">Salvar</button>
                 </div>
