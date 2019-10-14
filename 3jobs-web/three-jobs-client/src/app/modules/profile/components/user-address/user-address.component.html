@@ -16,7 +16,7 @@
 
             <div class="ml-auto" *ngIf="isLoggedUserProfile">
                 <button type="button" class="btn btn-outline-primary btn-sm"
-                    (click)="isFormEdition = true; isSubmitted = false">Editar</button>
+                    (click)="editForm()">Editar</button>
             </div>
         </div>
         <!-- edit address -->
@@ -60,7 +60,7 @@
 
             <div class="form-row my-2">
                 <div class="col-12 col-md-5 pr-0 text-right">
-                    <button class="btn btn-outline-danger mr-1" (click)="isFormEdition = false">Cancelar</button>
+                    <button class="btn btn-outline-danger mr-1" (click)="cancelForm()">Cancelar</button>
                     <button class="btn btn-outline-primary ml-1"
                         [disabled]="!userAddressForm.form.valid">Salvar</button>
                 </div>
