@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SearchService } from 'src/app/core/services/search.service';
+import { JobService } from 'src/app/core/services/job.service';
 
 @Component({ selector: 'app-search', templateUrl: './search.component.html' })
 export class SearchComponent implements OnInit {
@@ -43,31 +45,6 @@ export class SearchComponent implements OnInit {
         }
     ];
 
-    jobList: Object = [
-        {
-            title: "Java",
-            company: "Eldorado",
-            nivel: "Júnior",
-            city: "Campinas",
-            description: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos
-            voluptates beatae
-            vel quam rem quos qui! Eos officia nisi pariatur laboriosam sequi blanditiis. Modi iste culpa,
-            expedita adipisci in eos!`,
-            publicated: "4 Dias"
-        },
-        {
-            title: "Java",
-            company: "Daitan",
-            nivel: "Pleno",
-            city: "Campinas",
-            description: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos
-            voluptates beatae
-            vel quam rem quos qui! Eos officia nisi pariatur laboriosam sequi blanditiis. Modi iste culpa,
-            expedita adipisci in eos!`,
-            publicated: "02/02/2019"
-        }
-    ];
-
     listCandidate: Object = [
         {
             name: "Marcelo Rodrigues Costa",
@@ -96,12 +73,30 @@ export class SearchComponent implements OnInit {
      */
     isFilterActive: boolean;
 
-    constructor() { }
+    jobList: any;
+    valueSearch: string
+    constructor(private searchService: SearchService,
+        private jobService: JobService) { }
 
     ngOnInit() {
+        this.searchService.currentJobs.subscribe(jobs => this.jobList = jobs)
+        this.searchService.currentValueSearch.subscribe(valueSearch => this.valueSearch = valueSearch)
         this.isFilterActive = false;
     }
 
-
+    loadMore() {
+        if (this.jobList.number != (this.jobList.totalPages - 1)) {
+            this.jobService.search('analista', this.jobList.number + 1, 20).subscribe(
+                ((res: any) => {
+                    for (var i = 0; i < res.content.length; i++) {
+                        this.jobList.content.push(res.content[i]);
+                    }
+                    this.jobList.number = res.number
+                    this.jobList.totalPages = res.totalPages
+                }
+                )
+            );
+        }
+    }
 
 }
