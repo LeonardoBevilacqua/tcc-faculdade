@@ -1,14 +1,14 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { JobService } from 'src/app/core/services/job.service';
-import { Job } from 'src/app/shared/models/job';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Company } from 'src/app/shared/models/company';
-import { Address } from 'src/app/shared/models/address';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { JobService } from 'src/app/core/services/job.service';
+import { Address } from 'src/app/shared/models/address';
+import { Company } from 'src/app/shared/models/company';
+import { Job } from 'src/app/shared/models/job';
 import { User } from 'src/app/shared/models/user';
 
 
@@ -30,9 +30,9 @@ export class JobDetailsComponent implements OnInit {
         private authService: AuthService) {
         this.user = new User();
         this.job = new Job();
-        this.job.company = new Company;
-        this.job.company.address = new Address;
-        this.jobMatch = [new Job]
+        this.job.company = new Company();
+        this.job.company.address = new Address();
+        this.jobMatch = [new Job()];
 
     }
 
@@ -47,11 +47,10 @@ export class JobDetailsComponent implements OnInit {
 
         this.jobService.read(this.currentId).subscribe(
             (job: Job) => {
-                console.log(job)
                 this.job = job;
                 this.jobService.search(this.job.description, 0, 4).subscribe(
                     ((res: any) => {
-                        this.jobMatch = res.content
+                        this.jobMatch = res.content;
                     }
                     )
                 );
