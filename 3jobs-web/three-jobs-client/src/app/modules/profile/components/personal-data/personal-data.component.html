@@ -10,10 +10,12 @@
                         </strong>{{ profile.maritalStatus }}</span>
                     <span *ngIf="profile.nationality"><strong>Nacionalidade: </strong>{{ profile.nationality }}</span>
                 </div>
+
                 <div class="ml-auto" *ngIf="isLoggedUserProfile">
                     <button type="button" class="btn btn-outline-primary btn-sm" (click)="editForm()">Editar</button>
                 </div>
             </div>
+            
             <ng-template #messageBlock>
                 <div class="alert alert-warning m-auto w-75 text-center">
                     <p>Sem informações sobre dados pessoais.</p>
