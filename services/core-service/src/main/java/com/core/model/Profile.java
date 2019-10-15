@@ -32,7 +32,7 @@ public class Profile {
     )
     private List<Skill> skills;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "profile_id",referencedColumnName = "ID", nullable = false)
     private List<Experience> experiences;
 

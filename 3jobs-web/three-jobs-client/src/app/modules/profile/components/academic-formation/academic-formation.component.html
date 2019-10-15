@@ -1,11 +1,9 @@
-<card-template title="Formação academica" [cardBodyContent]="academicFormation" cardBodyId="academicFormation">
+<card-template title="Formação academica" [cardBodyContent]="academicFormation" cardBodyId="academicFormation"
+    *ngIf="academicFormationHasData() || isLoggedUserProfile">
     <ng-template #academicFormation>
         <!-- academic formation -->
-        <div *ngIf="profile.experiences.length === 0; else academicFormationList">
-            <span>Sem dados sobre formação academica.</span>
-        </div>
-        <ng-template #academicFormationList>
-            <div *ngIf="!isFormEdition">
+        <div *ngIf="!isFormEdition || isSubmitted">
+            <div *ngIf="academicFormationHasData(); else messageBlock">
                 <div class="d-flex py-2 border-bottom" *ngFor="let experience of profile.experiences">
                     <div class="d-inline-flex flex-column">
                         <span><strong>{{experience.description}}</strong></span>
@@ -15,45 +13,57 @@
                     </div>
                     <div class="ml-auto" *ngIf="isLoggedUserProfile">
                         <button type="button" class="btn btn-outline-primary btn-sm"
-                            (click)="openForm(experience.id)">Editar</button>
+                            (click)="editForm(experience)">Editar</button>
+
+                        <button type="button" class="btn btn-outline-danger btn-sm ml-2"
+                            (click)="remove(experience.id)">Remover</button>
                     </div>
                 </div>
+                <button type="button" class="btn btn-outline-primary btn-sm my-2" *ngIf="isLoggedUserProfile" (click)="newForm()">Adicionar</button>
             </div>
-        </ng-template>
+            <ng-template #messageBlock>
+                <div class="alert alert-warning m-auto w-75 text-center">
+                    <p>Sem informações sobre formação academica.</p>
+                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="newForm()">Adicionar</button>
+                </div>
+            </ng-template>
+        </div>
         <!-- edit academic formation -->
-        <form *ngIf="isFormEdition">
+        <form *ngIf="isFormEdition && !isSubmitted" #academicFormationForm="ngForm">
 
             <div class="form-row my-2">
                 <label class="col-12 col-md-2" for="description">Descrição:</label>
                 <input type="text" class="form-control form-control-sm col-12 col-md-3" name="description"
-                    id="description" [ngModel]="model.experiences[experienceIndex].description" #description="ngModel" required>
+                    id="description" [(ngModel)]="experience.description" #description="ngModel"
+                    required>
                 <validation-message [inputControl]="description"></validation-message>
             </div>
 
             <div class="form-row my-2">
                 <label class="col-12 col-md-2" for="location">Local:</label>
                 <input class="form-control form-control-sm col-12 col-md-3" name="location" id="location"
-                    [ngModel]="model.experiences[experienceIndex].location" #location="ngModel" required>
-                    <validation-message [inputControl]="location"></validation-message>                    
+                    [(ngModel)]="experience.location" #location="ngModel" required>
+                <validation-message [inputControl]="location"></validation-message>
             </div>
 
             <div class="form-row my-2">
                 <label class="col-12 col-md-2" for="beginDate">Data de inicio:</label>
                 <input type="date" class="form-control form-control-sm col-12 col-md-3" name="beginDate" id="beginDate"
-                    [ngModel]="model.experiences[experienceIndex].beginDate | date: 'yyyy-MM-dd'" (ngModelChange)="model.experiences[experienceIndex].beginDate = $event" #beginDate="ngModel" required>
+                    [(ngModel)]="experience.beginDate" #beginDate="ngModel"
+                    required>
                 <validation-message [inputControl]="beginDate"></validation-message>
             </div>
 
             <div class="form-row my-2">
                 <label class="col-12 col-md-2" for="endDate">Data de termino:</label>
                 <input type="date" class="form-control form-control-sm col-12 col-md-3" name="endDate" id="endDate"
-                    [ngModel]="model.experiences[experienceIndex].endDate | date: 'yyyy-MM-dd'" (ngModelChange)="model.experiences[experienceIndex].endDate = $event" #endDate="ngModel" required>
+                    [(ngModel)]="experience.endDate" #endDate="ngModel" required>
             </div>
 
             <div class="form-row my-2">
                 <div class="col-12 col-md-5 pr-0 text-right">
-                    <button class="btn btn-outline-danger mr-1" (click)="isFormEdition = false">Cancelar</button>
-                    <button class="btn btn-outline-primary ml-1" (click)="isFormEdition = false">Salvar</button>
+                    <button class="btn btn-outline-danger mr-1" (click)="cancelForm()">Cancelar</button>
+                    <button class="btn btn-outline-primary ml-1" [disabled]="!academicFormationForm.form.valid" (click)="sendForm()">Salvar</button>
                 </div>
             </div>
         </form>
