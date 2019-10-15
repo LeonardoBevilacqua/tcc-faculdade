@@ -2,19 +2,24 @@
     *ngIf="personalDataHasData() || isLoggedUserProfile">
     <ng-template #personalData>
         <!-- personal data -->
-        <div class="d-flex" *ngIf="!isFormEdition || isSubmitted">
-            <div class="d-inline-flex flex-column" *ngIf="personalDataHasData(); else messageBlock">
-                <span *ngIf="profile.dateOfBirth"><strong>Idade: </strong>{{ profile.dateOfBirth | age }}</span>
-                <span *ngIf="profile.maritalStatus"><strong>Estado Civil: </strong>{{ profile.maritalStatus }}</span>
-                <span *ngIf="profile.nationality"><strong>Nacionalidade: </strong>{{ profile.nationality }}</span>
+        <div *ngIf="!isFormEdition || isSubmitted">
+            <div class="d-flex" *ngIf="personalDataHasData(); else messageBlock">
+                <div class="d-inline-flex flex-column">
+                    <span *ngIf="profile.dateOfBirth"><strong>Idade: </strong>{{ profile.dateOfBirth | age }}</span>
+                    <span *ngIf="profile.maritalStatus"><strong>Estado Civil:
+                        </strong>{{ profile.maritalStatus }}</span>
+                    <span *ngIf="profile.nationality"><strong>Nacionalidade: </strong>{{ profile.nationality }}</span>
+                </div>
+                <div class="ml-auto" *ngIf="isLoggedUserProfile">
+                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="editForm()">Editar</button>
+                </div>
             </div>
             <ng-template #messageBlock>
-                <div class="alert alert-warning m-auto w-75 text-center">Sem informações sobre dados pessoais.</div>
+                <div class="alert alert-warning m-auto w-75 text-center">
+                    <p>Sem informações sobre dados pessoais.</p>
+                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="editForm()">Adicionar</button>
+                </div>
             </ng-template>
-            <div class="ml-auto" *ngIf="isLoggedUserProfile">
-                <button type="button" class="btn btn-outline-primary btn-sm"
-                    (click)="editForm()">Editar</button>
-            </div>
         </div>
         <!-- edit personal data -->
         <form *ngIf="isFormEdition && !isSubmitted" #profileForm="ngForm"
@@ -48,8 +53,7 @@
 
             <div class="form-row my-2">
                 <div class="col-12 col-md-5 pr-0 text-right">
-                    <button type="button" class="btn btn-outline-danger mr-1"
-                        (click)="cancelForm()">Cancelar</button>
+                    <button type="button" class="btn btn-outline-danger mr-1" (click)="cancelForm()">Cancelar</button>
                     <button type="submit" class="btn btn-outline-primary ml-1"
                         [disabled]="!profileForm.form.valid">Salvar</button>
                 </div>
