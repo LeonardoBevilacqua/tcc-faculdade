@@ -8,11 +8,7 @@ import { NgForm } from '@angular/forms';
 import { SearchService } from 'src/app/core/services/search.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
-@Component({
-    selector: 'app-input-search',
-    templateUrl: './input-search.component.html',
-    styleUrls: ['./input-search.component.scss']
-})
+@Component({ selector: 'app-input-search', templateUrl: './input-search.component.html', })
 export class InputSearchComponent implements OnInit {
 
 
