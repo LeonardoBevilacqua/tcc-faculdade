@@ -5,6 +5,7 @@ import { ProfileService } from 'src/app/core/services/profile.service';
 import { MaintainForm } from 'src/app/shared/form/maintain-form';
 import { Profile } from 'src/app/shared/models/profile';
 import { isNullOrUndefined } from 'util';
+import { Skill } from 'src/app/shared/models/skill';
 
 @Component({ selector: 'abilities', templateUrl: './abilities.component.html', })
 export class AbilitiesComponent extends MaintainForm<Profile> implements OnInit {
@@ -20,13 +21,26 @@ export class AbilitiesComponent extends MaintainForm<Profile> implements OnInit 
     @Input() profile: Profile;
 
     /**
+     * Skill model.
+     */
+    skill: Skill;
+
+    /**
      * Flag if the data is being edited.
      */
     isFormEdition: boolean;
-    // TODO
-    descriptionSkill: string;
-    // TODO
-    constructor(profileService: ProfileService, router: Router, toastr: ToastrService) {
+
+    /**
+     * The default constructor.
+     *
+     * @param profileService profile service.
+     * @param router router for nagivation.
+     * @param toastr toastr service.
+     */
+    constructor(
+        profileService: ProfileService,
+        router: Router,
+        toastr: ToastrService) {
         super(profileService, router, toastr);
     }
 
@@ -38,16 +52,27 @@ export class AbilitiesComponent extends MaintainForm<Profile> implements OnInit 
         this.isFormEdition = false;
         this.isEdition = true;
 
-        this.descriptionSkill = '';
+        this.currentId = this.profile.id;
+        this.model = this.profile;
+
+        this.skill = new Skill();
+    }
+
+    public abilitiesHasData() {
+        return this.profile.skills.length > 0;
     }
 
     public addSkill() {
-        // this.profile.skills.push({description: this.descriptionSkill, id: this.profile.skills.length+1});
-        this.descriptionSkill = '';
+        this.model.skills.push(this.skill);
+
+        this.onSubmit();
+
+        this.skill = new Skill();
     }
 
     public deleteSkill(skillId: number) {
-        const index = this.profile.skills.findIndex(s => s.id === skillId);
-        this.profile.skills.splice(index, 1);
+        this.model.skills.splice(this.profile.skills.findIndex(s => s.id === skillId), 1);
+
+        this.onSubmit();
     }
 }

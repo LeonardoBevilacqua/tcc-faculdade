@@ -86,6 +86,14 @@ public class User {
         this.jobsHeadhunter = jobsHeadhunter;
     }
 
+    public List<Score> getScores() {
+        return scores;
+    }
+
+    public void setScores(List<Score> scores) {
+        this.scores = scores;
+    }
+
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
@@ -180,9 +188,9 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", cpf=" + cpf + ", email=" + email + ", password="
-				+ password + ", profile=" + profile + ", profileId=" + profileId + ", jobs=" + jobs + ", roles=" + roles
-				+ ", jobsHeadhunter=" + jobsHeadhunter + ", toDos=" + toDos + ", company="
-				+ company + ", companyId=" + companyId + "]";
+		return "User [id=" + id + ", cpf=" + cpf + ", email=" + email + ", password=" + password + ", profile="
+				+ profile + ", profileId=" + profileId + ", jobs=" + jobs + ", roles=" + roles + ", jobsHeadhunter="
+				+ jobsHeadhunter + ", toDos=" + toDos + ", scores=" + scores + ", company=" + company + ", companyId="
+				+ companyId + "]";
 	}
 }

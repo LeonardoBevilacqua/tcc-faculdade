@@ -16,8 +16,7 @@ public class UserLoginDTO {
     public UserLoginDTO() {
     }
 
-    public UserLoginDTO(Long id, String cpf, String email, Long profileId, Long companyId,
-                        Set<Role> roles) {
+    public UserLoginDTO(Long id, String cpf, String email, Long profileId, Long companyId, Set<Role> roles) {
         this.id = id;
         this.cpf = cpf;
         this.email = email;

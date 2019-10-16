@@ -20,6 +20,11 @@ export class PersonalDataComponent extends MaintainForm<Profile> implements OnIn
     @Input() profile: Profile;
 
     /**
+     * Old profile model.
+     */
+    private oldModel: Profile;
+
+    /**
      * Flag if the data is being edited.
      */
     isFormEdition: boolean;
@@ -46,8 +51,6 @@ export class PersonalDataComponent extends MaintainForm<Profile> implements OnIn
         this.isFormEdition = false;
         this.isEdition = true;
 
-        this.model = this.profile;
-
         this.currentId = this.profile.id;
     }
 
@@ -55,5 +58,19 @@ export class PersonalDataComponent extends MaintainForm<Profile> implements OnIn
         return this.profile.dateOfBirth ||
             this.profile.maritalStatus ||
             this.profile.nationality;
+    }
+
+    public editForm() {
+        this.model = this.profile;
+        this.oldModel = Object.assign({}, this.profile);
+
+        this.isFormEdition = true;
+        this.isSubmitted = false;
+    }
+
+    public cancelForm() {
+        this.profile = this.oldModel;
+
+        this.isFormEdition = false;
     }
 }
