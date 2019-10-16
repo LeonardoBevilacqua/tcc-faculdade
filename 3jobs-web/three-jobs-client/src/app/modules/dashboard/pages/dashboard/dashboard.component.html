@@ -51,6 +51,9 @@
                                 </button>
                             </td>
                         </tr>
+                        <tr *ngIf="vacancies.length === 0">
+                            <td colspan="3">Sem vagas disponíveis!</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -80,6 +83,10 @@
                                     <i class="fa fa-share" aria-hidden="true"></i>
                                 </a>
                             </td>
+                        </tr>
+                        <tr *ngIf="recruiters.length === 0">
+                            <td colspan="3">Sem recrutadores disponíveis.</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

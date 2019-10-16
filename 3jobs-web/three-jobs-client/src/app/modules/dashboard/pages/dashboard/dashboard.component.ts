@@ -1,11 +1,11 @@
-import { Profile } from './../../../../shared/models/profile';
-import { CompanyService } from 'src/app/core/services/company.service';
-import { Job } from 'src/app/shared/models/job';
-import { JobService } from 'src/app/core/services/job.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { Role } from 'src/app/shared/models/enums/role.enum';
+import { CompanyService } from 'src/app/core/services/company.service';
+import { JobService } from 'src/app/core/services/job.service';
+import { UserService } from 'src/app/core/services/user.service';
 import { Company } from 'src/app/shared/models/company';
+import { Role } from 'src/app/shared/models/enums/role.enum';
+import { Job } from 'src/app/shared/models/job';
 import { User } from 'src/app/shared/models/user';
 import { isNullOrUndefined } from 'util';
 
@@ -16,16 +16,19 @@ export class DashboardComponent implements OnInit {
     recruiters: Array<User>;
     user: User;
 
-    constructor(private authService: AuthService, private jobService: JobService, private companyService: CompanyService) {
+    constructor(
+        private authService: AuthService,
+        private jobService: JobService,
+        private companyService: CompanyService,
+        private userService: UserService) {
         this.user = this.authService.getUser();
     }
 
     job: Job;
     ngOnInit() {
+        this.checkIfUserHasCompanyId();
 
         this.job = new Job();
-        this.getAllVacancies();
-        this.getAllRecruiter();
     }
 
     public createVacancy() {
@@ -65,6 +68,24 @@ export class DashboardComponent implements OnInit {
         );
     }
 
+    private checkIfUserHasCompanyId() {
+        if (this.user && isNullOrUndefined(this.user.companyId)) {
+            this.userService.read(this.user.id).subscribe(
+                (response) => {
+                    this.authService.setUser(response);
+                    this.getAllRecruiter();
+                    this.getAllVacancies();
+                },
+                () => {
+                    this.authService.logout();
+                }
+            );
+        }
+        else {
+            this.getAllRecruiter();
+            this.getAllVacancies();
+        }
+    }
 
     shouldDisplayRecrutersTable() {
         return this.authService.getUserRole() === Role.ROLE_RECRUTER_ADMIN;

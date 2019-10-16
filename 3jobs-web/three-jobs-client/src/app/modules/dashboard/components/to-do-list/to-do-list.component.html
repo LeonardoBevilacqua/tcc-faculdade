@@ -4,23 +4,27 @@
         <form #toDoForm="ngForm"  (ngSubmit)="toDoForm.form.valid && onSubmit();">
             <div class="input-group">
                 <input type="text" class="form-control" id="taskToDo" name="taskToDo" [(ngModel)]="model.task"
-                     #taskToDo="ngModel" minlength="3" required/>
+                     #taskToDo="ngModel" minlength="3" />
                 <div class="input-group-append">
-                    <button class="btn btn btn-primary btn-sm" type="submit" [disabled]="!toDoForm.form.valid">
+                    <button class="btn btn btn-primary btn-sm" type="submit" [disabled]="!model.task">
                         <i class="fa fa-plus" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
         </form>
-        <div class="card mt-3" style="max-height: 245px; overflow: auto;">
-            <ul class="list-group list-group-flush">
-                <li *ngFor="let task of tasks;" class="list-group-item d-flex justify-content-between">
-                    <span>{{task.task}}</span>
-                    <button type="button" class="btn btn-danger btn-sm py-0 px-1 m-0" (click)="removeTask(task.id);">
-                        <i class="fa fa-trash"></i>
-                    </button>
-                </li>
-            </ul>
-        </div>
+        <div *ngIf="tasks.length === 0; else tasksBlock" class="alert alert-warning my-2">Sem tarefas!</div>
+        <ng-template #tasksBlock>
+            <div class="card mt-3" style="max-height: 245px; overflow: auto;">
+                <ul class="list-group list-group-flush">
+                    <li *ngFor="let task of tasks;" class="list-group-item d-flex justify-content-between">
+                        <span>{{task.task}}</span>
+                        <button type="button" class="btn btn-danger btn-sm py-0 px-1 m-0"
+                            (click)="removeTask(task.id);">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>  
+        </ng-template>
     </div>
 </div>

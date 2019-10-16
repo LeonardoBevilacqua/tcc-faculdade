@@ -39,7 +39,7 @@ export class JwtInterceptor implements HttpInterceptor {
             }),
             catchError((error: any) => {
                 if (error instanceof HttpErrorResponse) {
-                    if (error.status === 403) {
+                    if (error.status === 403 || error.status === 401) {
                         this.authService.logout();
                         this.spinnerService.hide();
                         this.router.navigateByUrl('/');

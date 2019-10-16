@@ -7,7 +7,6 @@ import { CompanyService } from 'src/app/core/services/company.service';
 import { MaintainForm } from 'src/app/shared/form/maintain-form';
 import { Address } from 'src/app/shared/models/address';
 import { Company } from 'src/app/shared/models/company';
-import { RoleValuePipe } from 'src/app/shared/pipes/role-value.pipe';
 
 @Component({ selector: 'app-company', templateUrl: './company.component.html', styleUrls: ['./company.component.scss'] })
 export class CompanyComponent extends MaintainForm<Company> implements OnInit {
@@ -17,8 +16,7 @@ export class CompanyComponent extends MaintainForm<Company> implements OnInit {
         router: Router,
         toastr: ToastrService,
         private titleService: Title,
-        private authService: AuthService,
-        private roleValue: RoleValuePipe) {
+        private authService: AuthService) {
         super(companyService, router, toastr);
 
         // try to get the current path id if exists
