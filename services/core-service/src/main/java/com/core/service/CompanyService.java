@@ -1,14 +1,19 @@
 package com.core.service;
 
 import com.core.dto.CompanySimpleDTO;
+import com.core.dto.DashboardStats;
 import com.core.exception.EntityNotFoundException;
 import com.core.model.Company;
+import com.core.model.Job;
 import com.core.model.User;
 import com.core.respository.CompanyRepository;
+import com.core.respository.JobRepository;
 import com.core.respository.UserRepository;
+import com.core.util.DashboardAggregate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -21,6 +26,9 @@ public class CompanyService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private JobRepository jobRepository;
 
     @Autowired
     private UserService userService;
@@ -92,5 +100,15 @@ public class CompanyService {
         userRepository.save(user);
         updateCompany(company.getId(), company);
         return company;
+    }
+
+    public DashboardStats getDashboradStats(Long companyId) {
+        List<Job> jobs = jobRepository.findByCompanyId(companyId);
+        DashboardStats dashboardStats = new DashboardStats();
+        HashMap<String, Long> response = DashboardAggregate.aggegateByProcessTotal(jobs);
+        dashboardStats.setAwaitingHeadhunter(response.get("awaitingHeadhunter"));
+        dashboardStats.setProcessTotal(response.get("processTotal"));
+        dashboardStats.setTotalFinished(response.get("totalFinished"));
+        return dashboardStats;
     }
 }
