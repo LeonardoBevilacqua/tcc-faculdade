@@ -2,22 +2,27 @@
     *ngIf="userAddressHasData() || isLoggedUserProfile">
     <ng-template #userAddress>
         <!-- address -->
-        <div class="d-flex" *ngIf="profile.address && (!isFormEdition || isSubmitted)">
-            <div class="d-inline-flex flex-column" *ngIf="userAddressHasData();else messageBlock">
-                <span *ngIf="profile.address.zipCode"><strong>CEP: </strong>{{profile.address.zipCode}}</span>
-                <span *ngIf="profile.address.state"><strong>Estado: </strong>{{profile.address.state}}</span>
-                <span *ngIf="profile.address.city"><strong>Cidade: </strong>{{profile.address.city}}</span>
-                <span *ngIf="profile.address.district"><strong>Bairro: </strong>{{profile.address.district}}</span>
-                <span *ngIf="profile.address.name"><strong>Endereço: </strong>{{profile.address.name}}</span>
-            </div>
-            <ng-template #messageBlock>
-                <div class="alert alert-warning m-auto w-75 text-center">Sem informações sobre endereço.</div>
-            </ng-template>
+        <div *ngIf="profile.address && (!isFormEdition || isSubmitted)">
+            <div class="d-flex" *ngIf="userAddressHasData();else messageBlock">
+                <div class="d-inline-flex flex-column">
+                    <span *ngIf="profile.address.zipCode"><strong>CEP: </strong>{{profile.address.zipCode}}</span>
+                    <span *ngIf="profile.address.state"><strong>Estado: </strong>{{profile.address.state}}</span>
+                    <span *ngIf="profile.address.city"><strong>Cidade: </strong>{{profile.address.city}}</span>
+                    <span *ngIf="profile.address.district"><strong>Bairro: </strong>{{profile.address.district}}</span>
+                    <span *ngIf="profile.address.name"><strong>Endereço: </strong>{{profile.address.name}}</span>
+                </div>
 
-            <div class="ml-auto" *ngIf="isLoggedUserProfile">
-                <button type="button" class="btn btn-outline-primary btn-sm"
-                    (click)="isFormEdition = true; isSubmitted = false">Editar</button>
+                <div class="ml-auto" *ngIf="isLoggedUserProfile">
+                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="editForm()">Editar</button>
+                </div>
             </div>
+
+            <ng-template #messageBlock>
+                <div class="alert alert-warning m-auto w-75 text-center">
+                    <p>Sem informações sobre endereço.</p>
+                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="editForm()">Adicionar</button>
+                </div>
+            </ng-template>
         </div>
         <!-- edit address -->
         <form *ngIf="isFormEdition && !isSubmitted" #userAddressForm="ngForm"
@@ -60,7 +65,7 @@
 
             <div class="form-row my-2">
                 <div class="col-12 col-md-5 pr-0 text-right">
-                    <button class="btn btn-outline-danger mr-1" (click)="isFormEdition = false">Cancelar</button>
+                    <button class="btn btn-outline-danger mr-1" (click)="cancelForm()">Cancelar</button>
                     <button class="btn btn-outline-primary ml-1"
                         [disabled]="!userAddressForm.form.valid">Salvar</button>
                 </div>

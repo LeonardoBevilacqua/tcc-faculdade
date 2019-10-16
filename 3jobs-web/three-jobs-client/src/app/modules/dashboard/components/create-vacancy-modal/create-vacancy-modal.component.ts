@@ -6,6 +6,9 @@ import { JobService } from 'src/app/core/services/job.service';
 import { MaintainForm } from 'src/app/shared/form/maintain-form';
 import { Job } from 'src/app/shared/models/job';
 import { Tag } from 'src/app/shared/models/tag';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { User } from 'src/app/shared/models/user';
+import { Company } from 'src/app/shared/models/company';
 
 declare const $: any;
 
@@ -17,12 +20,25 @@ export class CreateVacancyModalComponent extends MaintainForm<Job> implements On
      */
     tags: string;
 
-    constructor(private jobService: JobService, router: Router, toastr: ToastrService, private spinnerService: Ng4LoadingSpinnerService) {
-        super(null, router, toastr);
+    constructor(
+        private jobService: JobService,
+        router: Router,
+        toastr: ToastrService,
+        private spinnerService: Ng4LoadingSpinnerService,
+        private authService: AuthService) {
+        super(null,
+            router, toastr);
     }
 
     ngOnInit() {
+        const user: User = this.authService.getUser();
+
         this.model = new Job();
+        this.model.company = new Company();
+        this.model.company.id = user.companyId;
+
+        this.model.recruter = new User();
+        this.model.recruter.id = user.id;
     }
 
     public onSubmit() {
@@ -35,7 +51,7 @@ export class CreateVacancyModalComponent extends MaintainForm<Job> implements On
                 this.toastr.success(response.message ? response.message : 'Informações salvas com sucesso!');
             },
             (error) => {
-                this.toastr.error(error);
+                this.errorHandler(error);
                 this.spinnerService.hide();
             }
         );

@@ -99,8 +99,6 @@ public class Address {
                 ", city='" + city + '\'' +
                 ", district='" + district + '\'' +
                 ", name='" + name + '\'' +
-                ", profile=" + profile +
-                ", company=" + company +
                 '}';
     }
 }

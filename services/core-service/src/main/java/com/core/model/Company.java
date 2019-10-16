@@ -27,6 +27,29 @@ public class Company {
     @JsonIgnore
     private List<Job> jobs;
 
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    private List<User> recruters;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "admin_id", referencedColumnName = "id")
+    private User admin;
+
+    public User getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(User admin) {
+        this.admin = admin;
+    }
+
+    public List<User> getRecruters() {
+        return recruters;
+    }
+
+    public void setRecruters(List<User> recruters) {
+        this.recruters = recruters;
+    }
+
     public List<Job> getJobs() {
         return jobs;
     }

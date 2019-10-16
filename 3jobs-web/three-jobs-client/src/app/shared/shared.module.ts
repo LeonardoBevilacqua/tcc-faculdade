@@ -10,14 +10,30 @@ import { MustMatchDirective } from './form/directive/must-match.directive';
 import { HeaderComponent } from './header/header.component';
 import { AgePipe } from './pipes/age.pipe';
 import { RouterModule } from '@angular/router';
+import { RoleValuePipe } from './pipes/role-value.pipe';
+import { InputSearchComponent } from './header/component/input-search/input-search.component';
+
 
 
 @NgModule({
-    declarations: [ValidationMessageComponent, HeaderComponent, FooterComponent, AgePipe, MustMatchDirective, CpfValidationDirective],
+    declarations: [
+        ValidationMessageComponent,
+        HeaderComponent,
+        FooterComponent,
+        AgePipe,
+        MustMatchDirective,
+        CpfValidationDirective,
+        RoleValuePipe,
+        InputSearchComponent,
+        
+        
+    ],
     imports: [
         CommonModule,
         CoreModule,
         RouterModule,
+        FormsModule,
+        
     ],
     exports: [
         CommonModule,
@@ -26,8 +42,11 @@ import { RouterModule } from '@angular/router';
         HeaderComponent,
         FooterComponent,
         AgePipe,
+        RoleValuePipe,
         MustMatchDirective,
         CpfValidationDirective,
+        InputSearchComponent,
+        
     ],
 })
 export class SharedModule { }

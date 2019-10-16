@@ -22,6 +22,7 @@ public class Profile {
     private String maritalStatus;
     private String nationality;
     private String email;
+    private String photoUrl;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -31,7 +32,7 @@ public class Profile {
     )
     private List<Skill> skills;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "profile_id",referencedColumnName = "ID", nullable = false)
     private List<Experience> experiences;
 
@@ -166,7 +167,13 @@ public class Profile {
         this.address = address;
     }
     
-    
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }    
 
     public String getEmail() {
 		return email;
@@ -177,23 +184,11 @@ public class Profile {
 	}
 
 	@Override
-    public String toString() {
-        return "Profile{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", cellphone='" + cellphone + '\'' +
-                ", phone='" + phone + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", maritalStatus='" + maritalStatus + '\'' +
-                ", nationality='" + nationality + '\'' +
-                ", skills=" + skills +
-                ", experiences=" + experiences +
-                ", address=" + address +
-                ", rates=" + rates +
-                ", user=" + user +
-                ", tags=" + tags +
-                ", email=" + email +
-                '}';
-    }
+	public String toString() {
+		return "Profile [id=" + id + ", name=" + name + ", lastName=" + lastName + ", cellphone=" + cellphone
+				+ ", phone=" + phone + ", dateOfBirth=" + dateOfBirth + ", maritalStatus=" + maritalStatus
+				+ ", nationality=" + nationality + ", email=" + email + ", photoUrl=" + photoUrl + ", skills=" + skills
+				+ ", experiences=" + experiences + ", address=" + address + ", rates=" + rates + ", user=" + user
+				+ ", tags=" + tags + "]";
+	}
 }

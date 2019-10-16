@@ -2,15 +2,20 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse, Htt
 import { Injectable } from '@angular/core';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Observable, of } from 'rxjs';
-import {  tap, catchError } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-    constructor(private authService: AuthService, private spinnerService: Ng4LoadingSpinnerService, private router: Router) { }
+    constructor(
+        private authService: AuthService,
+        private spinnerService: Ng4LoadingSpinnerService,
+        private router: Router,
+        private toastr: ToastrService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const token = this.authService.getToken();
@@ -38,6 +43,14 @@ export class JwtInterceptor implements HttpInterceptor {
                         this.authService.logout();
                         this.spinnerService.hide();
                         this.router.navigateByUrl('/');
+                    }
+                    else if (error.status === 404) {
+                        this.spinnerService.hide();
+                        this.toastr.error('Recurso não encontrado!');
+                        this.router.navigateByUrl('/');
+                    }
+                    else {
+                        throw of(error);
                     }
                 }
 

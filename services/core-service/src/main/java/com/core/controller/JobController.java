@@ -1,13 +1,12 @@
 package com.core.controller;
 
 import com.core.model.Job;
+import com.core.model.Score;
 import com.core.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/jobs")
@@ -61,5 +60,17 @@ public class JobController {
     @PutMapping("/{jobId}/unregister/{userId}")
     public ResponseEntity<?> unregisterToJob(@PathVariable Long jobId, @PathVariable Long userId) {
         return ResponseEntity.ok(jobService.unregisterToJob(jobId, userId));
+    }
+
+    @GetMapping("/{id}/dashboard")
+    public ResponseEntity<?> getJobDashborad(@PathVariable Long id) {
+        return ResponseEntity.ok(jobService.getJobDashborad(id));
+    }
+
+    @PostMapping("/{jobId}/review/{userId}")
+    public ResponseEntity<?> reviewUser(@PathVariable Long jobId,
+                                        @PathVariable Long userId,
+                                        @RequestBody Score score) {
+        return ResponseEntity.ok(jobService.reviewUser(jobId, userId, score));
     }
 }
