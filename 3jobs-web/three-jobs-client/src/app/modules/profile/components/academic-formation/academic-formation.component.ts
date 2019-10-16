@@ -21,11 +21,6 @@ export class AcademicFormationComponent extends MaintainForm<Profile> implements
     @Input() profile: Profile;
 
     /**
-     * Old profile model.
-     */
-    private oldModel: Profile;
-
-    /**
      * Experience model.
      */
     private experience: Experience;
