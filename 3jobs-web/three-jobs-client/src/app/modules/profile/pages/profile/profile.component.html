@@ -25,10 +25,9 @@
             <div class="accordion indicator-plus-before round-indicator mt-5" aria-multiselectable="true">
                 <personal-data [isLoggedUserProfile]="isLoggedUserProfile" [profile]="profile"></personal-data>
                 <user-address [isLoggedUserProfile]="isLoggedUserProfile" [profile]="profile"></user-address>
-                <!-- TODO: verificar o funcionamento desses componentes -->
-                <!-- <academic-formation [isLoggedUserProfile]="isLoggedUserProfile" [user]="user"></academic-formation>
-                <abilities [isLoggedUserProfile]="isLoggedUserProfile" [user]="user"></abilities>
-                <experience [isLoggedUserProfile]="isLoggedUserProfile"></experience> -->
+                <academic-formation [isLoggedUserProfile]="isLoggedUserProfile" [profile]="profile"></academic-formation>
+                <abilities [isLoggedUserProfile]="isLoggedUserProfile" [profile]="profile"></abilities>
+                <!-- <experience [isLoggedUserProfile]="isLoggedUserProfile" [profile]="profile"></experience>  -->
             </div>
         </div>
 

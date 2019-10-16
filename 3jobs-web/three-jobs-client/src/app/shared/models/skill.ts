@@ -6,5 +6,5 @@ import { Profile } from './profile';
  */
 export class Skill extends Entity {
     description: string;
-    profiles: Array<Profile>
+    profiles: Array<Profile>;
 }
