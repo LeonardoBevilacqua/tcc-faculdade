@@ -48,9 +48,4 @@ public class CompanyController {
     public ResponseEntity<?> removeRecruterToCompany(@PathVariable Long id, @PathVariable Long recruterId) {
         return ResponseEntity.ok(companyService.removeRecruterToCompany(id, recruterId));
     }
-
-    @GetMapping("/{companyId}/dashboard/stats")
-    public ResponseEntity<?> getDashboardStats(@PathVariable Long companyId) {
-        return ResponseEntity.ok(companyService.getDashboradStats(companyId));
-    }
 }

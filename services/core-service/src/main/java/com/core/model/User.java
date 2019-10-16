@@ -59,7 +59,6 @@ public class User {
     private Company company;
     
     @Column(name = "company_id", insertable = false, updatable = false)
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long companyId;
 
     public Set<Job> getJobsHeadhunter() {
@@ -165,8 +164,6 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", cpf=" + cpf + ", email=" + email + ", password="
-				+ password + ", profile=" + profile + ", profileId=" + profileId + ", jobs=" + jobs + ", roles=" + roles
-				+ ", jobsHeadhunter=" + jobsHeadhunter + ", toDos=" + toDos + ", company="
-				+ company + ", companyId=" + companyId + "]";
+				+ password  + ", profileId=" + profileId + ", companyId=" + companyId + "]";
 	}
 }

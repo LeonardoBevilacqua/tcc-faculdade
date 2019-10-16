@@ -53,4 +53,9 @@ public class UserController {
     public ResponseEntity<?> deleteUserTodo(@PathVariable Long id, @PathVariable Long todoId) {
         return ResponseEntity.ok(userService.deleteUserTodo(id, todoId));
     }
+
+    @GetMapping("/{userId}/dashboard/stats")
+    public ResponseEntity<?> getDashboardStats(@PathVariable Long userId) {
+        return ResponseEntity.ok(userService.getDashboradStats(userId));
+    }
 }

@@ -101,14 +101,4 @@ public class CompanyService {
         updateCompany(company.getId(), company);
         return company;
     }
-
-    public DashboardStats getDashboradStats(Long companyId) {
-        List<Job> jobs = jobRepository.findByCompanyId(companyId);
-        DashboardStats dashboardStats = new DashboardStats();
-        HashMap<String, Long> response = DashboardAggregate.aggegateByProcessTotal(jobs);
-        dashboardStats.setAwaitingHeadhunter(response.get("awaitingHeadhunter"));
-        dashboardStats.setProcessTotal(response.get("processTotal"));
-        dashboardStats.setTotalFinished(response.get("totalFinished"));
-        return dashboardStats;
-    }
 }
