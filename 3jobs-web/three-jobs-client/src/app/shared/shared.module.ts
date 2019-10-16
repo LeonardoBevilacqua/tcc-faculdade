@@ -25,15 +25,12 @@ import { InputSearchComponent } from './header/component/input-search/input-sear
         CpfValidationDirective,
         RoleValuePipe,
         InputSearchComponent,
-        
-        
     ],
     imports: [
         CommonModule,
         CoreModule,
         RouterModule,
         FormsModule,
-        
     ],
     exports: [
         CommonModule,
@@ -46,7 +43,6 @@ import { InputSearchComponent } from './header/component/input-search/input-sear
         MustMatchDirective,
         CpfValidationDirective,
         InputSearchComponent,
-        
     ],
 })
 export class SharedModule { }
