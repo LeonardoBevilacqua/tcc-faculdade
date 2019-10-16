@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ProfileService } from 'src/app/core/services/profile.service';
 import { MaintainForm } from 'src/app/shared/form/maintain-form';
-import { Profile } from 'src/app/shared/models/profile';
-import { isNullOrUndefined, isNull } from 'util';
+import { ExperienceType } from 'src/app/shared/models/enums/experience-type.enum';
 import { Experience } from 'src/app/shared/models/experience';
+import { Profile } from 'src/app/shared/models/profile';
+import { isNull, isNullOrUndefined } from 'util';
 
 @Component({ selector: 'academic-formation', templateUrl: './academic-formation.component.html' })
 export class AcademicFormationComponent extends MaintainForm<Profile> implements OnInit {
@@ -69,6 +70,7 @@ export class AcademicFormationComponent extends MaintainForm<Profile> implements
     public newForm() {
         this.experienceIndex = null;
         this.experience = new Experience();
+        this.experience.type = ExperienceType.ACADEMIC;
 
         this.isFormEdition = true;
         this.isSubmitted = false;
