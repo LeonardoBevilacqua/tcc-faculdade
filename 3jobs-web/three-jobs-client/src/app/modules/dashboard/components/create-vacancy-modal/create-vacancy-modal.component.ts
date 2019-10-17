@@ -22,9 +22,9 @@ export class CreateVacancyModalComponent extends MaintainForm<Job> {
         private jobService: JobService,
         router: Router,
         toastr: ToastrService,
-        private spinnerService: Ng4LoadingSpinnerService,
-        private authService: AuthService) {
+        private spinnerService: Ng4LoadingSpinnerService) {
         super(null, router, toastr);
+        this.model = new Job();
     }
 
     @Input() model: Job;
