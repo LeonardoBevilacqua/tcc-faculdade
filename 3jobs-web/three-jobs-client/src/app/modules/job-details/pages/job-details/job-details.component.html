@@ -15,7 +15,7 @@
                                                 <h6 class="text-secondary">Voltar</h6>
                                             </a>
                                         </div>
-                                        <div class="col-auto col-md-auto align-items-baseline ">
+                                        <div class="col-auto col-md-auto align-items-baseline" *ngIf="shouldDisplaySubscribeButton()">
                                             <button type="button" (click)="apply()"
                                                 class="btn btn-primary">Candidatar-se</button>
                                         </div>

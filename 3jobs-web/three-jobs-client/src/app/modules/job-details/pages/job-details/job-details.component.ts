@@ -10,6 +10,7 @@ import { Address } from 'src/app/shared/models/address';
 import { Company } from 'src/app/shared/models/company';
 import { Job } from 'src/app/shared/models/job';
 import { User } from 'src/app/shared/models/user';
+import { Role } from 'src/app/shared/models/enums/role.enum';
 
 
 @Component({ selector: 'app-job-details', templateUrl: './job-details.component.html' })
@@ -88,8 +89,11 @@ export class JobDetailsComponent implements OnInit {
             );
 
         }
+    }
 
+    public shouldDisplaySubscribeButton() {
+        const role = this.authService.getUserRole();
 
-
+        return role !== Role.ROLE_RECRUTER && role !== Role.ROLE_RECRUTER_ADMIN;
     }
 }

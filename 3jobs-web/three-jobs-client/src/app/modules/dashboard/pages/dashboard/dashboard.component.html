@@ -33,7 +33,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let vacancy of vacancies;">
-                            <td>{{vacancy.title}}</td>
+                            <td><a [routerLink]="['/job-details', vacancy.id]">{{vacancy.title}}</a></td>
                             <td><span class="badge badge-success">{{vacancy.status}}</span></td>
                             <td>
                                 <button (click)="toEditVacancy(vacancy)" data-toggle="modal"

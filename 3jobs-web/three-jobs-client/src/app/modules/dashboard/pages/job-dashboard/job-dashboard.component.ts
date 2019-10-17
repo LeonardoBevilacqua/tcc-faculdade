@@ -23,25 +23,24 @@ export class JobDashboardComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.jobService.getJobDashborad(this.vacancyId).subscribe(
-            (response) => {
-                this.headhunter = response.headhunter;
-                this.ranking = response.usersScore;
-                this.jobUsers = response.jobUsers;
-                // console.log(this.jobUsers);
-                var teste = new Map<string, number>();
-                this.citiesName = Object.keys(response.cities);
-                this.citiesValue = Object.values(response.cities)
+        // this.jobService.getJobDashborad(this.vacancyId).subscribe(
+        //     (response) => {
+        //         this.headhunter = response.headhunter;
+        //         this.ranking = response.usersScore;
+        //         this.jobUsers = response.jobUsers;
 
-                this.criateGraphic();
-            },
-            (error) => {
-                console.log(error);
-            }
-        );
+        //         this.citiesName = Object.keys(response.cities);
+        //         this.citiesValue = Object.values(response.cities);
+
+        //         this.createChart();
+        //     },
+        //     (error) => {
+        //         console.error(error);
+        //     }
+        // );
     }
 
-    private criateGraphic() {
+    private createChart() {
         this.BarChartCidades = new Chart('barChartCidades', {
             type: 'bar',
             data: {
@@ -59,7 +58,7 @@ export class JobDashboardComponent implements OnInit {
                 responsive: true,
                 maintainAspectRatio: false,
                 title: {
-                    text: "Cidade dos Candidatos",
+                    text: 'Cidade dos Candidatos',
                     display: true
                 }
             }

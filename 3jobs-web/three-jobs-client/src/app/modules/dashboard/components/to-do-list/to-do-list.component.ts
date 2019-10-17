@@ -12,6 +12,7 @@ export class ToDoListComponent extends MaintainForm<ToDo> implements OnInit {
 
     constructor(private userService: UserService, toast: ToastrService) {
         super(null, null, toast);
+        this.tasks = [];
     }
 
     ngOnInit() {

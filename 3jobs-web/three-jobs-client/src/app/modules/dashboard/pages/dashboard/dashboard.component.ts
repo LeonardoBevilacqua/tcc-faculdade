@@ -22,6 +22,8 @@ export class DashboardComponent implements OnInit {
         private companyService: CompanyService,
         private userService: UserService) {
         this.user = this.authService.getUser();
+        this.vacancies = [];
+        this.recruiters = [];
     }
 
     job: Job;
