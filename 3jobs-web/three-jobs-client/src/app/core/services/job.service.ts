@@ -22,9 +22,14 @@ export class JobService extends EntityService<Job> {
         return this.httpClient.get<any>(`${this.apiUrl}/${this.endpoint}/`);
     }
 
-    public register(idUser: number, idJob: number): Observable<Job> {
+    public candidateRegister(idUser: number, idJob: number): Observable<Job> {
         return this.httpClient.put<Job>(`${this.apiUrl}/${this.endpoint}/${idJob}/register/${idUser}`, httpOptions);
     }
+
+    public headhunterRegister(idUser: number, idJob: number): Observable<Job> {
+        return this.httpClient.put<Job>(`${this.apiUrl}/${this.endpoint}/${idJob}/headhunters/add/${idUser}`, httpOptions);
+    }
+
     public search(description: string, page = 0, size = 10) {
         return this.httpClient.get(`${this.apiUrl}/${this.endpoint}?description=${description}&page=${page}&size=${size}`);
     }
