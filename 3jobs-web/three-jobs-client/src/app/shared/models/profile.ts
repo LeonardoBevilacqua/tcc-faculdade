@@ -21,4 +21,5 @@ export class Profile extends Entity {
     address: Address;
     rates: Array<Rate>;
     tags: Array<Tag>;
+    photoUrl: string;
 }

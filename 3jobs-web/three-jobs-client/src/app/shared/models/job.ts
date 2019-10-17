@@ -19,4 +19,5 @@ export class Job extends Entity {
     recruter: User;
     company: Company;
     tags: Array<Tag>;
+    status: string;
 }

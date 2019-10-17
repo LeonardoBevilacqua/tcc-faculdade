@@ -10,6 +10,9 @@ import { Address } from 'src/app/shared/models/address';
 import { Company } from 'src/app/shared/models/company';
 import { Job } from 'src/app/shared/models/job';
 import { User } from 'src/app/shared/models/user';
+import { Role } from 'src/app/shared/models/enums/role.enum';
+import { isNullOrUndefined } from 'util';
+import { Observable } from 'rxjs';
 
 
 @Component({ selector: 'app-job-details', templateUrl: './job-details.component.html' })
@@ -75,8 +78,13 @@ export class JobDetailsComponent implements OnInit {
     apply() {
         if (this.authService.getToken() == null) {
             this.toast.warning('Por gentileza, Logar no Sistema para Candidatar-se');
-        } else {
-            this.jobService.register(this.authService.getUserId(), this.currentId).subscribe(
+        }
+        else {
+            const register: Observable<Job> = this.isHeadhunter() ?
+                this.jobService.headhunterRegister(this.authService.getUserId(), this.currentId) :
+                this.jobService.candidateRegister(this.authService.getUserId(), this.currentId);
+
+            register.subscribe(
                 (response: any) => {
                     this.spinnerService.hide();
                     this.toast.success('Cadastrado com sucesso!');
@@ -88,8 +96,15 @@ export class JobDetailsComponent implements OnInit {
             );
 
         }
+    }
 
+    public shouldDisplaySubscribeButton() {
+        const role = this.authService.getUserRole();
 
+        return role !== Role.ROLE_RECRUTER && role !== Role.ROLE_RECRUTER_ADMIN && !isNullOrUndefined(this.authService.getToken());
+    }
 
+    public isHeadhunter() {
+        return this.authService.getUserRole() === Role.ROLE_HEADHUNTER;
     }
 }

@@ -58,8 +58,18 @@ public class JobController {
     }
 
     @PutMapping("/{jobId}/unregister/{userId}")
-    public ResponseEntity<?> unregisterToJob(@PathVariable Long jobId, @PathVariable Long userId) {
+    public ResponseEntity<?> unregisterFromJob(@PathVariable Long jobId, @PathVariable Long userId) {
         return ResponseEntity.ok(jobService.unregisterToJob(jobId, userId));
+    }
+
+    @PutMapping("/{jobId}/headhunters/add/{headhunterId}")
+    public ResponseEntity<?> addHeadhunterToJob(@PathVariable Long jobId, @PathVariable Long headhunterId) {
+        return ResponseEntity.ok(jobService.addHeadhunterToJob(jobId, headhunterId));
+    }
+
+    @PutMapping("/{jobId}/headhunters/remove/{headhunterId}")
+    public ResponseEntity<?> removeHeadhunterFromJob(@PathVariable Long jobId, @PathVariable Long headhunterId) {
+        return ResponseEntity.ok(jobService.removeHeadhunterFromJob(jobId, headhunterId));
     }
 
     @GetMapping("/{id}/dashboard")
