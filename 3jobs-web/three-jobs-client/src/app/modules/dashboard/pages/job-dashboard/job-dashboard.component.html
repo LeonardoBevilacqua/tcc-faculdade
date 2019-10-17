@@ -46,6 +46,9 @@
                                     Perfil</a>
                             </td>
                         </tr>
+                        <tr *ngIf="jobUsers.length === 0">
+                            <td colspan="5">Sem candidatos para a vaga!</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

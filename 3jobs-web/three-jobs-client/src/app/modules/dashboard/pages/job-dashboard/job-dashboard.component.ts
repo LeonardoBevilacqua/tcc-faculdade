@@ -20,24 +20,26 @@ export class JobDashboardComponent implements OnInit {
 
     constructor(private jobService: JobService, private router: Router) {
         this.vacancyId = +this.router.url.split('/')[3];
+        this.ranking = [];
+        this.jobUsers = [];
     }
 
     ngOnInit() {
-        // this.jobService.getJobDashborad(this.vacancyId).subscribe(
-        //     (response) => {
-        //         this.headhunter = response.headhunter;
-        //         this.ranking = response.usersScore;
-        //         this.jobUsers = response.jobUsers;
+        this.jobService.getJobDashborad(this.vacancyId).subscribe(
+            (response) => {
+                this.headhunter = response.headhunter;
+                this.ranking = response.usersScore ? response.usersScore : [];
+                this.jobUsers = response.jobUsers ? response.jobUsers : [];
 
-        //         this.citiesName = Object.keys(response.cities);
-        //         this.citiesValue = Object.values(response.cities);
+                this.citiesName = Object.keys(response.cities);
+                this.citiesValue = Object.values(response.cities);
 
-        //         this.createChart();
-        //     },
-        //     (error) => {
-        //         console.error(error);
-        //     }
-        // );
+                this.createChart();
+            },
+            (error) => {
+                console.error(error);
+            }
+        );
     }
 
     private createChart() {

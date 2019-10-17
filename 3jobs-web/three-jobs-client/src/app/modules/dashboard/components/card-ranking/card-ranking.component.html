@@ -1,18 +1,25 @@
 <div class="card shadow">
-    <div class="d-flex flex-column justify-content-center align-items-center"
+    <div *ngIf="headhunter; else emptyHeadhunterBlock" class="d-flex flex-column justify-content-center align-items-center"
         style="height: 200px;position: relative; background: linear-gradient(to right, #1e5799 0%,  #3ccdbb 0%, #16c9f6 100%);">
         <a target="_blank" href="/profile/{{headhunter.id}}" class="btn btn-primary btn-sm"
             style="position: absolute; right: 5px;top: 5px">
             Ver Perfil
         </a>
-        <div class="bg-success rounded-circle" [ngStyle]="{'background-image':'url('+headhunter.photoUrl+') '}"
+        <div class="bg-success rounded-circle"
+            [ngStyle]="{'background-image':'url(https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png) '}"
             style="width: 120px;height: 120px;  background: center no-repeat;background-size: cover;">
         </div>
         <strong>HeadHunter</strong>
         <strong>{{headhunter.name}}</strong>
     </div>
+    <ng-template #emptyHeadhunterBlock>
+        <div class="d-flex flex-column justify-content-center align-items-center"
+            style="height: 200px;position: relative; background: linear-gradient(to right, #1e5799 0%,  #3ccdbb 0%, #16c9f6 100%);">
+            <div class="alert alert-warning">Sem headhunter para vaga!</div>
+        </div>
+    </ng-template>
     <div class="card-body p-0">
-        <table class="table mb-0">
+        <table class="table mb-0" *ngIf="ranking.length; else emptyRankBlock">
             <thead>
                 <tr>
                     <th scope="col" class="px-1 text-center">Rank</th>
@@ -31,5 +38,8 @@
                 </tr>
             </tbody>
         </table>
+        <ng-template #emptyRankBlock>
+            <div class="m-3 text-center">Sem candidatos avaliados!</div>
+        </ng-template>
     </div>
 </div>
