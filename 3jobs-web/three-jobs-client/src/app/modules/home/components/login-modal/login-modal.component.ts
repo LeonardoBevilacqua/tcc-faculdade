@@ -49,7 +49,7 @@ export class LoginComponent extends MaintainForm<User> implements OnInit {
                         this.spinnerService.hide();
                         $('#loginModal').modal('hide');
 
-                        if (this.authService.getUserRole() === Role.RECRUTER_ADMIN &&
+                        if (this.authService.getUserRole() === Role.ROLE_RECRUTER_ADMIN &&
                             isNullOrUndefined(this.authService.getUser().companyId)) {
                             this.router.navigateByUrl('/company');
                         }

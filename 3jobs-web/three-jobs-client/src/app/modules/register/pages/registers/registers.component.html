@@ -17,13 +17,13 @@
                             <label for="role">Você é um ?</label>
                             <select required class="form-control" id="role" name="role" [(ngModel)]="model.roles[0]"
                                 #role="ngModel">
-                                <option value="3">Candidato</option>
-                                <option value="2">Headhunter</option>
-                                <option value="4">Representante de empresa</option>
+                                <option value="ROLE_CANDIDATE">Candidato</option>
+                                <option value="ROLE_HEADHUNTER">Headhunter</option>
+                                <option value="ROLE_RECRUTER_ADMIN">Representante de empresa</option>
                             </select>
                             <validation-message [inputControl]="role"></validation-message>
                             <small class="form-text text-muted">Selecione o tipo da sua conta.</small>
-                            <small class="form-text" *ngIf="model.roles[0] && model.roles[0] === '4'"><strong>* Após o
+                            <small class="form-text" *ngIf="model.roles[0] && model.roles[0] === 'ROLE_RECRUTER_ADMIN'"><strong>* Após o
                                     cadastro, deve ser feito o cadastro de sua empresa.</strong></small>
                         </div>
 

@@ -9,7 +9,7 @@ const routes: Routes = [
         component: DashboardComponent,
     },
     {
-        path: 'job',
+        path: 'job-dashboard/:id',
         component: JobDashboardComponent,
     }
 ];

@@ -2,9 +2,9 @@ package com.core.service;
 
 import com.core.dto.DashboardDTO;
 import com.core.dto.JobSimpleDTO;
-import com.core.dto.UserSimpleDTO;
 import com.core.exception.EntityNotFoundException;
 import com.core.model.Job;
+import com.core.model.Profile;
 import com.core.model.Score;
 import com.core.model.User;
 import com.core.respository.JobRepository;
@@ -109,15 +109,12 @@ public class JobService {
     public DashboardDTO getJobDashborad(Long id) {
         DashboardDTO dash = new DashboardDTO();
         Job job = getJob(id);
-        dash.setHeadhunter(job.getRecruter());
+        dash.setHeadhunter(job.getHeadhunter() != null ? job.getHeadhunter().getProfile() : null);
         List<Score> scores = scoreRepository.findByJobIdOrderByValueDesc(id);
         dash.setCities(aggregate.countUserCities(job.getUsers()));
-        List<UserSimpleDTO> userFiltered = job.getUsers().stream().map(user ->
-                userService.convertUserToSimple(user)).collect(Collectors.toList());
+        List<Profile> userFiltered = job.getUsers().stream().map(user ->
+                user.getProfile()).collect(Collectors.toList());
         dash.setJobUsers(userFiltered);
-        for (Score score:scores ) {
-            score.getUser().setProfile(null);
-        }
         dash.setUsersScore(scores.stream().limit(5).collect(Collectors.toList()));
         return dash;
     }
@@ -126,12 +123,31 @@ public class JobService {
         Job job = getJob(jobId);
         User user = userService.getUser(userId);
         score.setJob(job);
-        score.setUser(user);
+        score.setProfile(user.getProfile());
         job.getScores().add(score);
-        user.getScores().add(score);
+        user.getProfile().getScores().add(score);
         scoreRepository.save(score);
         updateJob(job.getId(), job);
         userService.updateUser(userId, user);
+        return job;
+    }
+
+    public Job removeHeadhunterFromJob(Long jobId, Long headhunterId) {
+        User headhunter = userService.getUser(headhunterId);
+        Job job = getJob(jobId);
+        headhunter.getJobs().remove(job);
+        job.setHeadhunter(null);
+        userService.updateUser(headhunterId, headhunter);
+        return jobRepository.save(job);
+    }
+
+    public Job addHeadhunterToJob(Long jobId, Long headhunterId) {
+        User headhunter = userService.getUser(headhunterId);
+        Job job = getJob(jobId);
+        job.setHeadhunter(headhunter);
+        headhunter.getJobs().add(job);
+        jobRepository.save(job);
+        userService.updateUser(headhunterId, headhunter);
         return job;
     }
 }
