@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit {
         this.job = vacancy;
     }
 
-    private getAllVacancies() {
+    public getAllVacancies() {
 
         this.jobService.getAll().subscribe(
             (response) => {
