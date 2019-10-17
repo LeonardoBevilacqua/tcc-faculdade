@@ -1,11 +1,11 @@
-import { ToDo } from './../../shared/models/toDo';
-import { AuthService } from './auth.service';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { User } from 'src/app/shared/models/user';
 
+import { ToDo } from './../../shared/models/toDo';
+import { AuthService } from './auth.service';
 import { EntityService } from './entity.service';
-import { Observable } from 'rxjs';
 
 /**
  * Service responsible to handle the user.
@@ -14,7 +14,7 @@ import { Observable } from 'rxjs';
 export class UserService extends EntityService<User> {
     /**
      * Default constructor;
-     * 
+     *
      * @param http the http client injectable
      */
     constructor(http: HttpClient, private authService: AuthService) {
@@ -32,5 +32,9 @@ export class UserService extends EntityService<User> {
 
     public removeToDo(id: number): Observable<Array<ToDo>> {
         return this.httpClient.delete<Array<ToDo>>(`${this.apiUrl}/${this.endpoint}/${this.authService.getUserId()}/todo/${id}/remove`);
+    }
+
+    public getUserDashboard(): Observable<any> {
+        return this.httpClient.get(`${this.apiUrl}/${this.endpoint}/${this.authService.getUserId()}/dashboard`);
     }
 }

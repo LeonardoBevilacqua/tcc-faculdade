@@ -16,6 +16,10 @@ export class DashboardComponent implements OnInit {
     recruiters: Array<User>;
     user: User;
 
+    processTotal: number;
+    awaitingHeadhunter: number;
+    totalFinished: number;
+
     constructor(
         private authService: AuthService,
         private jobService: JobService,
@@ -24,6 +28,9 @@ export class DashboardComponent implements OnInit {
         this.user = this.authService.getUser();
         this.vacancies = [];
         this.recruiters = [];
+        this.processTotal = 0;
+        this.awaitingHeadhunter = 0;
+        this.totalFinished = 0;
     }
 
     job: Job;
@@ -70,6 +77,16 @@ export class DashboardComponent implements OnInit {
         );
     }
 
+    private getCardData() {
+        this.userService.getUserDashboard().subscribe(
+            (response) => {
+                this.processTotal = response.processTotal ? response.processTotal : 0;
+                this.awaitingHeadhunter = response.awaitingHeadhunter ? response.awaitingHeadhunter : 0;
+                this.totalFinished = response.totalFinished ? response.totalFinished : 0;
+            }
+        );
+    }
+
     private checkIfUserHasCompanyId() {
         if (this.user && isNullOrUndefined(this.user.companyId)) {
             this.userService.read(this.user.id).subscribe(
@@ -77,6 +94,7 @@ export class DashboardComponent implements OnInit {
                     this.authService.setUser(response);
                     this.getAllRecruiter();
                     this.getAllVacancies();
+                    this.getCardData();
                 },
                 () => {
                     this.authService.logout();
@@ -86,6 +104,7 @@ export class DashboardComponent implements OnInit {
         else {
             this.getAllRecruiter();
             this.getAllVacancies();
+            this.getCardData();
         }
     }
 
