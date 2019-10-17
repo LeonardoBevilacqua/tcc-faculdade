@@ -75,7 +75,6 @@ public class User {
     private Company company;
     
     @Column(name = "company_id", insertable = false, updatable = false)
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long companyId;
 
     public Set<Job> getJobsHeadhunter() {

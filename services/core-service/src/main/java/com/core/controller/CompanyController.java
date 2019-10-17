@@ -39,13 +39,13 @@ public class CompanyController {
         return ResponseEntity.ok(companyService.updateCompany(id, company));
     }
 
-    @PutMapping("/{id}/recruters/add/{recruter_id}")
-    public ResponseEntity<?> addRecruterToCompany(@PathVariable Long id, @PathVariable Long recruter_id) {
-        return ResponseEntity.ok(companyService.addRecruterToCompany(id, recruter_id));
+    @PutMapping("/{id}/recruters/add/{recruterId}")
+    public ResponseEntity<?> addRecruterToCompany(@PathVariable Long id, @PathVariable Long recruterId) {
+        return ResponseEntity.ok(companyService.addRecruterToCompany(id, recruterId));
     }
 
-    @PutMapping("/{id}/recruters/remove/{recruter_id}")
-    public ResponseEntity<?> removeRecruterToCompany(@PathVariable Long id, @PathVariable Long recruter_id) {
-        return ResponseEntity.ok(companyService.removeRecruterToCompany(id, recruter_id));
+    @PutMapping("/{id}/recruters/remove/{recruterId}")
+    public ResponseEntity<?> removeRecruterToCompany(@PathVariable Long id, @PathVariable Long recruterId) {
+        return ResponseEntity.ok(companyService.removeRecruterToCompany(id, recruterId));
     }
 }

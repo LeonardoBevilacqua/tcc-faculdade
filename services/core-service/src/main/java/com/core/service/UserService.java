@@ -1,20 +1,25 @@
 package com.core.service;
 
+import com.core.dto.DashboardStats;
 import com.core.dto.UserLoginDTO;
 import com.core.dto.UserSimpleDTO;
 import com.core.dto.UserToDoDTO;
 import com.core.exception.EntityNotFoundException;
 import com.core.exception.UserUnauthorizedException;
+import com.core.model.Job;
 import com.core.model.Role;
 import com.core.model.ToDo;
 import com.core.model.User;
+import com.core.respository.JobRepository;
 import com.core.respository.TodoRepository;
 import com.core.respository.UserRepository;
 import com.core.security.UserSecurity;
+import com.core.util.DashboardAggregate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +31,9 @@ public class UserService {
 
     @Autowired
     private TodoRepository todoRepository;
+
+    @Autowired
+    private JobRepository jobRepository;
 
     public List<User> getUsers() {
         return userRepository.findAll();
@@ -106,5 +114,24 @@ public class UserService {
                 user.getProfileId(),
                 user.getCompanyId(),
                 user.getRoles());
+    }
+
+    public DashboardStats getDashboradStats(Long userId) {
+        User user = getUser(userId);
+        List<Job> jobs = null;
+        if (user.getRoles().contains(Role.ROLE_ADMIN) || user.getRoles().contains(Role.ROLE_RECRUTER_ADMIN) ||
+                user.getRoles().contains(Role.ROLE_RECRUTER)) {
+            jobs = jobRepository.findByCompanyId(user.getCompanyId());
+        } else if (user.getRoles().contains(Role.ROLE_HEADHUNTER)) {
+            jobs = jobRepository.findByHeadhunterId(userId);
+        } else {
+            jobs = jobRepository.findByUsersId(userId);
+        }
+        DashboardStats dashboardStats = new DashboardStats();
+        HashMap<String, Long> response = DashboardAggregate.aggegateByProcessTotal(jobs);
+        dashboardStats.setAwaitingHeadhunter(response.get("awaitingHeadhunter"));
+        dashboardStats.setProcessTotal(response.get("processTotal"));
+        dashboardStats.setTotalFinished(response.get("totalFinished"));
+        return dashboardStats;
     }
 }

@@ -186,8 +186,6 @@ public class Job {
                 ", benefit='" + benefit + '\'' +
                 ", beginDate=" + beginDate +
                 ", endDate=" + endDate +
-                ", users=" + users +
-                ", company=" + company +
                 '}';
     }
 }
