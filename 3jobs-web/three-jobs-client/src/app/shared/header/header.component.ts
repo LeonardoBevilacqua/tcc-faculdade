@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
+import { isNullOrUndefined } from 'util';
 
 /**
  * Component responsible to display and handle the header of the page.
@@ -12,5 +13,9 @@ export class HeaderComponent{
     logout() {
         this.authService.logout();
         this.router.navigateByUrl('/');
+    }
+
+    isUserLogged(): boolean {
+        return !isNullOrUndefined(this.authService.getToken());
     }
 }

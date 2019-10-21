@@ -17,10 +17,10 @@
                     <app-input-search></app-input-search>
                 </div>
                 <!-- the icon buttons section -->
-                <div class="col-2 col-md-4">
+                <div class="col-2 col-md-4" *ngIf="isUserLogged(); else isNotLoggedBlock">
                     <div class="d-flex justify-content-end">
                         <div class="btn-group">
-                            <!-- go to dashboar -->
+                            <!-- go to dashboard -->
                             <button routerLink="/dashboard" routerLinkActive="active" title="Meu painel"
                                 class="btn btn-outline-light" type="button">
                                 <span class="fa fa-columns"></span>
@@ -43,6 +43,18 @@
                         </button>
                     </div>
                 </div>
+                <ng-template #isNotLoggedBlock>
+                    <div class="col-2 col-md-4">
+                        <div class="d-flex justify-content-end">
+                            <div class="btn-group">
+                                <button routerLink="/" class="btn btn-outline-light" type="button">
+                                    Home
+                                    <span class="fa fa-home"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
             </div>
         </div>
     </div>
