@@ -30,12 +30,14 @@ export class CreateVacancyModalComponent extends MaintainForm<Job> implements On
     ngOnChanges() {
         this.tags = '';
 
-        for (const tag of this.model.tags) {
-            this.tags += tag.description + ',';
-        }
+        if (this.model && this.model.tags) {
+            for (const tag of this.model.tags) {
+                this.tags += tag.description + ',';
+            }
 
-        this.tags = this.tags.slice(0, -1);
-        this.model.tags = [];
+            this.tags = this.tags.slice(0, -1);
+            this.model.tags = [];
+        }
     }
 
     public onSubmit() {

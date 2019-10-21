@@ -55,11 +55,11 @@ export class DashboardComponent implements OnInit {
         this.job = vacancy;
     }
 
-    private getAllVacancies() {
+    private getJobByCompanyId() {
         this.spinner.show();
-        this.jobService.getAll().subscribe(
+        this.jobService.getJobByCompanyId(this.user.companyId).subscribe(
             (response) => {
-                this.vacancies = response.content;
+                this.vacancies = response;
                 this.spinner.hide();
             },
             (error) => {
@@ -101,7 +101,7 @@ export class DashboardComponent implements OnInit {
                 (response) => {
                     this.authService.setUser(response);
                     this.getCardData();
-                    this.getAllVacancies();
+                    this.getJobByCompanyId();
                     this.getAllRecruiter();
                 },
                 () => {
@@ -111,7 +111,7 @@ export class DashboardComponent implements OnInit {
         }
         else {
             this.getCardData();
-            this.getAllVacancies();
+            this.getJobByCompanyId();
             this.getAllRecruiter();
         }
     }

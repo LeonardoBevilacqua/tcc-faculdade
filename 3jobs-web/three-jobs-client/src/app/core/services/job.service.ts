@@ -37,4 +37,8 @@ export class JobService extends EntityService<Job> {
     public getJobDashborad(id: number): Observable<JobDashboard> {
         return this.httpClient.get<JobDashboard>(`${this.apiUrl}/${this.endpoint}/${id}/dashboard`);
     }
+
+    public getJobByCompanyId(companyId: number): Observable<any> {
+        return this.httpClient.get<any>(`${this.apiUrl}/${this.endpoint}/company/${companyId}`);
+    }
 }

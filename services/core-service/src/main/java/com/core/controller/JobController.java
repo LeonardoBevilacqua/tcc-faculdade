@@ -31,6 +31,11 @@ public class JobController {
     public ResponseEntity<?> getJob(@PathVariable Long id){
         return ResponseEntity.ok(jobService.getJob(id));
     }
+    
+    @GetMapping("/company/{companyId}")
+    public ResponseEntity<?> getJobsByCompany(@PathVariable Long companyId) {
+    	return ResponseEntity.ok(jobService.getJobsByCompanyId(companyId));
+    }
 
     @GetMapping("/{id}/simple")
     public ResponseEntity<?> getSimpleJob(@PathVariable Long id){
