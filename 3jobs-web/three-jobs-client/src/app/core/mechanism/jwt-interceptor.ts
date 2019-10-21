@@ -50,10 +50,12 @@ export class JwtInterceptor implements HttpInterceptor {
                         this.router.navigateByUrl('/');
                     }
                     else {
+                        this.spinnerService.hide();
                         throw of(error);
                     }
                 }
 
+                this.spinnerService.hide();
                 return of(error);
             })
         );

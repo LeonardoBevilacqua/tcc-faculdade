@@ -1,8 +1,7 @@
-import { ToastrService } from 'ngx-toastr';
-import { MaintainForm } from 'src/app/shared/form/maintain-form';
-import { HttpErrorResponse } from '@angular/common/http';
-import { UserService } from 'src/app/core/services/user.service';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/core/services/user.service';
+import { MaintainForm } from 'src/app/shared/form/maintain-form';
 import { ToDo } from 'src/app/shared/models/toDo';
 
 @Component({ selector: 'app-to-do-list', templateUrl: './to-do-list.component.html' })
@@ -26,7 +25,7 @@ export class ToDoListComponent extends MaintainForm<ToDo> implements OnInit {
                 this.tasks = response;
             },
             (error) => {
-                this.toastr.error(error);
+                this.errorHandler(error);
             }
         );
     }
@@ -38,7 +37,7 @@ export class ToDoListComponent extends MaintainForm<ToDo> implements OnInit {
                 this.model = new ToDo();
             },
             (error) => {
-                this.toastr.error(error);
+                this.errorHandler(error);
             }
         );
     }
@@ -49,7 +48,7 @@ export class ToDoListComponent extends MaintainForm<ToDo> implements OnInit {
                 this.tasks = response;
             },
             (error) => {
-                this.toastr.error(error);
+                this.errorHandler(error);
             }
         );
     }
