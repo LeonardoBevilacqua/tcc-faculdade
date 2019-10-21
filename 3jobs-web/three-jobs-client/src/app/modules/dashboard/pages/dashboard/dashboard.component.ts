@@ -8,6 +8,7 @@ import { Role } from 'src/app/shared/models/enums/role.enum';
 import { Job } from 'src/app/shared/models/job';
 import { User } from 'src/app/shared/models/user';
 import { isNullOrUndefined } from 'util';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({ selector: 'app-dashboard', templateUrl: './dashboard.component.html', styleUrls: ['./dashboard.component.scss'] })
 export class DashboardComponent implements OnInit {
@@ -24,7 +25,8 @@ export class DashboardComponent implements OnInit {
         private authService: AuthService,
         private jobService: JobService,
         private companyService: CompanyService,
-        private userService: UserService) {
+        private userService: UserService,
+        private spinner: Ng4LoadingSpinnerService) {
         this.user = this.authService.getUser();
         this.vacancies = [];
         this.recruiters = [];
@@ -54,35 +56,41 @@ export class DashboardComponent implements OnInit {
     }
 
     private getAllVacancies() {
-
+        this.spinner.show();
         this.jobService.getAll().subscribe(
             (response) => {
                 this.vacancies = response.content;
+                this.spinner.hide();
             },
             (error) => {
                 console.log(error);
+                this.spinner.hide();
             }
         );
     }
 
     private getAllRecruiter() {
-
+        this.spinner.show();
         this.companyService.read(this.user.companyId).subscribe(
             (response) => {
                 this.recruiters = response.recruters;
+                this.spinner.hide();
             },
             (error) => {
                 console.log(error);
+                this.spinner.hide();
             }
         );
     }
 
     private getCardData() {
+        this.spinner.show();
         this.userService.getUserDashboard().subscribe(
             (response) => {
                 this.processTotal = response.processTotal ? response.processTotal : 0;
                 this.awaitingHeadhunter = response.awaitingHeadhunter ? response.awaitingHeadhunter : 0;
                 this.totalFinished = response.totalFinished ? response.totalFinished : 0;
+                this.spinner.hide();
             }
         );
     }
@@ -92,9 +100,9 @@ export class DashboardComponent implements OnInit {
             this.userService.read(this.user.id).subscribe(
                 (response) => {
                     this.authService.setUser(response);
-                    this.getAllRecruiter();
-                    this.getAllVacancies();
                     this.getCardData();
+                    this.getAllVacancies();
+                    this.getAllRecruiter();
                 },
                 () => {
                     this.authService.logout();
@@ -102,9 +110,9 @@ export class DashboardComponent implements OnInit {
             );
         }
         else {
-            this.getAllRecruiter();
-            this.getAllVacancies();
             this.getCardData();
+            this.getAllVacancies();
+            this.getAllRecruiter();
         }
     }
 
