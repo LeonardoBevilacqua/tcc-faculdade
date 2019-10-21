@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { JobService } from 'src/app/core/services/job.service';
@@ -9,7 +9,7 @@ import { Tag } from 'src/app/shared/models/tag';
 declare const $: any;
 
 @Component({ selector: 'app-create-vacancy-modal', templateUrl: './create-vacancy-modal.component.html', })
-export class CreateVacancyModalComponent extends MaintainForm<Job> {
+export class CreateVacancyModalComponent extends MaintainForm<Job> implements OnChanges {
 
     /**
      * Variable responsible to deal with the string of tags
@@ -26,6 +26,17 @@ export class CreateVacancyModalComponent extends MaintainForm<Job> {
 
     @Input() model: Job;
     @Output() subject = new EventEmitter();
+
+    ngOnChanges() {
+        this.tags = '';
+
+        for (const tag of this.model.tags) {
+            this.tags += tag.description + ',';
+        }
+
+        this.tags = this.tags.slice(0, -1);
+        this.model.tags = [];
+    }
 
     public onSubmit() {
         if (this.model.id && this.model.id > 0) {
