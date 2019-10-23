@@ -55,7 +55,7 @@ export class DashboardComponent implements OnInit {
         this.job = vacancy;
     }
 
-    private getJobByCompanyId() {
+    public getJobByCompanyId() {
         this.spinner.show();
         this.jobService.getJobByCompanyId(this.user.companyId).subscribe(
             (response) => {
