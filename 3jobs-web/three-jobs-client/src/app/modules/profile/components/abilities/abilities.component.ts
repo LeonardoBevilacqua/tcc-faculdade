@@ -6,6 +6,7 @@ import { MaintainForm } from 'src/app/shared/form/maintain-form';
 import { Profile } from 'src/app/shared/models/profile';
 import { isNullOrUndefined } from 'util';
 import { Skill } from 'src/app/shared/models/skill';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({ selector: 'abilities', templateUrl: './abilities.component.html', })
 export class AbilitiesComponent extends MaintainForm<Profile> implements OnInit {
@@ -38,7 +39,7 @@ export class AbilitiesComponent extends MaintainForm<Profile> implements OnInit 
      * @param toastr toastr service.
      */
     constructor(
-        profileService: ProfileService,
+        private profileService: ProfileService,
         router: Router,
         toastr: ToastrService) {
         super(profileService, router, toastr);

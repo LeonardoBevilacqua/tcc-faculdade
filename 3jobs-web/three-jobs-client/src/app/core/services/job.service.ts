@@ -26,8 +26,16 @@ export class JobService extends EntityService<Job> {
         return this.httpClient.put<Job>(`${this.apiUrl}/${this.endpoint}/${idJob}/register/${idUser}`, httpOptions);
     }
 
+    public candidateUnregister(idUser: number, idJob: number): Observable<Job> {
+        return this.httpClient.put<Job>(`${this.apiUrl}/${this.endpoint}/${idJob}/unregister/${idUser}`, httpOptions);
+    }
+
     public headhunterRegister(idUser: number, idJob: number): Observable<Job> {
         return this.httpClient.put<Job>(`${this.apiUrl}/${this.endpoint}/${idJob}/headhunters/add/${idUser}`, httpOptions);
+    }
+
+    public headhunterUnregister(idUser: number, idJob: number): Observable<Job> {
+        return this.httpClient.put<Job>(`${this.apiUrl}/${this.endpoint}/${idJob}/headhunters/remove/${idUser}`, httpOptions);
     }
 
     public search(description: string, page = 0, size = 10) {
@@ -36,5 +44,17 @@ export class JobService extends EntityService<Job> {
 
     public getJobDashborad(id: number): Observable<JobDashboard> {
         return this.httpClient.get<JobDashboard>(`${this.apiUrl}/${this.endpoint}/${id}/dashboard`);
+    }
+
+    public getJobByCompanyId(companyId: number): Observable<any> {
+        return this.httpClient.get<any>(`${this.apiUrl}/${this.endpoint}/company/${companyId}`);
+    }
+
+    public getJobByHeadhunterId(headhunterId: number): Observable<any> {
+        return this.httpClient.get<any>(`${this.apiUrl}/${this.endpoint}/headhunter/${headhunterId}`);
+    }
+
+    public getJobByUserId(userId: number): Observable<any> {
+        return this.httpClient.get<any>(`${this.apiUrl}/${this.endpoint}/candidate/${userId}`);
     }
 }
