@@ -1,8 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from 'src/app/core/services/auth.service';
 import { JobService } from 'src/app/core/services/job.service';
 import { MaintainForm } from 'src/app/shared/form/maintain-form';
 import { Job } from 'src/app/shared/models/job';
@@ -11,7 +9,7 @@ import { Tag } from 'src/app/shared/models/tag';
 declare const $: any;
 
 @Component({ selector: 'app-create-vacancy-modal', templateUrl: './create-vacancy-modal.component.html', })
-export class CreateVacancyModalComponent extends MaintainForm<Job> {
+export class CreateVacancyModalComponent extends MaintainForm<Job> implements OnChanges {
 
     /**
      * Variable responsible to deal with the string of tags
@@ -21,8 +19,7 @@ export class CreateVacancyModalComponent extends MaintainForm<Job> {
     constructor(
         private jobService: JobService,
         router: Router,
-        toastr: ToastrService,
-        private spinnerService: Ng4LoadingSpinnerService) {
+        toastr: ToastrService) {
         super(null, router, toastr);
         this.model = new Job();
     }
@@ -30,19 +27,29 @@ export class CreateVacancyModalComponent extends MaintainForm<Job> {
     @Input() model: Job;
     @Output() subject = new EventEmitter();
 
+    ngOnChanges() {
+        this.tags = '';
+
+        if (this.model && this.model.tags) {
+            for (const tag of this.model.tags) {
+                this.tags += tag.description + ',';
+            }
+
+            this.tags = this.tags.slice(0, -1);
+            this.model.tags = [];
+        }
+    }
+
     public onSubmit() {
-        this.spinnerService.show();
         if (this.model.id && this.model.id > 0) {
             this.jobService.update(this.model).subscribe(
                 (response: any) => {
                     this.subject.emit();
-                    this.spinnerService.hide();
                     $('#createVacancyModal').modal('hide');
                     this.toastr.success(response.message ? response.message : 'Informações salvas com sucesso!');
                 },
                 (error) => {
                     this.errorHandler(error);
-                    this.spinnerService.hide();
                 }
             );
         }
@@ -50,13 +57,11 @@ export class CreateVacancyModalComponent extends MaintainForm<Job> {
             this.jobService.create(this.model).subscribe(
                 (response: any) => {
                     this.subject.emit();
-                    this.spinnerService.hide();
                     $('#createVacancyModal').modal('hide');
                     this.toastr.success(response.message ? response.message : 'Informações salvas com sucesso!');
                 },
                 (error) => {
                     this.errorHandler(error);
-                    this.spinnerService.hide();
                 }
             );
         }
