@@ -147,4 +147,10 @@ public class JobService {
 		
 		return job;
 	}
+	
+	public List<Job> getJobsByHeadhunterId(Long headhunterId) {
+		List<Job> job = jobRepository.findJobsByHeadhunterId(headhunterId);
+		
+		return job;
+	}
 }

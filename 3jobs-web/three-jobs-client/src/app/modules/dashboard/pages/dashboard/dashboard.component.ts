@@ -55,7 +55,7 @@ export class DashboardComponent implements OnInit {
         this.job = vacancy;
     }
 
-    public getJobByCompanyId() {
+    private getJobByCompanyId() {
         this.spinner.show();
         this.jobService.getJobByCompanyId(this.user.companyId).subscribe(
             (response) => {
@@ -67,6 +67,31 @@ export class DashboardComponent implements OnInit {
                 this.spinner.hide();
             }
         );
+    }
+
+    private getJobByHeadhunterId() {
+        this.spinner.show();
+        this.jobService.getJobByHeadhunterId(this.user.id).subscribe(
+            (response) => {
+                this.vacancies = response;
+                this.spinner.hide();
+            },
+            (error) => {
+                console.log(error);
+                this.spinner.hide();
+            }
+        );
+    }
+
+    public getJobs() {
+        const role = this.authService.getUserRole();
+
+        if (role === Role.ROLE_RECRUTER || role === Role.ROLE_RECRUTER_ADMIN) {
+            this.getJobByCompanyId();
+        }
+        else if (role === Role.ROLE_HEADHUNTER) {
+            this.getJobByHeadhunterId();
+        }
     }
 
     private getAllRecruiter() {
@@ -101,7 +126,7 @@ export class DashboardComponent implements OnInit {
                 (response) => {
                     this.authService.setUser(response);
                     this.getCardData();
-                    this.getJobByCompanyId();
+                    this.getJobs();
                     this.getAllRecruiter();
                 },
                 () => {
@@ -111,7 +136,7 @@ export class DashboardComponent implements OnInit {
         }
         else {
             this.getCardData();
-            this.getJobByCompanyId();
+            this.getJobs();
             this.getAllRecruiter();
         }
     }
