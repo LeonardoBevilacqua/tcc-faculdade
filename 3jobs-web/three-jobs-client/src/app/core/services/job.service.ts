@@ -53,4 +53,8 @@ export class JobService extends EntityService<Job> {
     public getJobByHeadhunterId(headhunterId: number): Observable<any> {
         return this.httpClient.get<any>(`${this.apiUrl}/${this.endpoint}/headhunter/${headhunterId}`);
     }
+
+    public getJobByUserId(userId: number): Observable<any> {
+        return this.httpClient.get<any>(`${this.apiUrl}/${this.endpoint}/candidate/${userId}`);
+    }
 }

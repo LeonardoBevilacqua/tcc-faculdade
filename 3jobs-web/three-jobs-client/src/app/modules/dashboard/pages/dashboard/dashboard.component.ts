@@ -83,6 +83,20 @@ export class DashboardComponent implements OnInit {
         );
     }
 
+    private getJobByUserId() {
+        this.spinner.show();
+        this.jobService.getJobByUserId(this.user.id).subscribe(
+            (response) => {
+                this.vacancies = response;
+                this.spinner.hide();
+            },
+            (error) => {
+                console.log(error);
+                this.spinner.hide();
+            }
+        );
+    }
+
     public getJobs() {
         const role = this.authService.getUserRole();
 
@@ -91,6 +105,9 @@ export class DashboardComponent implements OnInit {
         }
         else if (role === Role.ROLE_HEADHUNTER) {
             this.getJobByHeadhunterId();
+        }
+        else if (role === Role.ROLE_CANDIDATE) {
+            this.getJobByUserId();
         }
     }
 

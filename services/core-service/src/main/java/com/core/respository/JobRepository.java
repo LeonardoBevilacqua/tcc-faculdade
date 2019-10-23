@@ -1,11 +1,14 @@
 package com.core.respository;
 
-import com.core.model.Job;
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
-import java.util.List;
+import com.core.model.Job;
 
 public interface JobRepository extends JpaRepository<Job, Long> {
 
@@ -21,4 +24,7 @@ public interface JobRepository extends JpaRepository<Job, Long> {
 	List<Job> findJobsByCompanyId(Long companyId);
 	
 	List<Job> findJobsByHeadhunterId(Long headhunterId);
+	
+	@Query(value = "SELECT j.* FROM jobs j WHERE j.id IN (SELECT ju.job_id FROM jobs_users ju WHERE ju.user_id = :userId)", nativeQuery = true)
+	List<Job> findJobsByUserId(Long userId);
 }

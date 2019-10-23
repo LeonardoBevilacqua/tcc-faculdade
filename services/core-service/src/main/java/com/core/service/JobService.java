@@ -153,4 +153,10 @@ public class JobService {
 		
 		return job;
 	}
+	
+	public List<Job> getJobsByUserId(Long userId) {
+		List<Job> job = jobRepository.findJobsByUserId(userId);
+		
+		return job;
+	}
 }
