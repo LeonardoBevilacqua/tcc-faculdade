@@ -76,24 +76,4 @@ export class AbilitiesComponent extends MaintainForm<Profile> implements OnInit 
 
         this.onSubmit();
     }
-
-    // private onSubmit(redirectPath: string = null) {
-    //     this.isSubmitted = false;
-
-    //     // If current id matches the model id
-    //     if (this.currentId === this.model.id) {
-    //         this.profileService.update(this.model).subscribe(
-    //             (response: any) => {
-    //                 this.toastr.success(response.message ? response.message : 'Informações atualizadas com sucesso!');
-
-    //                 this.isSubmitted = true;
-
-    //                 if (redirectPath) {
-    //                     this.router.navigateByUrl(redirectPath);
-    //                 }
-    //             },
-    //             (error: HttpErrorResponse) => this.errorHandler(error)
-    //         );
-    //     }
-    // }
 }
