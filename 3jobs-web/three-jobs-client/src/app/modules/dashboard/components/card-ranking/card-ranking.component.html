@@ -2,6 +2,7 @@
     <div *ngIf="headhunter; else emptyHeadhunterBlock" class="d-flex flex-column justify-content-center align-items-center"
         style="height: 200px;position: relative; background: linear-gradient(to right, #1e5799 0%,  #3ccdbb 0%, #16c9f6 100%);">
         <a target="_blank" href="/profile/{{headhunter.id}}" class="btn btn-primary btn-sm"
+            *ngIf="shouldDisplayHeadhunter() == false"
             style="position: absolute; right: 5px;top: 5px">
             Ver Perfil
         </a>

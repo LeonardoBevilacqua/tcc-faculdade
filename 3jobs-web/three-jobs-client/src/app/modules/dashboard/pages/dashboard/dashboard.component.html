@@ -27,16 +27,18 @@
                             <th scope="col" style="width: 110px">Status</th>
                             <th scope="col" style="width: 140px">
                                 <button (click)="createVacancy()" class="btn btn-success btn-sm" data-toggle="modal"
-                                    data-target="#createVacancyModal">Cadastrar</button>
+                                *ngIf="shouldDisplayHeadhunter() == false"   
+                                data-target="#createVacancyModal">Cadastrar</button>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let vacancy of vacancies;">
-                            <td><a [routerLink]="['/job-details', vacancy.id]">{{vacancy.title}}</a></td>
+                            <td><a target="_blank" [routerLink]="['/job-details', vacancy.id]">{{vacancy.title}}</a></td>
                             <td><span class="badge badge-success">{{vacancy.status}}</span></td>
                             <td>
                                 <button (click)="toEditVacancy(vacancy)" data-toggle="modal"
+                                    *ngIf="shouldDisplayHeadhunter() == false"
                                     data-target="#createVacancyModal" type="button" class="btn btn-primary btn-sm"
                                     title="Editar Vaga">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>

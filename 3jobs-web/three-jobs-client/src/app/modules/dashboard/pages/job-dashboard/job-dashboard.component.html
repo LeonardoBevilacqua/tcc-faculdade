@@ -18,7 +18,8 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <canvas id="barChartCidades" style="height: 440px;"></canvas>
+                        <canvas *ngIf="citiesValue > 0" id="barChartCidades" style="height: 440px;"></canvas>
+                        <h3 *ngIf="citiesValue < 1" class="d-flex justify-content-center align-items-center"  style="height: 240px;">Sem informações para gerar gráfico!</h3>
                     </div>
                 </div>
             </div>

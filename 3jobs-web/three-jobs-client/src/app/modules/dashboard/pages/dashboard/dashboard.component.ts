@@ -162,4 +162,7 @@ export class DashboardComponent implements OnInit {
         return this.authService.getUserRole() === Role.ROLE_RECRUTER_ADMIN;
     }
 
+    shouldDisplayHeadhunter() {
+        return this.authService.getUserRole() === Role.ROLE_HEADHUNTER;
+    }
 }
