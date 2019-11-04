@@ -1,0 +1,61 @@
+<nav class="navbar navbar-dark navbar-expand-md fixed-top px-5 navbar-bg navbar-bg-default">
+    <!-- Application brand logo -->
+    <span class="navbar-brand">3JOBS</span>
+
+    <!-- collapse button, for mobile devices -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-options"
+        aria-controls="navbar-options" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- navbar options -->
+    <div class="collapse navbar-collapse mt-2 mt-md-0" id="navbar-options">
+        <div class="container-fluid px-0">
+            <div class="row">
+                <!-- the search bar -->
+                <div class="col-12 col-md-8">
+                    <app-input-search></app-input-search>
+                </div>
+                <!-- the icon buttons section -->
+                <div class="col-12 col-md-4 my-2 my-md-0 align-self-center" *ngIf="isUserLogged(); else isNotLoggedBlock">
+                    <div class="d-flex justify-content-md-end">
+                        <div class="btn-group">
+                            <!-- go to dashboard -->
+                            <button routerLink="/dashboard" routerLinkActive="active" title="Meu painel"
+                                class="btn btn-outline-light" type="button">
+                                <span class="fa fa-columns"></span>
+                            </button>
+                            <!-- go to profile -->
+                            <button routerLink="/profile" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact:true}" title="Meu perfil"
+                                class="btn btn-outline-light" type="button">
+                                <span class="fa fa-user"></span>
+                            </button>
+                            <!-- configuration button -->
+                            <button title="Configurações" class="btn btn-outline-light" type="button">
+                                <span class="fa fa-cogs"></span>
+                            </button>
+                        </div>
+                        <!-- logout button -->
+                        <button class="btn btn-outline-light ml-2" type="button" (click)="logout()">
+                            Sair
+                            <span class="fa fa-sign-out"></span>
+                        </button>
+                    </div>
+                </div>
+                <ng-template #isNotLoggedBlock>
+                    <div class="col-12 col-md-4 my-2 my-md-0 align-self-center">
+                        <div class="d-flex justify-content-end">
+                            <div class="btn-group">
+                                <button routerLink="/" class="btn btn-outline-light" type="button">
+                                    Home
+                                    <span class="fa fa-home"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</nav>

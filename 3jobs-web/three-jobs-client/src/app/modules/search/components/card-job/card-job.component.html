@@ -1,0 +1,40 @@
+<ng-container *ngIf="jobs">
+    <div class="card rounded-0 border-left-0 border-right-0 border-bottom-0" *ngFor="let job of jobs.content">
+        <div class="card-body">
+            <a href="/job-details/{{job.id}}">
+                <h4 class="card-title text-primary m-0">{{job.title}}</h4>
+            </a>
+            <div class="row pt-2">
+                <div class="col-auto col-md-auto pr-0">
+                    <div>
+                        <p class="font-weight-bold"><span class="title-icon text-danger"><i
+                                    class="fa fa-building fa-lg mr-1"></i></span>{{job.company.name}}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-auto col-md-auto pr-0">
+                    <div>
+                        <p class="font-weight-bold"><span class="title-icon text-primary"><i
+                                    class="fa fa-map-signs fa-lg mr-1"></i></span>{{job.company.address.city}}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-auto col-md-auto pr-0">
+                    <div>
+                        <p class="font-weight-bold"><span class="title-icon text-warning"><i
+                                    class="fa fa-address-card fa-lg mr-1"></i></span>{{job.jobRole}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+    
+            <p class="py-3">{{job.description}}</p>
+            <footer class="d-flex flex-row-reverse">
+                <span>
+                    <i class="fa fa-clock-o pr-1" aria-hidden="true"></i>
+                    Públicado em: {{job.beginDate | date: 'dd-MM-yyyy'}}
+                </span>
+            </footer>
+        </div>
+    </div>
+</ng-container>

@@ -1,0 +1,11 @@
+<form #searchForm="ngForm" (ngSubmit)="searchForm.form.valid &&onSubmit(searchForm)" class="form-inline justify-content-md-center">
+    <div class="input-group search-group w-100">
+        <input  id="input-search" type="search" class="form-control form-control-lg"
+            placeholder="Digite um cargo, Ex: Desenvolvedor" name="description"  ngModel required>
+        <div class="input-group-append">
+            <button class="btn btn-lg btn-search" type="submit">
+                <em class="fa fa-search"></em>
+            </button>
+        </div>
+    </div>
+</form>

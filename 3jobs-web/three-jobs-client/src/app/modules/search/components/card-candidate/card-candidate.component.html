@@ -1,0 +1,13 @@
+<div class="card rounded-0 border-left-0 border-right-0 border-bottom-0" *ngFor="let candidate of candidates">
+    <div class="card-body">
+        <h4 class="card-title text-primary m-0">{{candidate.name}}</h4>
+        <p class="m-0">{{candidate.title}}</p>
+        <p class="py-3">{{candidate.description}}</p>
+        <footer class="d-flex flex-column flex-sm-row justify-content-between">
+            <i class="fa fa-map-marker text-primary mr-3" aria-hidden="true">
+                <span class="text-dark">{{candidate.city}}</span>
+            </i>
+            <div>Habilidades: {{candidate.skills}} </div>
+        </footer>
+    </div>
+</div>

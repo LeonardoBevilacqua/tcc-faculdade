@@ -1,0 +1,65 @@
+<card-template title="Dados pessoais" [cardBodyContent]="personalData" cardBodyId="personalData"
+    *ngIf="personalDataHasData() || isLoggedUserProfile">
+    <ng-template #personalData>
+        <!-- personal data -->
+        <div *ngIf="!isFormEdition || isSubmitted">
+            <div class="d-flex" *ngIf="personalDataHasData(); else messageBlock">
+                <div class="d-inline-flex flex-column">
+                    <span *ngIf="profile.dateOfBirth"><strong>Idade: </strong>{{ profile.dateOfBirth | age }}</span>
+                    <span *ngIf="profile.maritalStatus"><strong>Estado Civil:
+                        </strong>{{ profile.maritalStatus }}</span>
+                    <span *ngIf="profile.nationality"><strong>Nacionalidade: </strong>{{ profile.nationality }}</span>
+                </div>
+
+                <div class="ml-auto" *ngIf="isLoggedUserProfile">
+                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="editForm()">Editar</button>
+                </div>
+            </div>
+            
+            <ng-template #messageBlock>
+                <div class="alert alert-warning m-auto w-75 text-center">
+                    <p>Sem informações sobre dados pessoais.</p>
+                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="editForm()">Adicionar</button>
+                </div>
+            </ng-template>
+        </div>
+        <!-- edit personal data -->
+        <form *ngIf="isFormEdition && !isSubmitted" #profileForm="ngForm"
+            (ngSubmit)="profileForm.form.valid && onSubmit();">
+            <div class="form-row my-2">
+                <label class="col-12 col-md-2" for="dateOfBirth">Nascimento:</label>
+                <input type="date" class="form-control form-control-sm col-12 col-md-3 mr-2" name="dateOfBirth"
+                    id="dateOfBirth" [(ngModel)]="model.dateOfBirth" #dateOfBirth="ngModel">
+                <validation-message [inputControl]="dateOfBirth"></validation-message>
+            </div>
+
+            <div class="form-row my-2">
+                <label class="col-12 col-md-2" for="maritalStatus">Estado Civil:</label>
+                <select class="form-control form-control-sm col-12 col-md-3 mr-2" name="maritalStatus"
+                    id="maritalStatus" [(ngModel)]="model.maritalStatus" #maritalStatus="ngModel">
+                    <option value="Solteiro(a)">Solteiro(a)</option>
+                    <option value="Casado(a)">Casado(a)</option>
+                    <option value="Separado(a)">Separado(a)</option>
+                    <option value="Divorciado(a)">Divorciado(a)</option>
+                    <option value="Viúvo(a)">Viúvo(a)</option>
+                </select>
+                <validation-message [inputControl]="maritalStatus"></validation-message>
+            </div>
+
+            <div class="form-row my-2">
+                <label class="col-12 col-md-2" for="nationality">Nascionalidade:</label>
+                <input class="form-control form-control-sm col-12 col-md-3 mr-2" name="nationality" id="nationality"
+                    [(ngModel)]="model.nationality" #nationality="ngModel" />
+                <validation-message [inputControl]="nationality"></validation-message>
+            </div>
+
+            <div class="form-row my-2">
+                <div class="col-12 col-md-5 pr-0 text-right">
+                    <button type="button" class="btn btn-outline-danger mr-1" (click)="cancelForm()">Cancelar</button>
+                    <button type="submit" class="btn btn-outline-primary ml-1"
+                        [disabled]="!profileForm.form.valid">Salvar</button>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+</card-template>

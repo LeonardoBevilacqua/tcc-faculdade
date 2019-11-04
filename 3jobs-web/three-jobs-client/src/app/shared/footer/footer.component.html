@@ -1,0 +1,41 @@
+<footer class="py-3 bg-dark text-white-50">
+    <div class="container">
+        <!-- Application title -->
+        <div class="row">
+            <div class="col-12">
+                <h2>3jobs</h2>
+            </div>
+        </div>
+        <!-- Social media links -->
+        <div class="row" *ngIf="!isLogged">
+            <div class="col-12 col-md-6 text-white">
+                <ul class="p-0">
+                    <li>
+                        <a href="#" class="footer-link" title="3jobs no Facebook"> <i class="fa fa-facebook"></i> Facebook</a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer-link" title="3jobs no LinkedIn"> <i class="fa fa-linkedin"></i> LinkedIn</a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer-link" title="3jobs no Instagram"> <i class="fa fa-instagram"></i> Instagram</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- College location -->
+            <div class="col-12 col-md-6">
+                <address>
+                    Campus UniMetrocamp | Wyden<br>
+                    Rua Dr. Sales de Oliveira, 1661<br>
+                    Vila Industrial Campinas - SP
+                </address>
+            </div>
+        </div>
+        <!-- Copyright -->
+        <div class="row">
+            <div class="col-12">
+                <h6>&copy; Todo os direitos reservados, 2019</h6>
+                <span *ngIf="shouldDisplayRoleDescription()">Logado como: {{ getUserRoleDescription() }}</span>
+            </div>
+        </div>
+    </div>
+</footer>

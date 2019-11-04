@@ -1,0 +1,140 @@
+<app-header></app-header>
+<div class="d-flex flex-column vh-100 bg-white">
+    <section class="content pt-5 container mb-auto">
+        <div class="jumbotron bg-white pt-1">
+            <section>
+                <div class="container">
+                    <div class="row justify-content-between d-flex">
+                        <div class="col-lg-8 justify-content-center">
+                            <div>
+                                <div>
+                                    <div class="row justify-content-between">
+                                        <div class="col-auto col-md-auto align-items-baseline">
+                                            <a class="pt-0 btn btn-link" href="#" role="button"><i
+                                                    class="fa fa-arrow-circle-left fa-2x"></i>
+                                                <h6 class="text-secondary">Voltar</h6>
+                                            </a>
+                                        </div>
+                                        <ng-container *ngIf="shouldDisplaySubscribeButton()">
+                                            <div class="col-auto col-md-auto align-items-baseline"
+                                                *ngIf="!isUserSubscribed(); else unsubscribeButton">
+                                                <button type="button" (click)="subscribe()"
+                                                    class="btn btn-primary">{{isHeadhunter() ? 'Inscrever' : 'Candidatar-se'}}</button>
+                                            </div>
+
+                                            <ng-template #unsubscribeButton>
+                                                    <div class="col-auto col-md-auto align-items-baseline">
+                                                    <button type="button" (click)="unsubscribe()"
+                                                        class="btn btn-primary">{{isHeadhunter() ? 'Sair' : 'Desistir'}}</button>
+                                                </div>
+                                            </ng-template>
+                                        </ng-container>
+                                    </div>
+                                    <hr class="pt-0 mt-0">
+                                    <h4 class="text-primary">{{job.title}}</h4>
+                                    <h6>{{job.company.name}}</h6>
+                                    <p>{{job.description}}</p>
+                                    <div class="row">
+                                        <div class="col-auto col-md-auto pr-0">
+                                            <div>
+                                                <p class="font-weight-bold "><span class="title-icon text-success"><i
+                                                            class="fa fa-usd fa-lg mr-1"></i></span>{{job.salaryValue}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto col-md-auto pr-0">
+                                            <div>
+                                                <p class="font-weight-bold"><span class="title-icon text-primary"><i
+                                                            class="fa fa-map-signs fa-lg mr-1"></i></span>{{job.company.address.city}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto col-md-auto pr-0">
+                                            <div>
+                                                <p class="font-weight-bold"><span class="title-icon text-warning"><i
+                                                            class="fa fa-address-card fa-lg mr-1"></i></span>{{job.jobRole}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto col-md-auto pr-0">
+                                            <div>
+                                                <p class="font-weight-bold"><span class="title-icon text-danger"><i
+                                                            class="fa fa-clock-o fa-lg mr-1"></i></span>{{job.endDate | date: 'dd-MM-yyyy'}}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row ml-1">
+                                <ul class="list-inline">
+                                    <li class="list-inline-item" *ngFor="let tag of job.tags">
+                                        <div class="d-flex">
+                                            <span class="badge badge-pill badge-info m-1">{{tag.description}}</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <hr class="bt-0 mt-0 pt-0">
+                            <div>
+                                <h4>Requisitos</h4>
+                                <ul>
+                                    <li>
+                                        <span>{{job.requirement}}</span>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <hr class="my-4">
+                            <div>
+                                <h4>Benefícios</h4>
+                                <ul>
+                                    <li>
+                                        <span>{{job.benefit}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <hr class="my-5">
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div>
+                                <div>
+                                    <h4>Vagas similares</h4>
+                                    <div class="list-group list-group-flush">
+                                        <ul class="list-group list-group-flush">
+                                            <ng-container *ngFor="let jobMatch of jobMatch">
+                                                <li class="list-group-item p-0" *ngIf="jobMatch.id != currentId"><a
+                                                        href="/job-details/{{jobMatch.id}}"
+                                                        class="list-group-item list-group-item-action">{{jobMatch.title}}</a>
+                                                </li>
+                                            </ng-container>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-5">
+                                <h4>Publicidade</h4>
+                                <div>
+                                    <div>
+                                        <a href="#">
+                                            <h4>Mercado Livre</h4>
+                                        </a>
+                                        <h6>Compras Premium Labels</h6>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                            temporinc ididunt ut dolore magna aliqua.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+    <app-footer></app-footer>
+</div>

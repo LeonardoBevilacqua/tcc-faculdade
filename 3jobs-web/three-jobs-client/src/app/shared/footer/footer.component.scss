@@ -1,0 +1,15 @@
+ul > li {
+    list-style-type: none;
+
+    .footer-link {
+        color: #f0f4f6;
+        text-decoration: none;
+        background-color: transparent;
+        cursor: pointer;
+    
+        &:hover {
+            text-decoration: none;
+            color: #19deec;
+        }
+    }
+}
