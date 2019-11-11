@@ -1,39 +1,40 @@
-<card-template title="Habilidades" [cardBodyContent]="abilities" cardBodyId="abilities">
+<card-template title="Habilidades" [cardBodyContent]="abilities" cardBodyId="abilities"
+    *ngIf="abilitiesHasData() || isLoggedUserProfile">
     <ng-template #abilities>
-        <div *ngIf="profile.skills.length === 0; else abilitiesList">
-            <span>Sem dados sobre habilidades.</span>
+        <!-- abilities -->
+        <div class="row" *ngIf="abilitiesHasData(); else messageBlock">
+            <table class="table table-striped col-12 col-md-4">
+                <thead>
+                    <tr>
+                        <th scope="col">Conhecimento</th>
+                        <th scope="col" *ngIf="isLoggedUserProfile">Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr scope="row" *ngFor="let skill of profile.skills">
+                        <td>{{skill.description}}</td>
+                        <td class="text-center" *ngIf="isLoggedUserProfile"><button class="btn" (click)="deleteSkill(skill.id)"><i
+                                    class="fa fa-trash"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+        <ng-template #messageBlock>
+            <div class="alert alert-warning m-auto w-75 text-center">
+                <p>Sem informações sobre habilidades.</p>
+            </div>
+        </ng-template>
 
         <!-- add abilities -->
-        <form #skillForm="ngForm" (ngSubmit)="skillForm.form.valid && addSkill();">
+        <form #skillForm="ngForm" (ngSubmit)="skillForm.form.valid && addSkill();" *ngIf="isLoggedUserProfile">
             <div class=" form-row my-2">
-                <label class="col-12 col-md-1" for="descriptionSkill">Habilidade</label>
-                <input type="text" class="form-control form-control-sm col-12 col-md-2" name="descriptionSkill"
-                    id="descriptionSkill" [(ngModel)]="descriptionSkill" #descriptionSkillField="ngModel">
+                <label class="col-12 col-md-1" for="description">Habilidade</label>
+                <input type="text" class="form-control form-control-sm col-12 col-md-2" name="description"
+                    id="description" [(ngModel)]="skill.description" #description="ngModel">
                 <button type="submit" class="btn btn-outline-success btn-sm col-12 col-md-1"
-                    [disabled]="!skillForm.form.valid">Adicionar</button>
+                    [disabled]="!skill.description">Adicionar</button>
             </div>
         </form>
 
-        <!-- abilities -->
-        <ng-template #abilitiesList>
-            <div class="row">
-                <table class="table table-striped col-12 col-md-4">
-                    <thead>
-                        <tr>
-                            <th scope="col">Conhecimento</th>
-                            <th scope="col">Opções</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr scope="row" *ngFor="let skill of profile.skills">
-                            <td>{{skill.description}}</td>
-                            <td class="text-center"><button class="btn" (click)="deleteSkill(skill.id)"><i
-                                        class="fa fa-trash"></i></button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </ng-template>
     </ng-template>
 </card-template>

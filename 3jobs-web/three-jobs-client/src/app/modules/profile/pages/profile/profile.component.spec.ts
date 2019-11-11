@@ -8,6 +8,8 @@ import { CardTemplateComponent } from '../../components/card-template/card-templ
 import { PersonalDataComponent } from '../../components/personal-data/personal-data.component';
 import { UserAddressComponent } from '../../components/user-address/user-address.component';
 import { ProfileComponent } from './profile.component';
+import { AcademicFormationComponent } from '../../components/academic-formation/academic-formation.component';
+import { AbilitiesComponent } from '../../components/abilities/abilities.component';
 
 describe('ProfileComponent', () => {
     let component: ProfileComponent;
@@ -15,7 +17,14 @@ describe('ProfileComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ProfileComponent, PersonalDataComponent, UserAddressComponent, CardTemplateComponent],
+            declarations: [
+                ProfileComponent,
+                PersonalDataComponent,
+                UserAddressComponent,
+                CardTemplateComponent,
+                AcademicFormationComponent,
+                AbilitiesComponent,
+            ],
             imports: [SharedModule, RouterTestingModule, ToastrModule.forRoot(), Ng4LoadingSpinnerModule.forRoot()]
         })
             .compileComponents();

@@ -21,10 +21,22 @@ export class UserAddressComponent extends MaintainForm<Profile> implements OnIni
     @Input() profile: Profile;
 
     /**
+     * Old profile model.
+     */
+    private oldModel: Profile;
+
+    /**
      * Flag if the data is being edited.
      */
     isFormEdition: boolean;
 
+    /**
+     * The default constructor.
+     *
+     * @param profileService profile service.
+     * @param router router for nagivation.
+     * @param toastr toastr service.
+     */
     constructor(profileService: ProfileService, router: Router, toastr: ToastrService) {
         super(profileService, router, toastr);
     }
@@ -37,10 +49,8 @@ export class UserAddressComponent extends MaintainForm<Profile> implements OnIni
         this.isFormEdition = false;
         this.isEdition = true;
 
-        this.model = this.profile;
-
-        if (!this.model.address) {
-            this.model.address = new Address();
+        if (!this.profile.address) {
+            this.profile.address = new Address();
         }
 
         this.currentId = this.profile.id;
@@ -52,5 +62,20 @@ export class UserAddressComponent extends MaintainForm<Profile> implements OnIni
             this.profile.address.city ||
             this.profile.address.district ||
             this.profile.address.name;
+    }
+
+    public editForm() {
+        this.model = this.profile;
+        this.oldModel = Object.assign({}, this.profile);
+        this.oldModel.address = Object.assign({}, this.profile.address);
+
+        this.isFormEdition = true;
+        this.isSubmitted = false;
+    }
+
+    public cancelForm() {
+        this.profile = this.oldModel;
+
+        this.isFormEdition = false;
     }
 }

@@ -33,7 +33,7 @@ public class Profile {
     )
     private List<Skill> skills;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "profile_id",referencedColumnName = "ID", nullable = false)
     private List<Experience> experiences;
 
@@ -188,8 +188,6 @@ public class Profile {
     public void setAddress(Address address) {
         this.address = address;
     }
-    
-    
 
     public String getEmail() {
 		return email;
@@ -200,19 +198,11 @@ public class Profile {
 	}
 
 	@Override
-    public String toString() {
-        return "Profile{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", cellphone='" + cellphone + '\'' +
-                ", phone='" + phone + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", maritalStatus='" + maritalStatus + '\'' +
-                ", nationality='" + nationality + '\'' +
-                ", rates=" + rates +
-                ", tags=" + tags +
-                ", email=" + email +
-                '}';
-    }
+	public String toString() {
+		return "Profile [id=" + id + ", name=" + name + ", lastName=" + lastName + ", cellphone=" + cellphone
+				+ ", phone=" + phone + ", dateOfBirth=" + dateOfBirth + ", maritalStatus=" + maritalStatus
+				+ ", nationality=" + nationality + ", email=" + email + ", photoUrl=" + photoUrl + ", skills=" + skills
+				+ ", experiences=" + experiences + ", address=" + address + ", rates=" + rates + ", user=" + user
+				+ ", tags=" + tags + "]";
+	}
 }

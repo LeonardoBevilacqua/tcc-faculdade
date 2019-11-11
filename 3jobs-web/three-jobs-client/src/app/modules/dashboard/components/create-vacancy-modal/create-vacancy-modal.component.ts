@@ -1,19 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { JobService } from 'src/app/core/services/job.service';
 import { MaintainForm } from 'src/app/shared/form/maintain-form';
 import { Job } from 'src/app/shared/models/job';
 import { Tag } from 'src/app/shared/models/tag';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { User } from 'src/app/shared/models/user';
-import { Company } from 'src/app/shared/models/company';
 
 declare const $: any;
 
 @Component({ selector: 'app-create-vacancy-modal', templateUrl: './create-vacancy-modal.component.html', })
-export class CreateVacancyModalComponent extends MaintainForm<Job> implements OnInit {
+export class CreateVacancyModalComponent extends MaintainForm<Job> implements OnChanges {
 
     /**
      * Variable responsible to deal with the string of tags
@@ -23,38 +19,52 @@ export class CreateVacancyModalComponent extends MaintainForm<Job> implements On
     constructor(
         private jobService: JobService,
         router: Router,
-        toastr: ToastrService,
-        private spinnerService: Ng4LoadingSpinnerService,
-        private authService: AuthService) {
-        super(null,
-            router, toastr);
+        toastr: ToastrService) {
+        super(null, router, toastr);
+        this.model = new Job();
     }
 
-    ngOnInit() {
-        const user: User = this.authService.getUser();
+    @Input() model: Job;
+    @Output() subject = new EventEmitter();
 
-        this.model = new Job();
-        this.model.company = new Company();
-        this.model.company.id = user.companyId;
+    ngOnChanges() {
+        this.tags = '';
 
-        this.model.recruter = new User();
-        this.model.recruter.id = user.id;
+        if (this.model && this.model.tags) {
+            for (const tag of this.model.tags) {
+                this.tags += tag.description + ',';
+            }
+
+            this.tags = this.tags.slice(0, -1);
+            this.model.tags = [];
+        }
     }
 
     public onSubmit() {
-
-        this.spinnerService.show();
-        this.jobService.create(this.model).subscribe(
-            (response: any) => {
-                this.spinnerService.hide();
-                $('#createVacancyModal').modal('hide');
-                this.toastr.success(response.message ? response.message : 'Informações salvas com sucesso!');
-            },
-            (error) => {
-                this.errorHandler(error);
-                this.spinnerService.hide();
-            }
-        );
+        if (this.model.id && this.model.id > 0) {
+            this.jobService.update(this.model).subscribe(
+                (response: any) => {
+                    this.subject.emit();
+                    $('#createVacancyModal').modal('hide');
+                    this.toastr.success(response.message ? response.message : 'Informações salvas com sucesso!');
+                },
+                (error) => {
+                    this.errorHandler(error);
+                }
+            );
+        }
+        else {
+            this.jobService.create(this.model).subscribe(
+                (response: any) => {
+                    this.subject.emit();
+                    $('#createVacancyModal').modal('hide');
+                    this.toastr.success(response.message ? response.message : 'Informações salvas com sucesso!');
+                },
+                (error) => {
+                    this.errorHandler(error);
+                }
+            );
+        }
     }
 
     public onTagsChange() {

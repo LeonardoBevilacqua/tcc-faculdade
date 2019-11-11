@@ -41,7 +41,7 @@ public class UserService {
 
     public User getUser(Long id) throws RuntimeException {
         UserSecurity user = UserService.authenticated();
-        if(!user.hasRole(Role.ADMIN) && id != user.getId()) {
+        if(!user.hasRole(Role.ROLE_ADMIN) && id != user.getId()) {
             throw new UserUnauthorizedException("Usuário não tem acesso ao perfil de outros usuários");
         }
         Optional<User> userOpt = userRepository.findById(id);
@@ -80,8 +80,8 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    public UserToDoDTO getUserTodos(Long id) {
-        return buildUserToDos(getUser(id));
+    public List<ToDo> getUserTodos(Long id) {
+        return getUser(id).getToDos();
     }
 
     public List<ToDo> addUserTodo(Long id, ToDo todo) {
@@ -119,10 +119,10 @@ public class UserService {
     public DashboardStats getDashboradStats(Long userId) {
         User user = getUser(userId);
         List<Job> jobs = null;
-        if (user.getRoles().contains(Role.ADMIN) || user.getRoles().contains(Role.RECRUTER_ADMIN) ||
-                user.getRoles().contains(Role.RECRUTER)) {
+        if (user.getRoles().contains(Role.ROLE_ADMIN) || user.getRoles().contains(Role.ROLE_RECRUTER_ADMIN) ||
+                user.getRoles().contains(Role.ROLE_RECRUTER)) {
             jobs = jobRepository.findByCompanyId(user.getCompanyId());
-        } else if (user.getRoles().contains(Role.HEADHUNTER)) {
+        } else if (user.getRoles().contains(Role.ROLE_HEADHUNTER)) {
             jobs = jobRepository.findByHeadhunterId(userId);
         } else {
             jobs = jobRepository.findByUsersId(userId);

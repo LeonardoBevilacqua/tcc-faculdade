@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { MaintainForm } from 'src/app/shared/form/maintain-form';
 import { Role } from 'src/app/shared/models/enums/role.enum';
 import { User } from 'src/app/shared/models/user';
-import { isNull, isNullOrUndefined } from 'util';
+import { isNullOrUndefined } from 'util';
 
 declare const $: any;
 
@@ -49,7 +49,7 @@ export class LoginComponent extends MaintainForm<User> implements OnInit {
                         this.spinnerService.hide();
                         $('#loginModal').modal('hide');
 
-                        if (this.authService.getUserRole() === Role.RECRUTER_ADMIN &&
+                        if (this.authService.getUserRole() === Role.ROLE_RECRUTER_ADMIN &&
                             isNullOrUndefined(this.authService.getUser().companyId)) {
                             this.router.navigateByUrl('/company');
                         }
@@ -64,14 +64,7 @@ export class LoginComponent extends MaintainForm<User> implements OnInit {
                     }
                 },
                 // server is not working
-                (responseError: HttpErrorResponse) => {
-                    const error = responseError.status !== 0 ? responseError.error : null;
-
-                    const message = error && error.message ? error.message : 'Falha ao tentar se conectar!';
-                    // hide the spinner and notify the error
-                    this.spinnerService.hide();
-                    this.toastr.error(message);
-                }
+                (responseError: HttpErrorResponse) => this.errorHandler(responseError)
             );
     }
 }

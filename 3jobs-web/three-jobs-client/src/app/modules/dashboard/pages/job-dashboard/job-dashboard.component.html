@@ -3,7 +3,7 @@
     <section class="content pt-4 container-fluid mb-auto pb-5">
         <div class="row">
             <div class="col-md-4  mb-3">
-                <app-card-ranking [ranking]="ranking"></app-card-ranking>
+                <app-card-ranking [ranking]="ranking" [headhunter]="headhunter"></app-card-ranking>
             </div>
             <div class="col-md-8 mb-3">
                 <div class="row">
@@ -18,7 +18,8 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <canvas id="barChartCidades" style="height: 440px;"></canvas>
+                        <canvas *ngIf="citiesValue > 0" id="barChartCidades" style="height: 440px;"></canvas>
+                        <h3 *ngIf="citiesValue < 1" class="d-flex justify-content-center align-items-center"  style="height: 240px;">Sem informações para gerar gráfico!</h3>
                     </div>
                 </div>
             </div>
@@ -36,14 +37,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Mark</td>
-                            <td class="d-none d-sm-table-cell">metrocamp.team@gmail.com</td>
+                        <tr *ngFor="let candidate of jobUsers;">
+                            <td>{{candidate.name}}</td>
+                            <td class="d-none d-sm-table-cell">{{candidate.email}}</td>
                             <td class="d-none d-sm-table-cell">10</td>
-                            <td><span class="badge badge-success">Aprovado</span></td>
+                            <td><span class="badge badge-success">{{candidate.status}}</span></td>
                             <td>
-                                <button type="button" class="btn btn-primary btn-sm">Ver Perfil</button>
+                                <a target="_blank" href="/profile/{{candidate.id}}" class="btn btn-primary btn-sm">Ver
+                                    Perfil</a>
                             </td>
+                        </tr>
+                        <tr *ngIf="jobUsers.length === 0">
+                            <td colspan="5">Sem candidatos para a vaga!</td>
                         </tr>
                     </tbody>
                 </table>

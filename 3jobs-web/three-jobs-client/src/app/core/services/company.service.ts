@@ -10,4 +10,6 @@ export class CompanyService extends EntityService<Company> {
     constructor(http: HttpClient) {
         super(http, 'companies');
     }
+
+    
 }

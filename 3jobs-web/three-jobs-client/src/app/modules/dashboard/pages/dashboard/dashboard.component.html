@@ -2,17 +2,17 @@
 <div class="d-flex flex-column vh-100 bg-light">
     <section class="content pt-4 container-fluid mb-auto pb-5">
         <div class="row">
-            <div class="col-sm-6 col-md-3 mb-4">
-                <app-card-dashboard [title]="'Total'" [subtitle]="'Processos'" [value]="0"></app-card-dashboard>
+            <div class="col-sm-6 col-md-4 mb-4">
+                <app-card-dashboard [title]="'Total'" [subtitle]="'Processos'" [value]="processTotal"></app-card-dashboard>
             </div>
-            <div class="col-sm-6 col-md-3 mb-4">
-                <app-card-dashboard [title]="'Total'" [subtitle]="'Pendente'" [value]="0"></app-card-dashboard>
+            <div class="col-sm-6 col-md-4 mb-4">
+                <app-card-dashboard [title]="'Total'" [subtitle]="'Pendente'" [value]="awaitingHeadhunter"></app-card-dashboard>
             </div>
-            <div class="col-sm-6 col-md-3 mb-4">
+            <!-- <div class="col-sm-6 col-md-3 mb-4">
                 <app-card-dashboard [title]="'Total'" [subtitle]="'Atrasado'" [value]="0"></app-card-dashboard>
-            </div>
-            <div class="col-sm-6 col-md-3 mb-4">
-                <app-card-dashboard [title]="'Total'" [subtitle]="'Finalizado'" [value]="0"></app-card-dashboard>
+            </div> -->
+            <div class="col-sm-6 col-md-4 mb-4">
+                <app-card-dashboard [title]="'Total'" [subtitle]="'Finalizado'" [value]="totalFinished"></app-card-dashboard>
             </div>
         </div>
         <div class="row">
@@ -26,31 +26,41 @@
                             <th scope="col">Vaga</th>
                             <th scope="col" style="width: 110px">Status</th>
                             <th scope="col" style="width: 140px">
-                                <button class="btn btn-success btn-sm" data-toggle="modal"
-                                    data-target="#createVacancyModal">Cadastrar</button>
+                                <button (click)="createVacancy()" class="btn btn-success btn-sm" data-toggle="modal"
+                                *ngIf="shouldDisplayHeadhunter() == false"   
+                                data-target="#createVacancyModal">Cadastrar</button>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Mark</td>
-                            <td><span class="badge badge-success">Aprovado</span></td>
+                        <tr *ngFor="let vacancy of vacancies;">
+                            <td><a target="_blank" [routerLink]="['/job-details', vacancy.id]">{{vacancy.title}}</a></td>
+                            <td><span class="badge badge-success">{{vacancy.status}}</span></td>
                             <td>
-                                <button type="button" class="btn btn-primary btn-sm" title="Editar Vaga">
+                                <button (click)="toEditVacancy(vacancy)" data-toggle="modal"
+                                    *ngIf="shouldDisplayHeadhunter() == false"
+                                    data-target="#createVacancyModal" type="button" class="btn btn-primary btn-sm"
+                                    title="Editar Vaga">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                 </button>
-                                <button type="button" class="btn btn-success btn-sm mx-2" title="Ver Vaga">
+                                <button [routerLink]="['/dashboard/job-dashboard/', vacancy.id]"
+                                    routerLinkActive="router-link-active" type="button"
+                                    class="btn btn-success btn-sm mx-2" title="Ver Vaga">
                                     <i class="fa fa-share" aria-hidden="true"></i>
                                 </button>
-                                <button type="button" class="btn btn-dark btn-sm"  title="Questionario">
+                                <button type="button" class="btn btn-dark btn-sm" title="Questionario">
                                     <i class="fa fa-file-text" aria-hidden="true"></i>
                                 </button>
                             </td>
+                        </tr>
+                        <tr *ngIf="vacancies.length === 0">
+                            <td colspan="3">Sem vagas disponíveis!</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="row" *ngIf="shouldDisplayRecrutersTable()">
+        <div class="row" *ngIf="shouldDisplayRecrutersTable()"> 
             <div class="col-12">
                 <table class="table table-bordered shadow bg-white">
                     <thead>
@@ -58,28 +68,32 @@
                             <th scope="col">Recrutador</th>
                             <th scope="col" class="d-none d-sm-table-cell">E-mail</th>
                             <th scope="col" style="width: 110px">
-                                <button class="btn btn-success btn-sm" data-toggle="modal"
-                                data-target="#createVacancyModal">Cadastrar</button>
+                                <button class="btn btn-success btn-sm">Cadastrar</button>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Marcelo</td>
-                            <td class="d-none d-sm-table-cell">capp59marcelo@hotmail.com</td>
+                        <tr *ngFor="let recruiter of recruiters;">
+                            <td>{{recruiter.profile.name}}</td>
+                            <td class="d-none d-sm-table-cell">{{recruiter.email}}</td>
                             <td>
                                 <button type="button" class="btn btn-primary btn-sm" title="Editar Recrutador">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                 </button>
-                                <button type="button" class="btn btn-success btn-sm mx-2" title="Perfil Recrutador">
+                                <a target="_blank" href="/profile/{{recruiter.profile.id}}"
+                                    class="btn btn-success btn-sm mx-2" title="Perfil Recrutador">
                                     <i class="fa fa-share" aria-hidden="true"></i>
-                                </button>
+                                </a>
                             </td>
+                        </tr>
+                        <tr *ngIf="recruiters.length === 0">
+                            <td colspan="3">Sem recrutadores disponíveis.</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </section>
-    <app-create-vacancy-modal></app-create-vacancy-modal>
+    <app-create-vacancy-modal [model]="job" (subject)="getJobs()"></app-create-vacancy-modal>
     <app-footer></app-footer>
 </div>

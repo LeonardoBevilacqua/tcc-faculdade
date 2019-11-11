@@ -1,5 +1,6 @@
 import { Company } from './company';
 import { Entity } from './entity';
+import { Role } from './enums/role.enum';
 import { Job } from './job';
 import { Profile } from './profile';
 
@@ -13,7 +14,7 @@ export class User extends Entity {
     profile: Profile;
     profileId: number;
     jobs: Array<Job>;
-    roles: Array<any>;
+    roles: Array<Role>;
     jobsHeadhunter: Array<Job>;
     toDo: Array<any>;
     company: Company;
