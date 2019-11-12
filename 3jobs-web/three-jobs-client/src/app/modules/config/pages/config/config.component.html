@@ -1,3 +1,44 @@
-<p>
-  config works!
-</p>
+<app-header></app-header>
+<div class="d-flex flex-column vh-100">
+    <section class="content pt-4 container-fluid mb-auto">
+        <form #configForm="ngForm" (ngSubmit)="configForm.form.valid && onSubmit('/profile');">
+            <div class="form-row">
+
+                <div class="form-group col-12 col-md-3">
+                    <label for="zipCode">Nome:</label>
+                    <input type="text" class="form-control" name="name" id="name" [(ngModel)]="model.name"
+                        #name="ngModel" required>
+                    <validation-message [inputControl]="name"></validation-message>
+                </div>
+
+                <div class="form-group col-12 col-md-3">
+                    <label for="zipCode">Sobrenome:</label>
+                    <input type="text" class="form-control" name="lastName" id="lastName"
+                        [(ngModel)]="model.lastName" #lastName="ngModel" required>
+                    <validation-message [inputControl]="lastName"></validation-message>
+                </div>
+                
+                <div class="form-group col-12 col-md-3">
+                    <label for="zipCode">Telefone:</label>
+                    <input type="text" class="form-control" name="phone" id="phone"
+                        [(ngModel)]="model.phone" #phone="ngModel" required>
+                    <validation-message [inputControl]="phone"></validation-message>
+                </div>
+
+                <div class="form-group col-12 col-md-3">
+                    <label for="zipCode">Celular:</label>
+                    <input type="text" class="form-control" name="cellphone" id="cellphone"
+                        [(ngModel)]="model.cellphone" #cellphone="ngModel" required>
+                    <validation-message [inputControl]="cellphone"></validation-message>
+                </div>
+            </div>
+
+            <div class="form-row my-2">
+                <div class="col-12 text-right">
+                    <button class="btn btn-outline-primary ml-1" [disabled]="!configForm.form.valid">Salvar</button>
+                </div>
+            </div>
+        </form>
+    </section>
+    <app-footer></app-footer>
+</div>
