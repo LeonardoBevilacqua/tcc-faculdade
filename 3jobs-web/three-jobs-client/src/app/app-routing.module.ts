@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'dashboard', loadChildren: './modules/dashboard/dashboard.module#DashboardModule', canActivate: [AuthGuard] },
   { path: 'register', loadChildren: './modules/register/register.module#RegisterModule', canActivate: [LoggedInGuard] },
   { path: 'company', loadChildren: './modules/company/company.module#CompanyModule', canActivate: [AuthGuard] },
+  { path: 'config', loadChildren: './modules/config/config.module#ConfigModule', canActivate: [AuthGuard] },
 ];
 
 @NgModule({
