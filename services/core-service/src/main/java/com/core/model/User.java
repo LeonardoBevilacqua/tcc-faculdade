@@ -34,6 +34,7 @@ public class User {
 
     private String cpf;
     private String email;
+    private Boolean active = false;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
@@ -69,6 +70,10 @@ public class User {
     @JoinColumn(name = "user_id",referencedColumnName = "id")
     @JsonIgnore
     private List<Score> scores;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id",referencedColumnName = "ID")
+    private List<UserForm> forms;
 
     @OneToOne()
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -185,7 +190,23 @@ public class User {
         roles.add(role);
     }
 
-	@Override
+    public List<UserForm> getForms() {
+        return forms;
+    }
+
+    public void setForms(List<UserForm> forms) {
+        this.forms = forms;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    @Override
 	public String toString() {
 		return "User [id=" + id + ", cpf=" + cpf + ", email=" + email + ", password=" + password + ", profile="
 				+ profile + ", profileId=" + profileId + ", jobs=" + jobs + ", roles=" + roles + ", jobsHeadhunter="

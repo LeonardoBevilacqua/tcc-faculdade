@@ -23,6 +23,7 @@ public class Job {
     private LocalDate beginDate;
     private LocalDate endDate;
     private Long salaryValue;
+    private String city;
 
     @ManyToMany
     @JoinTable(
@@ -52,6 +53,10 @@ public class Job {
     @JoinColumn(name = "score_id",referencedColumnName = "id")
     @JsonIgnore
     private Set<Score> scores;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "form_id",referencedColumnName = "id")
+    private List<Form> forms;
 
     private String status = "ativo";
 
@@ -173,6 +178,22 @@ public class Job {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<Form> getForms() {
+        return forms;
+    }
+
+    public void setForms(List<Form> forms) {
+        this.forms = forms;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     @Override

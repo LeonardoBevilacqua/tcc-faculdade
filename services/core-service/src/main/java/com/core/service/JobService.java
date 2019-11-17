@@ -1,14 +1,15 @@
 package com.core.service;
 
+import com.core.dto.AnswersDTO;
 import com.core.dto.DashboardDTO;
 import com.core.dto.JobSimpleDTO;
+import com.core.dto.JobsSearchDTO;
 import com.core.exception.EntityNotFoundException;
-import com.core.model.Job;
-import com.core.model.Profile;
-import com.core.model.Score;
-import com.core.model.User;
+import com.core.model.*;
+import com.core.respository.FormRepository;
 import com.core.respository.JobRepository;
 import com.core.respository.ScoreRepository;
+import com.core.respository.UserFormRepository;
 import com.core.util.CityAggregate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -36,6 +37,12 @@ public class JobService {
 	@Autowired
 	private ScoreRepository scoreRepository;
 
+	@Autowired
+	private FormRepository formRepository;
+
+	@Autowired
+	private UserFormRepository userFormRepository;
+
 	public List<Job> getJobs() {
 		return jobRepository.findAll();
 	}
@@ -59,11 +66,17 @@ public class JobService {
 		return jobRepository.save(jobFound);
 	}
 
-	public Page<Job> getJobsPageable(Integer page, Integer linesPerPage, String orderBy, String direction,
-			String description, String title) {
+	public JobsSearchDTO getJobsPageable(Integer page, Integer linesPerPage, String orderBy, String direction,
+										 String description, String title, String jobRole, String City) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
-		return jobRepository.findDistinctByTitleIgnoreCaseContainingAndDescriptionContainingIgnoreCase(title,
+		Page<Job> jobs = jobRepository.findDistinctByTitleIgnoreCaseContainingOrDescriptionContainingIgnoreCase(title,
 				description, pageRequest);
+		CityAggregate aggregate = new CityAggregate();
+		JobsSearchDTO jobsSearchDTO = new JobsSearchDTO();
+		jobsSearchDTO.setCities(aggregate.countJobCities(jobs.getContent()));
+		jobsSearchDTO.setJobRoles(aggregate.countJobRoles(jobs.getContent()));
+		jobsSearchDTO.setJobs(jobs);
+		return jobsSearchDTO;
 	}
 
 	public JobSimpleDTO convertJobToSimpleJob(final Job job) {
@@ -144,19 +157,53 @@ public class JobService {
 
 	public List<Job> getJobsByCompanyId(Long companyId) {
 		List<Job> job = jobRepository.findJobsByCompanyId(companyId);
-		
 		return job;
 	}
 	
 	public List<Job> getJobsByHeadhunterId(Long headhunterId) {
 		List<Job> job = jobRepository.findJobsByHeadhunterId(headhunterId);
-		
 		return job;
 	}
 	
 	public List<Job> getJobsByUserId(Long userId) {
 		List<Job> job = jobRepository.findJobsByUserId(userId);
-		
 		return job;
+	}
+
+    public Job saveForm(Long jobId, Form form) {
+    	Job job = getJob(jobId);
+    	job.getForms().add(form);
+    	form.setJob(job);
+    	formRepository.save(form);
+    	jobRepository.save(job);
+    	return job;
+	}
+
+	public Form saveAnswers(AnswersDTO answersDTO, Long jobId) {
+		Optional<Form> formOpt = formRepository.findById(answersDTO.getFormId());
+		Form form = formOpt.get();
+		UserForm userForm = new UserForm();
+		userForm.setAnswers(answersDTO.getAnswers());
+		userForm.setFinalGrade(answersDTO.getFinalGrade());
+		userForm.setForm(form);
+		form.getUsers().add(userForm);
+		userFormRepository.save(userForm);
+		formRepository.save(form);
+		return form;
+	}
+
+	public List<UserForm> getAnswers(Long jobId, Long formId) {
+		return userFormRepository.findByFormId(formId);
+	}
+
+	public UserForm updateAnswers(AnswersDTO answersDTO, Long jobId) {
+		System.out.println("Answer " + answersDTO);
+		Optional<UserForm> userFormOpt = userFormRepository.findById(answersDTO.getUserFormID());
+		UserForm userForm = userFormOpt.get();
+		userForm.setAnswers(answersDTO.getAnswers());
+		userForm.setFinalGrade(answersDTO.getFinalGrade());
+		userForm.setGrades(answersDTO.getGrades());
+		userFormRepository.save(userForm);
+		return userForm;
 	}
 }

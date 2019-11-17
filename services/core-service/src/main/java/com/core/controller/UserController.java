@@ -58,4 +58,9 @@ public class UserController {
     public ResponseEntity<?> getDashboardStats(@PathVariable Long userId) {
         return ResponseEntity.ok(userService.getDashboradStats(userId));
     }
+
+    @PostMapping("/{userId}/activate")
+    public ResponseEntity<?> activateUser(@PathVariable Long userId) {
+        return ResponseEntity.ok(userService.activateUser(userId));
+    }
 }
