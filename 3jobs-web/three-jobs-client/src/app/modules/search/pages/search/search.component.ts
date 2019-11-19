@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from 'src/app/core/services/search.service';
 import { JobService } from 'src/app/core/services/job.service';
+import { NgForm } from '@angular/forms';
 
 @Component({ selector: 'app-search', templateUrl: './search.component.html' })
 export class SearchComponent implements OnInit {
 
-    tagsList: String[] = ["angular", "java", "backend"];
+    tagsList: string[] = [];
     filterList: Object[] = [
         {
             titleFilter: "NÍVEL",
@@ -79,9 +80,11 @@ export class SearchComponent implements OnInit {
         private jobService: JobService) { }
 
     ngOnInit() {
+       
         this.searchService.currentJobs.subscribe(jobs => this.jobList = jobs)
         this.searchService.currentValueSearch.subscribe(valueSearch => this.valueSearch = valueSearch)
-        this.isFilterActive = false;
+        this.isFilterActive = true;
+        console.log(this.jobList.cities);
     }
 
     loadMore() {
@@ -97,6 +100,27 @@ export class SearchComponent implements OnInit {
                 )
             );
         }
+    }
+
+    onSubmit(searchForm: NgForm){
+        while( this.tagsList.length) {
+            this.tagsList.pop();
+          } 
+        //this.isFilterActive = false;
+        var cidades: any;
+        cidades = Object.keys(searchForm.value).filter(function(teste){return searchForm.value[teste] == true})
+
+        this.tagsList.push(cidades)
+
+
+        console.log(cidades);
+        //Chamar um service passando a cidade
+        this.jobService.search('analista').subscribe(
+            ((res: any) => {
+               
+            }
+            )
+        );
     }
 
 }
