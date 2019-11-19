@@ -1,0 +1,49 @@
+<div class="modal fade" id="quizModal" tabindex="-1" role="dialog" aria-labelledby="quizModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div>
+                    <div class="form-group">
+                        <label for="titleQuiz">Titulo do questionario</label>
+                        <input type="text" class="form-control" id="titleQuiz" name="titleQuiz" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descriptionQuiz">Descrição do questionario</label>
+                        <input type="text" class="form-control" id="descriptionQuiz" name="descriptionQuiz" required>
+                    </div>
+                </div>
+                <hr />
+                <div class="d-flex ">
+                    <div class="form-group w-100">
+                        <label for="titleQuiz">Titulo Pergunta</label>
+                        <input type="text" class="form-control" id="titleQuiz" name="titleQuiz" required>
+                    </div>
+                    <div class="form-group d-flex align-items-end ml-3">
+                        <button type="button" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+                <hr />
+                <div style="max-height: 300px;overflow-y: auto;">
+                    <ul class="list-group list-group-flush">
+                        <li *ngFor="let quiz of quizzes;" class="list-group-item d-flex justify-content-between">
+                            <span>{{quiz}}</span>
+                            <div>
+                                <button type="button" class="btn btn-primary btn-sm py-0 px-1 m-0 mr-2">
+                                    <i class="fa fa-pencil"></i>
+                                </button>
+                                <button type="button" class="btn btn-danger btn-sm py-0 px-1 m-0">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary">Salvar mudanças</button>
+            </div>
+        </div>
+    </div>
+</div>
