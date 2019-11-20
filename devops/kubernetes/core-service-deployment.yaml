@@ -1,0 +1,59 @@
+---
+apiVersion: apps/v1           # API version
+kind: Deployment              # Type of kubernetes resource
+metadata:
+  name: core-service    # Name of the kubernetes resource
+  labels:                     # Labels that will be applied to this resource
+    app: core-service
+spec:
+  replicas: 1                 # No. of replicas/pods to run in this deployment
+  selector:
+    matchLabels:              # The deployment applies to any pods mayching the specified labels
+      app: core-service
+  template:                   # Template for creating the pods in this deployment
+    metadata:
+      labels:                 # Labels that will be applied to each Pod in this deployment
+        app: core-service
+    spec:                     # Spec for the containers that will be run in the Pods
+      containers:
+      - name: core-service
+        image: marciolmm/core-service:0.4
+        imagePullPolicy: IfNotPresent
+        ports:
+          - name: http
+            containerPort: 8080 # The port that the container exposes
+        resources:
+          limits:
+            cpu: 0.2
+            memory: "700Mi"
+        env:                  # Environment variables supplied to the Pod
+        - name: POSTGRES_DB_USER # Name of the environment variable
+          valueFrom:          # Get the value of environment variable from kubernetes secrets
+            secretKeyRef:
+              name: postgres-config
+              key: postgres_user
+        - name: POSTGRES_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-config
+              key: postgres_password
+        - name: POSTGRES_SERVICE
+          valueFrom:
+            secretKeyRef:
+              name: hostname-config
+              key: postgres_host
+---
+apiVersion: v1                # API version
+kind: Service                 # Type of the kubernetes resource
+metadata:                     
+  name: core-service   # Name of the kubernetes resource
+  labels:                     # Labels that will be applied to this resource
+    app: core-service
+spec:                         
+  type: NodePort              # The service will be exposed by opening a Port on each node and proxying it. 
+  selector:
+    app: core-service   # The service exposes Pods with label `app=core-service`
+  ports:                      # Forward incoming connections on port 8080 to the target port 8080
+  - name: http
+    port: 8080
+    targetPort: 8080
