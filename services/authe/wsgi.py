@@ -27,7 +27,7 @@ class Users(db.Model):
     password = db.Column(db.String(200))
     profile_id = db.Column(db.String(120))
     company_id = db.Column(db.String(120))
-    status = db.Column(db.Boolean)
+    active = db.Column(db.Boolean)
 
     __dict__ = {
         "cpf": cpf,
@@ -35,7 +35,7 @@ class Users(db.Model):
         "email": email,
         "profile_id": profile_id,
         "company_id": company_id,
-        "status": status
+        "active": active
     }
 
 
@@ -70,7 +70,7 @@ def validate_token(jwt_token):
 def user_login(possible_user):
     user = get_user_by_email(possible_user['email'])
     if user:
-        if user['status'] is False:
+        if user.__dict__['active'] is False:
             return {'error': 'user pending activation'}, False, 400
         valid, token = generate_token(possible_user['email'], possible_user['password'], 
         user.__dict__['password'])
