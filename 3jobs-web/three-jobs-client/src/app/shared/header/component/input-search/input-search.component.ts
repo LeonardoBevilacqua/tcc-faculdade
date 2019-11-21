@@ -7,12 +7,13 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { NgForm } from '@angular/forms';
 import { SearchService } from 'src/app/core/services/search.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { DirectAccessUrlGuard } from 'src/app/core/mechanism/direct-access-url.guard';
 
 @Component({ selector: 'app-input-search', templateUrl: './input-search.component.html', })
 export class InputSearchComponent implements OnInit {
 
 
-    jobs: Object;
+    jobs: any;
 
     constructor(
 
@@ -20,8 +21,9 @@ export class InputSearchComponent implements OnInit {
         private router: Router,
         private toast: ToastrService,
         private spinnerService: Ng4LoadingSpinnerService,
-        private searchService: SearchService) {
-        this.jobs = [];
+        private searchService: SearchService,
+        private directAccessUrlGuard: DirectAccessUrlGuard) {
+   
     }
 
     ngOnInit() {
@@ -30,12 +32,17 @@ export class InputSearchComponent implements OnInit {
     onSubmit(searchForm: NgForm) {
         this.spinnerService.show();
 
+        console.log(searchForm.value.description);
+       
         this.jobService.search(searchForm.value.description, 0, 20).subscribe(
             (res: any) => {
                 this.jobs = res;
                 this.searchService.changeJobs(this.jobs);
                 this.searchService.changeSearch(searchForm.value.description);
-                this.router.navigateByUrl('/search');
+                this.searchService.changeS(true);
+              
+                this.router.navigateByUrl('search');
+             
                 this.spinnerService.hide();
             }, (error: HttpErrorResponse) => {
                 this.spinnerService.hide();

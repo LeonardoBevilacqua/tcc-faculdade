@@ -28,25 +28,16 @@
                     <div class=" mb-3 col-sm-4">
                         <strong class="text-primary">CIDADE(S)</strong>
 
-                        <div class="form-check" *ngFor="let filter of jobList.cities">
-                            <input class="form-check-input" type="checkbox" name="{{filter.name}}" value="{{filter.name}}" ngModel>
+                        <div class="form-check" *ngFor="let filter of cities">
+                            <input class="form-check-input" type="checkbox" name="{{filter.key}}"
+                                value="{{filter.key}}" ngModel>
                             <label class="form-check-label">
-                                {{filter.name}} ({{filter.amount}})
+                                {{filter.key}} ({{filter.value}})
                             </label>
                         </div>
                     </div>
                 </div>
-                <!-- <div class="row">
-                <div class=" mb-3 col-sm-4" *ngFor="let item of filterList">
-                    <strong class="text-primary">{{item.titleFilter}}</strong>
-                    <div class="form-check" *ngFor="let filter of item.filters">
-                        <input class="form-check-input" type="checkbox" value="" id="filter-check-{{filter.cod}}">
-                        <label class="form-check-label" for="filter-check-{{filter.cod}}">
-                            {{filter.name}} ({{filter.qtd}})
-                        </label>
-                    </div>
-                </div>
-            </div> -->
+             
             </div>
         </form>
     </div>
@@ -68,7 +59,7 @@
                     </ul>
 
                 </div>
-                
+
 
                 <app-card-job [jobs]=jobList></app-card-job>
 

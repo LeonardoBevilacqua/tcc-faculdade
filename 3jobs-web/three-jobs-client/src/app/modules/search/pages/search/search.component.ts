@@ -74,53 +74,77 @@ export class SearchComponent implements OnInit {
      */
     isFilterActive: boolean;
 
+
+
     jobList: any;
+    cities: any;
+    jobRoles: any;
     valueSearch: string
     constructor(private searchService: SearchService,
         private jobService: JobService) { }
 
+
+
     ngOnInit() {
-       
-        this.searchService.currentJobs.subscribe(jobs => this.jobList = jobs)
+
+        this.searchService.currentJobs.subscribe(jobs => {
+            this.jobList = jobs.jobs;
+            this.cities =  this.transform(jobs.cities)
+            this.jobRoles = jobs.jobRoles;
+            console.log(this.cities);
+            console.log(this.jobRoles);
+
+        })
+
         this.searchService.currentValueSearch.subscribe(valueSearch => this.valueSearch = valueSearch)
         this.isFilterActive = true;
-        console.log(this.jobList.cities);
+
+      
+        
     }
 
     loadMore() {
         if (this.jobList.number != (this.jobList.totalPages - 1)) {
-            this.jobService.search('analista', this.jobList.number + 1, 20).subscribe(
+            this.jobService.search(this.valueSearch, this.jobList.number + 1, 20).subscribe(
                 ((res: any) => {
-                    for (var i = 0; i < res.content.length; i++) {
-                        this.jobList.content.push(res.content[i]);
+                    for (var i = 0; i < res.jobs.content.length; i++) {
+                        this.jobList.content.push(res.jobs.content[i]);
                     }
-                    this.jobList.number = res.number
-                    this.jobList.totalPages = res.totalPages
+                    this.jobList.number = res.jobs.number
+                    this.jobList.totalPages = res.jobs.totalPages
                 }
                 )
             );
         }
     }
 
-    onSubmit(searchForm: NgForm){
-        while( this.tagsList.length) {
-            this.tagsList.pop();
-          } 
-        //this.isFilterActive = false;
-        var cidades: any;
-        cidades = Object.keys(searchForm.value).filter(function(teste){return searchForm.value[teste] == true})
-
-        this.tagsList.push(cidades)
-
-
-        console.log(cidades);
-        //Chamar um service passando a cidade
-        this.jobService.search('analista').subscribe(
-            ((res: any) => {
-               
-            }
-            )
-        );
+    transform(value): any {
+        let keys = [];
+        for (let key in value) {
+            keys.push({ key: key, value: value[key] });
+        }
+        return keys;
     }
+
+    // onSubmit(searchForm: NgForm) {
+    //     while (this.tagsList.length) {
+    //         this.tagsList.pop();
+    //     }
+    //     //this.isFilterActive = false;
+    //     var cidades: any;
+    //     cidades = Object.keys(searchForm.value).filter(function (teste) { return searchForm.value[teste] == true })
+
+    //     this.tagsList.push(cidades)
+
+
+    //     console.log(cidades);
+    //     //Chamar um service passando a cidade
+    //     this.jobService.search('analista').subscribe(
+    //         ((res: any) => {
+
+    //         }
+    //         )
+    //     );
+    // }
 
 }

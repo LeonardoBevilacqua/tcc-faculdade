@@ -11,6 +11,7 @@ import { JobService } from './services/job.service';
 import { ProfileService } from './services/profile.service';
 import { TestesService } from './services/testes.service';
 import { UserService } from './services/user.service';
+import { DirectAccessUrlGuard } from './mechanism/direct-access-url.guard';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { UserService } from './services/user.service';
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         AuthGuard,
         LoggedInGuard,
+        DirectAccessUrlGuard
     ],
 })
 export class CoreModule { }
