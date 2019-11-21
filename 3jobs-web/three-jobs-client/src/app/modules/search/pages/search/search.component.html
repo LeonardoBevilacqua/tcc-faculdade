@@ -9,7 +9,8 @@
         </div>
         <form #filterForm="ngForm" (ngSubmit)="onSubmit(filterForm)" *ngIf="jobList.numberOfElements != 0">
             <div class="d-flex flex-row-reverse px-md-5 pt-3">
-                <button [hidden]="isFilterActive" type="submit" class="btn btn-outline-primary ml-2">
+                <button [hidden]="isFilterActive" type="submit" class="btn btn-outline-primary ml-2"
+                [disabled]="(filterForm.form.value.filterJobRoles == '' || filterForm.form.value.filterJobRoles == null) && (filterForm.form.value.filterCities == '' || filterForm.form.value.filterCities == null)" >
                     Aplicar
                 </button>
                 <button [hidden]="isFilterActive" type="button" class="btn btn-outline-danger"
