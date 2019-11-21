@@ -7,7 +7,7 @@ export class SearchService {
 
     private jobs = new BehaviorSubject<any>({});
     private valueSearch = new BehaviorSubject<string>('');
-    private allow = new BehaviorSubject<boolean>(false);
+   
 
     currentJobs = this.jobs.asObservable();
     currentValueSearch = this.valueSearch.asObservable();
@@ -21,11 +21,5 @@ export class SearchService {
     changeSearch(valueSearch: string) {
         this.valueSearch.next(valueSearch)
     }
-
-    changeS(allow: boolean) {
-        this.allow.next(allow)
-    }
-    tt() {
-        return this.allow.value
-    }
+  
 }

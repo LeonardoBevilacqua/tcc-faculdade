@@ -7,100 +7,33 @@ import { NgForm } from '@angular/forms';
 export class SearchComponent implements OnInit {
 
     tagsList: string[] = [];
-    filterList: Object[] = [
-        {
-            titleFilter: "NÍVEL",
-            filters: [{
-                cod: 1,
-                name: "Júnior",
-                qtd: 223
-            },
-            {
-                cod: 2,
-                name: "Pleno",
-                qtd: 23
-            },
-            {
-                cod: 3,
-                name: "Sênior",
-                qtd: 2
-            }]
-        },
-        {
-            titleFilter: "CIDADE",
-            filters: [{
-                cod: 4,
-                name: "Campinas",
-                qtd: 22
-            },
-            {
-                cod: 5,
-                name: "Hortôlandia",
-                qtd: 3
-            },
-            {
-                cod: 6,
-                name: "Sumaré",
-                qtd: 2
-            }]
-        }
-    ];
-
-    listCandidate: Object = [
-        {
-            name: "Marcelo Rodrigues Costa",
-            title: "Desenvolvedor| JAVA| Software",
-            city: "Campinas",
-            description: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos
-            voluptates beatae
-            vel quam rem quos qui! Eos officia nisi pariatur laboriosam sequi blanditiis. Modi iste culpa,
-            expedita adipisci in eos!`,
-            skills: ["Java", "Spring Boot", "Angular"]
-        },
-        {
-            name: "Thiago Oliveira",
-            title: "Auxiliar de Culinaria",
-            city: "Campinas",
-            description: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos
-            voluptates beatae
-            vel quam rem quos qui! Eos officia nisi pariatur laboriosam sequi blanditiis. Modi iste culpa,
-            expedita adipisci in eos!`,
-            skills: ["C#", "ReactJS", ".NET"]
-        }
-    ];
-
-    /**
-     * Flag if the filter is active.
-     */
     isFilterActive: boolean;
-
-
-
     jobList: any;
     cities: any;
     jobRoles: any;
-    valueSearch: string
+    valueSearch: string;
+    filterForm: NgForm
+
     constructor(private searchService: SearchService,
         private jobService: JobService) { }
 
-
-
     ngOnInit() {
-
         this.searchService.currentJobs.subscribe(jobs => {
             this.jobList = jobs.jobs;
-            this.cities =  this.transform(jobs.cities)
-            this.jobRoles = jobs.jobRoles;
-            console.log(this.cities);
-            console.log(this.jobRoles);
+            this.cities = this.transform(jobs.cities)
+            this.jobRoles = this.transform(jobs.jobRoles);
+            this.isFilterActive = true;
+            while (this.tagsList.length) {
+                this.tagsList.pop();
+            }
+
+            
 
         })
-
         this.searchService.currentValueSearch.subscribe(valueSearch => this.valueSearch = valueSearch)
-        this.isFilterActive = true;
 
-      
-        
+        console.log(this.cities);
+        console.log(this.jobRoles);
     }
 
     loadMore() {
@@ -118,7 +51,7 @@ export class SearchComponent implements OnInit {
         }
     }
 
-    transform(value): any {
+    transform(value: { [x: string]: any; }): any {
         let keys = [];
         for (let key in value) {
             keys.push({ key: key, value: value[key] });
@@ -126,25 +59,42 @@ export class SearchComponent implements OnInit {
         return keys;
     }
 
-    // onSubmit(searchForm: NgForm) {
-    //     while (this.tagsList.length) {
-    //         this.tagsList.pop();
-    //     }
-    //     //this.isFilterActive = false;
-    //     var cidades: any;
-    //     cidades = Object.keys(searchForm.value).filter(function (teste) { return searchForm.value[teste] == true })
+    onSubmit(searchForm: NgForm) {
 
-    //     this.tagsList.push(cidades)
+        console.log(searchForm.value.filterCities);
+        console.log(searchForm.value.filterJobRoles);
+        this.isFilterActive = true;
+        while (this.tagsList.length) {
+            this.tagsList.pop();
+        }
+        //this.isFilterActive = false;
+        // var cidades: any;
+        // cidades = Object.keys(searchForm.value).filter(function (teste) { return searchForm.value[teste] == true })
+        if (searchForm.value.filterCities != '' && searchForm.value.filterCities != null) {
+            this.tagsList.push(searchForm.value.filterCities)
+        }
+
+        if (searchForm.value.filterJobRoles != '' && searchForm.value.filterJobRoles != null) {
+            this.tagsList.push(searchForm.value.filterJobRoles)
+        }
+        // console.log(cidades);
+        //Chamar um service passando a cidade
+        // this.jobService.search('analista').subscribe(
+        //     ((res: any) => {
+
+        //     }
+        //     )
+        // );
+        searchForm.reset();
+    }
 
 
-    //     console.log(cidades);
-    //     //Chamar um service passando a cidade
-    //     this.jobService.search('analista').subscribe(
-    //         ((res: any) => {
-
-    //         }
-    //         )
-    //     );
-    // }
+    cleanFilter(searchForm: NgForm) {
+        this.isFilterActive = true;
+        searchForm.reset();
+        while (this.tagsList.length) {
+            this.tagsList.pop();
+        }
+    }
 
 }

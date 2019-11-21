@@ -1,30 +1,25 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { SearchService } from '../services/search.service';
+import { DirectAccessUrlService } from '../services/direct-access-url.service';
 
 @Injectable()
-export class DirectAccessUrlGuard implements CanActivate  {
+export class DirectAccessUrlGuard implements CanActivate {
 
-    
-    constructor(private router: Router, private teste: SearchService) { }
-   
-   
-    
+
+    constructor(private router: Router,
+        private directAccessUrlService: DirectAccessUrlService) { }
+
     canActivate() {
-        
-        if (this.teste.tt()) {
-            console.log(this.teste.tt());
-            this.teste.changeS(false);
+        if (this.directAccessUrlService.getAllow()) {
+            this.directAccessUrlService.setAllow(false);
             return true;
-        }else{
-            console.log(this.teste.tt());
-        this.router.navigateByUrl('/');
-        return false;
+        } else {
+            this.router.navigateByUrl('/');
+            return false;
         }
     }
 
-  
 
-  
+
+
 }

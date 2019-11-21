@@ -4,18 +4,17 @@
     <div class="content pt-4 container-fluid mb-auto px-md-5 py-3 mb-3 bg-light">
         <div class="px-md-5">
             <span>{{jobList.totalElements}} resultado(s) para: </span><strong class="mr-2">{{valueSearch}}</strong>
-            <button class="btn badge badge-pill badge-primary mr-2" *ngFor="let item of tagsList">
-                {{item}} <i class="fa fa-times"></i>
-            </button>
+            <div class="badge badge-pill badge-primary mr-2" *ngFor="let item of tagsList">
+                {{item}} </div>
         </div>
-        <form #filterForm="ngForm" (ngSubmit)="onSubmit(filterForm)">
+        <form #filterForm="ngForm" (ngSubmit)="onSubmit(filterForm)" *ngIf="jobList.numberOfElements != 0">
             <div class="d-flex flex-row-reverse px-md-5 pt-3">
                 <button [hidden]="isFilterActive" type="submit" class="btn btn-outline-primary ml-2">
                     Aplicar
                 </button>
                 <button [hidden]="isFilterActive" type="button" class="btn btn-outline-danger"
-                    (click)="isFilterActive = true">
-                    Cancelar
+                    (click)="cleanFilter(filterForm)">
+                    Limpar
                 </button>
                 <button [hidden]="!isFilterActive" type="button" class="btn btn-outline-primary ml-md-2"
                     (click)="isFilterActive = false">
@@ -25,23 +24,28 @@
             <div [hidden]="isFilterActive" class="px-md-5">
                 <hr />
                 <div class="row">
-                    <div class=" mb-3 col-sm-4">
-                        <strong class="text-primary">CIDADE(S)</strong>
+                    <div class="p-3">
+                        <strong class="text-primary">CIDADE</strong>
+                        <select class="form-control" id="filterCities" name="filterCities" ngModel>
+                            <option value="" selected hidden>...</option>
+                            <option *ngFor="let filter of cities" value="{{filter.key}}"> {{filter.key}}
+                                ({{filter.value}})</option>
 
-                        <div class="form-check" *ngFor="let filter of cities">
-                            <input class="form-check-input" type="checkbox" name="{{filter.key}}"
-                                value="{{filter.key}}" ngModel>
-                            <label class="form-check-label">
-                                {{filter.key}} ({{filter.value}})
-                            </label>
-                        </div>
+                        </select>
+                    </div>
+                    <div class="p-3">
+                        <strong class="text-primary">NÍVEL</strong>
+                        <select class="form-control" id="filterJobRoles" name="filterJobRoles" ngModel>
+                            <option value="" selected hidden>...</option>
+                            <option *ngFor="let filter of jobRoles" value="{{filter.key}}"> {{filter.key}}
+                                ({{filter.value}})</option>
+
+                        </select>
                     </div>
                 </div>
-             
             </div>
         </form>
     </div>
-
     <section>
         <div class="row pl-md-5 mb-5 w-100">
             <div class="col-md-9 px-md-5">
