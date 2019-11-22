@@ -1,5 +1,7 @@
 package com.core.controller;
 
+import com.core.dto.AnswersDTO;
+import com.core.model.Form;
 import com.core.model.Job;
 import com.core.model.Score;
 import com.core.service.JobService;
@@ -22,9 +24,11 @@ public class JobController {
             @RequestParam(value = "orderBy", defaultValue = "title") String orderBy,
             @RequestParam(value = "direction", defaultValue = "ASC") String direction,
             @RequestParam(value = "page", defaultValue = "0") int page,
-            @RequestParam(value = "size", defaultValue = "20") int size) {
+            @RequestParam(value = "size", defaultValue = "20") int size,
+            @RequestParam(value = "jobRole", defaultValue = "") String jobRole,
+            @RequestParam(value = "city", defaultValue = "20") String city) {
         return ResponseEntity.ok(jobService.getJobsPageable(
-                page, size, orderBy, direction, description, title));
+                page, size, orderBy, direction, description, title, jobRole, city));
     }
 
     @GetMapping("/{id}")
@@ -97,5 +101,25 @@ public class JobController {
                                         @PathVariable Long userId,
                                         @RequestBody Score score) {
         return ResponseEntity.ok(jobService.reviewUser(jobId, userId, score));
+    }
+
+    @PostMapping("/{jobId}/forms")
+    public ResponseEntity<?> saveForm(@PathVariable Long jobId, @RequestBody Form form){
+        return ResponseEntity.ok(jobService.saveForm(jobId, form));
+    }
+
+    @PostMapping("/{jobId}/answers")
+    public ResponseEntity<?> saveAnswers(@PathVariable Long jobId, @RequestBody AnswersDTO answersDTO) {
+        return ResponseEntity.ok(jobService.saveAnswers(answersDTO, jobId));
+    }
+
+    @PutMapping("/{jobId}/answers")
+    public ResponseEntity<?> updateAnswers(@PathVariable Long jobId, @RequestBody AnswersDTO answersDTO) {
+        return ResponseEntity.ok(jobService.updateAnswers(answersDTO, jobId));
+    }
+
+    @GetMapping("/{jobId}/forms/{formId}")
+    public ResponseEntity<?> getAnswers(@PathVariable Long jobId, @PathVariable Long formId) {
+        return ResponseEntity.ok(jobService.getAnswers(jobId, formId));
     }
 }
