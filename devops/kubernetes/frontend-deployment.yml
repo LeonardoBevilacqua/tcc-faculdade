@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo
+  template:
+    metadata:
+      labels:
+        app: demo
+        tier: frontend
+        track: stable
+    spec:
+      containers:
+        - name: nginx
+          image: "marciolmm/frontend:0.6"
+          ports:
+          - containerPort: 80
+          resources:
+            limits:
+              cpu: 0.2
+              memory: "200Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: demo
+    tier: frontend
+  type: NodePort

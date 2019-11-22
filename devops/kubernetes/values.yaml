@@ -1,0 +1,11 @@
+dashboard:
+  enabled: true
+  domain: traefik-ui.minikube
+ssl:
+  enabled: true
+  enforced: true
+  generateTLS: true
+kubernetes:
+  namespaces:
+    - default
+    - kube-system

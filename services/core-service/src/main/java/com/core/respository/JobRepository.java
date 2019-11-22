@@ -12,7 +12,7 @@ import com.core.model.Job;
 
 public interface JobRepository extends JpaRepository<Job, Long> {
 
-    Page<Job> findDistinctByTitleIgnoreCaseContainingAndDescriptionContainingIgnoreCase(
+    Page<Job> findDistinctByTitleIgnoreCaseContainingOrDescriptionContainingIgnoreCase(
             String title, String description, Pageable pageable);
 
     List<Job> findByCompanyId(Long companyId);

@@ -5,7 +5,6 @@ import com.core.dto.UserLoginDTO;
 import com.core.dto.UserSimpleDTO;
 import com.core.dto.UserToDoDTO;
 import com.core.exception.EntityNotFoundException;
-import com.core.exception.UserUnauthorizedException;
 import com.core.model.Job;
 import com.core.model.Role;
 import com.core.model.ToDo;
@@ -13,10 +12,8 @@ import com.core.model.User;
 import com.core.respository.JobRepository;
 import com.core.respository.TodoRepository;
 import com.core.respository.UserRepository;
-import com.core.security.UserSecurity;
 import com.core.util.DashboardAggregate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -40,10 +37,6 @@ public class UserService {
     }
 
     public User getUser(Long id) throws RuntimeException {
-        UserSecurity user = UserService.authenticated();
-        if(!user.hasRole(Role.ROLE_ADMIN) && id != user.getId()) {
-            throw new UserUnauthorizedException("Usuário não tem acesso ao perfil de outros usuários");
-        }
         Optional<User> userOpt = userRepository.findById(id);
         if (!userOpt.isPresent()) {
             throw new EntityNotFoundException("Usuário não encontrado");
@@ -54,16 +47,6 @@ public class UserService {
     public User saveUser(User user) {
     	user.getProfile().setEmail(user.getEmail());
         return userRepository.save(user);
-    }
-
-    public static UserSecurity authenticated() {
-        try{
-            return (UserSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        }
-        catch (Exception e) {
-            throw new UserUnauthorizedException("Usuário não autenticado");
-        }
-
     }
 
     public User updateUser(Long id, User user) {
@@ -133,5 +116,14 @@ public class UserService {
         dashboardStats.setProcessTotal(response.get("processTotal"));
         dashboardStats.setTotalFinished(response.get("totalFinished"));
         return dashboardStats;
+    }
+
+    public HashMap<String, String> activateUser(Long userId) {
+        User user = getUser(userId);
+        user.setActive(true);
+        userRepository.save(user);
+        HashMap<String, String> response = new HashMap<>();
+        response.put("message", "User actived successfully");
+        return response;
     }
 }
