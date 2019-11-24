@@ -2,6 +2,7 @@ import { Company } from './company';
 import { Entity } from './entity';
 import { Tag } from './tag';
 import { User } from './user';
+import { Quiz } from './quiz';
 
 /**
  * Class representing the job model.
@@ -21,4 +22,5 @@ export class Job extends Entity {
     company: Company;
     tags: Array<Tag>;
     status: string;
+    forms: Array<Quiz>;
 }
