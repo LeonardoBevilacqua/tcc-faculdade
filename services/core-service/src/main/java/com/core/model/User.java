@@ -73,6 +73,7 @@ public class User {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id",referencedColumnName = "ID")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<UserForm> forms;
 
     @OneToOne()
