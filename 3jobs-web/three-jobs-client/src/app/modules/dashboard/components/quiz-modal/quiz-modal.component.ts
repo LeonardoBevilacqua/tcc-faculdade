@@ -94,10 +94,12 @@ export class QuizModalComponent implements OnChanges {
 
     public onSubmit() {
 
+        this.quiz.questions = this.mapToObject(this.questions);
+
         if (this.quiz.id && this.quiz.id > 0) {
             console.log("entrei aquiiiiiiiiiiiiiiiii");
 
-            this.quizService.updateAnswers(this.quiz.id).subscribe(
+            this.quizService.updateQuiz(this.job.id, this.quiz).subscribe(
                 (response: any) => {
                     // console.log(response);
                     //  this.subject.emit();
@@ -111,7 +113,7 @@ export class QuizModalComponent implements OnChanges {
             );
         }
         else {
-            this.quiz.questions = this.mapToObject(this.questions);
+
             this.quizService.saveQuiz(this.job.id, this.quiz).subscribe(
                 (response: any) => {
                     // console.log(response);
@@ -120,6 +122,7 @@ export class QuizModalComponent implements OnChanges {
                     // this.toastr.success(response.message ? response.message : 'Informações salvas com sucesso!');
                 },
                 (error) => {
+                    console.log(error);
                     //this.errorHandler(error);
                     //console.log(error);
                 }

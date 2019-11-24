@@ -55,6 +55,10 @@ export class DashboardComponent implements OnInit {
         this.job = vacancy;
     }
 
+    public toEditQuiz(vacancy: Job) {
+        this.job = vacancy;
+    }
+
     private getJobByCompanyId() {
         this.spinner.show();
         this.jobService.getJobByCompanyId(this.user.companyId).subscribe(

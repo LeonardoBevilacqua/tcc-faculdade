@@ -51,7 +51,7 @@
                                     class="btn btn-success btn-sm mx-2" title="Ver Vaga">
                                     <i class="fa fa-share" aria-hidden="true"></i>
                                 </button>
-                                <button  id="btn-quiz-modal" data-toggle="modal" data-target="#quizModal" type="button"
+                                <button  id="btn-quiz-modal" (click)="toEditQuiz(vacancy)" data-toggle="modal" data-target="#quizModal" type="button"
                                     class="btn btn-dark btn-sm" title="Questionario">
                                     <i class="fa fa-file-text" aria-hidden="true"></i>
                                 </button>
@@ -99,6 +99,6 @@
         </div>
     </section>
     <app-create-vacancy-modal [model]="job" (subject)="getJobs()"></app-create-vacancy-modal>
-    <app-quiz-modal></app-quiz-modal>
+    <app-quiz-modal [job]="job"></app-quiz-modal>
     <app-footer></app-footer>
 </div>
