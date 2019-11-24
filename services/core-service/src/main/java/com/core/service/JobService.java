@@ -67,9 +67,9 @@ public class JobService {
 	}
 
 	public JobsSearchDTO getJobsPageable(Integer page, Integer linesPerPage, String orderBy, String direction,
-										 String description, String title, String jobRole, String City) {
+										 String description, String title, String jobRole, String city) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
-		Page<Job> jobs = jobRepository.findDistinctByTitleIgnoreCaseContainingOrDescriptionContainingIgnoreCase(title,
+		Page<Job> jobs = jobRepository.findDistinctByTitleIgnoreCaseContainingAndDescriptionContainingIgnoreCase(title,
 				description, pageRequest);
 		CityAggregate aggregate = new CityAggregate();
 		JobsSearchDTO jobsSearchDTO = new JobsSearchDTO();
@@ -197,7 +197,6 @@ public class JobService {
 	}
 
 	public UserForm updateAnswers(AnswersDTO answersDTO, Long jobId) {
-		System.out.println("Answer " + answersDTO);
 		Optional<UserForm> userFormOpt = userFormRepository.findById(answersDTO.getUserFormID());
 		UserForm userForm = userFormOpt.get();
 		userForm.setAnswers(answersDTO.getAnswers());
@@ -205,5 +204,9 @@ public class JobService {
 		userForm.setGrades(answersDTO.getGrades());
 		userFormRepository.save(userForm);
 		return userForm;
+	}
+
+	public Form updateForm(Long jobId, Form form) {
+		return formRepository.save(form);
 	}
 }

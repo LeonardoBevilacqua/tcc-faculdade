@@ -37,7 +37,7 @@ public class CityAggregate {
     public HashMap<String, Long> countJobRoles(List<Job> jobs) {
         HashMap<String, Long> roles = new HashMap<>();
         for (Job job : jobs) {
-            if (job.getCity() != null) {
+            if (job.getJobRole() != null) {
                 String jobRole = job.getJobRole();
                 roles.put(jobRole, roles.get(jobRole) == null ? 1 : roles.get(jobRole) + 1);
             }
