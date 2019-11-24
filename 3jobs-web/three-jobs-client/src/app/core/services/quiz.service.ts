@@ -19,6 +19,7 @@ export class QuizService extends EntityService<Quiz> {
     }
 
     public saveQuiz(jobId: number, entity: Quiz): Observable<Quiz> {
+        console.log(entity)
         return this.httpClient.post<Quiz>(`${this.apiUrl}/${this.endpoint}/${jobId}/forms`, entity, httpOptions);
     }
 
