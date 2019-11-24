@@ -181,11 +181,13 @@ public class JobService {
 
 	public Form saveAnswers(AnswersDTO answersDTO, Long jobId) {
 		Optional<Form> formOpt = formRepository.findById(answersDTO.getFormId());
+		User user = userService.getUser(answersDTO.getUserId());
 		Form form = formOpt.get();
 		UserForm userForm = new UserForm();
 		userForm.setAnswers(answersDTO.getAnswers());
 		userForm.setFinalGrade(answersDTO.getFinalGrade());
 		userForm.setForm(form);
+		userForm.setUser(user);
 		form.getUsers().add(userForm);
 		userFormRepository.save(userForm);
 		formRepository.save(form);
@@ -198,15 +200,22 @@ public class JobService {
 
 	public UserForm updateAnswers(AnswersDTO answersDTO, Long jobId) {
 		Optional<UserForm> userFormOpt = userFormRepository.findById(answersDTO.getUserFormID());
+		User user = userService.getUser(answersDTO.getUserId());
 		UserForm userForm = userFormOpt.get();
 		userForm.setAnswers(answersDTO.getAnswers());
 		userForm.setFinalGrade(answersDTO.getFinalGrade());
 		userForm.setGrades(answersDTO.getGrades());
+		userForm.setUser(user);
 		userFormRepository.save(userForm);
 		return userForm;
 	}
 
 	public Form updateForm(Long jobId, Form form) {
-		return formRepository.save(form);
+		Optional<Form> formOpt = formRepository.findById(form.getId());
+		Form formFound = formOpt.get();
+		formFound.setDescription(form.getDescription());
+		formFound.setName(form.getName());
+		formFound.setQuestions(form.getQuestions());
+		return formRepository.save(formFound);
 	}
 }
