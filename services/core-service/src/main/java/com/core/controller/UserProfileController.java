@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/profiles")
+@CrossOrigin
 public class UserProfileController {
 
     @Autowired
