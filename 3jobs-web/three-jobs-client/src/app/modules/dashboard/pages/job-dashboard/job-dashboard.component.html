@@ -19,7 +19,8 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <canvas *ngIf="citiesValue > 0" id="barChartCidades" style="height: 440px;"></canvas>
-                        <h3 *ngIf="citiesValue < 1" class="d-flex justify-content-center align-items-center"  style="height: 240px;">Sem informações para gerar gráfico!</h3>
+                        <h3 *ngIf="citiesValue < 1" class="d-flex justify-content-center align-items-center"
+                            style="height: 240px;">Sem informações para gerar gráfico!</h3>
                     </div>
                 </div>
             </div>
@@ -43,6 +44,10 @@
                             <td class="d-none d-sm-table-cell">10</td>
                             <td><span class="badge badge-success">{{candidate.status}}</span></td>
                             <td>
+                                <button id="btn-answer-modal" (click)="editUserQuiz(candidate)" data-toggle="modal" data-target="#answerModal"
+                                    type="button" class="btn btn-dark btn-sm" title="Respostas">
+                                    <i class="fa fa-file-text" aria-hidden="true"></i>
+                                </button>
                                 <a target="_blank" href="/profile/{{candidate.id}}" class="btn btn-primary btn-sm">Ver
                                     Perfil</a>
                             </td>
@@ -56,4 +61,5 @@
         </div>
     </section>
     <app-footer></app-footer>
+    <app-answers-modal [userQuiz]="userQuiz" [quiz]="quiz"></app-answers-modal>
 </div>

@@ -32,8 +32,8 @@ export class QuizService extends EntityService<Quiz> {
 
     }
 
-    public updateAnswers(jobId: number): Observable<UserQuiz> {
-        return this.httpClient.put<UserQuiz>(`${this.apiUrl}/${this.endpoint}/${jobId}/answers`, httpOptions);
+    public updateAnswers(jobId: number, entity: UserQuiz): Observable<UserQuiz> {
+        return this.httpClient.put<UserQuiz>(`${this.apiUrl}/${this.endpoint}/${jobId}/answers`, entity, httpOptions);
     }
 
     public getAnswers(jobId: number, quizId: number) {

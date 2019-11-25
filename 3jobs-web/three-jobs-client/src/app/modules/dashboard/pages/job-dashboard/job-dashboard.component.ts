@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import Chart from 'chart.js';
 import { JobService } from 'src/app/core/services/job.service';
 import { Profile } from 'src/app/shared/models/profile';
+import { UserQuiz } from 'src/app/shared/models/userQuiz';
+import { Quiz } from 'src/app/shared/models/quiz';
+import { User } from 'src/app/shared/models/user';
 
 @Component({ selector: 'app-job-dashboard', templateUrl: './job-dashboard.component.html' })
 export class JobDashboardComponent implements OnInit {
@@ -14,6 +17,8 @@ export class JobDashboardComponent implements OnInit {
     public jobUsers: Array<Profile>;
     private citiesName: Array<string>;
     private citiesValue: Array<number>;
+    public userQuiz: UserQuiz;
+    private quiz: Quiz;
 
     BarChartCidades: any;
 
@@ -22,6 +27,8 @@ export class JobDashboardComponent implements OnInit {
         this.vacancyId = +this.router.url.split('/')[3];
         this.ranking = [];
         this.jobUsers = [];
+        this.quiz = new Quiz();
+        this.userQuiz = new UserQuiz();
     }
 
     ngOnInit() {
@@ -35,6 +42,18 @@ export class JobDashboardComponent implements OnInit {
                 this.citiesValue = Object.values(response.cities);
 
                 this.createChart();
+
+            },
+            (error) => {
+                console.error(error);
+            }
+        );
+
+        this.jobService.read(this.vacancyId).subscribe(
+            (response) => {
+                // console.log(response.forms);
+                this.quiz = response.forms[0];
+
             },
             (error) => {
                 console.error(error);
@@ -65,5 +84,19 @@ export class JobDashboardComponent implements OnInit {
                 }
             }
         });
+    }
+
+    public editUserQuiz(candidate: User) {
+
+        console.log(candidate.id);
+        
+
+
+        const quiz: UserQuiz = this.quiz.users.find(user => user.user.id === candidate.id);
+        this.userQuiz = quiz;
+
+        console.log("TESTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+        console.log(this.quiz);
+        console.log(quiz);
     }
 }
