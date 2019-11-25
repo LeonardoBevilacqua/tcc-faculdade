@@ -194,8 +194,9 @@ public class JobService {
 		return form;
 	}
 
-	public List<UserForm> getAnswers(Long jobId, Long formId) {
-		return userFormRepository.findByFormId(formId);
+	public Form getAnswers(Long jobId, Long formId) {
+		Optional<Form> form =  formRepository.findById(formId);
+		return form.get();
 	}
 
 	public UserForm updateAnswers(AnswersDTO answersDTO, Long jobId) {
