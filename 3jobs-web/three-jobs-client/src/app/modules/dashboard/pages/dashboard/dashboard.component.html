@@ -30,13 +30,8 @@
                             <th scope="col" style="width: 110px">Status</th>
                             <th scope="col" style="width: 140px">
                                 <button (click)="createVacancy()" class="btn btn-success btn-sm" data-toggle="modal"
-<<<<<<< HEAD
-                                    *ngIf="shouldDisplayHeadhunter() == false"
-                                    data-target="#createVacancyModal">Cadastrar</button>
-=======
                                 *ngIf="shouldDisplayVacancy()"   
                                 data-target="#createVacancyModal">Cadastrar</button>
->>>>>>> dev
                             </th>
                         </tr>
                     </thead>
@@ -103,11 +98,7 @@
             </div>
         </div>
     </section>
-<<<<<<< HEAD
-    <app-create-vacancy-modal [model]="job" (subject)="getJobs()"></app-create-vacancy-modal>
-    <app-quiz-modal [job]="job"></app-quiz-modal>
-=======
     <app-create-vacancy-modal [model]="job" (subject)="getJobs()" *ngIf="shouldDisplayVacancy()"></app-create-vacancy-modal>
->>>>>>> dev
+    <app-quiz-modal [job]="job"></app-quiz-modal>
     <app-footer></app-footer>
 </div>
