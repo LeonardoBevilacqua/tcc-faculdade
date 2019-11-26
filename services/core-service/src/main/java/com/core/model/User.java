@@ -210,7 +210,7 @@ public class User {
     @Override
 	public String toString() {
 		return "User [id=" + id + ", cpf=" + cpf + ", email=" + email + ", password=" + password + ", profile="
-				+ profile + ", profileId=" + profileId + ", jobs=" + jobs + ", roles=" + roles + ", jobsHeadhunter="
+				+ profile + ", profileId=" + profileId + ", roles=" + roles + ", jobsHeadhunter="
 				+ jobsHeadhunter + ", toDos=" + toDos + ", scores=" + scores + ", company=" + company + ", companyId="
 				+ companyId + "]";
 	}
