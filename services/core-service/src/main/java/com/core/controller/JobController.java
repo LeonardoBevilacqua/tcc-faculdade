@@ -124,7 +124,7 @@ public class JobController {
         return ResponseEntity.ok(jobService.updateAnswers(answersDTO, jobId));
     }
 
-    @GetMapping("/{jobId}/forms/{formId}/answers")
+    @GetMapping("/{jobId}/forms/{formId}")
     public ResponseEntity<?> getForm(@PathVariable Long jobId, @PathVariable Long formId) {
         return ResponseEntity.ok(jobService.getAnswers(jobId, formId));
     }

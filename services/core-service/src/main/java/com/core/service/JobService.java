@@ -172,11 +172,11 @@ public class JobService {
 
     public Job saveForm(Long jobId, Form form) {
     	Job job = getJob(jobId);
-    	job.getForms().add(form);
+    	job.setForm(form);
     	form.setJob(job);
-    	formRepository.save(form);
     	jobRepository.save(job);
-    	return job;
+		formRepository.save(form);
+		return job;
 	}
 
 	public Form saveAnswers(AnswersDTO answersDTO, Long jobId) {
