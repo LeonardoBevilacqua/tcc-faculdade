@@ -37,12 +37,9 @@ export class JobDashboardComponent implements OnInit {
                 this.headhunter = response.headhunter;
                 this.ranking = response.usersScore ? response.usersScore : [];
                 this.jobUsers = response.jobUsers ? response.jobUsers : [];
-
                 this.citiesName = Object.keys(response.cities);
                 this.citiesValue = Object.values(response.cities);
-
                 this.createChart();
-
             },
             (error) => {
                 console.error(error);
@@ -51,9 +48,7 @@ export class JobDashboardComponent implements OnInit {
 
         this.jobService.read(this.vacancyId).subscribe(
             (response) => {
-                // console.log(response.forms);
-                this.quiz = response.forms[0];
-
+                this.quiz = response.form;
             },
             (error) => {
                 console.error(error);
@@ -87,16 +82,7 @@ export class JobDashboardComponent implements OnInit {
     }
 
     public editUserQuiz(candidate: User) {
-
-        console.log(candidate.id);
-        
-
-
         const quiz: UserQuiz = this.quiz.users.find(user => user.user.id === candidate.id);
         this.userQuiz = quiz;
-
-        console.log("TESTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-        console.log(this.quiz);
-        console.log(quiz);
     }
 }

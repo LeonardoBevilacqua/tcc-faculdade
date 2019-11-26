@@ -79,8 +79,8 @@ export class QuizModalComponent implements OnChanges {
 
     private getQuiz() {
         if (this.job != null && this.job.id > 0) {
-            if (this.job.forms.length > 0) {
-                this.quiz = this.job.forms[0];
+            if (this.job.form) {
+                this.quiz = this.job.form;
             }
             else {
                 this.question = new Question();
@@ -97,7 +97,6 @@ export class QuizModalComponent implements OnChanges {
         this.quiz.questions = this.mapToObject(this.questions);
 
         if (this.quiz.id && this.quiz.id > 0) {
-            console.log("entrei aquiiiiiiiiiiiiiiiii");
 
             this.quizService.updateQuiz(this.job.id, this.quiz).subscribe(
                 (response: any) => {

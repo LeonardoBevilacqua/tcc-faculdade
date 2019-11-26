@@ -4,6 +4,8 @@ import { Quiz } from 'src/app/shared/models/quiz';
 import { element } from '@angular/core/src/render3';
 import { QuizService } from 'src/app/core/services/quiz.service';
 
+declare const $: any;
+
 @Component({
     selector: 'app-answers-modal',
     templateUrl: './answers-modal.component.html',
@@ -61,15 +63,13 @@ export class AnswersModalComponent implements OnChanges {
     }
 
     public onSubmit() {
-        this.userQuiz.finalGrade = 10;
-        this.userQuiz.userFormID = 1;
-        this.userQuiz.formId = 63;
-        // this.userQuiz.userId = 3;
+        this.userQuiz.userFormID = this.userQuiz.id;
+        this.userQuiz.formId = this.quiz.id;
+        this.userQuiz.userId = this.userQuiz.user.id;
 
         this.quizService.updateAnswers(1, this.userQuiz).subscribe(
             (response) => {
-                 console.log(response);
-
+                $('#answerModal').modal('hide');
             },
             (error) => {
                 console.error(error);
