@@ -14,7 +14,7 @@
                     Aplicar
                 </button>
                 <button [hidden]="isFilterActive" type="button" class="btn btn-outline-danger"
-                    (click)="cleanFilter(filterForm)">
+                    (click)="cleanFilter(filterForm)"  *ngIf="tagsList.length != 0">
                     Limpar
                 </button>
                 <button [hidden]="!isFilterActive" type="button" class="btn btn-outline-primary ml-md-2"
