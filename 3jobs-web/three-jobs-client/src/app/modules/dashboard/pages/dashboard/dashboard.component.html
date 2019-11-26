@@ -30,8 +30,13 @@
                             <th scope="col" style="width: 110px">Status</th>
                             <th scope="col" style="width: 140px">
                                 <button (click)="createVacancy()" class="btn btn-success btn-sm" data-toggle="modal"
+<<<<<<< HEAD
                                     *ngIf="shouldDisplayHeadhunter() == false"
                                     data-target="#createVacancyModal">Cadastrar</button>
+=======
+                                *ngIf="shouldDisplayVacancy()"   
+                                data-target="#createVacancyModal">Cadastrar</button>
+>>>>>>> dev
                             </th>
                         </tr>
                     </thead>
@@ -42,11 +47,11 @@
                             <td><span class="badge badge-success">{{vacancy.status}}</span></td>
                             <td>
                                 <button (click)="toEditVacancy(vacancy)" data-toggle="modal"
-                                    *ngIf="shouldDisplayHeadhunter() == false" data-target="#createVacancyModal"
+                                    *ngIf="shouldDisplayVacancy()" data-target="#createVacancyModal"
                                     type="button" class="btn btn-primary btn-sm" title="Editar Vaga">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                 </button>
-                                <button [routerLink]="['/dashboard/job-dashboard/', vacancy.id]"
+                                <button *ngIf="shouldAccessJobDashboard()" [routerLink]="['/dashboard/job-dashboard/', vacancy.id]"
                                     routerLinkActive="router-link-active" type="button"
                                     class="btn btn-success btn-sm mx-2" title="Ver Vaga">
                                     <i class="fa fa-share" aria-hidden="true"></i>
@@ -98,7 +103,11 @@
             </div>
         </div>
     </section>
+<<<<<<< HEAD
     <app-create-vacancy-modal [model]="job" (subject)="getJobs()"></app-create-vacancy-modal>
     <app-quiz-modal [job]="job"></app-quiz-modal>
+=======
+    <app-create-vacancy-modal [model]="job" (subject)="getJobs()" *ngIf="shouldDisplayVacancy()"></app-create-vacancy-modal>
+>>>>>>> dev
     <app-footer></app-footer>
 </div>

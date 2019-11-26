@@ -162,11 +162,15 @@ export class DashboardComponent implements OnInit {
         }
     }
 
-    shouldDisplayRecrutersTable() {
+    public shouldDisplayRecrutersTable() {
         return this.authService.getUserRole() === Role.ROLE_RECRUTER_ADMIN;
     }
 
-    shouldDisplayHeadhunter() {
-        return this.authService.getUserRole() === Role.ROLE_HEADHUNTER;
+    public shouldDisplayVacancy() {
+        return this.authService.getUserRole() === Role.ROLE_RECRUTER || this.authService.getUserRole() === Role.ROLE_RECRUTER_ADMIN;
+    }
+
+    public shouldAccessJobDashboard() {
+        return this.authService.getUserRole() !== Role.ROLE_CANDIDATE;
     }
 }
