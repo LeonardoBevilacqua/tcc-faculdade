@@ -54,9 +54,9 @@ public class Job {
     @JsonIgnore
     private Set<Score> scores;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "form_id",referencedColumnName = "id")
-    private List<Form> forms;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "form_id", referencedColumnName = "id")
+    private Form form;
 
     private String status = "ativo";
 
@@ -180,20 +180,20 @@ public class Job {
         this.status = status;
     }
 
-    public List<Form> getForms() {
-        return forms;
-    }
-
-    public void setForms(List<Form> forms) {
-        this.forms = forms;
-    }
-
     public String getCity() {
         return city;
     }
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public Form getForm() {
+        return form;
+    }
+
+    public void setForm(Form form) {
+        this.form = form;
     }
 
     @Override

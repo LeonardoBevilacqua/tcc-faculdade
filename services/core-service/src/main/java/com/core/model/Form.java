@@ -1,5 +1,6 @@
 package com.core.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -16,7 +17,6 @@ public class Form {
     private String name;
     private String description;
     private HashMap<Long, String> questions;
-    private HashMap<Long, String> answers;
 
     @ManyToMany
     @JoinTable(
@@ -26,9 +26,8 @@ public class Form {
     )
     private List<UserForm> users;
 
-    @ManyToOne
-    @JoinColumn(name = "job_id", nullable = false)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToOne(mappedBy = "form")
+    @JsonIgnore
     private Job job;
 
     public Long getId() {
@@ -61,14 +60,6 @@ public class Form {
 
     public void setQuestions(HashMap<Long, String> questions) {
         this.questions = questions;
-    }
-
-    public HashMap<Long, String> getAnswers() {
-        return answers;
-    }
-
-    public void setAnswers(HashMap<Long, String> answers) {
-        this.answers = answers;
     }
 
     public List<UserForm> getUsers() {
