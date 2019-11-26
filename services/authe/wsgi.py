@@ -1,6 +1,7 @@
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Resource, Api
+from flask_cors import CORS
 import os
 import requests
 from datetime import datetime, timedelta
@@ -10,7 +11,8 @@ from passlib.context import CryptContext
 
 app = Flask(__name__)
 api = Api(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://teuhjktbskesdv:ee969564d1a4ab53dc0ffff91bd19c13d05aff59785e2a85540476022af67129@ec2-23-21-148-223.compute-1.amazonaws.com/dfbj7ja49drdpu'
+cors = CORS(app, resources={r"/login": {"origins": "*"}})
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:admin@localhost/jobs'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -25,9 +27,9 @@ class Users(db.Model):
     cpf = db.Column(db.String(120))
     email = db.Column(db.String(120))
     password = db.Column(db.String(200))
-    profile_id = db.Column(db.String(120))
-    company_id = db.Column(db.String(120))
-    status = db.Column(db.Boolean)
+    profile_id = db.Column(db.Integer)
+    company_id = db.Column(db.Integer)
+    active = db.Column(db.Boolean)
 
     __dict__ = {
         "cpf": cpf,
@@ -35,7 +37,7 @@ class Users(db.Model):
         "email": email,
         "profile_id": profile_id,
         "company_id": company_id,
-        "status": status
+        "active": active
     }
 
 
@@ -70,13 +72,12 @@ def validate_token(jwt_token):
 def user_login(possible_user):
     user = get_user_by_email(possible_user['email'])
     if user:
-        if user['status'] is False:
+        if user.__dict__['active'] is False:
             return {'error': 'user pending activation'}, False, 400
         valid, token = generate_token(possible_user['email'], possible_user['password'], 
         user.__dict__['password'])
         if valid:
             del user.__dict__['password']
-            # res = requests.post('http://localhost:8085/email', json={'message': 'ola'})
             return user.__dict__, token, 200
         else:
             return {"error": "wrong password"}, False, 400
@@ -97,7 +98,7 @@ class Login(Resource):
     def post(self):
         data = request.get_json()
         user, token, code = user_login(data)
-        return user, code, {'token': token}
+        return user, code, {'Authorization': token,'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods' : 'PUT,GET, POST, OPTIONS', "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization, token", "Access-Control-Expose-Headers": "Authorization, test, token"}
 
 api.add_resource(Login, '/login')
 

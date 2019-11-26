@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/jobs")
+@CrossOrigin
 public class JobController {
 
     @Autowired
@@ -108,6 +109,11 @@ public class JobController {
         return ResponseEntity.ok(jobService.saveForm(jobId, form));
     }
 
+    @PutMapping("/{jobId}/forms")
+    public ResponseEntity<?> updateForm(@PathVariable Long jobId, @RequestBody Form form){
+        return ResponseEntity.ok(jobService.updateForm(jobId, form));
+    }
+
     @PostMapping("/{jobId}/answers")
     public ResponseEntity<?> saveAnswers(@PathVariable Long jobId, @RequestBody AnswersDTO answersDTO) {
         return ResponseEntity.ok(jobService.saveAnswers(answersDTO, jobId));
@@ -119,7 +125,7 @@ public class JobController {
     }
 
     @GetMapping("/{jobId}/forms/{formId}")
-    public ResponseEntity<?> getAnswers(@PathVariable Long jobId, @PathVariable Long formId) {
+    public ResponseEntity<?> getForm(@PathVariable Long jobId, @PathVariable Long formId) {
         return ResponseEntity.ok(jobService.getAnswers(jobId, formId));
     }
 }

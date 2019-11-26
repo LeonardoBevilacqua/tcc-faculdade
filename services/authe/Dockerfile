@@ -4,4 +4,4 @@ WORKDIR /app
 RUN apt-get update
 RUN pip install -r requirements.txt
 EXPOSE 5000
-CMD python wsgi.py
+CMD ["python3", "wsgi.py", "--host=0.0.0.0"]

@@ -202,7 +202,6 @@ public class Profile {
 		return "Profile [id=" + id + ", name=" + name + ", lastName=" + lastName + ", cellphone=" + cellphone
 				+ ", phone=" + phone + ", dateOfBirth=" + dateOfBirth + ", maritalStatus=" + maritalStatus
 				+ ", nationality=" + nationality + ", email=" + email + ", photoUrl=" + photoUrl + ", skills=" + skills
-				+ ", experiences=" + experiences + ", address=" + address + ", rates=" + rates + ", user=" + user
-				+ ", tags=" + tags + "]";
+				+ ", experiences=" + experiences + ", address=" + address + ", rates=" + rates + ", tags=" + tags + "]";
 	}
 }
