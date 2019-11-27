@@ -40,6 +40,14 @@ class Users(db.Model):
         "active": active
     }
 
+class Roles(db.Model):
+    user_id = db.Column(db.Integer, primary_key=True, nullable=True, server_default=db.FetchedValue())
+    roles = db.Column(db.String(120))
+
+    __dict__ = {
+        "roles": roles
+    }
+
 
 def generate_token(email, password, db_password):
     """
@@ -77,12 +85,23 @@ def user_login(possible_user):
         valid, token = generate_token(possible_user['email'], possible_user['password'], 
         user.__dict__['password'])
         if valid:
+            user.__dict__['profileId'] = user.__dict__['profile_id']
+            user.__dict__['companyId'] = user.__dict__['company_id']
             del user.__dict__['password']
+            del user.__dict__['profile_id']
+            del user.__dict__['company_id']
+            role = get_role_by_user_id(user.__dict__['id'])
+            roles = list()
+            roles.append(role.__dict__['roles'])
+            user.__dict__['roles'] = roles
             return user.__dict__, token, 200
         else:
             return {"error": "wrong password"}, False, 400
     else:
         return {"error": "user not found"}, False, 400
+
+def get_role_by_user_id(user_id):
+    return Roles.query.filter(Roles.user_id == user_id).first()
 
 def get_user_by_email(email):
     return Users.query.filter(Users.email == email).first()
