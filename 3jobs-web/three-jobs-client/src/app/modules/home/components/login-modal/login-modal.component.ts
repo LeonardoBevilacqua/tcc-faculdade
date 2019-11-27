@@ -49,12 +49,18 @@ export class LoginComponent extends MaintainForm<User> implements OnInit {
                         this.spinnerService.hide();
                         $('#loginModal').modal('hide');
 
-                        if (this.authService.getUserRole() === Role.ROLE_RECRUTER_ADMIN &&
-                            isNullOrUndefined(this.authService.getUser().companyId)) {
-                            this.router.navigateByUrl('/company');
-                        }
-                        else {
-                            this.router.navigateByUrl('/dashboard');
+                        if (!isNullOrUndefined(this.authService.getUserRole())) {
+                            if (this.authService.getUserRole() === Role.ROLE_RECRUTER_ADMIN &&
+                                isNullOrUndefined(this.authService.getUser().companyId)) {
+                                this.router.navigateByUrl('/company');
+                            }
+                            else {
+                                this.router.navigateByUrl('/dashboard');
+                            }
+                        } else {
+                            // hide the spinner and notify the error
+                            this.spinnerService.hide();
+                            this.toastr.error('Usuário cadastrado não possui uma função definida. Contate um administrador!');
                         }
                     }
                     else {
