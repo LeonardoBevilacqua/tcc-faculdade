@@ -17,24 +17,24 @@ export class UserService extends EntityService<User> {
      *
      * @param http the http client injectable
      */
-    constructor(http: HttpClient, private authService: AuthService) {
+    constructor(http: HttpClient) {
         super(http, 'users');
     }
 
 
-    public getAllToDo(): Observable<Array<ToDo>> {
-        return this.httpClient.get<Array<ToDo>>(`${this.apiUrl}/${this.endpoint}/${this.authService.getUserId()}/todo`);
+    public getAllToDo(userId: number): Observable<Array<ToDo>> {
+        return this.httpClient.get<Array<ToDo>>(`${this.apiUrl}/${this.endpoint}/${userId}/todo`);
     }
 
-    public createToDo(entity: ToDo): Observable<Array<ToDo>> {
-        return this.httpClient.put<Array<ToDo>>(`${this.apiUrl}/${this.endpoint}/${this.authService.getUserId()}/todo/add`, entity);
+    public createToDo(userId: number, entity: ToDo): Observable<Array<ToDo>> {
+        return this.httpClient.put<Array<ToDo>>(`${this.apiUrl}/${this.endpoint}/${userId}/todo/add`, entity);
     }
 
-    public removeToDo(id: number): Observable<Array<ToDo>> {
-        return this.httpClient.delete<Array<ToDo>>(`${this.apiUrl}/${this.endpoint}/${this.authService.getUserId()}/todo/${id}/remove`);
+    public removeToDo(userId: number, id: number): Observable<Array<ToDo>> {
+        return this.httpClient.delete<Array<ToDo>>(`${this.apiUrl}/${this.endpoint}/${userId}/todo/${id}/remove`);
     }
 
-    public getUserDashboard(): Observable<any> {
-        return this.httpClient.get(`${this.apiUrl}/${this.endpoint}/${this.authService.getUserId()}/dashboard`);
+    public getUserDashboard(userId: number): Observable<any> {
+        return this.httpClient.get(`${this.apiUrl}/${this.endpoint}/${userId}/dashboard`);
     }
 }
