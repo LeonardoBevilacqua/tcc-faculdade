@@ -39,14 +39,7 @@ export class DashboardComponent implements OnInit {
 
     job: Job;
     ngOnInit() {
-        if (this.checkIfUserHasCompanyId()) {
-            this.getCardData();
-            this.getJobs();
-            this.getAllRecruiter();
-        } else {
-            this.authService.logout();
-            this.router.navigateByUrl('/');
-        }
+        this.loadDataIfUserHasCompanyId();
 
         this.job = new Job();
     }
@@ -136,7 +129,7 @@ export class DashboardComponent implements OnInit {
 
     private getCardData() {
         this.spinner.show();
-        this.userService.getUserDashboard().subscribe(
+        this.userService.getUserDashboard(this.user.id).subscribe(
             (response) => {
                 this.processTotal = response.processTotal ? response.processTotal : 0;
                 this.awaitingHeadhunter = response.awaitingHeadhunter ? response.awaitingHeadhunter : 0;
@@ -146,23 +139,34 @@ export class DashboardComponent implements OnInit {
         );
     }
 
-    private checkIfUserHasCompanyId(): boolean {
+    private loadDataIfUserHasCompanyId() {
         if (this.user) {
             if (isNullOrUndefined(this.user.companyId)) {
                 this.userService.read(this.user.id).subscribe(
                     (response: User) => {
                         if (response.companyId) {
                             this.authService.setUser(response);
-                            return true;
+                            this.getCardData();
+                            this.getJobs();
+                            this.getAllRecruiter();
+                        }
+                        else {
+                            this.authService.logout();
+                            this.router.navigateByUrl('/');
                         }
                     }
                 );
             }
             else {
-                return true;
+                this.getCardData();
+                this.getJobs();
+                this.getAllRecruiter();
             }
         }
-        return false;
+        else {
+            this.authService.logout();
+            this.router.navigateByUrl('/');
+        }
     }
 
     public shouldDisplayRecrutersTable() {
