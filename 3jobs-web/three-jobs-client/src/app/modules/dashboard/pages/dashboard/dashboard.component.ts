@@ -9,6 +9,7 @@ import { Job } from 'src/app/shared/models/job';
 import { User } from 'src/app/shared/models/user';
 import { isNullOrUndefined } from 'util';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { Router } from '@angular/router';
 
 @Component({ selector: 'app-dashboard', templateUrl: './dashboard.component.html', styleUrls: ['./dashboard.component.scss'] })
 export class DashboardComponent implements OnInit {
@@ -26,7 +27,8 @@ export class DashboardComponent implements OnInit {
         private jobService: JobService,
         private companyService: CompanyService,
         private userService: UserService,
-        private spinner: Ng4LoadingSpinnerService) {
+        private spinner: Ng4LoadingSpinnerService,
+        private router: Router) {
         this.user = this.authService.getUser();
         this.vacancies = [];
         this.recruiters = [];
@@ -37,7 +39,14 @@ export class DashboardComponent implements OnInit {
 
     job: Job;
     ngOnInit() {
-        this.checkIfUserHasCompanyId();
+        if (this.checkIfUserHasCompanyId()) {
+            this.getCardData();
+            this.getJobs();
+            this.getAllRecruiter();
+        } else {
+            this.authService.logout();
+            this.router.navigateByUrl('/');
+        }
 
         this.job = new Job();
     }
@@ -137,25 +146,23 @@ export class DashboardComponent implements OnInit {
         );
     }
 
-    private checkIfUserHasCompanyId() {
-        if (this.user && isNullOrUndefined(this.user.companyId)) {
-            this.userService.read(this.user.id).subscribe(
-                (response) => {
-                    this.authService.setUser(response);
-                    this.getCardData();
-                    this.getJobs();
-                    this.getAllRecruiter();
-                },
-                () => {
-                    this.authService.logout();
-                }
-            );
+    private checkIfUserHasCompanyId(): boolean {
+        if (this.user) {
+            if (isNullOrUndefined(this.user.companyId)) {
+                this.userService.read(this.user.id).subscribe(
+                    (response: User) => {
+                        if (response.companyId) {
+                            this.authService.setUser(response);
+                            return true;
+                        }
+                    }
+                );
+            }
+            else {
+                return true;
+            }
         }
-        else {
-            this.getCardData();
-            this.getJobs();
-            this.getAllRecruiter();
-        }
+        return false;
     }
 
     public shouldDisplayRecrutersTable() {
