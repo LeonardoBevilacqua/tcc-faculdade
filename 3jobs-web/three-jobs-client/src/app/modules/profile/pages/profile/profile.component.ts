@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ProfileService } from 'src/app/core/services/profile.service';
 import { Profile } from 'src/app/shared/models/profile';
+import { isNullOrUndefined } from 'util';
 
 @Component({ selector: 'app-profile', templateUrl: './profile.component.html', styleUrls: ['./profile.component.scss'] })
 export class ProfileComponent implements OnInit {
@@ -40,23 +41,24 @@ export class ProfileComponent implements OnInit {
         // set the page title
         this.titleService.setTitle(`3Jobs | Perfil`);
 
-        this.profileService.read(this.currentId).subscribe(
-            (profile: Profile) => {
-                this.profile = profile;
-            },
-            (error: HttpErrorResponse) => {
-                if (error.status === 404) {
-                    this.toast.error('O usuário que está tentando buscar não existe!');
+        if (!isNullOrUndefined(this.currentId) && this.currentId > 0) {
+            this.profileService.read(this.currentId).subscribe(
+                (profile: Profile) => {
+                    this.profile = profile;
+                },
+                (error: HttpErrorResponse) => {
+                    if (error.status === 404) {
+                        this.toast.error('O usuário que está tentando buscar não existe!');
+                    }
+                    else if (error.status === 401) {
+                        this.toast.error(error.error.error);
+                    }
+                    else {
+                        this.toast.error('Ocorreu um erro inesperado, por favor aguarde!');
+                    }
+                    this.router.navigateByUrl('/');
                 }
-                else if (error.status === 401) {
-                    this.toast.error(error.error.error);
-                }
-                else {
-                    this.toast.error('Ocorreu um erro inesperado, por favor aguarde!');
-                }
-                this.router.navigateByUrl('/');
-            }
-        );
-
+            );
+        }
     }
 }
