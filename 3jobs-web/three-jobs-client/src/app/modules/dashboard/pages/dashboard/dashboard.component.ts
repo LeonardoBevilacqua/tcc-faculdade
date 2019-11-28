@@ -140,7 +140,7 @@ export class DashboardComponent implements OnInit {
     }
 
     private loadDataIfUserHasCompanyId() {
-        if (this.user) {
+        if (this.user.id) {
             if (this.authService.getUserRole() === Role.ROLE_RECRUTER_ADMIN && isNullOrUndefined(this.user.companyId)) {
                 this.userService.read(this.user.id).subscribe(
                     (response: User) => {
