@@ -32,6 +32,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String cpf;
     private String email;
     private Boolean active = false;
