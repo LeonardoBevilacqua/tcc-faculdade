@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { ProfileService } from 'src/app/core/services/profile.service';
 import { MaintainForm } from 'src/app/shared/form/maintain-form';
 import { Profile } from 'src/app/shared/models/profile';
+import { isNullOrUndefined } from 'util';
 
 @Component({ selector: 'app-config', templateUrl: './config.component.html', })
 export class ConfigComponent extends MaintainForm<Profile> implements OnInit {
@@ -31,10 +32,12 @@ export class ConfigComponent extends MaintainForm<Profile> implements OnInit {
      * Method responsible to load the current user data
      */
     private loadProfile() {
-        this.profileService.read(this.authService.getUser().profileId).subscribe(response => {
-            this.model = response;
-            this.currentId = this.model.id;
-        });
+        if (!isNullOrUndefined(this.authService.getUser().profileId) && this.authService.getUser().profileId > 0) {
+            this.profileService.read(this.authService.getUser().profileId).subscribe(response => {
+                this.model = response;
+                this.currentId = this.model.id;
+            });
+        }
     }
 
 }
