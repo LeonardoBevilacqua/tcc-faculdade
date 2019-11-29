@@ -10,6 +10,7 @@ import { User } from 'src/app/shared/models/user';
 import { isNullOrUndefined } from 'util';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Router } from '@angular/router';
+import { Profile } from 'src/app/shared/models/profile';
 
 @Component({ selector: 'app-dashboard', templateUrl: './dashboard.component.html', styleUrls: ['./dashboard.component.scss'] })
 export class DashboardComponent implements OnInit {
@@ -17,6 +18,7 @@ export class DashboardComponent implements OnInit {
     vacancies: Array<Job>;
     recruiters: Array<User>;
     user: User;
+    recruter: User;
 
     processTotal: number;
     awaitingHeadhunter: number;
@@ -29,6 +31,8 @@ export class DashboardComponent implements OnInit {
         private userService: UserService,
         private spinner: Ng4LoadingSpinnerService,
         private router: Router) {
+        this.recruter = new User();
+        this.recruter.profile = new Profile();
         this.user = this.authService.getUser();
         this.vacancies = [];
         this.recruiters = [];
