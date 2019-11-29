@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
     vacancies: Array<Job>;
     recruiters: Array<User>;
     user: User;
-    recruter: User;
+    recruiter: User;
 
     processTotal: number;
     awaitingHeadhunter: number;
@@ -31,8 +31,7 @@ export class DashboardComponent implements OnInit {
         private userService: UserService,
         private spinner: Ng4LoadingSpinnerService,
         private router: Router) {
-        this.recruter = new User();
-        this.recruter.profile = new Profile();
+        this.initializeRecruiter();
         this.user = this.authService.getUser();
         this.vacancies = [];
         this.recruiters = [];
@@ -183,5 +182,10 @@ export class DashboardComponent implements OnInit {
 
     public shouldAccessJobDashboard() {
         return this.authService.getUserRole() !== Role.ROLE_CANDIDATE;
+    }
+
+    public initializeRecruiter() {
+        this.recruiter = new User();
+        this.recruiter.profile = new Profile();
     }
 }
