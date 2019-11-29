@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { User } from 'src/app/shared/models/user';
 
 import { EntityService } from './entity.service';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable()
@@ -20,8 +21,7 @@ export class AuthService extends EntityService<User>{
 
     public login(user: User): Observable<boolean> {
         return this.httpClient.post(
-            // `${this.apiUrl}/${this.endpoint}`,
-            `http://127.0.0.1:5000/${this.endpoint}`,
+            `${environment.authUrl}/${this.endpoint}`,
             { email: user.email, password: user.password },
             { observe: 'response' }
         ).pipe(map((response) => {
