@@ -5,6 +5,8 @@ import { JobService } from 'src/app/core/services/job.service';
 import { MaintainForm } from 'src/app/shared/form/maintain-form';
 import { Job } from 'src/app/shared/models/job';
 import { Tag } from 'src/app/shared/models/tag';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { Company } from 'src/app/shared/models/company';
 
 declare const $: any;
 
@@ -19,9 +21,12 @@ export class CreateVacancyModalComponent extends MaintainForm<Job> implements On
     constructor(
         private jobService: JobService,
         router: Router,
-        toastr: ToastrService) {
+        toastr: ToastrService,
+        private authService: AuthService) {
         super(null, router, toastr);
         this.model = new Job();
+        this.model.company = new Company();
+        this.model.company.id = this.authService.getUser().companyId;
     }
 
     @Input() model: Job;

@@ -48,32 +48,38 @@ export class JobDetailsComponent implements OnInit {
         // get the current path id if exists
         this.currentId = +this.router.url.split('/')[2];
 
-        this.jobService.read(this.currentId).subscribe(
-            (job: Job) => {
-                this.job = job;
-                this.jobService.search(this.job.description, 0, 4).subscribe(
-                    ((res: any) => {
-                        this.jobMatch = res.content;
-                    }
-                    )
-                );
-                this.spinnerService.hide();
-            },
-            (error: HttpErrorResponse) => {
-                this.spinnerService.hide();
+        if (!isNullOrUndefined(this.currentId) && this.currentId > 0) {
+            this.jobService.read(this.currentId).subscribe(
+                (job: Job) => {
+                    this.job = job;
+                    this.jobService.search(this.job.description, 0, 4).subscribe(
+                        ((res: any) => {
+                            this.jobMatch = res.content;
+                        }
+                        )
+                    );
+                    this.spinnerService.hide();
+                },
+                (error: HttpErrorResponse) => {
+                    this.spinnerService.hide();
 
-                if (error.status === 404) {
-                    this.toast.error('A Vaga que está tentando buscar não existe!');
+                    if (error.status === 404) {
+                        this.toast.error('A Vaga que está tentando buscar não existe!');
+                    }
+                    else if (error.status === 401) {
+                        this.toast.error(error.error.error);
+                    }
+                    else {
+                        this.toast.error('Ocorreu um erro inesperado, por favor aguarde!');
+                    }
+                    this.router.navigateByUrl('/');
                 }
-                else if (error.status === 401) {
-                    this.toast.error(error.error.error);
-                }
-                else {
-                    this.toast.error('Ocorreu um erro inesperado, por favor aguarde!');
-                }
-                this.router.navigateByUrl('/');
-            }
-        );
+            );
+        }
+        else {
+            this.toast.error('A Vaga que está tentando buscar não existe!');
+            this.router.navigateByUrl('/');
+        }
     }
 
     public subscribe() {

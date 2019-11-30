@@ -9,6 +9,7 @@ import { Job } from 'src/app/shared/models/job';
 import { User } from 'src/app/shared/models/user';
 import { isNullOrUndefined } from 'util';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { Router } from '@angular/router';
 
 @Component({ selector: 'app-dashboard', templateUrl: './dashboard.component.html', styleUrls: ['./dashboard.component.scss'] })
 export class DashboardComponent implements OnInit {
@@ -26,7 +27,8 @@ export class DashboardComponent implements OnInit {
         private jobService: JobService,
         private companyService: CompanyService,
         private userService: UserService,
-        private spinner: Ng4LoadingSpinnerService) {
+        private spinner: Ng4LoadingSpinnerService,
+        private router: Router) {
         this.user = this.authService.getUser();
         this.vacancies = [];
         this.recruiters = [];
@@ -37,7 +39,7 @@ export class DashboardComponent implements OnInit {
 
     job: Job;
     ngOnInit() {
-        this.checkIfUserHasCompanyId();
+        this.loadDataIfUserHasCompanyId();
 
         this.job = new Job();
     }
@@ -127,7 +129,7 @@ export class DashboardComponent implements OnInit {
 
     private getCardData() {
         this.spinner.show();
-        this.userService.getUserDashboard().subscribe(
+        this.userService.getUserDashboard(this.user.id).subscribe(
             (response) => {
                 this.processTotal = response.processTotal ? response.processTotal : 0;
                 this.awaitingHeadhunter = response.awaitingHeadhunter ? response.awaitingHeadhunter : 0;
@@ -137,24 +139,33 @@ export class DashboardComponent implements OnInit {
         );
     }
 
-    private checkIfUserHasCompanyId() {
-        if (this.user && isNullOrUndefined(this.user.companyId)) {
-            this.userService.read(this.user.id).subscribe(
-                (response) => {
-                    this.authService.setUser(response);
-                    this.getCardData();
-                    this.getJobs();
-                    this.getAllRecruiter();
-                },
-                () => {
-                    this.authService.logout();
-                }
-            );
+    private loadDataIfUserHasCompanyId() {
+        if (this.user.id) {
+            if (this.authService.getUserRole() === Role.ROLE_RECRUTER_ADMIN && isNullOrUndefined(this.user.companyId)) {
+                this.userService.read(this.user.id).subscribe(
+                    (response: User) => {
+                        if (response.companyId) {
+                            this.authService.setUser(response);
+                            this.getCardData();
+                            this.getJobs();
+                            this.getAllRecruiter();
+                        }
+                        else {
+                            this.authService.logout();
+                            this.router.navigateByUrl('/');
+                        }
+                    }
+                );
+            }
+            else {
+                this.getCardData();
+                this.getJobs();
+                this.getAllRecruiter();
+            }
         }
         else {
-            this.getCardData();
-            this.getJobs();
-            this.getAllRecruiter();
+            this.authService.logout();
+            this.router.navigateByUrl('/');
         }
     }
 
