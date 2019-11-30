@@ -1,7 +1,6 @@
 package com.core.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.HashMap;
@@ -76,6 +75,16 @@ public class Form {
 
     public void setJob(Job job) {
         this.job = job;
+    }
+
+    @Override
+    public String toString() {
+        return "Form{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", questions=" + questions +
+                '}';
     }
 }
 

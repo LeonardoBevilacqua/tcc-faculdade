@@ -83,4 +83,11 @@ public class UserForm {
     public void setAnswers(HashMap<Long, String> answers) {
         this.answers = answers;
     }
+
+    @Override
+    public String toString() {
+        return "UserForm{" +
+                "id=" + id +
+                '}';
+    }
 }

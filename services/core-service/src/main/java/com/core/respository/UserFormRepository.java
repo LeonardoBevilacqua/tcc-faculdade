@@ -9,4 +9,6 @@ import java.util.List;
 public interface UserFormRepository extends JpaRepository<UserForm, Long> {
 
     List<UserForm> findByFormId(Long formId);
+
+    List<UserForm> findByUserId(Long userId);
 }
