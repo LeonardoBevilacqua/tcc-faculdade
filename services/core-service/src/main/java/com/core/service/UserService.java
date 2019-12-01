@@ -125,10 +125,14 @@ public class UserService {
         return response;
     }
 
-    public List<FormDTO> getForms(Long userId) {
+    public FormWithAnswersAndQuestionsDTO getForms(Long userId) {
         List<UserForm> userForms = userFormRepository.findByUserId(userId);
         List<Job> jobs = jobRepository.findJobsByUserId(userId);
-        List<FormDTO> forms = DashboardAggregate.aggregateByFormNotAnswered(jobs, userId, userForms);
-        return forms;
+        List<FormDTO> formsNotAnswered = DashboardAggregate.aggregateByFormNotAnswered(jobs, userId, userForms);
+        List<FormDTO> formsAnswered = DashboardAggregate.aggregateByFormAnswered(jobs, userId, userForms);
+        FormWithAnswersAndQuestionsDTO formResponse = new FormWithAnswersAndQuestionsDTO();
+        formResponse.setAnswered(formsAnswered);
+        formResponse.setNotAnswered(formsNotAnswered);
+        return formResponse;
     }
 }
