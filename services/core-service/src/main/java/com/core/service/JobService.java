@@ -191,11 +191,11 @@ public class JobService {
 		return form;
 	}
 
-	public FormDTO getAnswers(Long jobId, Long formId) {
+	public FormWithQuestionsDTO getSimpleForm(Long jobId, Long formId) {
 		Optional<Form> formOpt =  formRepository.findById(formId);
 		Form form = formOpt.get();
-		FormDTO formDTO = new FormDTO(form.getId(), form.getName(), form.getDescription(), jobId);
-		return formDTO;
+		FormWithQuestionsDTO formWithQuestionsDTO = new FormWithQuestionsDTO(form.getId(), form.getName(), form.getDescription(), jobId, form.getQuestions());
+		return formWithQuestionsDTO;
 	}
 
 	public UserForm updateAnswers(AnswersDTO answersDTO, Long jobId) {
@@ -217,5 +217,10 @@ public class JobService {
 		formFound.setName(form.getName());
 		formFound.setQuestions(form.getQuestions());
 		return formRepository.save(formFound);
+	}
+
+	public Form getAnswers(Long jobId, Long formId) {
+		Optional<Form> formOpt =  formRepository.findById(formId);
+		return formOpt.get();
 	}
 }
