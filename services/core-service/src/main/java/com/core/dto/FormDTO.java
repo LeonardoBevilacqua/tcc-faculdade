@@ -10,6 +10,16 @@ public class FormDTO {
     private Long jobId;
     private LocalDate finalDate;
 
+    public FormDTO() {
+    }
+
+    public FormDTO(Long id, String name, String description, Long jobId) {
+        Id = id;
+        this.name = name;
+        this.description = description;
+        this.jobId = jobId;
+    }
+
     public Long getId() {
         return Id;
     }
