@@ -3,6 +3,7 @@ import { UserQuiz } from 'src/app/shared/models/userQuiz';
 import { Quiz } from 'src/app/shared/models/quiz';
 import { element } from '@angular/core/src/render3';
 import { QuizService } from 'src/app/core/services/quiz.service';
+import { Utils } from 'src/app/shared/utils/utils';
 
 declare const $: any;
 
@@ -15,21 +16,17 @@ export class AnswersModalComponent implements OnChanges {
 
     @Input() userQuiz: UserQuiz;
     @Input() quiz: Quiz;
-    constructor(private quizService: QuizService) {
+    constructor(private quizService: QuizService, private utils: Utils) {
         this.userQuiz = new UserQuiz();
         this.quiz = new Quiz();
     }
 
     ngOnChanges() {
-        // console.log("Dentro do answers");
-        // console.log(this.userQuiz);
-        // console.log(this.quiz);
-
     }
 
     public answers() {
-        const questions = this.objectToMap(this.quiz.questions);
-        const answers = this.objectToMap(this.userQuiz.answers);
+        const questions = this.utils.objectToMap(this.quiz.questions);
+        const answers = this.utils.objectToMap(this.userQuiz.answers);
         let result: Map<string, string>;
         result = new Map();
         questions.forEach((questionValue, questionKey) => {
@@ -45,21 +42,6 @@ export class AnswersModalComponent implements OnChanges {
         });
 
         return result;
-    }
-
-
-    private objectToMap(obj: any) {
-        const mp = new Map();
-        if (obj !== null && obj) {
-            Object.keys(obj).forEach(k => mp.set(k, obj[k]));
-        }
-        return mp;
-    }
-
-    private mapToObject(map: Map<number, string>) {
-        const obj = {};
-        map.forEach((v, k) => obj[k] = v);
-        return obj;
     }
 
     public onSubmit() {

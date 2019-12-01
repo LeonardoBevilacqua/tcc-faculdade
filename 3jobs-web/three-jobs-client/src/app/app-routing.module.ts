@@ -13,7 +13,7 @@ const routes: Routes = [
     { path: 'register', loadChildren: './modules/register/register.module#RegisterModule', canActivate: [LoggedInGuard] },
     { path: 'company', loadChildren: './modules/company/company.module#CompanyModule', canActivate: [AuthGuard] },
     { path: 'config', loadChildren: './modules/config/config.module#ConfigModule', canActivate: [AuthGuard] },
-    { path: 'quiz', loadChildren: './modules/quiz/quiz.module#QuizModule'}
+    { path: 'quiz/:jobid/:formId', loadChildren: './modules/quiz/quiz.module#QuizModule'}
 ];
 
 @NgModule({

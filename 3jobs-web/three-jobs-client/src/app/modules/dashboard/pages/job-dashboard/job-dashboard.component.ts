@@ -44,7 +44,10 @@ export class JobDashboardComponent implements OnInit {
                     this.citiesName = Object.keys(response.cities);
                     this.citiesValue = Object.values(response.cities);
 
-                    this.createChart();
+                    if (this.citiesName.length > 0) {
+                        this.createChart();
+                    }
+
                 },
                 (error) => {
                     console.error(error);

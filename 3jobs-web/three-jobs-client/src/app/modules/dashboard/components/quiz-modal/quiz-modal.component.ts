@@ -4,6 +4,7 @@ import { QuizService } from 'src/app/core/services/quiz.service';
 import { ToastrService } from 'ngx-toastr';
 import { MaintainForm } from 'src/app/shared/form/maintain-form';
 import { Job } from 'src/app/shared/models/job';
+import { Utils } from 'src/app/shared/utils/utils';
 
 declare const $: any;
 
@@ -19,7 +20,7 @@ export class QuizModalComponent implements OnChanges {
     questions: Map<number, string>;
     @Input() job: Job;
 
-    constructor(private quizService: QuizService) {
+    constructor(private quizService: QuizService, private utils: Utils) {
         this.question = new Question();
         this.quiz = new Quiz();
         this.questions = new Map<number, string>();
@@ -28,20 +29,6 @@ export class QuizModalComponent implements OnChanges {
 
     ngOnChanges() {
         this.getQuiz();
-    }
-
-    private objectToMap(obj: any) {
-        const mp = new Map();
-        if (obj !== null && obj) {
-            Object.keys(obj).forEach(k => mp.set(k, obj[k]));
-        }
-        return mp;
-    }
-
-    private mapToObject(map: Map<number, string>) {
-        const obj = {};
-        map.forEach((v, k) => obj[k] = v);
-        return obj;
     }
 
     public addQuestion() {
@@ -87,26 +74,22 @@ export class QuizModalComponent implements OnChanges {
                 this.quiz = new Quiz();
             }
 
-            this.questions = this.objectToMap(this.quiz.questions);
+            this.questions = this.utils.objectToMap(this.quiz.questions);
         }
 
     }
 
     public onSubmit() {
 
-        this.quiz.questions = this.mapToObject(this.questions);
+        this.quiz.questions = this.utils.mapToObject(this.questions);
 
         if (this.quiz.id && this.quiz.id > 0) {
 
             this.quizService.updateQuiz(this.job.id, this.quiz).subscribe(
                 (response: any) => {
-                    // console.log(response);
-                    //  this.subject.emit();
-                    $('#quizModal').modal('hide');
-                    // this.toastr.success(response.message ? response.message : 'Informações salvas com sucesso!');
+                  /*  */  $('#quizModal').modal('hide');
                 },
                 (error) => {
-                    //this.errorHandler(error);
                     console.log(error);
                 }
             );
@@ -115,15 +98,10 @@ export class QuizModalComponent implements OnChanges {
 
             this.quizService.saveQuiz(this.job.id, this.quiz).subscribe(
                 (response: any) => {
-                    // console.log(response);
-                    //  this.subject.emit();
                     $('#quizModal').modal('hide');
-                    // this.toastr.success(response.message ? response.message : 'Informações salvas com sucesso!');
                 },
                 (error) => {
                     console.log(error);
-                    //this.errorHandler(error);
-                    //console.log(error);
                 }
             );
         }

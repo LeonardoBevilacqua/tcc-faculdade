@@ -1,3 +1,39 @@
-<p>
-  quiz works!
-</p>
+<div style="background-color: #f0ebf8;height: 100vh; overflow-x: hidden;">
+    <form class="container py-3" *ngIf="quizAnswered === false; else elseBlock">
+        <div class="row justify-content-center">
+            <div class="card col-12 col-sm-8">
+                <div class="card-body">
+                    <h3 class="card-title">{{quiz.name}}</h3>
+                    <p class="card-text">{{quiz.description}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center my-3" *ngFor="let question of questions; let in = index">
+            <div class="card col-12 col-sm-8 p-0">
+                <div class="card-body">
+                    <h5 class="card-title">{{question.name}}</h5>
+                    <textarea class="form-control" style="resize: none;" [(ngModel)]="questions[in].answer"
+                        name="answer" required></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center my-3">
+            <div class="card col-12 col-sm-8 p-0">
+                <button type="submit" (click)="onSubmit()" class="btn btn-primary">Enviar Respostas</button>
+            </div>
+        </div>
+    </form>
+
+    <ng-template class="container pt-5" #elseBlock>
+
+        <div class="row justify-content-center pt-5">
+            <div class="card col-12 col-sm-8" style="max-width: 600px;">
+                <div class="card-body">
+                    <h3 class="card-title">{{quiz.name}}</h3>
+                    <p class="card-text">Parabéns sua resposta já foi enviada. </p>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+
+</div>

@@ -12,6 +12,7 @@ import { ProfileService } from './services/profile.service';
 import { TestesService } from './services/testes.service';
 import { UserService } from './services/user.service';
 import { QuizService } from './services/quiz.service';
+import { Utils } from '../shared/utils/utils';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { QuizService } from './services/quiz.service';
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         AuthGuard,
         LoggedInGuard,
+        Utils
     ],
 })
 export class CoreModule { }
