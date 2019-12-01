@@ -1,16 +1,11 @@
 package com.core.service;
 
-import com.core.dto.DashboardStats;
-import com.core.dto.UserLoginDTO;
-import com.core.dto.UserSimpleDTO;
-import com.core.dto.UserToDoDTO;
+import com.core.dto.*;
 import com.core.exception.EntityNotFoundException;
-import com.core.model.Job;
-import com.core.model.Role;
-import com.core.model.ToDo;
-import com.core.model.User;
+import com.core.model.*;
 import com.core.respository.JobRepository;
 import com.core.respository.TodoRepository;
+import com.core.respository.UserFormRepository;
 import com.core.respository.UserRepository;
 import com.core.util.DashboardAggregate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +26,9 @@ public class UserService {
 
     @Autowired
     private JobRepository jobRepository;
+
+    @Autowired
+    private UserFormRepository userFormRepository;
 
     public List<User> getUsers() {
         return userRepository.findAll();
@@ -125,5 +123,12 @@ public class UserService {
         HashMap<String, String> response = new HashMap<>();
         response.put("message", "User actived successfully");
         return response;
+    }
+
+    public List<FormDTO> getForms(Long userId) {
+        List<UserForm> userForms = userFormRepository.findByUserId(userId);
+        List<Job> jobs = jobRepository.findJobsByUserId(userId);
+        List<FormDTO> forms = DashboardAggregate.aggregateByFormNotAnswered(jobs, userId, userForms);
+        return forms;
     }
 }
