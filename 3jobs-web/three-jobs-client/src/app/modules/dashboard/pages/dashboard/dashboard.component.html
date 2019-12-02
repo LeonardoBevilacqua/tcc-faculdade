@@ -30,8 +30,7 @@
                             <th scope="col" style="width: 110px">Status</th>
                             <th scope="col" style="width: 140px">
                                 <button (click)="createVacancy()" class="btn btn-success btn-sm" data-toggle="modal"
-                                *ngIf="shouldDisplayVacancy()"   
-                                data-target="#createVacancyModal">Cadastrar</button>
+                                    *ngIf="shouldDisplayVacancy()" data-target="#createVacancyModal">Cadastrar</button>
                             </th>
                         </tr>
                     </thead>
@@ -42,17 +41,19 @@
                             <td><span class="badge badge-success">{{vacancy.status}}</span></td>
                             <td>
                                 <button (click)="toEditVacancy(vacancy)" data-toggle="modal"
-                                    *ngIf="shouldDisplayVacancy()" data-target="#createVacancyModal"
-                                    type="button" class="btn btn-primary btn-sm" title="Editar Vaga">
+                                    *ngIf="shouldDisplayVacancy()" data-target="#createVacancyModal" type="button"
+                                    class="btn btn-primary btn-sm" title="Editar Vaga">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                 </button>
-                                <button *ngIf="shouldAccessJobDashboard()" [routerLink]="['/dashboard/job-dashboard/', vacancy.id]"
+                                <button *ngIf="shouldAccessJobDashboard()"
+                                    [routerLink]="['/dashboard/job-dashboard/', vacancy.id]"
                                     routerLinkActive="router-link-active" type="button"
                                     class="btn btn-success btn-sm mx-2" title="Ver Vaga">
                                     <i class="fa fa-share" aria-hidden="true"></i>
                                 </button>
-                                <button  id="btn-quiz-modal" (click)="toEditQuiz(vacancy)" data-toggle="modal" data-target="#quizModal" type="button"
-                                    class="btn btn-dark btn-sm" title="Questionario">
+                                <button id="btn-quiz-modal" (click)="toEditQuiz(vacancy)" data-toggle="modal"
+                                    data-target="#quizModal" type="button" class="btn btn-dark btn-sm"
+                                    title="Questionario">
                                     <i class="fa fa-file-text" aria-hidden="true"></i>
                                 </button>
                             </td>
@@ -71,8 +72,10 @@
                         <tr>
                             <th scope="col">Recrutador</th>
                             <th scope="col" class="d-none d-sm-table-cell">E-mail</th>
+                            <th scope="col">Ativo no sistema?</th>
                             <th scope="col" style="width: 110px">
-                                <button class="btn btn-success btn-sm">Cadastrar</button>
+                                <button class="btn btn-success btn-sm" data-toggle="modal"
+                                    (click)="initializeRecruiter()" data-target="#recruiterFormModal">Cadastrar</button>
                             </th>
                         </tr>
                     </thead>
@@ -80,10 +83,11 @@
                         <tr *ngFor="let recruiter of recruiters;">
                             <td>{{recruiter.profile.name}}</td>
                             <td class="d-none d-sm-table-cell">{{recruiter.email}}</td>
+                            <td>{{recruiter.active ? 'Sim' : 'Não'}}</td>
                             <td>
-                                <button type="button" class="btn btn-primary btn-sm" title="Editar Recrutador">
+                                <!-- <button type="button" class="btn btn-primary btn-sm" title="Editar Recrutador">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
-                                </button>
+                                </button> -->
                                 <a target="_blank" href="/profile/{{recruiter.profile.id}}"
                                     class="btn btn-success btn-sm mx-2" title="Perfil Recrutador">
                                     <i class="fa fa-share" aria-hidden="true"></i>
@@ -96,9 +100,72 @@
                     </tbody>
                 </table>
             </div>
+
+            <!-- Creater recruiter modal -->
+            <div class="modal fade" id="recruiterFormModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="recruiterFormLabel">Cadastrar recrutador</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form #recruiterForm="ngForm" (ngSubmit)="recruiterForm.form.valid && createRecruiter()">
+                            <div class="modal-body">
+                                <!-- sign up form -->
+                                <div class="form-row">
+                                    <!-- email -->
+                                    <div class="form-group col-lg-6">
+                                        <label for="email">Email:</label>
+                                        <input required email type="email" class="form-control" id="email" name="email"
+                                            [(ngModel)]="recruiter.email" #email="ngModel" mustMatch="confirmEmail"
+                                            reverse="true">
+                                        <validation-message [inputControl]="email"></validation-message>
+                                    </div>
+
+                                    <!-- cpf -->
+                                    <div class="form-group col-lg-6">
+                                        <label for="cpf">CPF:</label>
+                                        <input required maxlength="11"
+                                            pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})"
+                                            type="text" class="form-control" id="cpf" name="cpf"
+                                            [(ngModel)]="recruiter.cpf" #cpf="ngModel" cpfValidation>
+                                        <validation-message [inputControl]="cpf"></validation-message>
+                                        <small class="form-text text-muted">Inserir apenas numeros, sem pontos.</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <!-- name -->
+                                    <div class="form-group col-lg-6">
+                                        <label for="name">Nome:</label>
+                                        <input required maxlength="60" type="text" class="form-control" id="name"
+                                            name="name" [(ngModel)]="recruiter.profile.name" #name="ngModel">
+                                        <validation-message [inputControl]="name"></validation-message>
+                                    </div>
+
+                                    <!-- lastName -->
+                                    <div class="form-group col-lg-6">
+                                        <label for="lastName">Sobrenome:</label>
+                                        <input required maxlength="60" type="text" class="form-control" id="lastName"
+                                            name="lastName" [(ngModel)]="recruiter.profile.lastName"
+                                            #lastName="ngModel">
+                                        <validation-message [inputControl]="lastName"></validation-message>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary"
+                                    [disabled]="!recruiterForm.form.valid">Cadastrar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-    <app-create-vacancy-modal [model]="job" (subject)="getJobs()" *ngIf="shouldDisplayVacancy()"></app-create-vacancy-modal>
+    <app-create-vacancy-modal [model]="job" (subject)="getJobs()" *ngIf="shouldDisplayVacancy()"> </app-create-vacancy-modal>
     <app-quiz-modal [job]="job"></app-quiz-modal>
     <app-footer></app-footer>
 </div>
