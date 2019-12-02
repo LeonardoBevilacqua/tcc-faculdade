@@ -19,4 +19,5 @@ export class User extends Entity {
     toDo: Array<any>;
     company: Company;
     companyId: number;
+    active: boolean;
 }

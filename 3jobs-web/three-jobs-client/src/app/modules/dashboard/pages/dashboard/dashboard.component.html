@@ -70,9 +70,10 @@
                         <tr>
                             <th scope="col">Recrutador</th>
                             <th scope="col" class="d-none d-sm-table-cell">E-mail</th>
+                            <th scope="col">Ativo no sistema?</th>
                             <th scope="col" style="width: 110px">
-                                <button class="btn btn-success btn-sm" data-toggle="modal" (click)="initializeRecruiter()"
-                                    data-target="#recruiterFormModal">Cadastrar</button>
+                                <button class="btn btn-success btn-sm" data-toggle="modal"
+                                    (click)="initializeRecruiter()" data-target="#recruiterFormModal">Cadastrar</button>
                             </th>
                         </tr>
                     </thead>
@@ -80,10 +81,11 @@
                         <tr *ngFor="let recruiter of recruiters;">
                             <td>{{recruiter.profile.name}}</td>
                             <td class="d-none d-sm-table-cell">{{recruiter.email}}</td>
+                            <td>{{recruiter.active ? 'Sim' : 'Não'}}</td>
                             <td>
-                                <button type="button" class="btn btn-primary btn-sm" title="Editar Recrutador">
+                                <!-- <button type="button" class="btn btn-primary btn-sm" title="Editar Recrutador">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
-                                </button>
+                                </button> -->
                                 <a target="_blank" href="/profile/{{recruiter.profile.id}}"
                                     class="btn btn-success btn-sm mx-2" title="Perfil Recrutador">
                                     <i class="fa fa-share" aria-hidden="true"></i>
@@ -107,9 +109,9 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
-                            <!-- sign up form -->
-                            <form #recruiterForm="ngForm" (ngSubmit)="recruiterForm.form.valid">
+                        <form #recruiterForm="ngForm" (ngSubmit)="recruiterForm.form.valid && createRecruiter()">
+                            <div class="modal-body">
+                                <!-- sign up form -->
                                 <div class="form-row">
                                     <!-- email -->
                                     <div class="form-group col-lg-6">
@@ -150,11 +152,12 @@
                                         <validation-message [inputControl]="lastName"></validation-message>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary">Cadastrar</button>
-                        </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary"
+                                    [disabled]="!recruiterForm.form.valid">Cadastrar</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

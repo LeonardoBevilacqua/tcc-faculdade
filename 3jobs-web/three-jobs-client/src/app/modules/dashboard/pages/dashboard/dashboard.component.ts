@@ -11,6 +11,9 @@ import { isNullOrUndefined } from 'util';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Router } from '@angular/router';
 import { Profile } from 'src/app/shared/models/profile';
+import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({ selector: 'app-dashboard', templateUrl: './dashboard.component.html', styleUrls: ['./dashboard.component.scss'] })
 export class DashboardComponent implements OnInit {
@@ -30,7 +33,8 @@ export class DashboardComponent implements OnInit {
         private companyService: CompanyService,
         private userService: UserService,
         private spinner: Ng4LoadingSpinnerService,
-        private router: Router) {
+        private router: Router,
+        private toastr: ToastrService) {
         this.initializeRecruiter();
         this.user = this.authService.getUser();
         this.vacancies = [];
@@ -120,7 +124,7 @@ export class DashboardComponent implements OnInit {
         this.spinner.show();
         this.companyService.read(this.user.companyId).subscribe(
             (response) => {
-                this.recruiters = response.recruters;
+                this.recruiters = response.recruters.filter(recruiter => recruiter.id !== this.user.id);
                 this.spinner.hide();
             },
             (error) => {
@@ -187,5 +191,37 @@ export class DashboardComponent implements OnInit {
     public initializeRecruiter() {
         this.recruiter = new User();
         this.recruiter.profile = new Profile();
+    }
+
+    public createRecruiter() {
+        this.recruiter.roles = [Role.ROLE_RECRUTER];
+        this.recruiter.password = 'temp';
+        this.recruiter.company = new Company();
+        this.recruiter.company.id = this.user.companyId;
+
+        this.userService.create(this.recruiter).subscribe(
+            (response: any) => {
+                this.toastr.success(response.message ? response.message : 'Recrutador criado com sucesso!');
+
+                this.getAllRecruiter();
+            },
+            (error: HttpErrorResponse) => {
+                // if error is set, Show the server message.
+                if (error.error && error.status !== 0) {
+                    // set a title to show
+                    const title = error.error.title ? error.error.title : `Erro ${error.status}`;
+                    // display the warning message
+                    this.toastr.warning(error.error.message, title);
+                }
+                // else, show a error message
+                else {
+                    this.toastr.error('Tente novamente mais tarde.', 'Falha ao se comunicar com servidor!');
+                }
+
+                if (!environment.production) {
+                    // for debug
+                    console.error(error);
+                }
+            });
     }
 }
