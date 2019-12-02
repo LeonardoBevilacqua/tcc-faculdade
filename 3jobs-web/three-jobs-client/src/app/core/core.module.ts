@@ -9,7 +9,6 @@ import { AuthService } from './services/auth.service';
 import { CompanyService } from './services/company.service';
 import { JobService } from './services/job.service';
 import { ProfileService } from './services/profile.service';
-import { TestesService } from './services/testes.service';
 import { UserService } from './services/user.service';
 
 
@@ -20,7 +19,6 @@ import { UserService } from './services/user.service';
         HttpClientModule
     ],
     providers: [
-        TestesService,
         ProfileService,
         UserService,
         AuthService,

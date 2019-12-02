@@ -35,7 +35,7 @@ export class FooterComponent implements OnInit {
     }
 
     shouldDisplayRoleDescription(): boolean {
-        return !environment.production;
+        return !environment.production && this.isLogged;
     }
 
 }
