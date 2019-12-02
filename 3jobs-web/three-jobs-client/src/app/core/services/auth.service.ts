@@ -20,7 +20,7 @@ export class AuthService extends EntityService<User>{
 
     public login(user: User): Observable<boolean> {
         return this.httpClient.post(
-            `http://localhost:5000/login`,
+            `${this.apiUrl}/${this.endpoint}`,
             { email: user.email, password: user.password },
             { observe: 'response' }
         ).pipe(map((response) => {
