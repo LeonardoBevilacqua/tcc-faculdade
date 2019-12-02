@@ -7,7 +7,7 @@
             <div class="badge badge-pill badge-primary mr-2" *ngFor="let item of tagsList">
                 {{item}} </div>
         </div>
-        <form #filterForm="ngForm" (ngSubmit)="onSubmit(filterForm)" *ngIf="jobList.numberOfElements != 0">
+        <form #filterForm="ngForm" (ngSubmit)="onSubmit(filterForm, $event)" *ngIf="jobList.numberOfElements != 0">
             <div class="d-flex flex-row-reverse px-md-5 pt-3">
                 <button [hidden]="isFilterActive" type="submit" class="btn btn-outline-primary ml-2"
                 [disabled]="(filterForm.form.value.filterJobRoles == '' || filterForm.form.value.filterJobRoles == null) && (filterForm.form.value.filterCities == '' || filterForm.form.value.filterCities == null)" >

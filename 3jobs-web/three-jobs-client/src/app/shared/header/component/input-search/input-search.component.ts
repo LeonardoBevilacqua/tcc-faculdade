@@ -7,7 +7,6 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { NgForm } from '@angular/forms';
 import { SearchService } from 'src/app/core/services/search.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { DirectAccessUrlGuard } from 'src/app/core/mechanism/direct-access-url.guard';
 import { DirectAccessUrlService } from 'src/app/core/services/direct-access-url.service';
 
 @Component({ selector: 'app-input-search', templateUrl: './input-search.component.html', })
