@@ -7,6 +7,7 @@ import { ToDo } from './../../shared/models/toDo';
 import { AuthService } from './auth.service';
 import { EntityService } from './entity.service';
 import { Quiz } from 'src/app/shared/models/quiz';
+import { UserQuizzes } from 'src/app/shared/models/userQuiz';
 
 /**
  * Service responsible to handle the user.
@@ -39,7 +40,7 @@ export class UserService extends EntityService<User> {
         return this.httpClient.get(`${this.apiUrl}/${this.endpoint}/${userId}/dashboard`);
     }
 
-    public getUserForms(userId: number): Observable<Array<Quiz>> {
-        return this.httpClient.get<Array<Quiz>>(`${this.apiUrl}/${this.endpoint}/${userId}/forms`);
+    public getUserForms(userId: number): Observable<UserQuizzes> {
+        return this.httpClient.get<UserQuizzes>(`${this.apiUrl}/${this.endpoint}/${userId}/forms`);
     }
 }

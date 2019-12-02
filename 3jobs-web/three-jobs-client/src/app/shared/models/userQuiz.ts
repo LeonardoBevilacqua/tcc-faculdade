@@ -1,5 +1,6 @@
 import { Entity } from './entity';
 import { User } from './user';
+import { Quiz } from './quiz';
 
 export class UserQuiz extends Entity {
     formId: number;
@@ -10,4 +11,10 @@ export class UserQuiz extends Entity {
     finalGrade: number;
     userFormID: number;
     user: User;
+}
+
+
+export class UserQuizzes {
+    answered: Array<Quiz>;
+    notAnswered: Array<Quiz>;
 }

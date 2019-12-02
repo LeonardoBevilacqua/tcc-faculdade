@@ -14,7 +14,7 @@ import { Utils } from 'src/app/shared/utils/utils';
     styleUrls: ['./quiz.component.scss']
 })
 export class QuizComponent implements OnInit {
-    public quizAnswered: boolean;
+    public quizNotAnswered: boolean;
     private jobId: number;
     private formId: number;
     public userQuiz: UserQuiz;
@@ -39,22 +39,20 @@ export class QuizComponent implements OnInit {
         this.quiz = new Quiz();
 
         this.questions = new Array();
-        this.quizAnswered = true;
+        this.quizNotAnswered = true;
     }
 
     ngOnInit() {
         this.userService.getUserForms(this.userQuiz.userId).subscribe(
             (response) => {
-                response.forEach(quiz => {
+                response.answered.forEach(quiz => {
                     if (quiz.id === this.formId) {
                         console.log(quiz.id);
 
-                        this.quizAnswered = false;
+                        this.quizNotAnswered = false;
                     }
                 });
-
                 this.getQuiz();
-
             },
             (erro) => {
                 console.log(erro);
@@ -72,7 +70,6 @@ export class QuizComponent implements OnInit {
                 mapQuestion.forEach((key, value) => {
                     this.questions.push({ id: value, name: key, answer: null });
                 });
-
             },
             (erro) => {
                 console.log(erro);
@@ -92,7 +89,7 @@ export class QuizComponent implements OnInit {
 
         this.quizService.saveAnswers(this.jobId, this.userQuiz).subscribe(
             (response) => {
-                this.quizAnswered = true;
+                this.quizNotAnswered = false;
             },
             (erro) => {
                 console.log(erro);
