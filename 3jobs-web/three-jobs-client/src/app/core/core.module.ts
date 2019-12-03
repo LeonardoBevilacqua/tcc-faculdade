@@ -10,6 +10,8 @@ import { CompanyService } from './services/company.service';
 import { JobService } from './services/job.service';
 import { ProfileService } from './services/profile.service';
 import { UserService } from './services/user.service';
+import { QuizService } from './services/quiz.service';
+import { Utils } from '../shared/utils/utils';
 
 
 @NgModule({
@@ -23,10 +25,12 @@ import { UserService } from './services/user.service';
         UserService,
         AuthService,
         JobService,
+        QuizService,
         CompanyService,
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         AuthGuard,
         LoggedInGuard,
+        Utils
     ],
 })
 export class CoreModule { }

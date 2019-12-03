@@ -19,7 +19,8 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <canvas *ngIf="citiesValue > 0" id="barChartCidades" style="height: 440px;"></canvas>
-                        <h3 *ngIf="citiesValue < 1" class="d-flex justify-content-center align-items-center"  style="height: 240px;">Sem informações para gerar gráfico!</h3>
+                        <h3 *ngIf="citiesValue < 1" class="d-flex justify-content-center align-items-center"
+                            style="height: 240px;">Sem informações para gerar gráfico!</h3>
                     </div>
                 </div>
             </div>
@@ -33,18 +34,25 @@
                             <th scope="col">E-mail</th>
                             <th scope="col" class="d-none d-sm-table-cell" style="width: 150px">Avaliação</th>
                             <th scope="col" style="width: 110px">Status</th>
-                            <th scope="col" style="width: 100px"></th>
+                            <th scope="col" style="width: 100px">Questionario</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let candidate of jobUsers;">
-                            <td>{{candidate.name}}</td>
+                            <td>
+                                <a target="_blank" href="/profile/{{candidate.id}}">
+                                    {{candidate.name}}
+                                </a>
+                            </td>
                             <td class="d-none d-sm-table-cell">{{candidate.email}}</td>
                             <td class="d-none d-sm-table-cell">10</td>
                             <td><span class="badge badge-success">{{candidate.status}}</span></td>
-                            <td>
-                                <a target="_blank" href="/profile/{{candidate.id}}" class="btn btn-primary btn-sm">Ver
-                                    Perfil</a>
+                            <td class="d-flex justify-content-center">
+                                <button id="btn-answer-modal" (click)="editUserQuiz(candidate)" data-toggle="modal"
+                                    data-target="#answerModal" type="button" class="btn btn-dark btn-sm"
+                                    title="Respostas">
+                                    <i class="fa fa-file-text" aria-hidden="true"></i>
+                                </button>
                             </td>
                         </tr>
                         <tr *ngIf="jobUsers.length === 0">
@@ -56,4 +64,5 @@
         </div>
     </section>
     <app-footer></app-footer>
+    <app-answers-modal [userQuiz]="userQuiz" [quiz]="quiz"></app-answers-modal>
 </div>

@@ -106,6 +106,7 @@ public class JobController {
 
     @PostMapping("/{jobId}/forms")
     public ResponseEntity<?> saveForm(@PathVariable Long jobId, @RequestBody Form form){
+    	System.out.println("aaaaaaaaaaaaaa :::"+jobId);
         return ResponseEntity.ok(jobService.saveForm(jobId, form));
     }
 
