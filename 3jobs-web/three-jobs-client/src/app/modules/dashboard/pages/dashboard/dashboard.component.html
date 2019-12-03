@@ -56,6 +56,10 @@
                                     title="{{vacancy.form ? 'Editar questionario' : 'Novo questionario'}}">
                                     <i class="fa fa-file-text" aria-hidden="true"></i>
                                 </button>
+                                <a *ngIf="shouldDisplayAnswerQuizForm()" class="btn btn-success btn-sm"
+                                    title="Responder questionario" [routerLink]="['/quiz/', vacancy.id, vacancy.form.id]">
+                                    <i class="fa fa-file-text text-white" aria-hidden="true"></i>
+                                </a>
                             </td>
                         </tr>
                         <tr *ngIf="vacancies.length === 0">

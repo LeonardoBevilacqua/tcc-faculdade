@@ -125,17 +125,19 @@ export class DashboardComponent implements OnInit {
     }
 
     private getAllRecruiter() {
-        this.spinner.show();
-        this.companyService.read(this.user.companyId).subscribe(
-            (response) => {
-                this.recruiters = response.recruters.filter(recruiter => recruiter.id !== this.user.id);
-                this.spinner.hide();
-            },
-            (error) => {
-                console.log(error);
-                this.spinner.hide();
-            }
-        );
+        if (!isNullOrUndefined(this.user.companyId)) {
+            this.spinner.show();
+            this.companyService.read(this.user.companyId).subscribe(
+                (response) => {
+                    this.recruiters = response.recruters.filter(recruiter => recruiter.id !== this.user.id);
+                    this.spinner.hide();
+                },
+                (error) => {
+                    console.log(error);
+                    this.spinner.hide();
+                }
+            );
+        }
     }
 
     private getCardData() {
@@ -231,5 +233,9 @@ export class DashboardComponent implements OnInit {
 
     public shouldDisplayQuizForm(): boolean {
         return this.authService.getUserRole() === Role.ROLE_HEADHUNTER;
+    }
+
+    public shouldDisplayAnswerQuizForm(): boolean {
+        return this.authService.getUserRole() === Role.ROLE_CANDIDATE;
     }
 }
