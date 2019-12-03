@@ -1,31 +1,12 @@
-version: '3'
+version: "3"
 
 services:
-  reverse-proxy:
-    image: traefik:v2.0
-    command: --api.insecure=true --providers.docker
+  auth-service:
+    image: marciolmm/auth-service:0.8
     ports:
-      - "80:80"
+      - "5000:5000"
+
+  core-service:
+    image: marciolmm/core-service:0.95
+    ports:
       - "8080:8080"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-
-  frontend:
-    image: marciolmm/frontend
-    labels:
-      - "traefik.http.routers.auth.rule=Host(`frontend.docker.localhost`)"
-
-  core:
-    image: marciolmm/core-service:0.90
-    labels:
-      - "traefik.http.routers.core.rule=Host(`core.docker.localhost`)"
-
-  authe:
-    image: marciolmm/auth-service:0.4
-    labels:
-      - "traefik.http.routers.authe.rule=Host(`authe.docker.localhost`)"
-  
-  email:
-    image: marciolmm/email-service:0.2
-    labels:
-      - "traefik.http.routers.email.rule=Host(`email.docker.localhost`)"
