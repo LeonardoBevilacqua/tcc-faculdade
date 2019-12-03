@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { MaintainForm } from 'src/app/shared/form/maintain-form';
 import { Job } from 'src/app/shared/models/job';
 import { Utils } from 'src/app/shared/utils/utils';
+import { environment } from 'src/environments/environment';
 
 declare const $: any;
 
@@ -20,7 +21,7 @@ export class QuizModalComponent implements OnChanges {
     questions: Map<number, string>;
     @Input() job: Job;
 
-    constructor(private quizService: QuizService, private utils: Utils) {
+    constructor(private quizService: QuizService, private utils: Utils, private toastr: ToastrService) {
         this.question = new Question();
         this.quiz = new Quiz();
         this.questions = new Map<number, string>();
@@ -80,28 +81,57 @@ export class QuizModalComponent implements OnChanges {
     }
 
     public onSubmit() {
-
         this.quiz.questions = this.utils.mapToObject(this.questions);
 
         if (this.quiz.id && this.quiz.id > 0) {
-
             this.quizService.updateQuiz(this.job.id, this.quiz).subscribe(
                 (response: any) => {
-                  /*  */  $('#quizModal').modal('hide');
+                    this.toastr.success(response.message ? response.message : 'Informações atualizadas com sucesso!');
+                    $('#quizModal').modal('hide');
                 },
                 (error) => {
-                    console.log(error);
+                    // if error is set, Show the server message.
+                    if (error.error && error.status !== 0) {
+                        // set a title to show
+                        const title = error.error.title ? error.error.title : `Erro ${error.status}`;
+                        // display the warning message
+                        this.toastr.warning(error.error.message, title);
+                    }
+                    // else, show a error message
+                    else {
+                        this.toastr.error('Tente novamente mais tarde.', 'Falha ao se comunicar com servidor!');
+                    }
+
+                    if (!environment.production) {
+                        // for debug
+                        console.error(error);
+                    }
                 }
             );
         }
         else {
-
             this.quizService.saveQuiz(this.job.id, this.quiz).subscribe(
                 (response: any) => {
+                    this.toastr.success(response.message ? response.message : 'Informações salvas com sucesso!');
                     $('#quizModal').modal('hide');
                 },
                 (error) => {
-                    console.log(error);
+                    // if error is set, Show the server message.
+                    if (error.error && error.status !== 0) {
+                        // set a title to show
+                        const title = error.error.title ? error.error.title : `Erro ${error.status}`;
+                        // display the warning message
+                        this.toastr.warning(error.error.message, title);
+                    }
+                    // else, show a error message
+                    else {
+                        this.toastr.error('Tente novamente mais tarde.', 'Falha ao se comunicar com servidor!');
+                    }
+
+                    if (!environment.production) {
+                        // for debug
+                        console.error(error);
+                    }
                 }
             );
         }

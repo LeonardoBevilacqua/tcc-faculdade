@@ -228,4 +228,8 @@ export class DashboardComponent implements OnInit {
                 }
             });
     }
+
+    public shouldDisplayQuizForm(): boolean {
+        return this.authService.getUserRole() === Role.ROLE_HEADHUNTER;
+    }
 }
