@@ -100,6 +100,14 @@ def user_login(possible_user):
     else:
         return {"error": "user not found"}, False, 400
 
+def user_get_token(user):
+    payload = {
+        'exp': datetime.now() + timedelta(seconds=int(JWT_EXP_DELTA_SECONDS)),
+        'email': user['email']
+    }
+    jwt_token = jwt.encode(payload, JWT_SECRET, JWT_ALGORITHM)
+    return jwt_token.decode('utf-8')
+
 def get_role_by_user_id(user_id):
     return Roles.query.filter(Roles.user_id == user_id).first()
 
@@ -119,7 +127,17 @@ class Login(Resource):
         user, token, code = user_login(data)
         return user, code, {'Authorization': token,'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods' : 'PUT,GET, POST, OPTIONS', "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization, token", "Access-Control-Expose-Headers": "Authorization, test, token"}
 
+
+class Token(Resource):
+
+    def post(self):
+        data = request.get_json()
+        token = user_get_token(data)
+        return {'token': token}
+
+
 api.add_resource(Login, '/login')
+api.add_resource(Token, '/token')
 
 if __name__ == "__main__":
     app.run(debug=True,host='0.0.0.0')
