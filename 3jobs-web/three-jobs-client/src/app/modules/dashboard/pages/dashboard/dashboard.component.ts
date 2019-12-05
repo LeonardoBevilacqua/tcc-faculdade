@@ -159,6 +159,7 @@ export class DashboardComponent implements OnInit {
                     (response: User) => {
                         if (response.companyId) {
                             this.authService.setUser(response);
+                            this.user = response;
                             this.getCardData();
                             this.getJobs();
                             this.getAllRecruiter();
