@@ -66,8 +66,8 @@ public class JobService {
 	public JobsSearchDTO getJobsPageable(Integer page, Integer linesPerPage, String orderBy, String direction,
 										 String description, String title, String jobRole, String city) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
-		Page<Job> jobs = jobRepository.findDistinctByTitleIgnoreCaseContainingAndDescriptionIgnoreCaseContaining(title,
-				description, pageRequest);
+		Page<Job> jobs = jobRepository.getJobsWithFilters(title.toLowerCase(), city.toLowerCase(),
+				description.toLowerCase(), jobRole.toLowerCase(), pageRequest);
 		CityAggregate aggregate = new CityAggregate();
 		JobsSearchDTO jobsSearchDTO = new JobsSearchDTO();
 		jobsSearchDTO.setCities(aggregate.countJobCities(jobs.getContent()));
