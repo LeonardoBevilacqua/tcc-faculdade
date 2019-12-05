@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './pages/auth/auth.component';
 
 const routes: Routes = [
-    { path: ':id', component: AuthComponent, },
+    { path: ':id/:token', component: AuthComponent, },
 ];
 
 @NgModule({
