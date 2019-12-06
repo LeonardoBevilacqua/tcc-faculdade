@@ -23,7 +23,7 @@
                                             </div>
 
                                             <ng-template #unsubscribeButton>
-                                                    <div class="col-auto col-md-auto align-items-baseline">
+                                                <div class="col-auto col-md-auto align-items-baseline">
                                                     <button type="button" (click)="unsubscribe()"
                                                         class="btn btn-primary">{{isHeadhunter() ? 'Sair' : 'Desistir'}}</button>
                                                 </div>
@@ -45,7 +45,7 @@
                                         <div class="col-auto col-md-auto pr-0">
                                             <div>
                                                 <p class="font-weight-bold"><span class="title-icon text-primary"><i
-                                                            class="fa fa-map-signs fa-lg mr-1"></i></span>{{job.company.address.city}}
+                                                            class="fa fa-map-signs fa-lg mr-1"></i></span>{{job.city}}
                                                 </p>
                                             </div>
                                         </div>
@@ -99,22 +99,6 @@
                         </div>
 
                         <div class="col-lg-3">
-                            <div>
-                                <div>
-                                    <h4>Vagas similares</h4>
-                                    <div class="list-group list-group-flush">
-                                        <ul class="list-group list-group-flush">
-                                            <ng-container *ngFor="let jobMatch of jobMatch">
-                                                <li class="list-group-item p-0" *ngIf="jobMatch.id != currentId"><a
-                                                        href="/job-details/{{jobMatch.id}}"
-                                                        class="list-group-item list-group-item-action">{{jobMatch.title}}</a>
-                                                </li>
-                                            </ng-container>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="mt-5">
                                 <h4>Publicidade</h4>
                                 <div>

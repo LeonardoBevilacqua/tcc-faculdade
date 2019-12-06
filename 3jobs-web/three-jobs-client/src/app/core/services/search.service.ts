@@ -5,19 +5,21 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SearchService {
 
-    private jobs = new BehaviorSubject<Object>({});
+    private jobs = new BehaviorSubject<any>({});
     private valueSearch = new BehaviorSubject<string>('');
+   
 
     currentJobs = this.jobs.asObservable();
     currentValueSearch = this.valueSearch.asObservable();
 
     constructor() { }
 
-    changeJobs(jobs: Object) {
+    changeJobs(jobs: any) {
         this.jobs.next(jobs)
     }
 
     changeSearch(valueSearch: string) {
         this.valueSearch.next(valueSearch)
     }
+  
 }
