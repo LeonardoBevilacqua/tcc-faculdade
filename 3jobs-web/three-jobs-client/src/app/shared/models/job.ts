@@ -23,4 +23,5 @@ export class Job extends Entity {
     tags: Array<Tag>;
     status: string;
     form: Quiz;
+    city: String;
 }
