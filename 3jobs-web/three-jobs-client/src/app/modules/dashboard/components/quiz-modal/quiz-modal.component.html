@@ -1,0 +1,58 @@
+<div class="modal fade" id="quizModal" tabindex="-1" role="dialog" aria-labelledby="quizModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <form #quizForm="ngForm" (ngSubmit)="quizForm.form.valid && onSubmit();">
+                <div class="modal-body">
+                    <div>
+                        <div class="form-group">
+                            <label for="titleQuiz">Titulo do questionario</label>
+                            <input type="text" [(ngModel)]="quiz.name" class="form-control" id="titleQuiz"
+                                name="titleQuiz" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descriptionQuiz">Descrição do questionario</label>
+                            <input type="text" [(ngModel)]="quiz.description" class="form-control" id="descriptionQuiz"
+                                name="descriptionQuiz" required>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="d-flex ">
+                        <div class="form-group w-100">
+                            <label for="titleQuestion">Titulo Pergunta</label>
+                            <input type="text" [(ngModel)]="question.name" class="form-control" id="titleQuestion"
+                                name="titleQuestion">
+                        </div>
+                        <div class="form-group d-flex align-items-end ml-3">
+                            <button type="button" class="btn btn-primary" (click)="addQuestion()">Add</button>
+                        </div>
+                    </div>
+                    <hr />
+                    <div style="max-height: 300px;overflow-y: auto;">
+                        <ul class="list-group list-group-flush">
+                            <li *ngFor="let quiz of questions | keyvalue"
+                                class="list-group-item d-flex justify-content-between">
+                                <span>{{quiz.value}}</span>
+                                <div>
+                                    <button type="button" (click)="editQuestion(quiz.key)" class=" btn btn-primary btn-sm py-0 px-1
+                                    m-0 mr-2">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                    <button type="button" (click)="removeQuestion(quiz.key)" class=" btn btn-danger btn-sm
+                                    py-0 px-1 m-0">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="closeModal()"
+                        data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Salvar mudanças</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

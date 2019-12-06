@@ -1,9 +1,14 @@
 package com.core.util;
 
+import com.core.dto.FormDTO;
+import com.core.model.Form;
 import com.core.model.Job;
+import com.core.model.UserForm;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 public class DashboardAggregate {
 
@@ -25,5 +30,61 @@ public class DashboardAggregate {
             }
         }
         return response;
+    }
+
+    public static List<FormDTO> aggregateByFormNotAnswered(List<Job> jobs, Long userId, List<UserForm> userForms) {
+        List<FormDTO> forms = new ArrayList<>();
+        Boolean found = false;
+        for(Job job: jobs) {
+            if (job.getStatus().equals("ativo")) {
+                Optional<Form> formOpt = Optional.ofNullable(job.getForm());
+                if (formOpt.isPresent()) {
+                    for (UserForm userForm : userForms) {
+                        if (userForm.getForm().getId().equals(job.getForm().getId())) {
+                            found = true;
+                        }
+                    }
+                    if (!found) {
+                        FormDTO formDTO = new FormDTO();
+                        formDTO.setDescription(job.getForm().getDescription());
+                        formDTO.setName(job.getForm().getName());
+                        formDTO.setJobId(job.getId());
+                        formDTO.setId(job.getForm().getId());
+                        formDTO.setFinalDate(job.getEndDate());
+                        forms.add(formDTO);
+                    }
+                }
+            }
+            found = false;
+        }
+        return forms;
+    }
+
+    public static List<FormDTO> aggregateByFormAnswered(List<Job> jobs, Long userId, List<UserForm> userForms) {
+        List<FormDTO> forms = new ArrayList<>();
+        Boolean found = false;
+        for(Job job: jobs) {
+            if (job.getStatus().equals("ativo")) {
+                Optional<Form> formOpt = Optional.ofNullable(job.getForm());
+                if (formOpt.isPresent()) {
+                    for (UserForm userForm : userForms) {
+                        if (userForm.getForm().getId().equals(job.getForm().getId())) {
+                            found = true;
+                        }
+                    }
+                    if (found) {
+                        FormDTO formDTO = new FormDTO();
+                        formDTO.setDescription(job.getForm().getDescription());
+                        formDTO.setName(job.getForm().getName());
+                        formDTO.setJobId(job.getId());
+                        formDTO.setId(job.getForm().getId());
+                        formDTO.setFinalDate(job.getEndDate());
+                        forms.add(formDTO);
+                    }
+                }
+            }
+            found = false;
+        }
+        return forms;
     }
 }

@@ -64,4 +64,9 @@ public class UserController {
     public ResponseEntity<?> activateUser(@PathVariable Long userId) {
         return ResponseEntity.ok(userService.activateUser(userId));
     }
+
+    @GetMapping("/{userId}/forms")
+    public ResponseEntity<?> getForms(@PathVariable Long userId) {
+        return ResponseEntity.ok(userService.getForms(userId));
+    }
 }

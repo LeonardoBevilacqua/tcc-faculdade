@@ -9,8 +9,9 @@ import { AuthService } from './services/auth.service';
 import { CompanyService } from './services/company.service';
 import { JobService } from './services/job.service';
 import { ProfileService } from './services/profile.service';
-import { TestesService } from './services/testes.service';
 import { UserService } from './services/user.service';
+import { QuizService } from './services/quiz.service';
+import { Utils } from '../shared/utils/utils';
 import { DirectAccessUrlGuard } from './mechanism/direct-access-url.guard';
 
 
@@ -21,15 +22,16 @@ import { DirectAccessUrlGuard } from './mechanism/direct-access-url.guard';
         HttpClientModule
     ],
     providers: [
-        TestesService,
         ProfileService,
         UserService,
         AuthService,
         JobService,
+        QuizService,
         CompanyService,
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         AuthGuard,
         LoggedInGuard,
+        Utils,
         DirectAccessUrlGuard
     ],
 })

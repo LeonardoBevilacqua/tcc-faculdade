@@ -12,8 +12,8 @@ import com.core.model.Job;
 
 public interface JobRepository extends JpaRepository<Job, Long> {
 
-    Page<Job> findDistinctByTitleIgnoreCaseContainingAndDescriptionContainingIgnoreCase(
-            String title, String description, Pageable pageable);
+    Page<Job> findDistinctByTitleIgnoreCaseContainingAndDescriptionIgnoreCaseContainingAndCityIgnoreCaseContaining(
+            String title, String description, String city, Pageable pageable);
 
     List<Job> findByCompanyId(Long companyId);
 
@@ -27,4 +27,10 @@ public interface JobRepository extends JpaRepository<Job, Long> {
 	
 	@Query(value = "SELECT j.* FROM jobs j WHERE j.id IN (SELECT ju.job_id FROM jobs_users ju WHERE ju.user_id = :userId)", nativeQuery = true)
 	List<Job> findJobsByUserId(Long userId);
+
+	@Query("FROM Job j " + "WHERE LOWER(j.title) like %:jobTitle% " + "AND LOWER(j.city) like %:jobCity% " +
+            "AND LOWER(j.description) like %:jobDescription% " + "AND LOWER(j.jobRole) like %:jobRole% ")
+    Page<Job> getJobsWithFilters(@Param("jobTitle") String jobTitle, @Param("jobCity") String jobCity,
+                                 @Param("jobDescription") String jobDescription, @Param("jobRole") String jobRole,
+                                 Pageable pageable);
 }

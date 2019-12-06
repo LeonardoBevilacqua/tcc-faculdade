@@ -9,6 +9,8 @@ import { JobDashboardComponent } from './pages/job-dashboard/job-dashboard.compo
 import { CardDashboardComponent } from './components/card-dashboard/card-dashboard.component';
 import { ToDoListComponent } from './components/to-do-list/to-do-list.component';
 import { CardRankingComponent } from './components/card-ranking/card-ranking.component';
+import { QuizModalComponent } from './components/quiz-modal/quiz-modal.component';
+import { AnswersModalComponent } from './components/answers-modal/answers-modal.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +19,9 @@ import { CardRankingComponent } from './components/card-ranking/card-ranking.com
         JobDashboardComponent,
         CardDashboardComponent,
         ToDoListComponent,
-        CardRankingComponent
+        CardRankingComponent,
+        QuizModalComponent,
+        AnswersModalComponent
     ],
     imports: [
         CommonModule,

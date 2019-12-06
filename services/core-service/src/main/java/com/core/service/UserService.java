@@ -1,20 +1,18 @@
 package com.core.service;
 
-import com.core.dto.DashboardStats;
-import com.core.dto.UserLoginDTO;
-import com.core.dto.UserSimpleDTO;
-import com.core.dto.UserToDoDTO;
+import com.core.dto.*;
 import com.core.exception.EntityNotFoundException;
-import com.core.model.Job;
-import com.core.model.Role;
-import com.core.model.ToDo;
-import com.core.model.User;
+import com.core.model.*;
 import com.core.respository.JobRepository;
 import com.core.respository.TodoRepository;
+import com.core.respository.UserFormRepository;
 import com.core.respository.UserRepository;
 import com.core.util.DashboardAggregate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +30,12 @@ public class UserService {
     @Autowired
     private JobRepository jobRepository;
 
+    @Autowired
+    private UserFormRepository userFormRepository;
+
+    @Value( "${email.url}" )
+    private String emailUrl;
+
     public List<User> getUsers() {
         return userRepository.findAll();
     }
@@ -46,7 +50,9 @@ public class UserService {
 
     public User saveUser(User user) {
     	user.getProfile().setEmail(user.getEmail());
-        return userRepository.save(user);
+    	User user1 = userRepository.save(user);
+        sendEmail(user.getEmail(), user1.getId());
+        return user1;
     }
 
     public User updateUser(Long id, User user) {
@@ -125,5 +131,21 @@ public class UserService {
         HashMap<String, String> response = new HashMap<>();
         response.put("message", "User actived successfully");
         return response;
+    }
+
+    public FormWithAnswersAndQuestionsDTO getForms(Long userId) {
+        List<UserForm> userForms = userFormRepository.findByUserId(userId);
+        List<Job> jobs = jobRepository.findJobsByUserId(userId);
+        List<FormDTO> formsNotAnswered = DashboardAggregate.aggregateByFormNotAnswered(jobs, userId, userForms);
+        List<FormDTO> formsAnswered = DashboardAggregate.aggregateByFormAnswered(jobs, userId, userForms);
+        FormWithAnswersAndQuestionsDTO formResponse = new FormWithAnswersAndQuestionsDTO();
+        formResponse.setAnswered(formsAnswered);
+        formResponse.setNotAnswered(formsNotAnswered);
+        return formResponse;
+    }
+
+    public void sendEmail(String email, Long userId) {
+        RestTemplate template = new RestTemplate();
+        ResponseEntity<String> response = template.postForEntity(emailUrl, new UserEmailActivate(userId, email), String.class);
     }
 }

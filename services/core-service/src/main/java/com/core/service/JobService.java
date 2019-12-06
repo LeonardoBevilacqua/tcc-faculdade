@@ -1,9 +1,6 @@
 package com.core.service;
 
-import com.core.dto.AnswersDTO;
-import com.core.dto.DashboardDTO;
-import com.core.dto.JobSimpleDTO;
-import com.core.dto.JobsSearchDTO;
+import com.core.dto.*;
 import com.core.exception.EntityNotFoundException;
 import com.core.model.*;
 import com.core.respository.FormRepository;
@@ -69,8 +66,8 @@ public class JobService {
 	public JobsSearchDTO getJobsPageable(Integer page, Integer linesPerPage, String orderBy, String direction,
 										 String description, String title, String jobRole, String city) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
-		Page<Job> jobs = jobRepository.findDistinctByTitleIgnoreCaseContainingAndDescriptionContainingIgnoreCase(title,
-				description, pageRequest);
+		Page<Job> jobs = jobRepository.getJobsWithFilters(title.toLowerCase(), city.toLowerCase(),
+				description.toLowerCase(), jobRole.toLowerCase(), pageRequest);
 		CityAggregate aggregate = new CityAggregate();
 		JobsSearchDTO jobsSearchDTO = new JobsSearchDTO();
 		jobsSearchDTO.setCities(aggregate.countJobCities(jobs.getContent()));
@@ -194,9 +191,11 @@ public class JobService {
 		return form;
 	}
 
-	public Form getAnswers(Long jobId, Long formId) {
-		Optional<Form> form =  formRepository.findById(formId);
-		return form.get();
+	public FormWithQuestionsDTO getSimpleForm(Long jobId, Long formId) {
+		Optional<Form> formOpt =  formRepository.findById(formId);
+		Form form = formOpt.get();
+		FormWithQuestionsDTO formWithQuestionsDTO = new FormWithQuestionsDTO(form.getId(), form.getName(), form.getDescription(), jobId, form.getQuestions());
+		return formWithQuestionsDTO;
 	}
 
 	public UserForm updateAnswers(AnswersDTO answersDTO, Long jobId) {
@@ -218,5 +217,10 @@ public class JobService {
 		formFound.setName(form.getName());
 		formFound.setQuestions(form.getQuestions());
 		return formRepository.save(formFound);
+	}
+
+	public Form getAnswers(Long jobId, Long formId) {
+		Optional<Form> formOpt =  formRepository.findById(formId);
+		return formOpt.get();
 	}
 }

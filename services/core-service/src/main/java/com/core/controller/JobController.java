@@ -27,7 +27,7 @@ public class JobController {
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "20") int size,
             @RequestParam(value = "jobRole", defaultValue = "") String jobRole,
-            @RequestParam(value = "city", defaultValue = "20") String city) {
+            @RequestParam(value = "city", defaultValue = "") String city) {
         return ResponseEntity.ok(jobService.getJobsPageable(
                 page, size, orderBy, direction, description, title, jobRole, city));
     }
@@ -126,6 +126,11 @@ public class JobController {
 
     @GetMapping("/{jobId}/forms/{formId}")
     public ResponseEntity<?> getForm(@PathVariable Long jobId, @PathVariable Long formId) {
+        return ResponseEntity.ok(jobService.getSimpleForm(jobId, formId));
+    }
+
+    @GetMapping("/{jobId}/forms/{formId}/answers")
+    public ResponseEntity<?> getSwers(@PathVariable Long jobId, @PathVariable Long formId) {
         return ResponseEntity.ok(jobService.getAnswers(jobId, formId));
     }
 }

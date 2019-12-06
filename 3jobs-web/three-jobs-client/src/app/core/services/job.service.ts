@@ -42,7 +42,7 @@ export class JobService extends EntityService<Job> {
         return this.httpClient.get(`${this.apiUrl}/${this.endpoint}?description=${description}&page=${page}&size=${size}`);
     }
 
-    public getJobDashborad(id: number): Observable<JobDashboard> {
+    public getJobDashboard(id: number): Observable<JobDashboard> {
         return this.httpClient.get<JobDashboard>(`${this.apiUrl}/${this.endpoint}/${id}/dashboard`);
     }
 

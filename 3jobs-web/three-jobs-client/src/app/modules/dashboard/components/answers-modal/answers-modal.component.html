@@ -1,0 +1,31 @@
+<div class="modal fade" id="answerModal" tabindex="-1" role="dialog" aria-labelledby="answerModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <form #answerForm="ngForm" (ngSubmit)="answerForm.form.valid && onSubmit();">
+                <div class="modal-header d-flex flex-row justify-content-end align-items-center">
+                    <label class="mr-3" for="finalGrade">NOTA</label>
+                    <input style="width: 80px;" type="number" [(ngModel)]="this.userQuiz.finalGrade"
+                        class="form-control" id="finalGrade" name="finalGrade" min="1" max="10"
+                        required />
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex flex-column">
+                        <h3 class="m-0">{{quiz.name}}</h3>
+                        <span class="text-secondary">{{quiz.description}}</span>
+                    </div>
+                    <hr />
+                    <div style="max-height: 300px;overflow-y: auto;">
+                        <div *ngFor="let teste of answers() | keyvalue;">
+                            <b>{{teste.key}}</b>
+                            <p><b>R:</b>{{teste.value}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Salvars</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
