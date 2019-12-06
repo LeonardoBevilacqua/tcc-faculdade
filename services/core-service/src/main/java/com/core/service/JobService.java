@@ -67,11 +67,14 @@ public class JobService {
 										 String description, String title, String jobRole, String city) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
 		Page<Job> jobs = jobRepository.getJobsWithFilters(title.toLowerCase(), city.toLowerCase(),
-				description.toLowerCase(), jobRole.toLowerCase(), pageRequest);
+				description.toLowerCase(), jobRole.toLowerCase(), pageRequest);			
+		PageRequest pageRequest2 = PageRequest.of(page, 1000, Sort.Direction.valueOf(direction), orderBy);
+		Page<Job> jobs2 = jobRepository.getJobsWithFilters(title.toLowerCase(), city.toLowerCase(),
+				description.toLowerCase(), jobRole.toLowerCase(), pageRequest2);		
 		CityAggregate aggregate = new CityAggregate();
 		JobsSearchDTO jobsSearchDTO = new JobsSearchDTO();
-		jobsSearchDTO.setCities(aggregate.countJobCities(jobs.getContent()));
-		jobsSearchDTO.setJobRoles(aggregate.countJobRoles(jobs.getContent()));
+		jobsSearchDTO.setCities(aggregate.countJobCities(jobs2.getContent()));
+		jobsSearchDTO.setJobRoles(aggregate.countJobRoles(jobs2.getContent()));
 		jobsSearchDTO.setJobs(jobs);
 		return jobsSearchDTO;
 	}
