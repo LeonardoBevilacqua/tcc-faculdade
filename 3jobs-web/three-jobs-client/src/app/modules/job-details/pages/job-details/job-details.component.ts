@@ -52,12 +52,6 @@ export class JobDetailsComponent implements OnInit {
             this.jobService.read(this.currentId).subscribe(
                 (job: Job) => {
                     this.job = job;
-                    this.jobService.search(this.job.description, 0, 4).subscribe(
-                        ((res: any) => {
-                            this.jobMatch = res.content;
-                        }
-                        )
-                    );
                     this.spinnerService.hide();
                 },
                 (error: HttpErrorResponse) => {

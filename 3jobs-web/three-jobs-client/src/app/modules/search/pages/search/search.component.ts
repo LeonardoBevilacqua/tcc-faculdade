@@ -18,13 +18,14 @@ export class SearchComponent implements OnInit {
     jobRoles: any;
     valueSearch: string;
     filterForm: NgForm
+    city: string;
+    jobRole: string;
 
     constructor(private jobService: JobService,
-        private router: Router,
         private toast: ToastrService,
-        private spinnerService: Ng4LoadingSpinnerService,
         private searchService: SearchService,
-        private directAccessUrlService: DirectAccessUrlService, ) { }
+        private spinnerService: Ng4LoadingSpinnerService,
+    ) { }
 
     ngOnInit() {
         this.searchService.currentJobs.subscribe(jobs => {
@@ -41,7 +42,7 @@ export class SearchComponent implements OnInit {
 
     loadMore() {
         if (this.jobList.number != (this.jobList.totalPages - 1)) {
-            this.jobService.search(this.valueSearch, this.jobList.number + 1, 20).subscribe(
+            this.jobService.search(this.valueSearch, this.jobList.number + 1, 20, this.city, this.jobRole).subscribe(
                 ((res: any) => {
                     for (var i = 0; i < res.jobs.content.length; i++) {
                         this.jobList.content.push(res.jobs.content[i]);
@@ -64,50 +65,51 @@ export class SearchComponent implements OnInit {
 
     onSubmit(searchForm: NgForm, event: Event) {
         event.preventDefault();
-        console.log(searchForm.value.filterCities);
-        console.log(searchForm.value.filterJobRoles);
+
+        this.city = searchForm.value.filterCities;
+        this.jobRole = searchForm.value.filterJobRoles;
+
         this.isFilterActive = true;
         while (this.tagsList.length) {
             this.tagsList.pop();
         }
-
         if (searchForm.value.filterCities != '' && searchForm.value.filterCities != null) {
             this.tagsList.push(searchForm.value.filterCities)
-        }
 
+        } else { this.city = ''; }
         if (searchForm.value.filterJobRoles != '' && searchForm.value.filterJobRoles != null) {
             this.tagsList.push(searchForm.value.filterJobRoles)
-        }
 
-        //TODO Chamar um service passando a cidade e jobROle    
-        this.jobService.search('teste', 0, 20).subscribe(
+        } else { this.jobRole = ''; }
+        this.spinnerService.show();
+        this.jobService.search(this.valueSearch, 0, 20, this.city, this.jobRole).subscribe(
             (res: any) => {
                 this.jobList = res.jobs;
-                this.cities = this.transform(res.cities)
-                this.jobRoles = this.transform(res.jobRoles);
+                this.spinnerService.show();
+                this.spinnerService.hide();
             }, (error: HttpErrorResponse) => {
-
                 this.toast.error('Ocorreu um erro inesperado, por favor aguarde!');
+                this.spinnerService.hide();
             }
         );
         searchForm.reset();
     }
-
     cleanFilter(searchForm: NgForm) {
         this.isFilterActive = true;
         searchForm.reset();
         while (this.tagsList.length) {
             this.tagsList.pop();
         }
-
+        this.spinnerService.show();
         this.jobService.search(this.valueSearch, 0, 20).subscribe(
             (res: any) => {
                 this.jobList = res.jobs;
                 this.cities = this.transform(res.cities)
                 this.jobRoles = this.transform(res.jobRoles);
-
+                this.spinnerService.hide();
             }, (error: HttpErrorResponse) => {
                 this.toast.error('Ocorreu um erro inesperado, por favor aguarde!');
+                this.spinnerService.hide();
             }
         );
     }
