@@ -43,4 +43,8 @@ export class UserService extends EntityService<User> {
     public getUserForms(userId: number): Observable<UserQuizzes> {
         return this.httpClient.get<UserQuizzes>(`${this.apiUrl}/${this.endpoint}/${userId}/forms`);
     }
+
+    public activateUser(userId: number): Observable<any> {
+        return this.httpClient.post(`${this.apiUrl}/${this.endpoint}/${userId}/activate`, null);
+    }
 }
