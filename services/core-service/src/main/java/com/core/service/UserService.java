@@ -124,12 +124,13 @@ public class UserService {
         return dashboardStats;
     }
 
-    public HashMap<String, String> activateUser(Long userId) {
+    public HashMap<String, Object> activateUser(Long userId) {
         User user = getUser(userId);
         user.setActive(true);
-        userRepository.save(user);
-        HashMap<String, String> response = new HashMap<>();
+        user = userRepository.save(user);
+        HashMap<String, Object> response = new HashMap<>();
         response.put("message", "User actived successfully");
+        response.put("user", user);
         return response;
     }
 
