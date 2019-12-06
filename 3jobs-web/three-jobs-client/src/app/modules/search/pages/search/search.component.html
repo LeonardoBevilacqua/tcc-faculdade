@@ -3,11 +3,11 @@
 
     <div class="content pt-4 container-fluid mb-auto px-md-5 py-3 mb-3 bg-light">
         <div class="px-md-5">
-            <span>{{jobList.totalElements}} resultado(s) para: </span><strong class="mr-2">{{valueSearch}}</strong>
+            <span>{{jobList ? jobList.totalElements : 0}} resultado(s) para: </span><strong class="mr-2">{{valueSearch}}</strong>
             <div class="badge badge-pill badge-primary mr-2" *ngFor="let item of tagsList">
                 {{item}} </div>
         </div>
-        <form #filterForm="ngForm" (ngSubmit)="onSubmit(filterForm, $event)" *ngIf="jobList.numberOfElements != 0">
+        <form #filterForm="ngForm" (ngSubmit)="onSubmit(filterForm, $event)" *ngIf="jobList && jobList.numberOfElements !== 0">
             <div class="d-flex flex-row-reverse px-md-5 pt-3">
                 <button [hidden]="isFilterActive" type="submit" class="btn btn-outline-primary ml-2"
                 [disabled]="(filterForm.form.value.filterJobRoles == '' || filterForm.form.value.filterJobRoles == null) && (filterForm.form.value.filterCities == '' || filterForm.form.value.filterCities == null)" >
@@ -50,7 +50,7 @@
     <section>
         <div class="row pl-md-5 mb-5 w-100">
             <div class="col-md-9 px-md-5">
-                <div *ngIf="jobList.numberOfElements == 0">
+                <div *ngIf="!jobList || jobList.numberOfElements === 0">
                     <div class="h1">Busca não encontrada!</div>
                     <div class="h5">Não encontramos nenhuma vaga com "{{valueSearch}}"
                     </div>
@@ -70,9 +70,9 @@
 
                 <!-- <app-card-candidate [candidates]=listCandidate></app-card-candidate> -->
 
-                <div class="px-3 border-top border-top-1 " *ngIf="jobList.number != jobList.totalPages-1 ">
+                <div class="px-3 border-top border-top-1 " *ngIf="jobList && jobList.number !== jobList.totalPages-1 ">
                     <button type="button" class="my-5 btn btn-primary btn-lg btn-block" (click)="loadMore()"
-                        [disabled]="jobList.numberOfElements == 0 || valueSearch.length == 0">Ver Mais</button>
+                        [disabled]="(!jobList || jobList.numberOfElements === 0) || valueSearch.length == 0">Ver Mais</button>
                 </div>
             </div>
 
