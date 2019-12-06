@@ -27,7 +27,7 @@ public class JobController {
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "20") int size,
             @RequestParam(value = "jobRole", defaultValue = "") String jobRole,
-            @RequestParam(value = "city", defaultValue = "20") String city) {
+            @RequestParam(value = "city", defaultValue = "") String city) {
         return ResponseEntity.ok(jobService.getJobsPageable(
                 page, size, orderBy, direction, description, title, jobRole, city));
     }
@@ -106,7 +106,6 @@ public class JobController {
 
     @PostMapping("/{jobId}/forms")
     public ResponseEntity<?> saveForm(@PathVariable Long jobId, @RequestBody Form form){
-    	System.out.println("aaaaaaaaaaaaaa :::"+jobId);
         return ResponseEntity.ok(jobService.saveForm(jobId, form));
     }
 

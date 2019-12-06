@@ -38,8 +38,8 @@ export class JobService extends EntityService<Job> {
         return this.httpClient.put<Job>(`${this.apiUrl}/${this.endpoint}/${idJob}/headhunters/remove/${idUser}`, httpOptions);
     }
 
-    public search(description: string, page = 0, size = 10) {
-        return this.httpClient.get(`${this.apiUrl}/${this.endpoint}?description=${description}&page=${page}&size=${size}`);
+    public search(description: string, page = 0, size = 10, city = '', jobRole = '' ) {
+        return this.httpClient.get(`${this.apiUrl}/${this.endpoint}?description=${description}&page=${page}&size=${size}&city=${city}&jobRole=${jobRole}`);
     }
 
     public getJobDashboard(id: number): Observable<JobDashboard> {

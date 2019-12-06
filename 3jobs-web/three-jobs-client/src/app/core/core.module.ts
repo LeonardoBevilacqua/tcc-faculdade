@@ -12,6 +12,7 @@ import { ProfileService } from './services/profile.service';
 import { UserService } from './services/user.service';
 import { QuizService } from './services/quiz.service';
 import { Utils } from '../shared/utils/utils';
+import { DirectAccessUrlGuard } from './mechanism/direct-access-url.guard';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { Utils } from '../shared/utils/utils';
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         AuthGuard,
         LoggedInGuard,
-        Utils
+        Utils,
+        DirectAccessUrlGuard
     ],
 })
 export class CoreModule { }

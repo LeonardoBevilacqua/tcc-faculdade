@@ -3,11 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from './core/mechanism/auth.guard';
 import { LoggedInGuard } from './core/mechanism/logged-in.guard';
+import { DirectAccessUrlGuard } from './core/mechanism/direct-access-url.guard';
 
 const routes: Routes = [
     { path: '', loadChildren: './modules/home/home.module#HomeModule', canActivate: [LoggedInGuard] },
     { path: 'profile', loadChildren: './modules/profile/profile.module#ProfileModule', canActivate: [AuthGuard] },
-    { path: 'search', loadChildren: './modules/search/search.module#SearchModule' },
+    { path: 'search', loadChildren: './modules/search/search.module#SearchModule', canActivate: [DirectAccessUrlGuard] },
     { path: 'auth', loadChildren: './modules/auth/auth.module#AuthModule', },
     { path: 'job-details', loadChildren: './modules/job-details/job-details.module#JobDetailsModule', },
     { path: 'dashboard', loadChildren: './modules/dashboard/dashboard.module#DashboardModule', canActivate: [AuthGuard] },
