@@ -7,7 +7,7 @@ services:
       - "5000:5000"
 
   email-service:
-    image: marciolmm/email-service:0.99
+    image: marciolmm/email-service:1.00
     ports:
       - "5001:5001"
 
