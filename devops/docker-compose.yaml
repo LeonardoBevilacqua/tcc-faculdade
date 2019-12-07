@@ -2,11 +2,11 @@ version: "3"
 
 services:
   auth-service:
-    image: marciolmm/auth-service:0.8
+    image: marciolmm/auth-service:0.99
     ports:
       - "5000:5000"
 
   core-service:
-    image: marciolmm/core-service:0.95
+    image: marciolmm/core-service:0.99
     ports:
       - "8080:8080"
