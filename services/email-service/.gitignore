@@ -1,0 +1,8 @@
+#vscode settings folder
+/.vscode
+
+#virtualenv
+/venv/
+
+#pycache
+/__pycache__/

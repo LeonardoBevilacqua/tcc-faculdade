@@ -32,7 +32,6 @@
                         <tr>
                             <th scope="col">Candidato</th>
                             <th scope="col">E-mail</th>
-                            <th scope="col" class="d-none d-sm-table-cell" style="width: 150px">Avaliação</th>
                             <th scope="col" style="width: 110px">Status</th>
                             <th scope="col" style="width: 100px">Questionario</th>
                         </tr>
@@ -45,7 +44,6 @@
                                 </a>
                             </td>
                             <td class="d-none d-sm-table-cell">{{candidate.email}}</td>
-                            <td class="d-none d-sm-table-cell">10</td>
                             <td><span class="badge badge-success">{{candidate.status}}</span></td>
                             <td class="d-flex justify-content-center">
                                 <button id="btn-answer-modal" (click)="editUserQuiz(candidate)" data-toggle="modal"
@@ -64,5 +62,5 @@
         </div>
     </section>
     <app-footer></app-footer>
-    <app-answers-modal [userQuiz]="userQuiz" [quiz]="quiz"></app-answers-modal>
+    <app-answers-modal *ngIf="userQuiz && quiz" [userQuiz]="userQuiz" [quiz]="quiz"></app-answers-modal>
 </div>

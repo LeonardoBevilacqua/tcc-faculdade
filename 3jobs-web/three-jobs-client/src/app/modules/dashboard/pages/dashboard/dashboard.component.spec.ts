@@ -4,10 +4,12 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from 'src/app/shared/shared.module';
 
-import { CreateVacancyModalComponent } from '../../components/create-vacancy-modal/create-vacancy-modal.component';
-import { DashboardComponent } from './dashboard.component';
 import { CardDashboardComponent } from '../../components/card-dashboard/card-dashboard.component';
+import { CreateVacancyModalComponent } from '../../components/create-vacancy-modal/create-vacancy-modal.component';
+import { QuizModalComponent } from '../../components/quiz-modal/quiz-modal.component';
 import { ToDoListComponent } from '../../components/to-do-list/to-do-list.component';
+import { DashboardComponent } from './dashboard.component';
+
 
 describe('DashboardComponent', () => {
     let component: DashboardComponent;
@@ -15,7 +17,13 @@ describe('DashboardComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [DashboardComponent, CreateVacancyModalComponent, CardDashboardComponent, ToDoListComponent],
+            declarations: [
+                DashboardComponent,
+                CreateVacancyModalComponent,
+                CardDashboardComponent,
+                ToDoListComponent,
+                QuizModalComponent,
+            ],
             imports: [SharedModule, RouterTestingModule, ToastrModule.forRoot(), Ng4LoadingSpinnerModule.forRoot()]
         })
             .compileComponents();
