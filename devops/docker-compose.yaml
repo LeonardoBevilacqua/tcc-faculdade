@@ -12,6 +12,6 @@ services:
       - "5001:5001"
 
   core-service:
-    image: marciolmm/core-service:0.99
+    image: marciolmm/core-service:1.00
     ports:
       - "8080:8080"
